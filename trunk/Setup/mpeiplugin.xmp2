@@ -206,7 +206,8 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Revision>1</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions</ExtensionDescription>
-    <VersionDescription>Support for SplashScreen</VersionDescription>
+    <VersionDescription>Restart button 
+Ask for restart when action is done </VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.3.1.mpe1</OnlineLocation>
     <ReleaseDate>2009-11-29T00:04:20.015625+02:00</ReleaseDate>

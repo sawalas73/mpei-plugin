@@ -67,6 +67,14 @@
           <onright>50</onright>
         </control>
 
+		<control>
+          <description>Restart</description>
+          <type>button</type>
+          <id>5</id>
+          <label>Restart MP</label>
+          <onright>50</onright>
+        </control>
+
       </control>
     </control>
 	 <control>
