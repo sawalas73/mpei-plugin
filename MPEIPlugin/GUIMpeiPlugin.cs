@@ -1,0 +1,1244 @@
+﻿
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+//using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
+using System.Text;
+using System.Net;
+
+using MediaPortal.GUI.Library;
+using MediaPortal.Profile;
+using MediaPortal.Util;
+using MediaPortal.Configuration;
+using MediaPortal.Dialogs;
+using MpeCore;
+using MpeCore.Classes;
+
+
+namespace MPEIPlugin
+{
+  public class GUIMpeiPlugin : GUIInternalWindow, ISetupForm, IComparer<GUIListItem>, IShowPlugin
+  {
+    #region enums
+    enum SortMethod
+    {
+      Name = 0,
+      Type = 1,
+      Date = 2,
+      Download = 3,
+      Rating = 4,
+    }
+
+    enum View : int
+    {
+      List = 0,
+      Icons = 1,
+      LargeIcons = 2,
+    }
+
+    enum Views
+    {
+      Local = 0,
+      Online = 1,
+      Updates = 2,
+    }
+    
+    #endregion
+
+    #region Base variabeles
+    View currentView = View.List;
+    Views currentListing = Views.Local;
+    SortMethod currentSortMethod = SortMethod.Date;
+    bool sortAscending = true;
+    VirtualDirectory virtualDirectory = new VirtualDirectory();
+    DirectoryHistory directoryHistory = new DirectoryHistory();
+    string currentFolder = string.Empty;
+    int selectedItemIndex = -1;
+    WebClient client = new WebClient();
+    static GUIDialogProgress dlgProgress;
+
+    //public MPInstallHelper lst = new MPInstallHelper();
+    //public MPInstallHelper lst_online = new MPInstallHelper();
+    //public MPInstallHelper lst_updates = new MPInstallHelper();
+    public QueueCommandCollection queue = new QueueCommandCollection();
+
+    #endregion
+
+    #region SkinControls
+
+    [SkinControlAttribute(50)]
+    protected GUIFacadeControl facadeView = null;
+    [SkinControlAttribute(2)]
+    protected GUIButtonControl btnViewAs = null;
+    [SkinControlAttribute(3)]
+    protected GUISortButtonControl btnSortBy = null;
+    [SkinControlAttribute(6)]
+    protected GUIButtonControl btnViews = null;
+
+    #endregion
+
+    public GUIMpeiPlugin()
+    {
+      GetID = 801;
+    }
+
+    public override bool Init()
+    {
+        Log.Debug("Plugin init .............");
+       
+      currentFolder = string.Empty;
+      //client.CachePolicy = new System.Net.Cache.RequestCachePolicy();
+      client.UseDefaultCredentials = true;
+      client.Proxy.Credentials = CredentialCache.DefaultCredentials;
+      queue = QueueCommandCollection.Load();
+
+      client.DownloadProgressChanged += client_DownloadProgressChanged;
+      client.DownloadFileCompleted += client_DownloadFileCompleted;
+      bool bResult = Load(GUIGraphicsContext.Skin + @"\myextensions2.xml");
+
+      return bResult;
+    }
+
+    void client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+    {
+      if (dlgProgress != null)
+      {
+        dlgProgress.SetPercentage(100);
+        dlgProgress.Progress();
+        dlgProgress.ShowProgressBar(true);
+        dlgProgress.Close();
+        dlgProgress = null;
+      }
+    }
+
+    void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+    {
+      if (dlgProgress != null)
+      {
+        dlgProgress.SetLine(2, string.Format("{0} / {1} ({2}%)", e.TotalBytesToReceive, e.BytesReceived,e.ProgressPercentage));
+        dlgProgress.ShowProgressBar(true);
+        dlgProgress.SetPercentage(e.ProgressPercentage);
+        dlgProgress.Progress();
+      }
+    }
+
+    #region ISetupForm Members
+
+    public bool CanEnable()
+    {
+      return true;
+    }
+
+    public string PluginName()
+    {
+      return "MPEI";
+    }
+
+    public bool HasSetup()
+    {
+      return false;
+    }
+
+    public bool DefaultEnabled()
+    {
+      return true;
+    }
+
+    public int GetWindowId()
+    {
+      return GetID;
+    }
+
+    public bool GetHome(out string strButtonText, out string strButtonImage, out string strButtonImageFocus, out string strPictureImage)
+    {
+      strButtonText = "MPEI";// GUILocalizeStrings.Get(14001);
+      strButtonImage = string.Empty;
+      strButtonImageFocus = string.Empty;
+      strPictureImage = "";
+      return true;
+    }
+
+    public string Author()
+    {
+      return "Dukus";
+    }
+
+    public string Description()
+    {
+      return "Browse (Un)Install Extensions";
+    }
+
+    public void ShowPlugin()
+    {
+      
+    }
+
+   #endregion
+
+    #region IShowPlugin Members
+
+    public bool ShowDefaultHome()
+    {
+      return false;
+    }
+
+    #endregion
+      
+      void LoadUpdateInfo()
+      {
+          return;
+          List<string> onlineFiles = MpeCore.MpeInstaller.InstalledExtensions.GetUpdateUrls(new List<string>());
+          onlineFiles = MpeCore.MpeInstaller.KnownExtensions.GetUpdateUrls(onlineFiles);
+          foreach (string onlineFile in onlineFiles)
+          {
+              try
+              {
+                  string file = Path.GetTempFileName();
+
+                  if (dlgProgress != null)
+                  {
+                      dlgProgress.Reset();
+                      dlgProgress.SetHeading(14010);
+                      dlgProgress.SetLine(1, 14014);
+                      dlgProgress.SetLine(2, "");
+                      dlgProgress.SetPercentage(0);
+                      dlgProgress.Progress();
+                      dlgProgress.DisableCancel(true);
+                      dlgProgress.ShowProgressBar(true);
+                      client.DownloadFileAsync(new Uri(onlineFile), file);
+                      dlgProgress.DoModal(GetID);
+                  }
+                  MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(file));
+                  File.Delete(file);
+              }
+              catch (Exception ex)
+              {
+                  Log.Error(ex);
+              }
+          }          
+      }
+
+    #region Serialisation
+      void LoadSettings()
+      {
+          bool shouldUpdate = false;
+          MpeInstaller.Init();
+          //if (!File.Exists(MpiFileList.ONLINE_LISTING))
+          //{
+          //  shouldUpdate = true;
+          //}
+          //else
+          //{
+          //  if (((TimeSpan)(DateTime.Now - File.GetLastWriteTime(MpiFileList.ONLINE_LISTING))).Days > 5)
+          //    shouldUpdate = true;
+          //}
+
+          dlgProgress = (GUIDialogProgress) GUIWindowManager.GetWindow((int) GUIWindow.Window.WINDOW_DIALOG_PROGRESS);
+          LoadUpdateInfo();
+          MpeInstaller.Save();
+          //if (shouldUpdate && dlgProgress != null)
+          //{
+          //  dlgProgress.Reset();
+          //  dlgProgress.SetHeading(14010);
+          //  dlgProgress.SetLine(1, 14014);
+          //  dlgProgress.SetLine(2, "");
+          //  dlgProgress.SetPercentage(0);
+          //  dlgProgress.Progress();
+          //  dlgProgress.DisableCancel(true);
+          //  dlgProgress.ShowProgressBar(true);
+          //  client.DownloadFileAsync(new Uri(MPinstallerStruct.DEFAULT_UPDATE_SITE + "/mp.php?option=getxml&user=&passwd="), MpiFileList.ONLINE_LISTING);
+          //  dlgProgress.DoModal(GetID);
+          //}
+
+          //queue = queue.Load(MpiFileList.QUEUE_LISTING);
+
+          using (MediaPortal.Profile.Settings xmlreader = new MediaPortal.Profile.MPSettings())
+          {
+              //currentRadioFolder = xmlreader.GetValueAsString("radio", "folder", string.Empty);
+
+              string tmpLine = string.Empty;
+              tmpLine = (string) xmlreader.GetValue("myextensions", "viewby");
+              if (tmpLine != null)
+              {
+                  if (tmpLine == "list") currentView = View.List;
+                  else if (tmpLine == "icons") currentView = View.Icons;
+                  else if (tmpLine == "largeicons") currentView = View.LargeIcons;
+              }
+
+              tmpLine = (string) xmlreader.GetValue("myextensions", "sort");
+              if (tmpLine != null)
+              {
+                  if (tmpLine == "name") currentSortMethod = SortMethod.Name;
+                  else if (tmpLine == "type") currentSortMethod = SortMethod.Type;
+                  else if (tmpLine == "date") currentSortMethod = SortMethod.Date;
+                  else if (tmpLine == "download") currentSortMethod = SortMethod.Download;
+                  else if (tmpLine == "rate") currentSortMethod = SortMethod.Rating;
+              }
+              tmpLine = (string) xmlreader.GetValue("myextensions", "listing");
+              if (tmpLine != null)
+              {
+                  if (tmpLine == "local") currentListing = Views.Local;
+                  else if (tmpLine == "online") currentListing = Views.Online;
+              }
+              sortAscending = xmlreader.GetValueAsBool("myextensions", "sortascending", true);
+          }
+      }
+
+      void SaveSettings()
+    {
+      //queue.Save(MpiFileList.QUEUE_LISTING);
+      using (MediaPortal.Profile.Settings xmlwriter = new MediaPortal.Profile.MPSettings())
+      {
+        switch (currentView)
+        {
+          case View.List:
+            xmlwriter.SetValue("myextensions", "viewby", "list");
+            break;
+          case View.Icons:
+            xmlwriter.SetValue("myextensions", "viewby", "icons");
+            break;
+          case View.LargeIcons:
+            xmlwriter.SetValue("myextensions", "viewby", "largeicons");
+            break;
+        }
+
+        switch (currentSortMethod)
+        {
+          case SortMethod.Name:
+            xmlwriter.SetValue("myextensions", "sort", "name");
+            break;
+          case SortMethod.Type:
+            xmlwriter.SetValue("myextensions", "sort", "type");
+            break;
+          case SortMethod.Date:
+            xmlwriter.SetValue("myextensions", "sort", "date");
+            break;
+          case SortMethod.Download:
+            xmlwriter.SetValue("myextensions", "sort", "download");
+            break;
+          case SortMethod.Rating:
+            xmlwriter.SetValue("myextensions", "sort", "rate");
+            break;
+        }
+
+        switch (currentListing)
+        {
+          case Views.Local:
+            xmlwriter.SetValue("myextensions", "listing", "local");
+            break;
+          case Views.Online:
+            xmlwriter.SetValue("myextensions", "listing", "online");
+            break;
+        }
+
+        xmlwriter.SetValueAsBool("myextensions", "sortascending", sortAscending);
+      }
+    }
+    #endregion
+
+    #region BaseWindow Members
+    public override void OnAction(Action action)
+    {
+      if (action.wID == Action.ActionType.ACTION_PREVIOUS_MENU)
+      {
+        if (facadeView.Focus)
+        {
+          GUIListItem item = facadeView[0];
+          if (item != null)
+          {
+            if (item.IsFolder && item.Label == "..")
+            {
+              LoadDirectory(item.Path);
+              return;
+            }
+          }
+        }
+      }
+
+      if (action.wID == Action.ActionType.ACTION_PARENT_DIR)
+      {
+        GUIListItem item = facadeView[0];
+        if (item != null)
+        {
+          if (item.IsFolder && item.Label == "..")
+          {
+            LoadDirectory(item.Path);
+          }
+        }
+        return;
+      }
+
+      base.OnAction(action);
+    }
+
+    protected override void OnPageLoad()
+    {
+      LoadSettings();
+      switch (currentSortMethod)
+      {
+        case SortMethod.Name:
+          btnSortBy.SelectedItem = 0;
+          break;
+        case SortMethod.Type:
+          btnSortBy.SelectedItem = 1;
+          break;
+        case SortMethod.Date:
+          btnSortBy.SelectedItem = 2;
+          break;
+        case SortMethod.Download:
+          btnSortBy.SelectedItem = 3;
+          break;
+        case SortMethod.Rating:
+          btnSortBy.SelectedItem = 4;
+          break;
+      }
+
+
+      virtualDirectory = new VirtualDirectory();
+      SelectCurrentItem();
+      UpdateButtonStates();
+      LoadDirectory(currentFolder);
+
+      btnSortBy.SortChanged += new SortEventHandler(SortChanged);
+
+
+      base.OnPageLoad();
+    }
+
+    protected override void OnPageDestroy(int newWindowId)
+    {
+        selectedItemIndex = facadeView.SelectedListItemIndex;
+        SaveSettings();
+        if (queue.Items.Count > 0)
+        {
+            GUIDialogYesNo dlgYesNo = (GUIDialogYesNo) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_YES_NO);
+            if (null == dlgYesNo)
+                return;
+            dlgYesNo.SetHeading("Notification"); //resume movie?
+            dlgYesNo.SetLine(1, "There are pending actions");
+            dlgYesNo.SetLine(2, "Do you want to execute it ?");
+            dlgYesNo.SetLine(3, "This operation will restart MediaPortal");
+            dlgYesNo.SetDefaultToYes(true);
+            dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+            if (dlgYesNo.IsConfirmed)
+            {
+                string SkinFilePath = "";
+                string cmd_line = "/MPQUEUE";
+                using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
+                {
+                    string m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
+                    SkinFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\background.png");
+                    bool useFullScreenSplash = xmlreader.GetValueAsBool("general", "usefullscreensplash", true);
+                    bool startFullScreen = xmlreader.GetValueAsBool("general", "startfullscreen", true);
+                    if (useFullScreenSplash && startFullScreen)
+                        cmd_line += " /BK=\"" + SkinFilePath + "\"";
+                }
+                Log.Debug("MPEI Plugin Start :" + Config.GetFile(Config.Dir.Base, "MPEInstaller.exe ") + cmd_line);
+                System.Diagnostics.Process.Start(Config.GetFile(Config.Dir.Base, "MPEInstaller.exe"), cmd_line);
+            }
+        }
+        base.OnPageDestroy(newWindowId);
+    }
+
+      protected override void OnClicked(int controlId, GUIControl control, MediaPortal.GUI.Library.Action.ActionType actionType)
+    {
+      base.OnClicked(controlId, control, actionType);
+
+      if (control == btnViewAs)
+      {
+        bool shouldContinue = false;
+        do
+        {
+          shouldContinue = false;
+          switch (currentView)
+          {
+            case View.List:
+              currentView = View.Icons;
+              if (facadeView.ThumbnailView == null)
+                shouldContinue = true;
+              else
+                facadeView.View = GUIFacadeControl.ViewMode.SmallIcons;
+              break;
+
+            case View.Icons:
+              currentView = View.LargeIcons;
+              if (facadeView.ThumbnailView == null)
+                shouldContinue = true;
+              else
+                facadeView.View = GUIFacadeControl.ViewMode.LargeIcons;
+              break;
+
+            case View.LargeIcons:
+              currentView = View.List;
+              if (facadeView.ListView == null)
+                shouldContinue = true;
+              else
+                facadeView.View = GUIFacadeControl.ViewMode.List;
+              break;
+          }
+        } while (shouldContinue);
+
+        SelectCurrentItem();
+        GUIControl.FocusControl(GetID, controlId);
+        return;
+      }//if (control == btnViewAs)
+
+      if (control == btnSortBy)
+      {
+        OnShowSort();
+      }
+
+      if (control == btnViews)
+      {
+        OnShowViews();
+      }
+
+      if (control == facadeView)
+      {
+        GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0, null);
+        OnMessage(msg);
+        int itemIndex = (int)msg.Param1;
+        if (actionType == Action.ActionType.ACTION_SELECT_ITEM)
+        {
+          OnClick(itemIndex);
+        }
+      }
+    }
+
+      void NotifyUser()
+      {
+          var dlg1 = (GUIDialogNotify)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_NOTIFY);
+          if (dlg1 == null) return;
+          dlg1.Reset();
+          dlg1.SetHeading(14001);
+          dlg1.SetText("Action was added to action queue");
+          dlg1.Reset();
+          dlg1.TimeOut = 2;
+          dlg1.DoModal(GetID);          
+          LoadDirectory(currentFolder);
+      }
+
+      void NotifyRemoveUser()
+      {
+          var dlg1 = (GUIDialogNotify)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_NOTIFY);
+          if (dlg1 == null) return;
+          dlg1.Reset();
+          dlg1.SetHeading(14001);
+          dlg1.SetText("Action was removed from action queue");
+          dlg1.Reset();
+          dlg1.TimeOut = 2;
+          dlg1.DoModal(GetID);
+          LoadDirectory(currentFolder);
+      }
+
+    void OnClick(int itemIndex)
+    {
+        GUIListItem item = facadeView.SelectedListItem;
+        if (item == null) return;
+        if (item.IsFolder)
+        {
+            selectedItemIndex = -1;
+            LoadDirectory(item.Path);
+        }
+        else
+        {
+            PackageClass pk = item.MusicTag as PackageClass;
+            if (pk == null)
+                return;
+            GUIDialogMenu dlg = (GUIDialogMenu) GUIWindowManager.GetWindow((int) GUIWindow.Window.WINDOW_DIALOG_MENU);
+            if (dlg == null) return;
+            dlg.Reset();
+            if (queue.Get(pk.GeneralInfo.Id) != null)
+            {
+                dlg.SetHeading(string.Format("Action :{0} Version : {1}", queue.Get(pk.GeneralInfo.Id).CommandEnum.ToString(), queue.Get(pk.GeneralInfo.Id).TargetVersion.ToString()));
+                dlg.AddLocalizedString(14008);//revoke action
+            }
+            else
+            {
+                dlg.AddLocalizedString(14005); // install
+                if (MpeInstaller.KnownExtensions.GetUpdate(pk) != null)
+                {
+                    dlg.AddLocalizedString(14018); // update
+                }
+                if (MpeInstaller.InstalledExtensions.Get(pk) != null)
+                {
+                    dlg.AddLocalizedString(14006); // uninstall 
+                }
+            }
+            dlg.DoModal(GetID);
+            if (dlg.SelectedId == -1) return;
+            switch (dlg.SelectedId)
+            {
+                case 14005:
+                    ShowInstall(pk);
+                    break;
+                case 14006:
+                    queue.Add(new QueueCommand(pk,CommandEnum.Uninstall));
+                    NotifyUser();
+                    break;
+                case 14007:
+                    //qitem.Action = QueueAction.Install;
+                    break;
+                case 14008: //revoke
+                    queue.Remove(pk.GeneralInfo.Id);
+                    NotifyRemoveUser();
+                    break;
+                case 14018:
+                    queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(pk), CommandEnum.Install));
+                    NotifyUser();
+                    break;
+            }
+            queue.Save();
+        }
+        //else
+      //{
+      //  PackageClass pk = item.MusicTag as PackageClass;
+      //  if (pk != null)
+      //  {
+      //    MPpackageStruct pk_local = lst.Find(pk.InstallerInfo.Name);
+      //    MPpackageStruct pk_online = lst_online.Find(pk.InstallerInfo.Name);
+
+      //    GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+      //    if (dlg == null) return;
+      //    dlg.Reset();
+      //    //dlg.SetHeading(495); // Sort options
+      //    if (queue.ContainName(pk.InstallerInfo.Name))
+      //    {
+      //      dlg.AddLocalizedString(14008);
+      //    }
+      //    else
+      //    {
+      //      if (lst.Find(pk.InstallerInfo.Name) == null)
+      //      {
+      //        dlg.AddLocalizedString(14005); // install
+      //      }
+      //      else
+      //      {
+      //        dlg.AddLocalizedString(14006); // uninstall
+      //        dlg.AddLocalizedString(14007); // reinstall
+      //      }
+      //      if (pk_local != null && pk_online != null && VersionPharser.CompareVersions(pk_online.InstallerInfo.Version, pk_local.InstallerInfo.Version) > 0)
+      //      {
+      //        dlg.AddLocalizedString(14018); // update
+      //      }
+      //    }
+          
+      //    // show dialog and wait for result
+      //    dlg.DoModal(GetID);
+      //    if (dlg.SelectedId == -1) return;
+      //    QueueItem qitem = new QueueItem();
+
+      //    switch (dlg.SelectedId)
+      //    {
+      //      case 14005:
+      //        qitem.Action = QueueAction.Install;
+      //        break;
+      //      case 14006:
+      //        qitem.Action = QueueAction.Uninstall;
+      //        break;
+      //      case 14007:
+      //        qitem.Action = QueueAction.Install;
+      //        break;
+      //      case 14008:
+      //        queue.Remove(pk.InstallerInfo.Name);              
+      //        break;
+      //      case 14018:
+      //        qitem.Action = QueueAction.Install;
+      //        pk = pk_online;
+      //        break;
+      //    }
+          
+      //    qitem.Name = pk.InstallerInfo.Name;
+      //    qitem.DownloadUrl = MPinstallerStruct.DEFAULT_UPDATE_SITE + "/mp.php?option=down&user=&passwd=&filename=" + Path.GetFileName(pk.FileName);
+      //    qitem.LocalFile = Config.GetFolder(Config.Dir.Installer) + @"\" + pk.GetLocalFilename();
+                    
+      //    if(qitem.Action==QueueAction.Install)
+      //    {
+      //      if (!File.Exists(qitem.LocalFile))
+      //      {
+      //        dlgProgress = (GUIDialogProgress)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_PROGRESS);
+
+      //        if (dlgProgress != null)
+      //        {
+      //          dlgProgress.Reset();
+      //          dlgProgress.SetHeading(14010);
+      //          dlgProgress.SetLine(1, pk.InstallerInfo.Name+" - "+pk.InstallerInfo.Version);
+      //          dlgProgress.SetLine(2, "");
+      //          dlgProgress.SetPercentage(0);
+      //          dlgProgress.Progress();
+      //          dlgProgress.DisableCancel(true);
+      //          dlgProgress.ShowProgressBar(true);
+      //          client.DownloadFileAsync(new Uri(qitem.DownloadUrl), qitem.LocalFile);
+      //          dlgProgress.DoModal(GetID);
+      //        }
+      //      }
+
+      //      MPpackageStruct package = new MPpackageStruct();
+      //      package.LoadFromFile(qitem.LocalFile);
+      //      if (package.isValid)
+      //      {
+      //        if (!package.InstallerScript.GUI_Warning())
+      //          return;
+      //        package.InstallerScript.GUI_GetOptions();
+      //        qitem.SetupGroups = package.InstallerInfo.SetupGroups;
+      //      }
+      //    }
+
+      //    if (dlg.SelectedId != 14008)
+      //    {
+      //      queue.Items.Add(qitem);
+      //      GUIDialogNotify dlg1 = (GUIDialogNotify)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_NOTIFY);
+      //      if (dlg1 == null) return;
+      //      dlg1.Reset();
+      //      dlg1.SetHeading(14001);
+      //      dlg1.SetText(GUILocalizeStrings.Get(14009));
+      //      dlg1.Reset();
+      //      dlg1.TimeOut = 2;
+      //      dlg1.DoModal(GetID);
+      //    }
+      //  }
+      //  GUIPropertyManager.SetProperty("#selecteditem", item.Label);
+      //}
+    }
+
+
+    void ShowInstall(PackageClass pk)
+    {
+        GUIDialogMenu dlg = (GUIDialogMenu) GUIWindowManager.GetWindow((int) GUIWindow.Window.WINDOW_DIALOG_MENU);
+        if (dlg == null) return;
+        dlg.Reset();
+        dlg.SetHeading("Select version to (Re)Install"); // Sort options
+        ExtensionCollection paks = MpeInstaller.KnownExtensions.GetList(pk.GeneralInfo.Id);
+        foreach (PackageClass item in paks.Items)
+        {
+            GUIListItem guiListItem = new GUIListItem(item.GeneralInfo.Version.ToString());
+            if (MpeInstaller.InstalledExtensions.Get(item) != null)
+                guiListItem.Selected = true;
+            dlg.Add(guiListItem);
+        }
+        dlg.DoModal(GetID);
+        if (dlg.SelectedId == -1) return;
+        queue.Add(new QueueCommand(paks.Items[dlg.SelectedId - 1], CommandEnum.Install));
+        NotifyUser();
+    }
+
+      void OnShowSort()
+    {
+      GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
+      if (dlg == null) return;
+      dlg.Reset();
+      dlg.SetHeading(495); // Sort options
+
+      dlg.AddLocalizedString(103); // name
+      //dlg.AddLocalizedString(668); // Type
+      dlg.AddLocalizedString(104); // date
+      //dlg.AddLocalizedString(14016); // download
+      //dlg.AddLocalizedString(14017); // rate
+
+      dlg.SelectedLabel = (int)currentSortMethod;
+
+      // show dialog and wait for result
+      dlg.DoModal(GetID);
+      if (dlg.SelectedId == -1) return;
+
+      switch (dlg.SelectedId)
+      {
+        case 103:
+          currentSortMethod = SortMethod.Name;
+          break;
+        case 668:
+          currentSortMethod = SortMethod.Type;
+          break;
+        case 104:
+          currentSortMethod = SortMethod.Date;
+          break;
+        case 14016:
+          currentSortMethod = SortMethod.Download;
+          break;
+        case 14017:
+          currentSortMethod = SortMethod.Rating;
+          break;
+        default:
+          currentSortMethod = SortMethod.Name;
+          break;
+      }
+
+      OnSort();
+      if (btnSortBy != null)
+        GUIControl.FocusControl(GetID, btnSortBy.GetID);
+    }
+
+    void OnShowViews()
+    {
+      GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+      if (dlg == null) return;
+      dlg.Reset();
+      dlg.SetHeading(14002); // Sort options
+      if (MpeInstaller.InstalledExtensions.Items.Count > 0)
+      {
+        dlg.AddLocalizedString(14003); // local
+      }
+      if (MpeInstaller.KnownExtensions.Items.Count > 0)
+      {
+        dlg.AddLocalizedString(14004); // online
+      }
+      //if (lst_updates.items.Count > 0)
+      //{
+      //  dlg.AddLocalizedString(14015); // updates
+      //}
+      dlg.SelectedLabel = (int)currentListing;
+
+      // show dialog and wait for result
+      dlg.DoModal(GetID);    
+      if (dlg.SelectedId == -1) return;
+
+      switch (dlg.SelectedId)
+      {
+        case 14003:
+          currentListing = Views.Local;
+          break;
+        case 14004:
+          currentListing = Views.Online;
+          break;
+        case 14015:
+          currentListing = Views.Updates;
+          break;
+      }
+
+      LoadDirectory(currentFolder);
+    }
+
+    #endregion
+
+    #region Sort Members
+    void OnSort()
+    {
+      SetLabels();
+      facadeView.Sort(this);
+      UpdateButtonStates();
+      SelectCurrentItem();
+    }
+
+    public int Compare(GUIListItem item1, GUIListItem item2)
+    {
+      if (item1 == item2) return 0;
+      if (item1 == null) return -1;
+      if (item2 == null) return -1;
+      if (item1.IsFolder && item1.Label == "..") return -1;
+      if (item2.IsFolder && item2.Label == "..") return -1;
+      if (item1.IsFolder && !item2.IsFolder) return -1;
+      else if (!item1.IsFolder && item2.IsFolder) return 1;
+
+
+      SortMethod method = currentSortMethod;
+      bool bAscending = sortAscending;
+      PackageClass pk1 = item1.MusicTag as PackageClass;
+      PackageClass pk2 = item2.MusicTag as PackageClass;
+      switch (method)
+      {
+        case SortMethod.Name:
+          if (bAscending)
+          {
+            return String.Compare(item1.Label, item2.Label, true);
+          }
+          else
+          {
+            return String.Compare(item2.Label, item1.Label, true);
+          }
+
+        case SortMethod.Type:
+          //if (bAscending)
+          //{
+          //  return String.Compare(pk1.InstallerInfo.Group, pk2.InstallerInfo.Group, true);
+          //}
+          //else
+          //{
+          //  return String.Compare(pk2.InstallerInfo.Group, pk1.InstallerInfo.Group, true);
+          //}
+              return 0;
+        case SortMethod.Date:
+          if (bAscending)
+          {
+              return DateTime.Compare(pk1.GeneralInfo.ReleaseDate, pk2.GeneralInfo.ReleaseDate);
+          }
+          else
+          {
+              return DateTime.Compare(pk2.GeneralInfo.ReleaseDate, pk1.GeneralInfo.ReleaseDate);
+          }
+        case SortMethod.Download:
+          //if (bAscending)
+          //{
+          //  return pk1.DownloadCount - pk2.DownloadCount;
+          //}
+          //else
+          //{
+          //  return pk2.DownloadCount - pk1.DownloadCount;
+          //}
+              return 0;
+        case SortMethod.Rating:
+          //if (bAscending)
+          //{
+          //  return (int)pk1.VoteValue - (int)pk2.VoteValue;
+          //}
+          //else
+          //{
+          //  return (int)pk2.VoteValue - (int)pk1.VoteValue;
+          //}
+              return 0;
+      }
+      return 0;
+    }
+    #endregion
+
+    #region helper func's
+
+    void LoadDirectory(string strNewDirectory)
+    {
+;
+      GUIWaitCursor.Show();
+      GUIListItem SelectedItem = facadeView.SelectedListItem;
+
+      currentFolder = strNewDirectory;
+      GUIControl.ClearControl(GetID, facadeView.GetID);
+      
+      //------------
+      switch (currentListing)
+      {
+        case Views.Local:
+          {
+
+           
+            GUIListItem item = new GUIListItem();
+            foreach (PackageClass pk in MpeInstaller.InstalledExtensions.Items)
+            {
+              item = new GUIListItem();
+              item.MusicTag = pk;
+              item.IsFolder = false;
+              item.Label = pk.GeneralInfo.Name;
+              item.Label2 = pk.GeneralInfo.Version.ToString();
+              Logo(pk,item);
+              item.OnItemSelected += item_OnItemSelected;
+              facadeView.Add(item);
+            }
+          }
+          break;
+        case Views.Online:
+          {
+            if (string.IsNullOrEmpty(strNewDirectory))
+            {
+              GUIListItem item = new GUIListItem();
+              item.Label = "All";
+              item.Path = item.Label;
+              item.IsFolder = true;
+              item.MusicTag = null;
+              item.ThumbnailImage = string.Empty;
+              Utils.SetDefaultIcons(item);
+              item.OnItemSelected += item_OnItemSelected;
+              facadeView.Add(item);
+
+              foreach (string s in MpeInstaller.KnownExtensions.GetUniqueList().TagList.Tags)
+              {
+                  item = new GUIListItem();
+                  item.Label = s;
+                  item.Path = s;
+                  item.IsFolder = true;
+                  item.MusicTag = null;
+                  item.ThumbnailImage = string.Empty;
+                  MediaPortal.Util.Utils.SetDefaultIcons(item);
+                  facadeView.Add(item);
+              }
+            }
+            else
+            {
+              GUIListItem item = new GUIListItem();
+              item.Label = "..";
+              item.Path = string.Empty;
+              item.IsFolder = true;
+              item.MusicTag = null;
+              item.ThumbnailImage = string.Empty;
+              MediaPortal.Util.Utils.SetDefaultIcons(item);
+              facadeView.Add(item);
+              foreach (PackageClass pk in MpeInstaller.KnownExtensions.GetUniqueList().Items)
+              {
+                if ((pk.GeneralInfo.TagList.Tags.Contains(strNewDirectory) || strNewDirectory == "All"))
+                {
+                  item = new GUIListItem();
+                  item.MusicTag = pk;
+                  item.IsFolder = false;
+                  item.Label = pk.GeneralInfo.Name;
+                  item.Label2 = pk.GeneralInfo.Version.ToString();
+                  Logo(pk, item);
+                  item.OnItemSelected += item_OnItemSelected;
+                  facadeView.Add(item);
+                }
+              }
+            }
+          }
+          break;
+        case Views.Updates:
+          {
+            //Log.Debug("MyExtensions: loading extensions list from updates ");
+            //GUIListItem item = new GUIListItem();
+            //foreach (MPpackageStruct pk in lst_updates.Items)
+            //{
+            //  item = new GUIListItem();
+            //  item.MusicTag = pk;
+            //  item.IsFolder = false;
+            //  item.Label = pk.InstallerInfo.Name;
+            //  item.Label2 = pk.InstallerInfo.Group;
+            //  item.Rating = pk.VoteValue;
+            //  item.OnItemSelected += new GUIListItem.ItemSelectedHandler(item_OnItemSelected);
+            //  facadeView.Add(item);
+            //}
+          }
+          break;
+      }
+
+      //------------
+      //set object count label
+      //GUIPropertyManager.SetProperty("#itemcount", MediaPortal.Util.Utils.GetObjectCountLabel(totalItems));
+      SetLabels();
+      SwitchView();
+      OnSort();
+      SelectCurrentItem();
+
+      //set selected item
+      if (selectedItemIndex >= 0)
+        GUIControl.SelectItemControl(GetID, facadeView.GetID, selectedItemIndex);
+
+      GUIWaitCursor.Hide();
+    }
+
+    string Logo(PackageClass packageClass, GUIListItem listItem)
+    {
+        string logofile = "";
+        if (Directory.Exists(packageClass.LocationFolder))
+        {
+            if (File.Exists(packageClass.LocationFolder + "icon.png"))
+                logofile = packageClass.LocationFolder + "icon.png";
+            if (File.Exists(packageClass.LocationFolder + "icon.jpg"))
+                logofile = packageClass.LocationFolder + "icon.jpg";
+        }
+        
+        if (MpeInstaller.KnownExtensions.GetUpdate(packageClass) != null)
+        {
+            string signfile = "";
+            if (File.Exists(GUIGraphicsContext.Skin + @"\media\extension_update.png"))
+                signfile = GUIGraphicsContext.Skin + @"\media\extension_update.png";
+
+            if (string.IsNullOrEmpty(logofile))
+            {
+                listItem.IconImage = signfile;
+                listItem.IconImageBig = signfile;
+                return signfile;
+            }
+
+            string tempFile = Path.Combine(Path.GetTempPath(),
+                                           Utils.EncryptLine("Update" + packageClass.GeneralInfo.Id +
+                                                             packageClass.GeneralInfo.Version));
+            if (!File.Exists(tempFile))
+            {
+                Graphics myGraphic = null;
+                Image imgB = Image.FromFile(logofile);
+                Image imgF = Image.FromFile(signfile);
+
+                myGraphic = System.Drawing.Graphics.FromImage(imgB);
+                //myGraphic.DrawImage(imgB, 0, 0, imgB.Width, imgB.Height);
+                myGraphic.DrawImage(imgF, 0, (imgB.Height/2) - 1, imgB.Width/2, imgB.Height/2);
+                myGraphic.Save();
+                imgB.Save(tempFile, System.Drawing.Imaging.ImageFormat.Png);
+            }
+
+            listItem.IconImage = tempFile;
+            listItem.IconImageBig = tempFile;
+            return tempFile;
+        }
+
+        if(queue.Get(packageClass.GeneralInfo.Id)!=null)
+        {
+            string signfile = "";
+            if (File.Exists(GUIGraphicsContext.Skin + @"\media\extension_action.png"))
+                signfile = GUIGraphicsContext.Skin + @"\media\extension_action.png";
+
+            if (string.IsNullOrEmpty(logofile))
+            {
+                listItem.IconImage = signfile;
+                listItem.IconImageBig = signfile;
+                return signfile;
+            }
+
+            string tempFile = Path.Combine(Path.GetTempPath(),
+                               Utils.EncryptLine("Action" + packageClass.GeneralInfo.Id +
+                                                 packageClass.GeneralInfo.Version));
+            if (!File.Exists(tempFile))
+            {
+                Graphics myGraphic = null;
+                Image imgB = Image.FromFile(logofile);
+                Image imgF = Image.FromFile(signfile);
+                myGraphic = System.Drawing.Graphics.FromImage(imgB);
+                //myGraphic.DrawImage(imgB, 0, 0, imgB.Width, imgB.Height);
+                myGraphic.DrawImage(imgF, 0, (imgB.Height/2) - 1, imgB.Width/2, imgB.Height/2);
+                myGraphic.Save();
+                myGraphic.Save();
+                imgB.Save(tempFile, System.Drawing.Imaging.ImageFormat.Png);
+            }
+            listItem.IconImage = tempFile;
+            listItem.IconImageBig = tempFile;
+
+            return tempFile;
+            
+        }
+        listItem.IconImage = logofile;
+        listItem.IconImageBig = logofile;       
+        return logofile;
+    }
+
+    void item_OnItemSelected(GUIListItem item, GUIControl parent)
+    {
+        PackageClass pak = item.MusicTag as PackageClass;
+        if (pak != null)
+        {
+            GUIPropertyManager.SetProperty("#MPE.Selected.Name", pak.GeneralInfo.Name);
+            GUIPropertyManager.SetProperty("#MPE.Selected.Version", pak.GeneralInfo.Version.ToString());
+            GUIPropertyManager.SetProperty("#MPE.Selected.Author", pak.GeneralInfo.Author);
+            GUIPropertyManager.SetProperty("#MPE.Selected.Description", pak.GeneralInfo.ExtensionDescription);
+            GUIPropertyManager.SetProperty("#MPE.Selected.VersionDescription", pak.GeneralInfo.VersionDescription);
+        }
+        else
+        {
+            GUIPropertyManager.SetProperty("#MPE.Selected.Name", " ");
+            GUIPropertyManager.SetProperty("#MPE.Selected.Version", " ");
+            GUIPropertyManager.SetProperty("#MPE.Selected.Author", " ");
+            GUIPropertyManager.SetProperty("#MPE.Selected.Description", " ");
+            GUIPropertyManager.SetProperty("#MPE.Selected.VersionDescription", " ");
+        }
+    }
+
+      void SelectCurrentItem()
+    {
+      int iItem = facadeView.SelectedListItemIndex;
+      if (iItem > -1)
+      {
+        GUIControl.SelectItemControl(GetID, facadeView.GetID, iItem);
+      }
+      UpdateButtonStates();
+    }
+   
+    void UpdateButtonStates()
+    {
+      facadeView.IsVisible = false;
+      facadeView.IsVisible = true;
+      GUIControl.FocusControl(GetID, facadeView.GetID);
+
+      string strLine = string.Empty;
+      View view = currentView;
+      switch (view)
+      {
+        case View.List:
+          strLine = GUILocalizeStrings.Get(101);
+          break;
+        case View.Icons:
+          strLine = GUILocalizeStrings.Get(100);
+          break;
+        case View.LargeIcons:
+          strLine = GUILocalizeStrings.Get(417);
+          break;
+      }
+      if (btnViewAs != null)
+      {
+        btnViewAs.Label = strLine;
+      }
+
+      switch (currentSortMethod)
+      {
+        case SortMethod.Name:
+          strLine = GUILocalizeStrings.Get(103);
+          break;
+        case SortMethod.Type:
+          strLine = GUILocalizeStrings.Get(668);
+          break;
+        case SortMethod.Date:
+          strLine = GUILocalizeStrings.Get(104);
+          break;
+        case SortMethod.Download:
+          strLine = GUILocalizeStrings.Get(14016);
+          break;
+        case SortMethod.Rating:
+          strLine = GUILocalizeStrings.Get(14017);
+          break;
+      }
+      if (btnSortBy != null)
+      {
+        btnSortBy.Label = strLine;
+        btnSortBy.IsAscending = sortAscending;
+      }
+    }
+
+    void SwitchView()
+    {
+      switch (currentView)
+      {
+        case View.List:
+          facadeView.View = GUIFacadeControl.ViewMode.List;
+          break;
+        case View.Icons:
+          facadeView.View = GUIFacadeControl.ViewMode.SmallIcons;
+          break;
+        case View.LargeIcons:
+          facadeView.View = GUIFacadeControl.ViewMode.LargeIcons;
+          break;
+      }
+      UpdateButtonStates(); 
+    }
+
+    void SortChanged(object sender, SortEventArgs e)
+    {
+      sortAscending = e.Order != System.Windows.Forms.SortOrder.Descending;
+
+      OnSort();
+      UpdateButtonStates();
+
+      GUIControl.FocusControl(GetID, ((GUIControl)sender).GetID);
+    }
+
+    void SetLabels()
+    {
+      SortMethod method = currentSortMethod;
+      for (int i = 0; i < facadeView.Count; ++i)
+      {
+        GUIListItem item = facadeView[i];
+        if (item.MusicTag != null)
+        {
+          PackageClass pak = (PackageClass)item.MusicTag;
+          switch (method)
+          {
+            case SortMethod.Name:
+              item.Label2 = pak.GeneralInfo.Version.ToString();
+              break;
+            case SortMethod.Type:
+              //item.Label2 = pak.InstallerInfo.Group;
+              break;
+            case SortMethod.Date:
+              item.Label2 = pak.GeneralInfo.ReleaseDate.ToShortDateString();
+              break;
+            case SortMethod.Download:
+//              item.Label2 = pak.DownloadCount.ToString();
+              break;
+            case SortMethod.Rating:
+//              item.Label2 =((int) pak.VoteValue).ToString();
+              break;
+            default:
+              break;
+          }
+          if (method == SortMethod.Name)
+          {
+          }
+        }
+      }
+    }
+    #endregion
+
+  }
+}
