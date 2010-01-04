@@ -7,7 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Net;
-
+using System.Xml.Serialization;
 using MediaPortal.GUI.Library;
 using MediaPortal.Profile;
 using MediaPortal.Util;
@@ -194,6 +194,7 @@ namespace MPEIPlugin
             //return;
             List<string> onlineFiles = MpeCore.MpeInstaller.InstalledExtensions.GetUpdateUrls(new List<string>());
             onlineFiles = MpeCore.MpeInstaller.KnownExtensions.GetUpdateUrls(onlineFiles);
+
             foreach (string onlineFile in onlineFiles)
             {
                 try
@@ -238,24 +239,9 @@ namespace MPEIPlugin
             //    shouldUpdate = true;
             //}
 
-            _dlgProgress = (GUIDialogProgress)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_PROGRESS);
+            _dlgProgress = (GUIDialogProgress)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_PROGRESS);
             LoadUpdateInfo();
             MpeInstaller.Save();
-            //if (shouldUpdate && _dlgProgress != null)
-            //{
-            //  _dlgProgress.Reset();
-            //  _dlgProgress.SetHeading(14010);
-            //  _dlgProgress.SetLine(1, 14014);
-            //  _dlgProgress.SetLine(2, "");
-            //  _dlgProgress.SetPercentage(0);
-            //  _dlgProgress.Progress();
-            //  _dlgProgress.DisableCancel(true);
-            //  _dlgProgress.ShowProgressBar(true);
-            //  client.DownloadFileAsync(new Uri(MPinstallerStruct.DEFAULT_UPDATE_SITE + "/mp.php?option=getxml&user=&passwd="), MpiFileList.ONLINE_LISTING);
-            //  _dlgProgress.DoModal(GetID);
-            //}
-
-            //queue = queue.Load(MpiFileList.QUEUE_LISTING);
 
             using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
             {
@@ -439,14 +425,39 @@ namespace MPEIPlugin
             using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
             {
                 string m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
-                string SkinFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\background.png");
+                string skinFilePath = LoadSplash(Config.GetFile(Config.Dir.Skin, m_strSkin + "\\splashscreen.xml"),
+                                                 m_strSkin);
+                if (string.IsNullOrEmpty(skinFilePath))
+                    skinFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\background.png");
                 bool useFullScreenSplash = xmlreader.GetValueAsBool("general", "usefullscreensplash", true);
                 bool startFullScreen = xmlreader.GetValueAsBool("general", "startfullscreen", true);
                 if (useFullScreenSplash && startFullScreen)
-                    cmdLine += " /BK=\"" + SkinFilePath + "\"";
+                    cmdLine += " /BK=\"" + skinFilePath + "\"";
             }
             Log.Debug("MPEI Plugin Start :" + Config.GetFile(Config.Dir.Base, "MPEInstaller.exe ") + cmdLine);
             System.Diagnostics.Process.Start(Config.GetFile(Config.Dir.Base, "MPEInstaller.exe"), cmdLine);
+        }
+
+        public string LoadSplash(string file, string m_strSkin)
+        {
+            string ret = "";
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(PackageClass));
+                FileStream fs = new FileStream(file, FileMode.Open);
+                splashwindow splash = (splashwindow) serializer.Deserialize(fs);
+                
+                foreach (windowControls control in splash.Items)
+                {
+                    if (control.control[0].id == "1")
+                        ret = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\" + control.control[0].texture);
+                }
+                fs.Close();
+            }
+            catch (Exception)
+            {
+            }
+            return ret;
         }
 
         protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)

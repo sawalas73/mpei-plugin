@@ -66,21 +66,21 @@
           <Items>
             <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
               <LocalFileName>Skin\Blue3wide\myextensions2.xml</LocalFileName>
               <ZipFileName>Installer{Font}\{3d985903-3ab3-4bd4-a21e-badde8899fee}-myextensions2.xml</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\myextensions2.xml</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
               <LocalFileName>Skin\Blue3wide\Media\extension_action.png</LocalFileName>
               <ZipFileName>Installer{Font}\{001d750c-3a9f-44f4-8079-e7b855104200}-extension_action.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_action.png</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
               <LocalFileName>Skin\Blue3wide\Media\extension_update.png</LocalFileName>
               <ZipFileName>Installer{Font}\{511b48cb-a91c-409d-b71b-ef8792fc445a}-extension_update.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_update.png</DestinationFilename>
@@ -154,6 +154,32 @@ Click Next to continue or Cancel to exit Setup.</Value>
               </Params>
               <ExecuteLocation>AfterPanelShow</ExecuteLocation>
             </ActionItem>
+            <ActionItem Name="Script" ActionType="Script" ConditionGroup="">
+              <Params>
+                <Items>
+                  <SectionParam Name="Script">
+                    <Value>//css_reference "MpeCore.dll";
+
+using MpeCore.Classes;
+using MpeCore;
+using System.Windows.Forms;
+
+public class Script
+{
+    public static void Main(PackageClass packageClass, ActionItem actionItem)
+    {
+   MessageBox.Show("Message");
+        return;
+    }
+}
+</Value>
+                    <ValueType>Script</ValueType>
+                    <Description />
+                  </SectionParam>
+                </Items>
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
           </Items>
         </Actions>
         <IncludedGroups />
@@ -203,16 +229,16 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>3</Build>
-      <Revision>1</Revision>
+      <Revision>2</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions</ExtensionDescription>
     <VersionDescription>Restart button 
 Ask for restart when action is done </VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.3.1.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.3.2.mpe1</OnlineLocation>
     <ReleaseDate>2009-11-29T00:04:20.015625+02:00</ReleaseDate>
     <Tags>installer</Tags>
-    <Location>C:\mpe\MPEIPlugin\[Name].[Version].mpe1</Location>
+    <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
@@ -297,5 +323,9 @@ Ask for restart when action is done </VersionDescription>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
+    <ProjectFilename>F:\devel\vs2005\MPEIPlugin\Setup\mpeiplugin.xmp2</ProjectFilename>
+    <UpdatePath1>F:\devel\vs2005\MPEIPlugin\Setup\update2.xml</UpdatePath1>
+    <UpdatePath2 />
+    <UpdatePath3 />
   </ProjectSettings>
 </PackageClass>
