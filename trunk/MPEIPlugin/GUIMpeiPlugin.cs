@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Net;
+using System.Xml;
 using System.Xml.Serialization;
 using MediaPortal.GUI.Library;
 using MediaPortal.Profile;
@@ -59,6 +60,7 @@ namespace MPEIPlugin
         WebClient client = new WebClient();
         static GUIDialogProgress _dlgProgress;
         private bool _askForRestart;
+        private ApplicationSettings _setting = new ApplicationSettings();
 
         //public MPInstallHelper lst = new MPInstallHelper();
         //public MPInstallHelper lst_online = new MPInstallHelper();
@@ -89,14 +91,14 @@ namespace MPEIPlugin
 
         public override bool Init()
         {
-            Log.Debug("Plugin init .............");
+            Log.Debug("Plugin init MPEIPlugin");
 
             currentFolder = string.Empty;
             //client.CachePolicy = new System.Net.Cache.RequestCachePolicy();
             client.UseDefaultCredentials = true;
             client.Proxy.Credentials = CredentialCache.DefaultCredentials;
             queue = QueueCommandCollection.Load();
-
+            _setting = ApplicationSettings.Load();
             client.DownloadProgressChanged += client_DownloadProgressChanged;
             client.DownloadFileCompleted += client_DownloadFileCompleted;
             bool bResult = Load(GUIGraphicsContext.Skin + @"\myextensions2.xml");
@@ -191,9 +193,14 @@ namespace MPEIPlugin
 
         void LoadUpdateInfo()
         {
-            //return;
-            List<string> onlineFiles = MpeCore.MpeInstaller.InstalledExtensions.GetUpdateUrls(new List<string>());
-            onlineFiles = MpeCore.MpeInstaller.KnownExtensions.GetUpdateUrls(onlineFiles);
+            DateTime d = _setting.LastUpdate;
+            int i = DateTime.Now.Subtract(d).Days;
+            if (
+                !(_setting.DoUpdateInStartUp && i > _setting.UpdateDays &&
+                  MpeInstaller.InstalledExtensions.Items.Count > 0))
+                return;
+            List<string> onlineFiles = MpeInstaller.InstalledExtensions.GetUpdateUrls(new List<string>());
+            onlineFiles = MpeInstaller.KnownExtensions.GetUpdateUrls(onlineFiles);
 
             foreach (string onlineFile in onlineFiles)
             {
@@ -222,6 +229,26 @@ namespace MPEIPlugin
                     Log.Error(ex);
                 }
             }
+
+            if (_setting.UpdateAll)
+            {
+                var updatelist = new Dictionary<PackageClass, PackageClass>();
+                foreach (PackageClass packageClass in MpeInstaller.InstalledExtensions.Items)
+                {
+                    PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(packageClass);
+                    if (update == null)
+                        continue;
+                    updatelist.Add(packageClass, update);
+                }
+                foreach (KeyValuePair<PackageClass, PackageClass> valuePair in updatelist)
+                {
+                    if (valuePair.Value == null)
+                        continue;
+                    queue.Add(new QueueCommand(valuePair.Value, CommandEnum.Install));
+                }
+                if (queue.Items.Count > 0)
+                    NotifyUser();
+            }
         }
 
         #region Serialisation
@@ -247,7 +274,7 @@ namespace MPEIPlugin
             {
 
                 string tmpLine = string.Empty;
-                tmpLine = (string)xmlreader.GetValue("myextensions2", "viewby");
+                tmpLine = xmlreader.GetValue("myextensions2", "viewby");
                 if (tmpLine != null)
                 {
                     if (tmpLine == "list") currentView = View.List;
@@ -425,10 +452,9 @@ namespace MPEIPlugin
             using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
             {
                 string m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
-                string skinFilePath = LoadSplash(Config.GetFile(Config.Dir.Skin, m_strSkin + "\\splashscreen.xml"),
-                                                 m_strSkin);
+                string skinFilePath = ReadSplashScreenXML();
                 if (string.IsNullOrEmpty(skinFilePath))
-                    skinFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\background.png");
+                    skinFilePath = ReadReferenceXML();
                 bool useFullScreenSplash = xmlreader.GetValueAsBool("general", "usefullscreensplash", true);
                 bool startFullScreen = xmlreader.GetValueAsBool("general", "startfullscreen", true);
                 if (useFullScreenSplash && startFullScreen)
@@ -438,26 +464,88 @@ namespace MPEIPlugin
             System.Diagnostics.Process.Start(Config.GetFile(Config.Dir.Base, "MPEInstaller.exe"), cmdLine);
         }
 
-        public string LoadSplash(string file, string m_strSkin)
+
+        private string ReadSplashScreenXML()
         {
-            string ret = "";
-            try
+            string m_strSkin;
+            string SkinFilePath = string.Empty;
+
+            // try to find the splashscreen.xml ín the curent skin folder
+            using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(PackageClass));
-                FileStream fs = new FileStream(file, FileMode.Open);
-                splashwindow splash = (splashwindow) serializer.Deserialize(fs);
-                
-                foreach (windowControls control in splash.Items)
+                m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
+                SkinFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\splashscreen.xml");
+            }
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(SkinFilePath);
+            XmlNodeList ControlsList = doc.DocumentElement.SelectNodes("/window/controls/control");
+
+            foreach (XmlNode Control in ControlsList)
+            {
+                if (Control.SelectSingleNode("type/text()").Value.ToLower() == "image"
+                    && Control.SelectSingleNode("id/text()").Value == "1") // if the background image control is found
                 {
-                    if (control.control[0].id == "1")
-                        ret = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\" + control.control[0].texture);
+                    string BackgoundImageName = Control.SelectSingleNode("texture/text()").Value;
+                    string BackgroundImagePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\" + BackgoundImageName);
+                    if (File.Exists(BackgroundImagePath))
+                    {
+                        return BackgroundImagePath;
+                    }
+                    continue;
                 }
-                fs.Close();
+                //if (Control.SelectSingleNode("type/text()").Value.ToLower() == "label"
+                //    && Control.SelectSingleNode("id/text()").Value == "2") // if the center label control is found
+                //{
+                //    if (Control.SelectSingleNode("textsize") != null) // textsize info found?
+                //    {
+                //        float TextSize = float.Parse(Control.SelectSingleNode("textsize/text()").Value);
+                //        Log.Debug("FullScreenSplash: Textsize value found: {0}", TextSize);
+                //        lblMain.Font = new Font(lblMain.Font.FontFamily, TextSize, lblMain.Font.Style);
+                //        Log.Debug("FullScreenSplash: Textsize successfully set: {0}", TextSize);
+                //    }
+                //    if (Control.SelectSingleNode("textcolor") != null) // textcolor info found?
+                //    {
+                //        Color TextColor = ColorTranslator.FromHtml(Control.SelectSingleNode("textcolor/text()").Value);
+                //        Log.Debug("FullScreenSplash: TextColor value found: {0}", TextColor);
+                //        lblMain.ForeColor = TextColor;
+                //        lblVersion.ForeColor = TextColor;
+                //        lblCVS.ForeColor = TextColor;
+                //        Log.Debug("FullScreenSplash: TextColor successfully set: {0}", TextColor);
+                //    }
+                //}
             }
-            catch (Exception)
+            return "";
+        }
+
+        private string ReadReferenceXML()
+        {
+            string m_strSkin;
+            string SkinReferenceFilePath = string.Empty;
+
+            using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
             {
+                m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
+                SkinReferenceFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\references.xml");
             }
-            return ret;
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(SkinReferenceFilePath);
+            XmlNodeList ControlsList = doc.DocumentElement.SelectNodes("/controls/control");
+
+            foreach (XmlNode Control in ControlsList)
+            {
+                if (Control.SelectSingleNode("type/text()").Value.ToLower() == "image")
+                {
+                    string BackgoundImageName = Control.SelectSingleNode("texture/text()").Value;
+                    string BackgroundImagePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\" + BackgoundImageName);
+                    if (File.Exists(BackgroundImagePath))
+                    {
+                        return BackgroundImagePath; // load the image as background
+                    }
+                }
+            }
+            return "";
         }
 
         protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
