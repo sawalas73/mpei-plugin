@@ -75,6 +75,22 @@
           <onright>50</onright>
         </control>
 
+	    <control>
+          <description>Update list</description>
+          <type>button</type>
+          <id>7</id>
+          <label>Update Info</label>
+          <onright>50</onright>
+        </control>
+
+		<control>
+          <description>Update all</description>
+          <type>button</type>
+          <id>8</id>
+          <label>Update all</label>
+          <onright>50</onright>
+        </control>
+		
       </control>
     </control>
 	 <control>

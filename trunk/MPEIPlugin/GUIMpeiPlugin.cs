@@ -81,6 +81,10 @@ namespace MPEIPlugin
         protected GUIButtonControl btnRestart = null;
         [SkinControlAttribute(6)]
         protected GUIButtonControl btnViews = null;
+        [SkinControlAttribute(7)]
+        protected GUIButtonControl btnUpdate = null;
+        [SkinControlAttribute(8)]
+        protected GUIButtonControl btnUpdateAll = null;
 
         #endregion
 
@@ -191,67 +195,81 @@ namespace MPEIPlugin
 
         #endregion
 
-        void LoadUpdateInfo()
+      void LoadUpdateInfo()
+      {
+        DateTime d = _setting.LastUpdate;
+        int i = DateTime.Now.Subtract(d).Days;
+        if (
+          !(_setting.DoUpdateInStartUp && i > _setting.UpdateDays &&
+            MpeInstaller.InstalledExtensions.Items.Count > 0))
+          return;
+
+
+        DownloadInfo();
+        if (_setting.UpdateAll)
         {
-            DateTime d = _setting.LastUpdate;
-            int i = DateTime.Now.Subtract(d).Days;
-            if (
-                !(_setting.DoUpdateInStartUp && i > _setting.UpdateDays &&
-                  MpeInstaller.InstalledExtensions.Items.Count > 0))
-                return;
-            List<string> onlineFiles = MpeInstaller.InstalledExtensions.GetUpdateUrls(new List<string>());
-            onlineFiles = MpeInstaller.KnownExtensions.GetUpdateUrls(onlineFiles);
-
-            foreach (string onlineFile in onlineFiles)
-            {
-                try
-                {
-                    string file = Path.GetTempFileName();
-
-                    if (_dlgProgress != null)
-                    {
-                        _dlgProgress.Reset();
-                        _dlgProgress.SetHeading(14010);
-                        _dlgProgress.SetLine(1, 14014);
-                        _dlgProgress.SetLine(2, "");
-                        _dlgProgress.SetPercentage(0);
-                        _dlgProgress.Progress();
-                        _dlgProgress.DisableCancel(true);
-                        _dlgProgress.ShowProgressBar(true);
-                        client.DownloadFileAsync(new Uri(onlineFile), file);
-                        _dlgProgress.DoModal(GetID);
-                    }
-                    MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(file));
-                    File.Delete(file);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                }
-            }
-
-            if (_setting.UpdateAll)
-            {
-                var updatelist = new Dictionary<PackageClass, PackageClass>();
-                foreach (PackageClass packageClass in MpeInstaller.InstalledExtensions.Items)
-                {
-                    PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(packageClass);
-                    if (update == null)
-                        continue;
-                    updatelist.Add(packageClass, update);
-                }
-                foreach (KeyValuePair<PackageClass, PackageClass> valuePair in updatelist)
-                {
-                    if (valuePair.Value == null)
-                        continue;
-                    queue.Add(new QueueCommand(valuePair.Value, CommandEnum.Install));
-                }
-                if (queue.Items.Count > 0)
-                    NotifyUser();
-            }
+          UpdateAll();
         }
+      }
 
-        #region Serialisation
+      void DownloadInfo()
+      {
+        List<string> onlineFiles = MpeInstaller.InstalledExtensions.GetUpdateUrls(new List<string>());
+        onlineFiles = MpeInstaller.KnownExtensions.GetUpdateUrls(onlineFiles);
+
+        foreach (string onlineFile in onlineFiles)
+        {
+          try
+          {
+            string file = Path.GetTempFileName();
+
+            if (_dlgProgress != null)
+            {
+              _dlgProgress.Reset();
+              _dlgProgress.SetHeading(14010);
+              _dlgProgress.SetLine(1, 14014);
+              _dlgProgress.SetLine(2, "");
+              _dlgProgress.SetPercentage(0);
+              _dlgProgress.Progress();
+              _dlgProgress.DisableCancel(true);
+              _dlgProgress.ShowProgressBar(true);
+              client.DownloadFileAsync(new Uri(onlineFile), file);
+              _dlgProgress.DoModal(GetID);
+            }
+            MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(file));
+            File.Delete(file);
+          }
+          catch (Exception ex)
+          {
+            Log.Error(ex);
+          }
+        }
+        
+      }
+
+
+      void UpdateAll()
+      {
+        var updatelist = new Dictionary<PackageClass, PackageClass>();
+        foreach (PackageClass packageClass in MpeInstaller.InstalledExtensions.Items)
+        {
+          PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(packageClass);
+          if (update == null)
+            continue;
+          updatelist.Add(packageClass, update);
+        }
+        foreach (KeyValuePair<PackageClass, PackageClass> valuePair in updatelist)
+        {
+          if (valuePair.Value == null)
+            continue;
+          queue.Add(new QueueCommand(valuePair.Value, CommandEnum.Install));
+        }
+        if (queue.Items.Count > 0)
+          NotifyUser();
+
+      }
+
+      #region Serialisation
         void LoadSettings()
         {
             bool shouldUpdate = false;
@@ -550,91 +568,104 @@ namespace MPEIPlugin
 
         protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
         {
-            base.OnClicked(controlId, control, actionType);
+          base.OnClicked(controlId, control, actionType);
 
-            if (control == btnViewAs)
+          if (control == btnViewAs)
+          {
+            bool shouldContinue = false;
+            do
             {
-                bool shouldContinue = false;
-                do
-                {
-                    shouldContinue = false;
-                    switch (currentView)
-                    {
-                        case View.List:
-                            currentView = View.Icons;
-                            if (facadeView.ThumbnailView == null)
-                                shouldContinue = true;
-                            else
-                                facadeView.View = GUIFacadeControl.ViewMode.SmallIcons;
-                            break;
+              shouldContinue = false;
+              switch (currentView)
+              {
+                case View.List:
+                  currentView = View.Icons;
+                  if (facadeView.ThumbnailView == null)
+                    shouldContinue = true;
+                  else
+                    facadeView.View = GUIFacadeControl.ViewMode.SmallIcons;
+                  break;
 
-                        case View.Icons:
-                            currentView = View.LargeIcons;
-                            if (facadeView.ThumbnailView == null)
-                                shouldContinue = true;
-                            else
-                                facadeView.View = GUIFacadeControl.ViewMode.LargeIcons;
-                            break;
+                case View.Icons:
+                  currentView = View.LargeIcons;
+                  if (facadeView.ThumbnailView == null)
+                    shouldContinue = true;
+                  else
+                    facadeView.View = GUIFacadeControl.ViewMode.LargeIcons;
+                  break;
 
-                        case View.LargeIcons:
-                            currentView = View.List;
-                            if (facadeView.ListView == null)
-                                shouldContinue = true;
-                            else
-                                facadeView.View = GUIFacadeControl.ViewMode.List;
-                            break;
-                    }
-                } while (shouldContinue);
+                case View.LargeIcons:
+                  currentView = View.List;
+                  if (facadeView.ListView == null)
+                    shouldContinue = true;
+                  else
+                    facadeView.View = GUIFacadeControl.ViewMode.List;
+                  break;
+              }
+            } while (shouldContinue);
 
-                SelectCurrentItem();
-                GUIControl.FocusControl(GetID, controlId);
+            SelectCurrentItem();
+            GUIControl.FocusControl(GetID, controlId);
+            return;
+          } //if (control == btnViewAs)
+
+          if (control == btnSortBy)
+          {
+            OnShowSort();
+          }
+
+          if (control == btnRestart)
+          {
+            if (queue.Items.Count > 0)
+            {
+              GUIDialogYesNo dlgYesNo = (GUIDialogYesNo) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_YES_NO);
+              if (null == dlgYesNo)
                 return;
-            } //if (control == btnViewAs)
-
-            if (control == btnSortBy)
-            {
-                OnShowSort();
+              dlgYesNo.SetHeading("Notification"); //resume movie?
+              dlgYesNo.SetLine(1, "This operation will restart MediaPortal");
+              dlgYesNo.SetLine(2, "and execute the pending actions");
+              dlgYesNo.SetLine(3, "Do you want to execute it ?");
+              dlgYesNo.SetDefaultToYes(true);
+              dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+              if (dlgYesNo.IsConfirmed)
+              {
+                RestartMP();
+              }
             }
+          }
 
-            if(control == btnRestart)
-            {
-                if (queue.Items.Count > 0)
-                {
-                    GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
-                    if (null == dlgYesNo)
-                        return;
-                    dlgYesNo.SetHeading("Notification"); //resume movie?
-                    dlgYesNo.SetLine(1, "This operation will restart MediaPortal");
-                    dlgYesNo.SetLine(2, "and execute the pending actions");
-                    dlgYesNo.SetLine(3, "Do you want to execute it ?");
-                    dlgYesNo.SetDefaultToYes(true);
-                    dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-                    if (dlgYesNo.IsConfirmed)
-                    {
-                        RestartMP();
-                    }
-                }
-            }
+          if (control == btnViews)
+          {
+            OnShowViews();
+          }
 
-            if (control == btnViews)
-            {
-                OnShowViews();
-            }
+          if (control == btnUpdate)
+          {
+            DownloadInfo();
+            LoadDirectory(currentFolder);
+          }
 
-            if (control == facadeView)
+          if (control == btnUpdateAll)
+          {
+            DownloadInfo();
+            UpdateAll();
+            LoadDirectory(currentFolder);
+          }
+
+          if (control == facadeView)
+          {
+            GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0,
+                                            null);
+            OnMessage(msg);
+            int itemIndex = (int) msg.Param1;
+            if (actionType == Action.ActionType.ACTION_SELECT_ITEM)
             {
-                GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0,
-                                                null);
-                OnMessage(msg);
-                int itemIndex = (int)msg.Param1;
-                if (actionType == Action.ActionType.ACTION_SELECT_ITEM)
-                {
-                    OnClick(itemIndex);
-                }
+              OnClick(itemIndex);
             }
+          }
         }
 
-        void NotifyUser()
+      void NotifyUser()
         {
             if (_askForRestart)
             {

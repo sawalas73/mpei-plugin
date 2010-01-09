@@ -533,5 +533,90 @@ Better backgroud for silent install
         <FolderGroups />
       </ProjectSettings>
     </PackageClass>
+    <PackageClass>
+      <Version>2.0</Version>
+      <Groups>
+        <Items>
+          <GroupItem Name="Default">
+            <DisplayName>Default</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>Default</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="Skin">
+            <DisplayName>Skin</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>Skin</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="DefaultSkin">
+            <DisplayName>DefaultSkin</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>DefaultSkin</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+        </Items>
+      </Groups>
+      <Sections>
+        <Items />
+      </Sections>
+      <Dependencies>
+        <Items />
+      </Dependencies>
+      <GeneralInfo>
+        <Name>MPEIPlugin</Name>
+        <Id>a6afa4d6-4fd8-4607-8878-5911db044fd7</Id>
+        <Author>Dukus</Author>
+        <HomePage>http://code.google.com/p/mpei-plugin/</HomePage>
+        <ForumPage>http://forum.team-mediaportal.com/skins-plugins-installer-mpei-212/plugin-mpeinstaller-75926/</ForumPage>
+        <UpdateUrl>http://mpei-plugin.googlecode.com/svn/trunk/Setup/update2.xml</UpdateUrl>
+        <Version>
+          <Major>0</Major>
+          <Minor>0</Minor>
+          <Build>3</Build>
+          <Revision>3</Revision>
+        </Version>
+        <ExtensionDescription>Windows Plugin to manage MediaPortal extensions</ExtensionDescription>
+        <VersionDescription>Button for Update all </VersionDescription>
+        <DevelopmentStatus>Beta</DevelopmentStatus>
+        <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.3.3.mpe1</OnlineLocation>
+        <ReleaseDate>2009-11-29T00:04:20.015625+02:00</ReleaseDate>
+        <Tags>installer</Tags>
+        <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
+        <Params>
+          <Items>
+            <SectionParam Name="Icon">
+              <Value />
+              <ValueType>File</ValueType>
+              <Description>The icon file of the package (jpg,png,bmp)</Description>
+            </SectionParam>
+            <SectionParam Name="Online Icon">
+              <Value />
+              <ValueType>String</ValueType>
+              <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
+            </SectionParam>
+            <SectionParam Name="Configuration file">
+              <Value />
+              <ValueType>Template</ValueType>
+              <Description>The file used to configure the extension.
+ If have .exe extension the will be executed
+ If have .dll extension used like MP plugin configuration</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+      </GeneralInfo>
+      <UniqueFileList>
+        <Items />
+      </UniqueFileList>
+      <ProjectSettings>
+        <FolderGroups />
+      </ProjectSettings>
+    </PackageClass>
   </Items>
 </ExtensionCollection>

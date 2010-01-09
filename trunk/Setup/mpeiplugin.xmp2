@@ -154,32 +154,6 @@ Click Next to continue or Cancel to exit Setup.</Value>
               </Params>
               <ExecuteLocation>AfterPanelShow</ExecuteLocation>
             </ActionItem>
-            <ActionItem Name="Script" ActionType="Script" ConditionGroup="">
-              <Params>
-                <Items>
-                  <SectionParam Name="Script">
-                    <Value>//css_reference "MpeCore.dll";
-
-using MpeCore.Classes;
-using MpeCore;
-using System.Windows.Forms;
-
-public class Script
-{
-    public static void Main(PackageClass packageClass, ActionItem actionItem)
-    {
-   MessageBox.Show("Message");
-        return;
-    }
-}
-</Value>
-                    <ValueType>Script</ValueType>
-                    <Description />
-                  </SectionParam>
-                </Items>
-              </Params>
-              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
-            </ActionItem>
           </Items>
         </Actions>
         <IncludedGroups />
@@ -229,15 +203,12 @@ public class Script
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>3</Build>
-      <Revision>2</Revision>
+      <Revision>3</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions</ExtensionDescription>
-    <VersionDescription>Restart button 
-Ask for restart when action is done 
-Better backgroud for silent install 
-</VersionDescription>
+    <VersionDescription>Button for Update all </VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.3.2.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.3.3.mpe1</OnlineLocation>
     <ReleaseDate>2009-11-29T00:04:20.015625+02:00</ReleaseDate>
     <Tags>installer</Tags>
     <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
