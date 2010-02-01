@@ -202,13 +202,13 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Version>
       <Major>0</Major>
       <Minor>0</Minor>
-      <Build>3</Build>
-      <Revision>3</Revision>
+      <Build>4</Build>
+      <Revision>0</Revision>
     </Version>
-    <ExtensionDescription>Windows Plugin to manage MediaPortal extensions</ExtensionDescription>
+    <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
     <VersionDescription>Button for Update all </VersionDescription>
-    <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.3.3.mpe1</OnlineLocation>
+    <DevelopmentStatus>Stable</DevelopmentStatus>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.0.mpe1</OnlineLocation>
     <ReleaseDate>2009-11-29T00:04:20.015625+02:00</ReleaseDate>
     <Tags>installer</Tags>
     <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
