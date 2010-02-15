@@ -220,7 +220,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
           <Description>The icon file of the package (jpg,png,bmp)</Description>
         </SectionParam>
         <SectionParam Name="Online Icon">
-          <Value />
+          <Value>http://mpei-plugin.googlecode.com/svn/trunk/Setup/logo.png</Value>
           <ValueType>String</ValueType>
           <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
         </SectionParam>
@@ -280,7 +280,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{ed6d1aad-1164-4cc2-8a8a-e8d406eaf9e9}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{9d067fb9-a273-416c-a81d-8d8fd1c1906a}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
