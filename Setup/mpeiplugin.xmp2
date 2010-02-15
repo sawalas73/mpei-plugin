@@ -203,19 +203,19 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>4</Build>
-      <Revision>0</Revision>
+      <Revision>1</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>Button for Update all </VersionDescription>
-    <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.0.mpe1</OnlineLocation>
+    <VersionDescription>Automatic update. No user action needed . Background download manager.</VersionDescription>
+    <DevelopmentStatus>Beta</DevelopmentStatus>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.1.mpe1</OnlineLocation>
     <ReleaseDate>2009-11-29T00:04:20.015625+02:00</ReleaseDate>
     <Tags>installer</Tags>
     <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
-          <Value />
+          <Value>logo.png</Value>
           <ValueType>File</ValueType>
           <Description>The icon file of the package (jpg,png,bmp)</Description>
         </SectionParam>
@@ -230,6 +230,11 @@ Click Next to continue or Cancel to exit Setup.</Value>
           <Description>The file used to configure the extension.
  If have .exe extension the will be executed
  If have .dll extension used like MP plugin configuration</Description>
+        </SectionParam>
+        <SectionParam Name="Online Screenshots">
+          <Value />
+          <ValueType>String</ValueType>
+          <Description>Online stored screenshot urls separated by ; </Description>
         </SectionParam>
       </Items>
     </Params>
@@ -270,6 +275,13 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <LocalFileName>Skin\Blue3wide\Media\extension_update.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{05bdeb07-c5b2-41f9-ae47-6f6f1e249f14}-extension_update.png</ZipFileName>
         <DestinationFilename>%Skin%\Blue3wide\Media\extension_update.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{ed6d1aad-1164-4cc2-8a8a-e8d406eaf9e9}-logo.png</ZipFileName>
+        <DestinationFilename />
       </FileItem>
     </Items>
   </UniqueFileList>
