@@ -104,7 +104,9 @@ namespace MPEIPlugin
       _downloadManager.DownloadDone += _downloadManager_DownloadDone;
       _timer.Elapsed += _timer_Elapsed;
       _setting = ApplicationSettings.Load();
-
+      MpeInstaller.InstalledExtensions.IgnoredUpdates = _setting.IgnoredUpdates;
+      MpeInstaller.KnownExtensions.IgnoredUpdates = _setting.IgnoredUpdates;
+      FilterList();
       currentFolder = string.Empty;
       
       if (_setting.ShowOnlyStable)
@@ -114,6 +116,20 @@ namespace MPEIPlugin
 
       _timer.Enabled = true;
       return bResult;
+    }
+
+    private void FilterList()
+    {
+      if (_setting.ShowOnlyStable)
+      {
+        //MpeCore.MpeInstaller.InstalledExtensions.HideByRelease();
+        MpeInstaller.KnownExtensions.HideByRelease();
+      }
+      else
+      {
+        MpeInstaller.InstalledExtensions.ShowAll();
+        MpeInstaller.KnownExtensions.ShowAll();
+      }
     }
 
     void _timer_Elapsed(object sender, ElapsedEventArgs e)
