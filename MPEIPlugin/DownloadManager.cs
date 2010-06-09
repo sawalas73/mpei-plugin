@@ -46,12 +46,12 @@ namespace MPEIPlugin
         }
         catch (Exception exception)
         {
-          Log.Error(exception);
+          Log.Debug(exception.Message);
         }
       }
       else
       {
-        Log.Error(e.Error);
+        Log.Debug(e.Error.Message);
       }
       if (queue.Count > 0)
         StartDownload();
@@ -72,13 +72,19 @@ namespace MPEIPlugin
 
     private void StartDownload()
     {
-      if (client.IsBusy)
-        return;
-      _currentItem = queue.Dequeue();
-      _currentItem.TempFile = Path.GetTempFileName();
-      if (DownloadStart != null)
-        DownloadStart(_currentItem);
-      client.DownloadFileAsync(new Uri(_currentItem.Url), _currentItem.TempFile);
+      try
+      {
+        if (client.IsBusy)
+          return;
+        _currentItem = queue.Dequeue();
+        _currentItem.TempFile = Path.GetTempFileName();
+        if (DownloadStart != null)
+          DownloadStart(_currentItem);
+        client.DownloadFileAsync(new Uri(_currentItem.Url), _currentItem.TempFile);
+      }
+      catch (Exception)
+      {
+      }
     }
 
 
