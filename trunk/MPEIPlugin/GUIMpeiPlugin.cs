@@ -54,8 +54,7 @@ namespace MPEIPlugin
     Views currentListing = Views.Local;
     SortMethod currentSortMethod = SortMethod.Date;
     bool sortAscending = true;
-    VirtualDirectory virtualDirectory = new VirtualDirectory();
-    DirectoryHistory directoryHistory = new DirectoryHistory();
+
     string currentFolder = string.Empty;
     int selectedItemIndex = -1;
     private DownloadManager _downloadManager = new DownloadManager();
@@ -344,6 +343,7 @@ namespace MPEIPlugin
     }
 
 
+
     void UpdateAll()
     {
       var updatelist = new Dictionary<PackageClass, PackageClass>();
@@ -364,6 +364,19 @@ namespace MPEIPlugin
       if (queue.Items.Count > 0)
         queue.Save();
         //NotifyUser();
+    }
+
+    List<PackageClass> GetUpdates()
+    {
+      List<PackageClass> updates = new List<PackageClass>();
+      foreach (PackageClass packageClass in MpeInstaller.InstalledExtensions.Items)
+      {
+        PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(packageClass);
+        if (update == null)
+          continue;
+        updates.Add(update);
+      }
+      return updates;
     }
 
     #region Serialisation
@@ -513,7 +526,7 @@ namespace MPEIPlugin
       }
 
 
-      virtualDirectory = new VirtualDirectory();
+      //virtualDirectory = new VirtualDirectory();
       SelectCurrentItem();
       UpdateButtonStates();
       LoadDirectory(currentFolder);
@@ -811,6 +824,7 @@ namespace MPEIPlugin
       else
       {
         PackageClass pk = item.MusicTag as PackageClass;
+        PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(pk.GeneralInfo.Id);
         if (pk == null)
           return;
         GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
@@ -824,7 +838,7 @@ namespace MPEIPlugin
         else
         {
           dlg.AddLocalizedString(14005); // install
-          if (MpeInstaller.KnownExtensions.GetUpdate(pk) != null)
+          if (installedpak!=null && MpeInstaller.KnownExtensions.GetUpdate(installedpak) != null)
           {
             dlg.AddLocalizedString(14018); // update
           }
@@ -852,7 +866,7 @@ namespace MPEIPlugin
             NotifyRemoveUser();
             break;
           case 14018:
-            queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(pk), CommandEnum.Install));
+            queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(installedpak), CommandEnum.Install));
             NotifyUser();
             break;
         }
@@ -958,7 +972,8 @@ namespace MPEIPlugin
       {
         dlg.AddLocalizedString(14004); // online
       }
-
+      if (GetUpdates().Count > 0)
+        dlg.AddLocalizedString(14015); // updates
       dlg.SelectedLabel = (int)currentListing;
 
       // show dialog and wait for result
@@ -1105,16 +1120,31 @@ namespace MPEIPlugin
               item.OnItemSelected += item_OnItemSelected;
               facadeView.Add(item);
 
-              foreach (string s in MpeInstaller.KnownExtensions.GetUniqueList().TagList.Tags)
+              Dictionary<string, int> TagList = new Dictionary<string, int>();
+
+              foreach (PackageClass pak in MpeInstaller.KnownExtensions.GetUniqueList().Items)
               {
-                item = new GUIListItem();
-                item.Label = s;
-                item.Path = s;
-                item.IsFolder = true;
-                item.MusicTag = null;
-                item.ThumbnailImage = string.Empty;
-                Utils.SetDefaultIcons(item);
-                facadeView.Add(item);
+                foreach (var tag in pak.GeneralInfo.TagList.Tags)
+                {
+                  if (!TagList.ContainsKey(tag))
+                    TagList.Add(tag, 1);
+                  else
+                    TagList[tag]++;
+                }
+              }
+              foreach (KeyValuePair<string, int> tagList in TagList)
+              {
+                if (tagList.Value > 1)
+                {
+                  item = new GUIListItem();
+                  item.Label = tagList.Key;
+                  item.Path = tagList.Key;
+                  item.IsFolder = true;
+                  item.MusicTag = null;
+                  item.ThumbnailImage = string.Empty;
+                  Utils.SetDefaultIcons(item);
+                  facadeView.Add(item);
+                }
               }
             }
             else
@@ -1146,19 +1176,18 @@ namespace MPEIPlugin
           break;
         case Views.Updates:
           {
-            //Log.Debug("MyExtensions: loading extensions list from updates ");
-            //GUIListItem item = new GUIListItem();
-            //foreach (MPpackageStruct pk in lst_updates.Items)
-            //{
-            //  item = new GUIListItem();
-            //  item.MusicTag = pk;
-            //  item.IsFolder = false;
-            //  item.Label = pk.InstallerInfo.Name;
-            //  item.Label2 = pk.InstallerInfo.Group;
-            //  item.Rating = pk.VoteValue;
-            //  item.OnItemSelected += new GUIListItem.ItemSelectedHandler(item_OnItemSelected);
-            //  facadeView.Add(item);
-            //}
+            GUIListItem item = new GUIListItem();
+            foreach (PackageClass pk in GetUpdates())
+            {
+              item = new GUIListItem();
+              item.MusicTag = pk;
+              item.IsFolder = false;
+              item.Label = pk.GeneralInfo.Name;
+              item.Label2 = pk.GeneralInfo.Version.ToString();
+              Logo(pk, item);
+              item.OnItemSelected += item_OnItemSelected;
+              facadeView.Add(item);
+            }
           }
           break;
       }
