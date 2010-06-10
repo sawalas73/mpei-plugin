@@ -111,6 +111,8 @@ namespace MPEIPlugin
       if (_setting.ShowOnlyStable)
         MpeInstaller.KnownExtensions.HideByRelease();
 
+      GenerateProperty();
+
       bool bResult = Load(GUIGraphicsContext.Skin + @"\myextensions2.xml");
 
       _timer.Enabled = true;
@@ -886,6 +888,20 @@ namespace MPEIPlugin
           Url = packageClass.GeneralInfo.OnlineLocation
         });
      
+    }
+
+    void GenerateProperty()
+    {
+      string s = "";
+      foreach (PackageClass update in GetUpdates())
+      {
+        s += update.GeneralInfo.Name + " - " + update.GeneralInfo.Version.ToString() + ".::.";
+      }
+      if(!string.IsNullOrEmpty(s))
+      {
+        s = "New updates : " + s;
+        GUIPropertyManager.SetProperty("#mpei.updates", s);
+      }
     }
 
     void ShowInstall(PackageClass pk)
