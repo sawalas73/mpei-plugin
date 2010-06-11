@@ -59,7 +59,7 @@ namespace MPEIPlugin
     int selectedItemIndex = -1;
     private DownloadManager _downloadManager = new DownloadManager();
     static GUIDialogProgress _dlgProgress;
-    private bool _askForRestart;
+    private bool _askForRestart = true;
     private ApplicationSettings _setting = new ApplicationSettings();
 
     public QueueCommandCollection queue = new QueueCommandCollection();
@@ -115,8 +115,68 @@ namespace MPEIPlugin
 
       bool bResult = Load(GUIGraphicsContext.Skin + @"\myextensions2.xml");
 
+      GUIGraphicsContext.Receivers += new SendMessageHandler(GUIGraphicsContext_Receivers);
       _timer.Enabled = true;
       return bResult;
+    }
+
+    void GUIGraphicsContext_Receivers(GUIMessage message)
+    {
+      if (message.Message == GUIMessage.MessageType.GUI_MSG_CLICKED)
+      {
+        GUIButtonControl cnt =
+          GUIWindowManager.GetWindow(message.TargetWindowId).GetControl(message.SenderControlId) as GUIButtonControl;
+        if (cnt != null)
+        {
+          string desc = cnt.Description;
+          if (!string.IsNullOrEmpty(desc) && desc.Split(':').Length > 1)
+          {
+            string command = desc.Split(':')[0].Trim().ToUpper();
+            string arg = desc.Split(':')[1].Trim().Replace("_", "-");
+            switch (command)
+            {
+              case "MPEIUPDATE":
+                UpdateExtension(arg);
+                break;
+              case "MPEISHOWCHANGELOG":
+                ShowChangeLog(arg);
+                break;
+              default:
+                break;
+            }
+          }
+        }
+      }
+    }
+
+    private void UpdateExtension(string id)
+    {
+      PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(id);
+      if (installedpak != null && MpeInstaller.KnownExtensions.GetUpdate(installedpak)!=null)
+      {
+        queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(installedpak), CommandEnum.Install));
+        queue.Save();
+        NotifyUser();
+      }
+    }
+
+    private void ShowChangeLog(string id)
+    {
+      PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(id);
+      if (installedpak != null)
+      {
+        PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(installedpak);
+        if(update !=null)
+        {
+          GUIDialogText dlgYesNo = (GUIDialogText)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_TEXT);
+          if (null == dlgYesNo)
+            return;
+          dlgYesNo.SetHeading("Change log for :");
+          dlgYesNo.SetText(string.Format("{0} - {1} ", update.GeneralInfo.Name,
+                                            update.GeneralInfo.Version.ToString())+"\n"+update.GeneralInfo.VersionDescription);
+          dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+        }
+      }      
     }
 
     private void FilterList()
@@ -471,6 +531,7 @@ namespace MPEIPlugin
     #endregion
 
     #region BaseWindow Members
+
     public override void OnAction(Action action)
     {
       if (action.wID == Action.ActionType.ACTION_PREVIOUS_MENU)
@@ -892,7 +953,20 @@ namespace MPEIPlugin
 
     void GenerateProperty()
     {
+      foreach (PackageClass item in MpeInstaller.InstalledExtensions.Items)
+      {
+        if (MpeInstaller.KnownExtensions.GetUpdate(item) != null)
+        {
+          GUIPropertyManager.SetProperty("#mpei.update." + item.GeneralInfo.Id.Replace("-","_"), "true");
+        }
+        else
+        {
+          GUIPropertyManager.SetProperty("#mpei.update." + item.GeneralInfo.Id.Replace("-", "_"), "false");
+        }
+      }
+
       string s = "";
+      GUIPropertyManager.SetProperty("#mpei.updates", " ");
       foreach (PackageClass update in GetUpdates())
       {
         s += update.GeneralInfo.Name + " - " + update.GeneralInfo.Version.ToString() + ".::.";
