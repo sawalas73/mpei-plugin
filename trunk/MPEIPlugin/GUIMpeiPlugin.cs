@@ -141,11 +141,47 @@ namespace MPEIPlugin
               case "MPEISHOWCHANGELOG":
                 ShowChangeLog(arg);
                 break;
+              case "MPEIINSTALL":
+                InstallExtension(arg);
+                break;
+              case "MPEIUNINSTALL":
+                UnInstallExtension(arg);
+                break;
               default:
                 break;
             }
           }
         }
+      }
+    }
+
+    private void UnInstallExtension(string id)
+    {
+      PackageClass pak = MpeInstaller.InstalledExtensions.Get(id);
+      if (pak != null)
+      {
+        queue.Add(new QueueCommand(pak, CommandEnum.Uninstall));
+        queue.Save();
+        NotifyUser();
+      }
+      else
+      {
+        Log.Error("The {0} extension isn't installed", id);
+      }
+    }
+
+    private void InstallExtension(string id)
+    {
+      PackageClass pak = MpeInstaller.KnownExtensions.Get(id);
+      if (pak != null)
+      {
+        queue.Add(new QueueCommand(pak, CommandEnum.Install));
+        queue.Save();
+        NotifyUser();
+      }
+      else
+      {
+        Log.Error("No extension was found :{0}", id);
       }
     }
 
@@ -226,6 +262,7 @@ namespace MPEIPlugin
               MpeInstaller.KnownExtensions.HideByRelease();
             Log.Debug("[MPEI]Update info loded from {0}", info.Url);
             File.Delete(info.Destinatiom);
+            GenerateProperty();
             MpeInstaller.Save();
             if (GUIWindowManager.ActiveWindow==GetID)
               LoadDirectory(currentFolder);
@@ -955,14 +992,29 @@ namespace MPEIPlugin
     {
       foreach (PackageClass item in MpeInstaller.InstalledExtensions.Items)
       {
-        if (MpeInstaller.KnownExtensions.GetUpdate(item) != null)
+        PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(item);
+        if (update != null)
         {
-          GUIPropertyManager.SetProperty("#mpei.update." + item.GeneralInfo.Id.Replace("-","_"), "true");
+          GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".haveupdate", "true");
+          GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".updatelog", update.GeneralInfo.VersionDescription);
+          GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".updatedate",update.GeneralInfo.ReleaseDate.ToShortDateString());
+          GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".updateversion", update.GeneralInfo.Version.ToString());
         }
         else
         {
-          GUIPropertyManager.SetProperty("#mpei.update." + item.GeneralInfo.Id.Replace("-", "_"), "false");
+          GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".haveupdate", "false");
+          GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".updatelog", " ");
+          GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".updatedate", " ");
+          GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".updateversion", " ");
         }
+        GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".installedversion", item.GeneralInfo.Version.ToString());
+        GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".isinstalled", "true");
+      }
+
+      foreach (PackageClass item in MpeInstaller.KnownExtensions.GetUniqueList().Items)
+      {
+        GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".name", item.GeneralInfo.Name);
+        GUIPropertyManager.SetProperty("#mpei." + item.GeneralInfo.Id.Replace("-", "_") + ".author", item.GeneralInfo.Author);
       }
 
       string s = "";
