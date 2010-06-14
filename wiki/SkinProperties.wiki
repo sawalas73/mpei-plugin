@@ -16,3 +16,43 @@ EX: #mpei.3664ae64_c5af_4084_baf0_7ecb57b89711.haveupdate
 #mpei.<id>.name
 #mpei.<id>.author
 }}}
+
+{{{
+<control>
+<description><COMMAND>:<Extension ID></description>
+<type>button</type>
+<id>59</id>
+<posX>71</posX>
+<posY>499</posY>	
+<label>New version</label>
+<onright>50</onright>
+<onup>7</onup>
+<ondown>2</ondown> 
+<visible>string.equals(#mpei.3664ae64_c5af_4084_baf0_7ecb57b89711.haveupdate,true)</visible>
+</control>
+}}}
+
+The command can be :
+ * MPEIUPDATE - update to the latest version the specified extension
+ * MPEISHOWCHANGELOG - show the changelog of the latest update version 
+ * MPEIINSTALL - install the specified extension 
+ * MPEIUNINSTALL - uninstall the specified extension 
+
+Ex: 
+Update a extension
+{{{
+<control>
+<description>MPEIUPDATE:3664ae64-c5af-4084-baf0-7ecb57b89711</description>
+<type>button</type>
+<id>59</id>
+<posX>71</posX>
+<posY>499</posY>	
+<label>New version</label>
+<onright>50</onright>
+<onup>7</onup>
+<ondown>2</ondown> 
+<visible>string.equals(#mpei.3664ae64_c5af_4084_baf0_7ecb57b89711.haveupdate,true)</visible>
+</control>
+}}}
+ 
+ 
