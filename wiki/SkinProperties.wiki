@@ -1,5 +1,6 @@
-#summary Properties which can be used in skin files
 #labels Featured
+
+#summary Properties which can be used in skin files
 
 = Properties=
 {{{
@@ -15,6 +16,9 @@ EX: #mpei.3664ae64_c5af_4084_baf0_7ecb57b89711.haveupdate
 #mpei.<id>.isinstalled - true if the extension is installed
 #mpei.<id>.name
 #mpei.<id>.author
+
+#mpei.newextensions - a list with newly released extensions
+#mpei.updates - a list with available updates            
 }}}
 
 {{{
