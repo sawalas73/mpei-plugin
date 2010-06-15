@@ -58,4 +58,13 @@ Update a extension
 </control>
 }}}
  
+Properties in main window
+
+{{{
+#MPE.Selected.Name
+#MPE.Selected.Version
+#MPE.Selected.Author
+#MPE.Selected.Description
+#MPE.Selected.VersionDescription
+}}}
  
