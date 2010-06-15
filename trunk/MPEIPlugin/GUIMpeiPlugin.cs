@@ -45,6 +45,8 @@ namespace MPEIPlugin
       Local = 0,
       Online = 1,
       Updates = 2,
+      New = 3,
+      Queue = 4
     }
 
     #endregion
@@ -68,6 +70,7 @@ namespace MPEIPlugin
 
     private const string UpdateIndexUrl = "http://install.team-mediaportal.com/MPEI/extensions.txt";
 
+    private const int newdays = 10;
     #endregion
 
     #region SkinControls
@@ -115,7 +118,7 @@ namespace MPEIPlugin
 
       bool bResult = Load(GUIGraphicsContext.Skin + @"\myextensions2.xml");
 
-      GUIGraphicsContext.Receivers += new SendMessageHandler(GUIGraphicsContext_Receivers);
+      GUIGraphicsContext.Receivers += GUIGraphicsContext_Receivers;
       _timer.Enabled = true;
       return bResult;
     }
@@ -158,6 +161,7 @@ namespace MPEIPlugin
     private void UnInstallExtension(string id)
     {
       PackageClass pak = MpeInstaller.InstalledExtensions.Get(id);
+      
       if (pak != null)
       {
         queue.Add(new QueueCommand(pak, CommandEnum.Uninstall));
@@ -511,6 +515,9 @@ namespace MPEIPlugin
         {
           if (tmpLine == "local") currentListing = Views.Local;
           else if (tmpLine == "online") currentListing = Views.Online;
+          else if (tmpLine == "updates") currentListing = Views.Updates;
+          else if (tmpLine == "new") currentListing = Views.New;
+          else if (tmpLine == "queue") currentListing = Views.Queue;
         }
         sortAscending = xmlreader.GetValueAsBool("myextensions2", "sortascending", true);
       }
@@ -559,6 +566,15 @@ namespace MPEIPlugin
             break;
           case Views.Online:
             xmlwriter.SetValue("myextensions2", "listing", "online");
+            break;
+          case Views.Updates:
+            xmlwriter.SetValue("myextensions2", "listing", "updates");
+            break;
+          case Views.New:
+            xmlwriter.SetValue("myextensions2", "listing", "new");
+            break;
+          case Views.Queue:
+            xmlwriter.SetValue("myextensions2", "listing", "queue");
             break;
         }
 
@@ -625,8 +641,11 @@ namespace MPEIPlugin
           break;
       }
 
+      foreach (string name in Translation.Strings.Keys)
+      {
+        Translation.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
+      }
 
-      //virtualDirectory = new VirtualDirectory();
       SelectCurrentItem();
       UpdateButtonStates();
       LoadDirectory(currentFolder);
@@ -889,8 +908,8 @@ namespace MPEIPlugin
       var dlg1 = (GUIDialogNotify)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_NOTIFY);
       if (dlg1 == null) return;
       dlg1.Reset();
-      dlg1.SetHeading("Notification");
-      dlg1.SetText("Action was added to action queue");
+      dlg1.SetHeading(Translation.Notification);
+      dlg1.SetText(Translation.ActionAdded);
       dlg1.Reset();
       dlg1.TimeOut = 2;
       dlg1.DoModal(GetID);
@@ -904,8 +923,8 @@ namespace MPEIPlugin
       var dlg1 = (GUIDialogNotify)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_NOTIFY);
       if (dlg1 == null) return;
       dlg1.Reset();
-      dlg1.SetHeading(14001);
-      dlg1.SetText("Action was removed from action queue");
+      dlg1.SetHeading(Translation.Notification);
+      dlg1.SetText(Translation.ActionRemoved);
       dlg1.Reset();
       dlg1.TimeOut = 2;
       dlg1.DoModal(GetID);
@@ -924,9 +943,10 @@ namespace MPEIPlugin
       else
       {
         PackageClass pk = item.MusicTag as PackageClass;
-        PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(pk.GeneralInfo.Id);
         if (pk == null)
           return;
+        PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(pk.GeneralInfo.Id);
+
         GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
         if (dlg == null) return;
         dlg.Reset();
@@ -937,6 +957,7 @@ namespace MPEIPlugin
         }
         else
         {
+          dlg.SetHeading(Translation.Actions);
           dlg.AddLocalizedString(14005); // install
           if (installedpak!=null && MpeInstaller.KnownExtensions.GetUpdate(installedpak) != null)
           {
@@ -1028,6 +1049,22 @@ namespace MPEIPlugin
         s = "New updates : " + s;
         GUIPropertyManager.SetProperty("#mpei.updates", s);
       }
+
+      s = "";
+      GUIPropertyManager.SetProperty("#mpei.newextensions", " ");
+      foreach (PackageClass pk in MpeInstaller.KnownExtensions.GetUniqueList().Items)
+      {
+        if (DateTime.Now.Subtract(pk.GeneralInfo.ReleaseDate).Days < newdays)
+        {
+          s += pk.GeneralInfo.Name + " - " + pk.GeneralInfo.Version.ToString() + ".::.";
+        }
+      }
+      if (!string.IsNullOrEmpty(s))
+      {
+        s = "New extensions : " + s;
+        GUIPropertyManager.SetProperty("#mpei.newextensions", s);
+      }
+
     }
 
     void ShowInstall(PackageClass pk)
@@ -1105,35 +1142,43 @@ namespace MPEIPlugin
       GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
       if (dlg == null) return;
       dlg.Reset();
-      dlg.SetHeading(14002); // Sort options
+      dlg.SetHeading(Translation.Views); // Sort options
       if (MpeInstaller.InstalledExtensions.Items.Count > 0)
       {
-        dlg.AddLocalizedString(14003); // local
+        dlg.Add(Translation.InstalledExtensions); // local
       }
       if (MpeInstaller.KnownExtensions.Items.Count > 0)
       {
-        dlg.AddLocalizedString(14004); // online
+        dlg.Add(Translation.OnlineExtensions); // online
       }
       if (GetUpdates().Count > 0)
-        dlg.AddLocalizedString(14015); // updates
+        dlg.Add(Translation.Updates); // updates
+      
+      if(queue.Items.Count>0)
+        dlg.Add(Translation.Actions);
+
+      dlg.Add(Translation.NewExtensions); // new
+    
       dlg.SelectedLabel = (int)currentListing;
 
       // show dialog and wait for result
       dlg.DoModal(GetID);
       if (dlg.SelectedId == -1) return;
 
-      switch (dlg.SelectedId)
-      {
-        case 14003:
-          currentListing = Views.Local;
-          break;
-        case 14004:
-          currentListing = Views.Online;
-          break;
-        case 14015:
-          currentListing = Views.Updates;
-          break;
-      }
+      if (dlg.SelectedLabelText == Translation.InstalledExtensions)
+        currentListing = Views.Local;
+
+      if (dlg.SelectedLabelText == Translation.OnlineExtensions)
+        currentListing = Views.Online;
+
+      if (dlg.SelectedLabelText == Translation.Updates)
+        currentListing = Views.Updates;
+
+      if (dlg.SelectedLabelText == Translation.NewExtensions)
+        currentListing = Views.New;
+      
+      if (dlg.SelectedLabelText == Translation.Actions)
+        currentListing = Views.Queue;
 
       LoadDirectory(currentFolder);
     }
@@ -1329,6 +1374,45 @@ namespace MPEIPlugin
               Logo(pk, item);
               item.OnItemSelected += item_OnItemSelected;
               facadeView.Add(item);
+            }
+          }
+          break;
+        case Views.New:
+          {
+            GUIListItem item = new GUIListItem();
+            foreach (PackageClass pk in MpeInstaller.KnownExtensions.GetUniqueList().Items)
+            {
+              if (DateTime.Now.Subtract(pk.GeneralInfo.ReleaseDate).Days < newdays)
+              {
+                item = new GUIListItem();
+                item.MusicTag = pk;
+                item.IsFolder = false;
+                item.Label = pk.GeneralInfo.Name;
+                item.Label2 = pk.GeneralInfo.Version.ToString();
+                Logo(pk, item);
+                item.OnItemSelected += item_OnItemSelected;
+                facadeView.Add(item);
+              }
+            }
+          }
+          break;
+        case Views.Queue:
+          {
+            GUIListItem item = new GUIListItem();
+            foreach (QueueCommand command in queue.Items)
+            {
+              PackageClass pk = MpeInstaller.KnownExtensions.Get(command.TargetId, command.TargetVersion.ToString());
+              if (pk != null)
+              {
+                item = new GUIListItem();
+                item.MusicTag = pk;
+                item.IsFolder = false;
+                item.Label = pk.GeneralInfo.Name+" - "+command.CommandEnum.ToString();
+                item.Label2 = pk.GeneralInfo.Version.ToString();
+                Logo(pk, item);
+                item.OnItemSelected += item_OnItemSelected;
+                facadeView.Add(item);
+              }
             }
           }
           break;
