@@ -900,18 +900,18 @@ namespace MPEIPlugin
         else
         {
           dlg.SetHeading(Translation.Actions);
-          //dlg.AddLocalizedString(14005); // install
           dlg.Add(Translation.Install);
           if (installedpak != null && MpeInstaller.KnownExtensions.GetUpdate(installedpak) != null)
           {
-            //dlg.AddLocalizedString(14018); // update
             dlg.Add(Translation.Update);
           }
           if (MpeInstaller.InstalledExtensions.Get(pk) != null)
           {
-            //dlg.AddLocalizedString(14006); // uninstall 
             dlg.Add(Translation.Uninstall);
           }
+          dlg.Add(_setting.IgnoredUpdates.Contains(pk.GeneralInfo.Id)
+                    ? Translation.AlwaysCheckForUpdates
+                    : Translation.NeverCheckForUpdates);
         }
 
         dlg.DoModal(GetID);
@@ -934,7 +934,14 @@ namespace MPEIPlugin
         {
           queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(installedpak), CommandEnum.Install));
           NotifyUser();
+        }else if(dlg.SelectedLabelText==Translation.NeverCheckForUpdates)
+        {
+          _setting.IgnoredUpdates.Add(pk.GeneralInfo.Id);
+        }else if (dlg.SelectedLabelText == Translation.AlwaysCheckForUpdates)
+        {
+          _setting.IgnoredUpdates.Remove(pk.GeneralInfo.Id);
         }
+        _setting.Save();
         queue.Save();
       }
     }
