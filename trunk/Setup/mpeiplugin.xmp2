@@ -54,6 +54,13 @@
               <ZipFileName>Installer{CopyFile}\{05bdeb07-c5b2-41f9-ae47-6f6f1e249f14}-extension_update.png</ZipFileName>
               <DestinationFilename>%Skin%\Blue3wide\Media\extension_update.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\myextensions2slideshow.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{29e8385a-0449-473f-8d6d-1b9249f76310}-myextensions2slideshow.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\myextensions2slideshow.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -84,6 +91,29 @@
               <LocalFileName>Skin\Blue3wide\Media\extension_update.png</LocalFileName>
               <ZipFileName>Installer{Font}\{511b48cb-a91c-409d-b71b-ef8792fc445a}-extension_update.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_update.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\myextensions2slideshow.xml</LocalFileName>
+              <ZipFileName>Installer{Font}\{2101a853-d695-4620-9568-8655e6e6a6bf}-myextensions2slideshow.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2slideshow.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Languages">
+        <DisplayName>Languages</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Languages</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>language\MPEI\en-US.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
+              <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -203,15 +233,15 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>4</Build>
-      <Revision>5</Revision>
+      <Revision>6</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>View for new extensions, 
-for queued actions</VersionDescription>
+    <VersionDescription>Localization
+Screenshot support</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.5.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.6.mpe1</OnlineLocation>
     <ReleaseDate>2010-06-15T00:04:20</ReleaseDate>
-    <Tags>installer</Tags>
+    <Tags>installer, mpei </Tags>
     <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
     <Params>
       <Items>
@@ -277,11 +307,25 @@ for queued actions</VersionDescription>
         <ZipFileName>Installer{CopyFile}\{05bdeb07-c5b2-41f9-ae47-6f6f1e249f14}-extension_update.png</ZipFileName>
         <DestinationFilename>%Skin%\Blue3wide\Media\extension_update.png</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Skin\Blue3wide\myextensions2slideshow.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{29e8385a-0449-473f-8d6d-1b9249f76310}-myextensions2slideshow.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\myextensions2slideshow.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>language\MPEI\en-US.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
+        <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
+      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{d22a5bea-f038-4b88-91b3-cef90f679ea7}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{b6257ffd-f543-45c4-afd1-53a1808ae921}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
@@ -306,6 +350,16 @@ for queued actions</VersionDescription>
         <DestinationFilename>%Skin%\[DEFAULT]\</DestinationFilename>
         <Folder>Skin\Blue3wide</Folder>
         <Group>DefaultSkin</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{8da00361-22df-4b34-99e3-d38c94735924}-</ZipFileName>
+        <DestinationFilename>%Language%\MPEI</DestinationFilename>
+        <Folder>language\MPEI</Folder>
+        <Group>Languages</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>

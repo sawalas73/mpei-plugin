@@ -71,7 +71,7 @@
           <description>Restart</description>
           <type>button</type>
           <id>5</id>
-          <label>Restart MP</label>
+          <label>#MPEI.Translation.Restart.Label</label>
           <onright>50</onright>
         </control>
 
@@ -87,7 +87,7 @@
           <description>Update all</description>
           <type>button</type>
           <id>8</id>
-          <label>Update all</label>
+          <label>#MPEI.Translation.UpdateAll.Label</label>
           <onright>50</onright>
         </control>
 		

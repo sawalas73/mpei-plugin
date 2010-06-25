@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- RadioTime translation file -->
+<!-- English (US) -->
+<!-- Note: English is the fallback for any strings not found in other languages -->
+<strings>
+ 
+    <!--  A  -->
+    <string Field="AlwaysCheckForUpdates">Always check for updates</string>
+    <string Field="Actions">Actions</string>
+    <string Field="ActionAdded">Action was added to action queue</string>
+    <string Field="ActionRemoved">Action was removed from action queue</string>
+
+    <!--  C  -->
+    <string Field="ChangeLogFor">Change log for :</string>
+
+    <!--  D  -->
+    <string Field="Download">Download</string>
+
+    <!--  E  -->
+    <string Field="Exit">Exit</string>
+
+    <!--  F  -->
+
+    <!--  G  -->
+
+    <!--  H  -->
+
+    <!--  I  -->
+    <string Field="Install">Install</string>
+    <string Field="InstalledExtensions">Installed Extensions</string>
+
+    <!--  L  -->
+    
+    <!--  M  -->
+
+    <!--  N -->
+    <string Field="NeverCheckForUpdates">Never check for updates</string>
+    <string Field="NewExtensions">New Extensions</string>
+    <string Field="NewUpdates">New updates</string>
+    <string Field="Notification">Notification</string>
+    <string Field="NotificationMsg1">There are pending actions</string>
+    <string Field="NotificationMsg2">Do you want to execute it ?</string>
+    <string Field="NotificationMsg3">This operation will restart MediaPortal</string>
+    <string Field="NotificationMsg4">and execute the pending actions</string>
+
+
+    <!--  O  -->
+    <string Field="OnlineExtensions">Online Extensions</string>
+
+    <!--  P  -->
+
+    <!--  R  -->
+    <string Field="Restart">Restart</string>
+    <string Field="Rotate">Rotate</string>
+    <string Field="RevokeLastAction">Revoke last action</string>
+
+    <!--  S  -->
+    <string Field="ShowSreenshots">Show sreenshots</string>
+    <string Field="SelectVersionToInstall">Select version to (Re)Install</string>
+    <string Field="StartSlideshow">Start slideshow</string>
+
+    <!--  T  -->
+
+
+    <!--  U  -->
+    <string Field="Update">Update</string>
+    <string Field="UpdateAll">Update All</string>
+    <string Field="Updates">Updates</string>
+    <string Field="Uninstall">Uninstall</string>
+   
+    <!--  V  -->
+    <string Field="Views">Views</string>
+
+    <!--  W  -->
+
+    <!--  Y  -->
+ 
+ 
+</strings>
