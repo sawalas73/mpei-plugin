@@ -913,7 +913,10 @@ namespace MPEIPlugin
                     ? Translation.AlwaysCheckForUpdates
                     : Translation.NeverCheckForUpdates);
         }
-
+        if (!string.IsNullOrEmpty(pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Trim()) && pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS).Length > 0)
+        {
+          dlg.Add(Translation.ShowSreenshots);
+        }
         dlg.DoModal(GetID);
         if (dlg.SelectedId == -1) return;
         if (dlg.SelectedLabelText == Translation.Install)
@@ -940,6 +943,27 @@ namespace MPEIPlugin
         }else if (dlg.SelectedLabelText == Translation.AlwaysCheckForUpdates)
         {
           _setting.IgnoredUpdates.Remove(pk.GeneralInfo.Id);
+        }else if(dlg.SelectedLabelText==Translation.ShowSreenshots)
+        {
+          GUISlideShow SlideShow = (GUISlideShow)GUIWindowManager.GetWindow(802);
+          if (SlideShow == null)
+          {
+            return;
+          }
+
+          SlideShow.Reset();
+          foreach (string files in pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS))
+          {
+            if (!string.IsNullOrEmpty(files))
+              SlideShow.Add(files);
+          }
+
+          if (SlideShow.Count > 0)
+          {
+            //Thread.Sleep(1000);
+            GUIWindowManager.ActivateWindow(802);
+            SlideShow.StartSlideShow();
+          }
         }
         _setting.Save();
         queue.Save();

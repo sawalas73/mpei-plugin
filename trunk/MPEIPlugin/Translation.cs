@@ -243,6 +243,7 @@ namespace MPEIPlugin
     public static string RevokeLastAction = "Revoke last action";
 
     // S
+    public static string ShowSreenshots = "Show sreenshots";
     public static string SelectVersionToInstall = "Select version to (Re)Install";
     public static string StartSlideshow = "Start slideshow";
 
