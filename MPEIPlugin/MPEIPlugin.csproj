@@ -36,11 +36,17 @@
       <HintPath>..\..\mp\mediaportal\xbmc\bin\Debug\Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Databases, Version=1.0.8.35951, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\mp\mediaportal\xbmc\bin\Debug\Databases.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Dialogs, Version=1.0.4.34233, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\mp\mediaportal\xbmc\bin\Debug\plugins\Windows\Dialogs.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.DirectX.Direct3D, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="MpeCore, Version=1.0.4.30994, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\mp\mediaportal\xbmc\bin\Debug\MpeCore.dll</HintPath>
@@ -61,8 +67,11 @@
     <Compile Include="DownLoadInfo.cs" />
     <Compile Include="DownloadManager.cs" />
     <Compile Include="GUIMpeiPlugin.cs" />
+    <Compile Include="GUISlideShow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="SlideCache.cs" />
+    <Compile Include="SlidePicture.cs" />
     <Compile Include="splashscreen.cs" />
     <Compile Include="Translation.cs" />
     <Compile Include="UpdateWacher.cs" />
