@@ -211,7 +211,7 @@ namespace MPEIPlugin
           GUIDialogText dlgYesNo = (GUIDialogText)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_TEXT);
           if (null == dlgYesNo)
             return;
-          dlgYesNo.SetHeading("Change log for :");
+          dlgYesNo.SetHeading(Translation.ChangeLogFor);
           dlgYesNo.SetText(string.Format("{0} - {1} ", update.GeneralInfo.Name,
                                             update.GeneralInfo.Version.ToString())+"\n"+update.GeneralInfo.VersionDescription);
           dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
@@ -384,48 +384,6 @@ namespace MPEIPlugin
 
     void DownloadInfo()
     {
-
-      //List<string> onlineFiles = MpeInstaller.InstalledExtensions.GetUpdateUrls(new List<string>());
-      //onlineFiles = MpeInstaller.KnownExtensions.GetUpdateUrls(onlineFiles);
-      //onlineFiles = MpeInstaller.GetInitialUrlIndex(onlineFiles);
-      //int i = 0;
-
-
-      //foreach (string onlineFile in onlineFiles)
-      //{
-      //  i++;
-      //  try
-      //  {
-      //    string file = Path.GetTempFileName();
-
-      //    if (_dlgProgress != null)
-      //    {
-      //      _dlgProgress.Reset();
-      //      _dlgProgress.SetHeading(14010);
-      //      _dlgProgress.SetLine(1, 14014);
-      //      _dlgProgress.SetLine(2, "");
-      //      _dlgProgress.DisableCancel(true);
-      //      _dlgProgress.ShowProgressBar(true);
-      //      _dlgProgress.SetPercentage(i / onlineFiles.Count);
-      //      _dlgProgress.Progress();
-      //      //_dlgProgress.StartModal(GetID);
-      //      //client.DownloadFile(new Uri(onlineFile), file);
-
-      //      //_dlgProgress.DoModal(GetID);
-      //    }
-      //    MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(file));
-      //    //Log.Error(onlineFile);
-      //    File.Delete(file);
-      //  }
-      //  catch (Exception ex)
-      //  {
-      //    Log.Error(ex);
-      //  }
-      //}
-      //_dlgProgress.SetPercentage(100);
-      //_dlgProgress.Progress();
-      //_dlgProgress.ShowProgressBar(true);
-      //_dlgProgress.Close();
     }
 
     static void LoadExtensionIndex(string tempUpdateIndex)
@@ -665,10 +623,10 @@ namespace MPEIPlugin
         GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
         if (null == dlgYesNo)
           return;
-        dlgYesNo.SetHeading("Notification"); //resume movie?
-        dlgYesNo.SetLine(1, "There are pending actions");
-        dlgYesNo.SetLine(2, "Do you want to execute it ?");
-        dlgYesNo.SetLine(3, "This operation will restart MediaPortal");
+        dlgYesNo.SetHeading(Translation.Notification); //resume movie?
+        dlgYesNo.SetLine(1, Translation.NotificationMsg1);
+        dlgYesNo.SetLine(2, Translation.NotificationMsg1);
+        dlgYesNo.SetLine(3, Translation.NotificationMsg1);
         dlgYesNo.SetDefaultToYes(true);
         dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
         if (dlgYesNo.IsConfirmed)
@@ -682,10 +640,10 @@ namespace MPEIPlugin
     public bool AskForRestart()
     {
       var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
-      dlgYesNo.SetHeading("Notification"); //resume movie?
-      dlgYesNo.SetLine(1, "There are pending Extension Updates");
-      dlgYesNo.SetLine(2, "Do you want to execute it ?");
-      dlgYesNo.SetLine(3, "This operation will restart MediaPortal");
+      dlgYesNo.SetHeading(Translation.Notification); //resume movie?
+      dlgYesNo.SetLine(1, Translation.NotificationMsg1);
+      dlgYesNo.SetLine(2, Translation.NotificationMsg2);
+      dlgYesNo.SetLine(3, Translation.NotificationMsg3);
       dlgYesNo.SetDefaultToYes(true);
       dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
       return dlgYesNo.IsConfirmed;
@@ -739,26 +697,6 @@ namespace MPEIPlugin
           }
           continue;
         }
-        //if (Control.SelectSingleNode("type/text()").Value.ToLower() == "label"
-        //    && Control.SelectSingleNode("id/text()").Value == "2") // if the center label control is found
-        //{
-        //    if (Control.SelectSingleNode("textsize") != null) // textsize info found?
-        //    {
-        //        float TextSize = float.Parse(Control.SelectSingleNode("textsize/text()").Value);
-        //        Log.Debug("FullScreenSplash: Textsize value found: {0}", TextSize);
-        //        lblMain.Font = new Font(lblMain.Font.FontFamily, TextSize, lblMain.Font.Style);
-        //        Log.Debug("FullScreenSplash: Textsize successfully set: {0}", TextSize);
-        //    }
-        //    if (Control.SelectSingleNode("textcolor") != null) // textcolor info found?
-        //    {
-        //        Color TextColor = ColorTranslator.FromHtml(Control.SelectSingleNode("textcolor/text()").Value);
-        //        Log.Debug("FullScreenSplash: TextColor value found: {0}", TextColor);
-        //        lblMain.ForeColor = TextColor;
-        //        lblVersion.ForeColor = TextColor;
-        //        lblCVS.ForeColor = TextColor;
-        //        Log.Debug("FullScreenSplash: TextColor successfully set: {0}", TextColor);
-        //    }
-        //}
       }
       return "";
     }
@@ -848,10 +786,10 @@ namespace MPEIPlugin
           GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
           if (null == dlgYesNo)
             return;
-          dlgYesNo.SetHeading("Notification"); //resume movie?
-          dlgYesNo.SetLine(1, "This operation will restart MediaPortal");
-          dlgYesNo.SetLine(2, "and execute the pending actions");
-          dlgYesNo.SetLine(3, "Do you want to execute it ?");
+          dlgYesNo.SetHeading(Translation.Notification); 
+          dlgYesNo.SetLine(1, Translation.NotificationMsg3);
+          dlgYesNo.SetLine(2, Translation.NotificationMsg4);
+          dlgYesNo.SetLine(3, Translation.NotificationMsg2);
           dlgYesNo.SetDefaultToYes(true);
           dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
           if (dlgYesNo.IsConfirmed)
@@ -864,6 +802,7 @@ namespace MPEIPlugin
       if (control == btnViews)
       {
         OnShowViews();
+        GUIControl.FocusControl(GetID, facadeView.GetID);
       }
 
       if (control == btnUpdateAll)
@@ -871,6 +810,7 @@ namespace MPEIPlugin
         DownloadInfo();
         UpdateAll();
         LoadDirectory(currentFolder);
+        GUIControl.FocusControl(GetID, facadeView.GetID);
       }
 
       if (control == facadeView)
@@ -893,7 +833,7 @@ namespace MPEIPlugin
         GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
         if (null == dlgYesNo)
           return;
-        dlgYesNo.SetHeading("Notification");
+        dlgYesNo.SetHeading(Translation.Notification);
         dlgYesNo.SetLine(1, "This operation requaied restart of MediaPortal");
         dlgYesNo.SetLine(2, "Do you want to restart now ?");
         dlgYesNo.SetLine(3, "If no the action will be stored in queue");
@@ -947,49 +887,53 @@ namespace MPEIPlugin
           return;
         PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(pk.GeneralInfo.Id);
 
-        GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+        GUIDialogMenu dlg = (GUIDialogMenu) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_MENU);
         if (dlg == null) return;
         dlg.Reset();
         if (queue.Get(pk.GeneralInfo.Id) != null)
         {
-          dlg.SetHeading(string.Format("Action :{0} Version : {1}", queue.Get(pk.GeneralInfo.Id).CommandEnum, queue.Get(pk.GeneralInfo.Id).TargetVersion.ToString()));
-          dlg.AddLocalizedString(14008);//revoke action
+          dlg.SetHeading(string.Format("Action :{0} Version : {1}", queue.Get(pk.GeneralInfo.Id).CommandEnum,
+                                       queue.Get(pk.GeneralInfo.Id).TargetVersion.ToString()));
+          //dlg.AddLocalizedString(14008);//revoke action
+          dlg.Add(Translation.RevokeLastAction);
         }
         else
         {
           dlg.SetHeading(Translation.Actions);
-          dlg.AddLocalizedString(14005); // install
-          if (installedpak!=null && MpeInstaller.KnownExtensions.GetUpdate(installedpak) != null)
+          //dlg.AddLocalizedString(14005); // install
+          dlg.Add(Translation.Install);
+          if (installedpak != null && MpeInstaller.KnownExtensions.GetUpdate(installedpak) != null)
           {
-            dlg.AddLocalizedString(14018); // update
+            //dlg.AddLocalizedString(14018); // update
+            dlg.Add(Translation.Update);
           }
           if (MpeInstaller.InstalledExtensions.Get(pk) != null)
           {
-            dlg.AddLocalizedString(14006); // uninstall 
+            //dlg.AddLocalizedString(14006); // uninstall 
+            dlg.Add(Translation.Uninstall);
           }
         }
+
         dlg.DoModal(GetID);
         if (dlg.SelectedId == -1) return;
-        switch (dlg.SelectedId)
+        if (dlg.SelectedLabelText == Translation.Install)
         {
-          case 14005:
-            ShowInstall(pk);
-            break;
-          case 14006:
-            queue.Add(new QueueCommand(pk, CommandEnum.Uninstall));
-            NotifyUser();
-            break;
-          case 14007:
-            //qitem.Action = QueueAction.Install;
-            break;
-          case 14008: //revoke
-            queue.Remove(pk.GeneralInfo.Id);
-            NotifyRemoveUser();
-            break;
-          case 14018:
-            queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(installedpak), CommandEnum.Install));
-            NotifyUser();
-            break;
+          ShowInstall(pk);
+        }
+        else if (dlg.SelectedLabelText == Translation.Uninstall)
+        {
+          queue.Add(new QueueCommand(pk, CommandEnum.Uninstall));
+          NotifyUser();
+        }
+        else if (dlg.SelectedLabelText == Translation.RevokeLastAction)
+        {
+          queue.Remove(pk.GeneralInfo.Id);
+          NotifyRemoveUser();
+        }
+        else if (dlg.SelectedLabelText == Translation.Update)
+        {
+          queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(installedpak), CommandEnum.Install));
+          NotifyUser();
         }
         queue.Save();
       }
@@ -1046,7 +990,7 @@ namespace MPEIPlugin
       }
       if(!string.IsNullOrEmpty(s))
       {
-        s = "New updates : " + s;
+        s = Translation.NewUpdates + " : " + s;
         GUIPropertyManager.SetProperty("#mpei.updates", s);
       }
 
@@ -1061,7 +1005,7 @@ namespace MPEIPlugin
       }
       if (!string.IsNullOrEmpty(s))
       {
-        s = "New extensions : " + s;
+        s = Translation.NewExtensions + " : " + s;
         GUIPropertyManager.SetProperty("#mpei.newextensions", s);
       }
 
@@ -1069,10 +1013,10 @@ namespace MPEIPlugin
 
     void ShowInstall(PackageClass pk)
     {
-      GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_MENU);
+      GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
       if (dlg == null) return;
       dlg.Reset();
-      dlg.SetHeading("Select version to (Re)Install"); // Sort options
+      dlg.SetHeading(Translation.SelectVersionToInstall); 
       ExtensionCollection paks = MpeInstaller.KnownExtensions.GetList(pk.GeneralInfo.Id);
       foreach (PackageClass item in paks.Items)
       {
@@ -1572,7 +1516,7 @@ namespace MPEIPlugin
     {
       facadeView.IsVisible = false;
       facadeView.IsVisible = true;
-      GUIControl.FocusControl(GetID, facadeView.GetID);
+      //GUIControl.FocusControl(GetID, facadeView.GetID);
 
       string strLine = string.Empty;
       View view = currentView;

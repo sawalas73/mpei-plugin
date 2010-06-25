@@ -198,6 +198,7 @@ namespace MPEIPlugin
     public static string ActionRemoved = "Action was removed from action queue";
 
     // C
+    public static string ChangeLogFor = "Change log for :";
 
     // D
     public static string Download = "Download";
@@ -212,6 +213,7 @@ namespace MPEIPlugin
     // H
 
     // I
+    public static string Install = "Install";
     public static string InstalledExtensions = "Installed Extensions";
 
     // L
@@ -220,7 +222,13 @@ namespace MPEIPlugin
 
     // N
     public static string NewExtensions = "New Extensions";
+    public static string NewUpdates = "New updates";
     public static string Notification = "Notification";
+    public static string NotificationMsg1 = "There are pending actions";
+    public static string NotificationMsg2 = "Do you want to execute it ?";
+    public static string NotificationMsg3 = "This operation will restart MediaPortal";
+    public static string NotificationMsg4 = "and execute the pending actions";
+
 
     // O
     public static string OnlineExtensions = "Online Extensions";
@@ -228,16 +236,22 @@ namespace MPEIPlugin
     // P
 
     // R
+    public static string Restart = "Restart";
     public static string Rotate = "Rotate";
+    public static string RevokeLastAction = "Revoke last action";
 
     // S
+    public static string SelectVersionToInstall = "Select version to (Re)Install";
     public static string StartSlideshow = "Start slideshow";
 
     // T
 
 
     // U
+    public static string Update = "Update";
+    public static string UpdateAll = "Update All";
     public static string Updates = "Updates";
+    public static string Uninstall = "Uninstall";
    
     // V
     public static string Views = "Views";
