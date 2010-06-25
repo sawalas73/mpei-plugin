@@ -193,6 +193,7 @@ namespace MPEIPlugin
 
 
     // A
+    public static string AlwaysCheckForUpdates = "Always check for updates";
     public static string Actions = "Actions";
     public static string ActionAdded = "Action was added to action queue";
     public static string ActionRemoved = "Action was removed from action queue";
@@ -221,6 +222,7 @@ namespace MPEIPlugin
     // M
 
     // N
+    public static string NeverCheckForUpdates = "Never check for updates";
     public static string NewExtensions = "New Extensions";
     public static string NewUpdates = "New updates";
     public static string Notification = "Notification";
