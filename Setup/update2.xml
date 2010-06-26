@@ -799,7 +799,7 @@ Fixed the installer </VersionDescription>
         <VersionDescription>Name changed to : Extensions
 Support for : #selectedthumb</VersionDescription>
         <DevelopmentStatus>Beta</DevelopmentStatus>
-        <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.8.mpe1</OnlineLocation>
+        <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.4.8.mpe1</OnlineLocation>
         <ReleaseDate>2010-06-15T00:04:20</ReleaseDate>
         <Tags>installer, mpei, plugin </Tags>
         <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
