@@ -336,7 +336,7 @@ namespace MPEIPlugin
 
     public string PluginName()
     {
-      return "MPEI";
+      return Translation.Name;
     }
 
     public bool HasSetup()
@@ -356,7 +356,7 @@ namespace MPEIPlugin
 
     public bool GetHome(out string strButtonText, out string strButtonImage, out string strButtonImageFocus, out string strPictureImage)
     {
-      strButtonText = "MPEI";// GUILocalizeStrings.Get(14001);
+      strButtonText = Translation.Name;
       strButtonImage = string.Empty;
       strButtonImageFocus = string.Empty;
       strPictureImage = "";
@@ -1572,6 +1572,7 @@ namespace MPEIPlugin
         GUIPropertyManager.SetProperty("#MPE.Selected.Author", pak.GeneralInfo.Author);
         GUIPropertyManager.SetProperty("#MPE.Selected.Description", pak.GeneralInfo.ExtensionDescription);
         GUIPropertyManager.SetProperty("#MPE.Selected.VersionDescription", pak.GeneralInfo.VersionDescription);
+        GUIPropertyManager.SetProperty("#selectedthumb",item.IconImageBig);
       }
       else
       {
@@ -1580,6 +1581,7 @@ namespace MPEIPlugin
         GUIPropertyManager.SetProperty("#MPE.Selected.Author", " ");
         GUIPropertyManager.SetProperty("#MPE.Selected.Description", " ");
         GUIPropertyManager.SetProperty("#MPE.Selected.VersionDescription", " ");
+        GUIPropertyManager.SetProperty("#selectedthumb", " ");
       }
     }
 

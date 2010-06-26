@@ -222,6 +222,7 @@ namespace MPEIPlugin
     // M
 
     // N
+    public static string Name = "Extensions";
     public static string NeverCheckForUpdates = "Never check for updates";
     public static string NewExtensions = "New Extensions";
     public static string NewUpdates = "New updates";

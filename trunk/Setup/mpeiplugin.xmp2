@@ -223,7 +223,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Items />
   </Dependencies>
   <GeneralInfo>
-    <Name>MPEIPlugin</Name>
+    <Name>Extensions</Name>
     <Id>a6afa4d6-4fd8-4607-8878-5911db044fd7</Id>
     <Author>Dukus</Author>
     <HomePage>http://code.google.com/p/mpei-plugin/</HomePage>
@@ -233,14 +233,13 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>4</Build>
-      <Revision>7</Revision>
+      <Revision>8</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>Option to show change logs
-Label for current view
-Fixed the installer </VersionDescription>
+    <VersionDescription>Name changed to : Extensions
+Support for : #selectedthumb</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.7.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.8.mpe1</OnlineLocation>
     <ReleaseDate>2010-06-15T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
@@ -326,7 +325,7 @@ Fixed the installer </VersionDescription>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{ac4a43f9-834c-4c15-ba5f-d08dd403434e}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{21fd1612-801f-4520-b64d-baa1c897b406}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
