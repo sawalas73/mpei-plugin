@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!-- RadioTime translation file -->
+<!-- MPEI Plugin translation file -->
 <!-- English (US) -->
 <!-- Note: English is the fallback for any strings not found in other languages -->
 <strings>
@@ -34,6 +34,7 @@
     <!--  M  -->
 
     <!--  N -->
+	<string Field="Name">Extensions</string>
     <string Field="NeverCheckForUpdates">Never check for updates</string>
     <string Field="NewExtensions">New Extensions</string>
     <string Field="NewUpdates">New updates</string>

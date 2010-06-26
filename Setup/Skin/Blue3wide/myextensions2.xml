@@ -93,7 +93,7 @@
           <onright>50</onright>
 		  <visible>string.equals(#mpei.a6afa4d6_4fd8_4607_8878_5911db044fd7.haveupdate,true)</visible>
         </control>
-		
+	
       </control>
     </control>
 	<control>
@@ -121,21 +121,19 @@
       <label>#MPE.Selected.Description</label>
       <visible>facadeview.list+Control.HasFocus(50)</visible>
     </control>
-    <control>
-      <description>Summary</description>
-      <type>textboxscrollup</type>
-      <id>0</id>
-      <posX>26</posX>
-      <posY>390</posY>
-      <width>367</width>
-      <height>300</height>
-      <textcolor>ffFFFFFF</textcolor>
-      <seperator>---------------------------------------------------</seperator>
-      <font>font11</font>
-      <label>#MPE.Selected.VersionDescription</label>
-      <visible>facadeview.list+Control.HasFocus(50)</visible>
-    </control>
-
-    <import>common.facade.music.xml</import>
+		<control>
+          <description>music logo</description>
+          <type>image</type>
+          <overlay>yes</overlay>
+          <id>600</id>
+          <posX>58</posX>
+          <posY>426</posY>
+          <width>161</width>
+          <height>121</height>
+          <keepaspectratio>yes</keepaspectratio>
+          <centered>yes</centered>
+          <texture flipY="true" diffuse="Thumb_Mask.png">#selectedthumb</texture>
+        </control>  
+		<import>common.facade.music.xml</import>
   </controls>
 </window>
