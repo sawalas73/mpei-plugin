@@ -219,6 +219,41 @@ namespace MPEIPlugin
       }      
     }
 
+    private void ShowChangeLog(PackageClass pk)
+    {
+      string selected = "";
+      while (true)
+      {
+        GUIDialogMenu dlg = (GUIDialogMenu) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_MENU);
+        if (dlg == null) return;
+        dlg.Reset();
+        dlg.SetHeading(Translation.SelectVersion);
+        ExtensionCollection paks = MpeInstaller.KnownExtensions.GetList(pk.GeneralInfo.Id);
+        foreach (PackageClass item in paks.Items)
+        {
+          GUIListItem guiListItem = new GUIListItem(item.GeneralInfo.Version.ToString());
+          if (MpeInstaller.InstalledExtensions.Get(item) != null)
+            guiListItem.Selected = true;
+          dlg.Add(guiListItem);
+        }
+        dlg.selectOption(selected);
+        dlg.DoModal(GetID);
+        if (dlg.SelectedId == -1) return;
+        PackageClass ver = MpeInstaller.KnownExtensions.Get(pk.GeneralInfo.Id, dlg.SelectedLabelText);
+        selected = dlg.SelectedLabelText;
+        if (ver != null)
+        {
+          GUIDialogText dlgYesNo = (GUIDialogText) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_TEXT);
+          if (null == dlgYesNo)
+            return;
+          dlgYesNo.SetHeading(Translation.ChangeLogFor);
+          dlgYesNo.SetText(string.Format("{0} - {1} ", ver.GeneralInfo.Name,
+                                         ver.GeneralInfo.Version.ToString()) + "\n" + ver.GeneralInfo.VersionDescription);
+          dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+        }
+      }
+    }
+
     private void FilterList()
     {
       if (_setting.ShowOnlyStable)
@@ -921,6 +956,7 @@ namespace MPEIPlugin
         {
           dlg.Add(Translation.ShowSreenshots);
         }
+        dlg.Add(Translation.ShowChangelogs);
         dlg.DoModal(GetID);
         if (dlg.SelectedId == -1) return;
         if (dlg.SelectedLabelText == Translation.Install)
@@ -968,6 +1004,9 @@ namespace MPEIPlugin
             GUIWindowManager.ActivateWindow(802);
             SlideShow.StartSlideShow();
           }
+        }else if(dlg.SelectedLabelText==Translation.ShowChangelogs)
+        {
+          ShowChangeLog(pk);
         }
         _setting.Save();
         queue.Save();
@@ -1062,6 +1101,7 @@ namespace MPEIPlugin
       }
       dlg.DoModal(GetID);
       if (dlg.SelectedId == -1) return;
+    
       if (!Directory.Exists(paks.Items[dlg.SelectedId - 1].LocationFolder))
         Directory.CreateDirectory(paks.Items[dlg.SelectedId - 1].LocationFolder);
 
