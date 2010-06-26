@@ -225,6 +225,7 @@ namespace MPEIPlugin
     public static string NeverCheckForUpdates = "Never check for updates";
     public static string NewExtensions = "New Extensions";
     public static string NewUpdates = "New updates";
+    public static string NewVersion = "New version";
     public static string Notification = "Notification";
     public static string NotificationMsg1 = "There are pending actions";
     public static string NotificationMsg2 = "Do you want to execute it ?";

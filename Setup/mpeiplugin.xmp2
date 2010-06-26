@@ -71,28 +71,28 @@
         <Description>DefaultSkin</Description>
         <Files>
           <Items>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
               <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <UpdateOption>NeverOverwrite</UpdateOption>
               <LocalFileName>Skin\Blue3wide\myextensions2.xml</LocalFileName>
               <ZipFileName>Installer{Font}\{3d985903-3ab3-4bd4-a21e-badde8899fee}-myextensions2.xml</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\myextensions2.xml</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
               <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <UpdateOption>NeverOverwrite</UpdateOption>
               <LocalFileName>Skin\Blue3wide\Media\extension_action.png</LocalFileName>
               <ZipFileName>Installer{Font}\{001d750c-3a9f-44f4-8079-e7b855104200}-extension_action.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_action.png</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
               <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <UpdateOption>NeverOverwrite</UpdateOption>
               <LocalFileName>Skin\Blue3wide\Media\extension_update.png</LocalFileName>
               <ZipFileName>Installer{Font}\{511b48cb-a91c-409d-b71b-ef8792fc445a}-extension_update.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_update.png</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>NeverOverwrite</UpdateOption>
               <LocalFileName>Skin\Blue3wide\myextensions2slideshow.xml</LocalFileName>
@@ -233,15 +233,16 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>4</Build>
-      <Revision>6</Revision>
+      <Revision>7</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>Localization
-Screenshot support</VersionDescription>
+    <VersionDescription>Option to show change logs
+Label for current view
+Fixed the installer </VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.6.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.7.mpe1</OnlineLocation>
     <ReleaseDate>2010-06-15T00:04:20</ReleaseDate>
-    <Tags>installer, mpei </Tags>
+    <Tags>installer, mpei, plugin </Tags>
     <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
     <Params>
       <Items>
@@ -325,7 +326,7 @@ Screenshot support</VersionDescription>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b6257ffd-f543-45c4-afd1-53a1808ae921}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{ac4a43f9-834c-4c15-ba5f-d08dd403434e}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
