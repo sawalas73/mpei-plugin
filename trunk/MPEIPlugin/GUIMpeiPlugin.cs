@@ -614,6 +614,10 @@ namespace MPEIPlugin
       base.OnPageLoad();
     }
 
+    protected override void OnShowContextMenu()
+    {
+      OnClick(0);
+    }
     protected override void OnPageDestroy(int newWindowId)
     {
       selectedItemIndex = facadeView.SelectedListItemIndex;
@@ -1254,6 +1258,7 @@ namespace MPEIPlugin
       {
         case Views.Local:
           {
+            GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.InstalledExtensions);
             GUIListItem item = new GUIListItem();
             foreach (PackageClass pk in MpeInstaller.InstalledExtensions.Items)
             {
@@ -1272,6 +1277,7 @@ namespace MPEIPlugin
           {
             if (string.IsNullOrEmpty(strNewDirectory))
             {
+              GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.OnlineExtensions);
               GUIListItem item = new GUIListItem();
               item.Label = "All";
               item.Path = item.Label;
@@ -1311,6 +1317,7 @@ namespace MPEIPlugin
             }
             else
             {
+              GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.OnlineExtensions + ": " + strNewDirectory);
               GUIListItem item = new GUIListItem();
               item.Label = "..";
               item.Path = string.Empty;
@@ -1338,6 +1345,7 @@ namespace MPEIPlugin
           break;
         case Views.Updates:
           {
+            GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.Updates);
             GUIListItem item = new GUIListItem();
             foreach (PackageClass pk in GetUpdates())
             {
@@ -1354,6 +1362,7 @@ namespace MPEIPlugin
           break;
         case Views.New:
           {
+            GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.NewExtensions);
             GUIListItem item = new GUIListItem();
             foreach (PackageClass pk in MpeInstaller.KnownExtensions.GetUniqueList().Items)
             {
@@ -1373,6 +1382,7 @@ namespace MPEIPlugin
           break;
         case Views.Queue:
           {
+            GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.Actions);
             GUIListItem item = new GUIListItem();
             foreach (QueueCommand command in queue.Items)
             {
