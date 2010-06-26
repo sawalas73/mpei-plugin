@@ -9,6 +9,8 @@
   <controls>
     <import>common.window.xml</import>
     <import>common.time.xml</import>
+	
+
     <control>
       <type>actiongroup</type>
       <description>action menu</description>
@@ -75,14 +77,6 @@
           <onright>50</onright>
         </control>
 
-<!-- 	    <control>
-          <description>Update list</description>
-          <type>button</type>
-          <id>7</id>
-          <label>Update Info</label>
-          <onright>50</onright>
-        </control> -->
-
 		<control>
           <description>Update all</description>
           <type>button</type>
@@ -91,16 +85,36 @@
           <onright>50</onright>
         </control>
 		
+		<control>
+          <description>MPEIUPDATE:a6afa4d6-4fd8-4607-8878-5911db044fd7</description>
+          <type>button</type>
+          <id>90</id>
+          <label>#MPEI.Translation.NewVersion.Label</label>
+          <onright>50</onright>
+		  <visible>string.equals(#mpei.a6afa4d6_4fd8_4607_8878_5911db044fd7.haveupdate,true)</visible>
+        </control>
+		
       </control>
+    </control>
+	<control>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+      <type>label</type>
+      <id>1</id>
+      <posX>20</posX>
+      <posY>70</posY>
+      <label>#MPE.View.Name</label>
+      <font>font16</font>
+      <textcolor>White</textcolor>
     </control>
 	 <control>
       <description>Summary</description>
       <type>textboxscrollup</type>
       <id>0</id>
       <posX>26</posX>
-      <posY>90</posY>
+      <posY>110</posY>
       <width>367</width>
-      <height>300</height>
+      <height>280</height>
       <textcolor>ffFFFFFF</textcolor>
       <seperator>---------------------------------------------------</seperator>
       <font>font11</font>

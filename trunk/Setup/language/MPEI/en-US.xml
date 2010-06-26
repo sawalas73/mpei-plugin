@@ -55,8 +55,10 @@
     <string Field="RevokeLastAction">Revoke last action</string>
 
     <!--  S  -->
+	<string Field="ShowChangelogs">Show changelogs</string>
     <string Field="ShowSreenshots">Show sreenshots</string>
     <string Field="SelectVersionToInstall">Select version to (Re)Install</string>
+	<string Field="SelectVersion">Select version</string>
     <string Field="StartSlideshow">Start slideshow</string>
 
     <!--  T  -->
