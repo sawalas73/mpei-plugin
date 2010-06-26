@@ -239,7 +239,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <VersionDescription>Name changed to : Extensions
 Support for : #selectedthumb</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/MPEIPlugin.0.0.4.8.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.4.8.mpe1</OnlineLocation>
     <ReleaseDate>2010-06-15T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
@@ -325,7 +325,7 @@ Support for : #selectedthumb</VersionDescription>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{21fd1612-801f-4520-b64d-baa1c897b406}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{c3958e3d-5c9d-437f-a5ed-c0c57ba9b688}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
