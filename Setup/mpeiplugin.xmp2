@@ -232,15 +232,26 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Version>
       <Major>0</Major>
       <Minor>0</Minor>
-      <Build>4</Build>
-      <Revision>8</Revision>
+      <Build>5</Build>
+      <Revision>0</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>Name changed to : Extensions
-Support for : #selectedthumb</VersionDescription>
-    <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.4.8.mpe1</OnlineLocation>
-    <ReleaseDate>2010-06-15T00:04:20</ReleaseDate>
+    <VersionDescription>* Option to show change logs
+* Label for current view
+* Localization
+* Screenshot support
+* View for new extensions, 
+* View for queued actions
+* Update view
+* Support for updating extension from any windows 
+* Better error hading
+* Automatic update. No user action needed 
+* Background download manager.
+Plugin Name changed to : Extensions
+Support for : # selectedthumb</VersionDescription>
+    <DevelopmentStatus>Stable</DevelopmentStatus>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.0.mpe1</OnlineLocation>
+    <ReleaseDate>2010-06-28T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
     <Params>
@@ -325,7 +336,7 @@ Support for : #selectedthumb</VersionDescription>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{c3958e3d-5c9d-437f-a5ed-c0c57ba9b688}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{6943446f-ad5f-4b9e-8aa5-9a7c4663745f}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
