@@ -40,6 +40,7 @@ The command can be :
  * MPEISHOWCHANGELOG - show the changelog of the latest update version 
  * MPEIINSTALL - install the specified extension 
  * MPEIUNINSTALL - uninstall the specified extension 
+ * MPEICONFIGURE - configure the extension (if this is supported)
 
 Ex: 
 Update a extension
