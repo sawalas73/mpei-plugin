@@ -19,10 +19,10 @@ A example file used by radiotime plugin:
 }}}
 Can be defined more section with node name settings
 Settings are defined by node setting with more attributes :
-name - setting name in Mediaportal.xml
-entryname - entry name in Mediaportal.xml
-displayname - the text which is displayed to this setting
-defaultvalue - default value in no value exist in Mediaportal.xml
-type - the setting type, now just string is supported
-listvalues - (optional) values for settings, items are separated by |
-displaylistvalues - should have same item number like listvalues
+ * name - setting name in Mediaportal.xml
+ * entryname - entry name in Mediaportal.xml
+ * displayname - the text which is displayed to this setting
+ * defaultvalue - default value in no value exist in Mediaportal.xml
+ * type - the setting type, now just string is supported
+ * listvalues - (optional) values for settings, items are separated by |
+ * displaylistvalues - should have same item number like listvalues
