@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\mp\mediaportal\xbmc\bin\Debug\plugins\Windows\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -64,6 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ExtensionSetting.cs" />
+    <Compile Include="Classes\ExtensionSettings.cs" />
+    <Compile Include="GUISettings.cs" />
     <Compile Include="DownLoadInfo.cs" />
     <Compile Include="DownloadManager.cs" />
     <Compile Include="GUIMpeiPlugin.cs" />

@@ -61,6 +61,13 @@
               <ZipFileName>Installer{CopyFile}\{29e8385a-0449-473f-8d6d-1b9249f76310}-myextensions2slideshow.xml</ZipFileName>
               <DestinationFilename>%Skin%\Blue3wide\myextensions2slideshow.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\myextensions2settings.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{86306aff-a7ad-4224-9fc7-346c5b592469}-myextensions2settings.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\myextensions2settings.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -99,6 +106,13 @@
               <ZipFileName>Installer{Font}\{2101a853-d695-4620-9568-8655e6e6a6bf}-myextensions2slideshow.xml</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\myextensions2slideshow.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\myextensions2settings.xml</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{c71b873a-512e-43ee-ab24-909f3d1600b4}-myextensions2settings.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2settings.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -114,6 +128,23 @@
               <LocalFileName>language\MPEI\en-US.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
               <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Settings">
+        <ParentGroup />
+        <DisplayName>Settings</DisplayName>
+        <DefaulChecked>false</DefaulChecked>
+        <Description>Settings</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Settings\extension_settings.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{47c75ac8-73e1-4f2c-81b3-307647f66dd1}-extension_settings.xml</ZipFileName>
+              <DestinationFilename>%Base%\extension_settings.xml</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -233,27 +264,15 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>5</Build>
-      <Revision>0</Revision>
+      <Revision>1</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>* Option to show change logs
-* Label for current view
-* Localization
-* Screenshot support
-* View for new extensions, 
-* View for queued actions
-* Update view
-* Support for updating extension from any windows 
-* Better error hading
-* Automatic update. No user action needed 
-* Background download manager.
-Plugin Name changed to : Extensions
-Support for : # selectedthumb</VersionDescription>
+    <VersionDescription>Support for configure plugins</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.0.mpe1</OnlineLocation>
     <ReleaseDate>2010-06-28T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
-    <Location>F:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
+    <Location>d:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
@@ -277,6 +296,11 @@ Support for : # selectedthumb</VersionDescription>
           <Value />
           <ValueType>String</ValueType>
           <Description>Online stored screenshot urls separated by ; </Description>
+        </SectionParam>
+        <SectionParam Name="Force to uninstall on update">
+          <Value>yes</Value>
+          <ValueType>Bool</ValueType>
+          <Description>Show dialog and force to uninstall previous version when updating an extension. Should only be disabled if you are using an NSIS/MSI installer.</Description>
         </SectionParam>
       </Items>
     </Params>
@@ -328,15 +352,29 @@ Support for : # selectedthumb</VersionDescription>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Skin\Blue3wide\myextensions2settings.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{86306aff-a7ad-4224-9fc7-346c5b592469}-myextensions2settings.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\myextensions2settings.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>language\MPEI\en-US.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Settings\extension_settings.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{47c75ac8-73e1-4f2c-81b3-307647f66dd1}-extension_settings.xml</ZipFileName>
+        <DestinationFilename>%Base%\extension_settings.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{6943446f-ad5f-4b9e-8aa5-9a7c4663745f}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{53f2843f-b82d-4c88-b45a-8b91b0769f2b}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
@@ -374,8 +412,8 @@ Support for : # selectedthumb</VersionDescription>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
-    <ProjectFilename>F:\devel\vs2005\MPEIPlugin\Setup\mpeiplugin.xmp2</ProjectFilename>
-    <UpdatePath1>F:\devel\vs2005\MPEIPlugin\Setup\update2.xml</UpdatePath1>
+    <ProjectFilename>d:\devel\vs2005\MPEIPlugin\Setup\mpeiplugin.xmp2</ProjectFilename>
+    <UpdatePath1>d:\devel\vs2005\MPEIPlugin\Setup\update2.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
   </ProjectSettings>
