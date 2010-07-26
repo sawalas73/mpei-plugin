@@ -193,6 +193,7 @@ namespace MPEIPlugin
 
 
     // A
+    public static string All = "All";
     public static string AlwaysCheckForUpdates = "Always check for updates";
     public static string Actions = "Actions";
     public static string ActionAdded = "Action was added to action queue";
@@ -245,6 +246,8 @@ namespace MPEIPlugin
     public static string RevokeLastAction = "Revoke last action";
 
     // S
+    public static string Sections = "Sections";
+    public static string Settings = "Settings";
     public static string ShowSreenshots = "Show sreenshots";
     public static string ShowChangelogs = "Show changelogs";
     public static string SelectVersion = "Select version";

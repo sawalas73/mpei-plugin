@@ -5,6 +5,7 @@
 <strings>
  
     <!--  A  -->
+	<string Field="All">All</string>
     <string Field="AlwaysCheckForUpdates">Always check for updates</string>
     <string Field="Actions">Actions</string>
     <string Field="ActionAdded">Action was added to action queue</string>
@@ -56,6 +57,8 @@
     <string Field="RevokeLastAction">Revoke last action</string>
 
     <!--  S  -->
+	<string Field="Sections">Sections</string>
+	<string Field="Settings">Settings</string>
 	<string Field="ShowChangelogs">Show changelogs</string>
     <string Field="ShowSreenshots">Show sreenshots</string>
     <string Field="SelectVersionToInstall">Select version to (Re)Install</string>

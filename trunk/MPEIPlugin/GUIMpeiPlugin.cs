@@ -115,6 +115,10 @@ namespace MPEIPlugin
         MpeInstaller.KnownExtensions.HideByRelease();
 
       GenerateProperty();
+      foreach (string name in Translation.Strings.Keys)
+      {
+        Translation.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
+      }
 
       bool bResult = Load(GUIGraphicsContext.Skin + @"\myextensions2.xml");
 
@@ -150,11 +154,31 @@ namespace MPEIPlugin
               case "MPEIUNINSTALL":
                 UnInstallExtension(arg);
                 break;
+              case "MPEICONFIGURE":
+                ConfigureExtension(arg);
+                break;
               default:
                 break;
             }
           }
         }
+      }
+    }
+
+    private void ConfigureExtension(string id)
+    {
+      PackageClass pak = MpeInstaller.InstalledExtensions.Get(id);
+
+      if (pak != null)
+      {
+        GetPackageConfigFile(pak);
+        GUISettings guiSettings = (GUISettings)GUIWindowManager.GetWindow(803);
+        guiSettings.SettingsFile = pak.LocationFolder + "extension_settings.xml";
+        GUIWindowManager.ActivateWindow(803);
+      }
+      else
+      {
+        Log.Error("The {0} extension isn't installed", id);
       }
     }
 
@@ -634,10 +658,6 @@ namespace MPEIPlugin
           break;
       }
 
-      foreach (string name in Translation.Strings.Keys)
-      {
-        Translation.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
-      }
 
       SelectCurrentItem();
       UpdateButtonStates();
@@ -957,6 +977,13 @@ namespace MPEIPlugin
           dlg.Add(Translation.ShowSreenshots);
         }
         dlg.Add(Translation.ShowChangelogs);
+
+        GetPackageConfigFile(pk);
+        if (MpeInstaller.InstalledExtensions.Get(pk) != null && File.Exists(pk.LocationFolder + "extension_settings.xml"))
+        {
+          dlg.Add(Translation.Settings);
+        }
+
         dlg.DoModal(GetID);
         if (dlg.SelectedId == -1) return;
         if (dlg.SelectedLabelText == Translation.Install)
@@ -1008,8 +1035,29 @@ namespace MPEIPlugin
         {
           ShowChangeLog(pk);
         }
+        else if (dlg.SelectedLabelText == Translation.Settings)
+        {
+          GUISettings guiSettings = (GUISettings)GUIWindowManager.GetWindow(803);
+          guiSettings.SettingsFile = pk.LocationFolder + "extension_settings.xml";
+          GUIWindowManager.ActivateWindow(803);
+        }
         _setting.Save();
         queue.Save();
+      }
+    }
+
+    void GetPackageConfigFile(PackageClass pk)
+    {
+      string configfile = pk.LocationFolder + "extension_settings.xml";
+      if (!File.Exists(configfile) && File.Exists(pk.LocationFolder + pk.GeneralInfo.Id + ".mpe2"))
+      {
+        pk = pk.ZipProvider.Load(pk.LocationFolder + pk.GeneralInfo.Id + ".mpe2");
+        foreach (FileItem fileItem in pk.UniqueFileList.Items)
+        {
+          if (Path.GetFileName(fileItem.DestinationFilename).ToLower() == "extension_settings.xml")
+            pk.ZipProvider.Extract(fileItem, configfile);
+        }
+
       }
     }
 
@@ -1222,12 +1270,22 @@ namespace MPEIPlugin
       if (item2.IsFolder && item2.Label == "..") return -1;
       if (item1.IsFolder && !item2.IsFolder) return -1;
       else if (!item1.IsFolder && item2.IsFolder) return 1;
-
+      
 
       SortMethod method = currentSortMethod;
       bool bAscending = sortAscending;
       PackageClass pk1 = item1.MusicTag as PackageClass;
       PackageClass pk2 = item2.MusicTag as PackageClass;
+      
+      if(pk1==null && pk2==null)
+      {
+        if (item1.Label == Translation.All)
+          return -1;
+        if (item2.Label == Translation.All)
+          return -1;
+        return item1.Label.CompareTo(item2.Label);
+      }
+
       switch (method)
       {
         case SortMethod.Name:
@@ -1319,7 +1377,7 @@ namespace MPEIPlugin
             {
               GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.OnlineExtensions);
               GUIListItem item = new GUIListItem();
-              item.Label = "All";
+              item.Label = Translation.All;
               item.Path = item.Label;
               item.IsFolder = true;
               item.MusicTag = null;
@@ -1368,7 +1426,7 @@ namespace MPEIPlugin
               facadeView.Add(item);
               foreach (PackageClass pk in MpeInstaller.KnownExtensions.GetUniqueList().Items)
               {
-                if ((pk.GeneralInfo.TagList.Tags.Contains(strNewDirectory) || strNewDirectory == "All"))
+                if ((pk.GeneralInfo.TagList.Tags.Contains(strNewDirectory) || strNewDirectory == Translation.All))
                 {
                   item = new GUIListItem();
                   item.MusicTag = pk;
