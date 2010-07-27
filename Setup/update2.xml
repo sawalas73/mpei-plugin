@@ -179,7 +179,7 @@ Support for : # selectedthumb</VersionDescription>
         <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
         <VersionDescription>Support for configure plugins</VersionDescription>
         <DevelopmentStatus>Stable</DevelopmentStatus>
-        <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.0.mpe1</OnlineLocation>
+        <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.1.mpe1</OnlineLocation>
         <ReleaseDate>2010-06-28T00:04:20</ReleaseDate>
         <Tags>installer, mpei, plugin </Tags>
         <Location>d:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
