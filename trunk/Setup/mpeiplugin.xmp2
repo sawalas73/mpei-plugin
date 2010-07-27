@@ -269,7 +269,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
     <VersionDescription>Support for configure plugins</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.0.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.1.mpe1</OnlineLocation>
     <ReleaseDate>2010-06-28T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>d:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
@@ -374,7 +374,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{53f2843f-b82d-4c88-b45a-8b91b0769f2b}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{658c8539-7708-4712-a507-f35ce665f556}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
