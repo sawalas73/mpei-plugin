@@ -1,4 +1,7 @@
 <extension_settings>
+	<disable_entry>
+		<setting entryname="plugins" name="Extensions" displayname="Plugin Enabled" defaultvalue="yes" type="string" listvalues="yes|no" displaylistvalues="Yes|No"/> 
+	</disable_entry>
 	<settings section="Plugin">
 			<setting entryname="plugins" name="Extensions" displayname="Plugin Enabled" defaultvalue="yes" type="string" listvalues="yes|no" displaylistvalues="Yes|No"/> 
 			<setting entryname="home" name="Extensions" displayname="Listed in Home" defaultvalue="yes" type="string" listvalues="yes|no" displaylistvalues="Yes|No"/> 

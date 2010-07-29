@@ -21,7 +21,7 @@ using MpeCore.Classes;
 
 namespace MPEIPlugin
 {
-  public class GUIMpeiPlugin : GUIInternalWindow, ISetupForm, IComparer<GUIListItem>, IShowPlugin
+  public class GUIMpeiPlugin : GuiBase, ISetupForm, IComparer<GUIListItem>, IShowPlugin
   {
     #region enums
     enum SortMethod
@@ -61,10 +61,8 @@ namespace MPEIPlugin
     int selectedItemIndex = -1;
     private DownloadManager _downloadManager = new DownloadManager();
     static GUIDialogProgress _dlgProgress;
-    private bool _askForRestart = true;
-    private ApplicationSettings _setting = new ApplicationSettings();
 
-    public QueueCommandCollection queue = new QueueCommandCollection();
+    private ApplicationSettings _setting = new ApplicationSettings();
 
     private Timer _timer = new Timer(4000);
 
@@ -165,118 +163,7 @@ namespace MPEIPlugin
       }
     }
 
-    private void ConfigureExtension(string id)
-    {
-      PackageClass pak = MpeInstaller.InstalledExtensions.Get(id);
-
-      if (pak != null)
-      {
-        GetPackageConfigFile(pak);
-        GUISettings guiSettings = (GUISettings)GUIWindowManager.GetWindow(803);
-        guiSettings.SettingsFile = pak.LocationFolder + "extension_settings.xml";
-        GUIWindowManager.ActivateWindow(803);
-      }
-      else
-      {
-        Log.Error("The {0} extension isn't installed", id);
-      }
-    }
-
-    private void UnInstallExtension(string id)
-    {
-      PackageClass pak = MpeInstaller.InstalledExtensions.Get(id);
-      
-      if (pak != null)
-      {
-        queue.Add(new QueueCommand(pak, CommandEnum.Uninstall));
-        queue.Save();
-        NotifyUser();
-      }
-      else
-      {
-        Log.Error("The {0} extension isn't installed", id);
-      }
-    }
-
-    private void InstallExtension(string id)
-    {
-      PackageClass pak = MpeInstaller.KnownExtensions.Get(id);
-      if (pak != null)
-      {
-        queue.Add(new QueueCommand(pak, CommandEnum.Install));
-        queue.Save();
-        NotifyUser();
-      }
-      else
-      {
-        Log.Error("No extension was found :{0}", id);
-      }
-    }
-
-    private void UpdateExtension(string id)
-    {
-      PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(id);
-      if (installedpak != null && MpeInstaller.KnownExtensions.GetUpdate(installedpak)!=null)
-      {
-        queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(installedpak), CommandEnum.Install));
-        queue.Save();
-        NotifyUser();
-      }
-    }
-
-    private void ShowChangeLog(string id)
-    {
-      PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(id);
-      if (installedpak != null)
-      {
-        PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(installedpak);
-        if(update !=null)
-        {
-          GUIDialogText dlgYesNo = (GUIDialogText)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_TEXT);
-          if (null == dlgYesNo)
-            return;
-          dlgYesNo.SetHeading(Translation.ChangeLogFor);
-          dlgYesNo.SetText(string.Format("{0} - {1} ", update.GeneralInfo.Name,
-                                            update.GeneralInfo.Version.ToString())+"\n"+update.GeneralInfo.VersionDescription);
-          dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-        }
-      }      
-    }
-
-    private void ShowChangeLog(PackageClass pk)
-    {
-      string selected = "";
-      while (true)
-      {
-        GUIDialogMenu dlg = (GUIDialogMenu) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_MENU);
-        if (dlg == null) return;
-        dlg.Reset();
-        dlg.SetHeading(Translation.SelectVersion);
-        ExtensionCollection paks = MpeInstaller.KnownExtensions.GetList(pk.GeneralInfo.Id);
-        foreach (PackageClass item in paks.Items)
-        {
-          GUIListItem guiListItem = new GUIListItem(item.GeneralInfo.Version.ToString());
-          if (MpeInstaller.InstalledExtensions.Get(item) != null)
-            guiListItem.Selected = true;
-          dlg.Add(guiListItem);
-        }
-        dlg.selectOption(selected);
-        dlg.DoModal(GetID);
-        if (dlg.SelectedId == -1) return;
-        PackageClass ver = MpeInstaller.KnownExtensions.Get(pk.GeneralInfo.Id, dlg.SelectedLabelText);
-        selected = dlg.SelectedLabelText;
-        if (ver != null)
-        {
-          GUIDialogText dlgYesNo = (GUIDialogText) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_TEXT);
-          if (null == dlgYesNo)
-            return;
-          dlgYesNo.SetHeading(Translation.ChangeLogFor);
-          dlgYesNo.SetText(string.Format("{0} - {1} ", ver.GeneralInfo.Name,
-                                         ver.GeneralInfo.Version.ToString()) + "\n" + ver.GeneralInfo.VersionDescription);
-          dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-        }
-      }
-    }
+ 
 
     private void FilterList()
     {
@@ -671,7 +558,114 @@ namespace MPEIPlugin
 
     protected override void OnShowContextMenu()
     {
-      OnClick(0);
+      GUIListItem item = facadeView.SelectedListItem;
+      PackageClass pk = item.MusicTag as PackageClass;
+      if (pk == null)
+        return;
+      PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(pk.GeneralInfo.Id);
+
+      GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
+      if (dlg == null) return;
+      dlg.Reset();
+      if (queue.Get(pk.GeneralInfo.Id) != null)
+      {
+        dlg.SetHeading(string.Format("Action :{0} Version : {1}", queue.Get(pk.GeneralInfo.Id).CommandEnum,
+                                     queue.Get(pk.GeneralInfo.Id).TargetVersion.ToString()));
+        //dlg.AddLocalizedString(14008);//revoke action
+        dlg.Add(Translation.RevokeLastAction);
+      }
+      else
+      {
+        dlg.SetHeading(Translation.Actions);
+        dlg.Add(Translation.Install);
+        if (installedpak != null && MpeInstaller.KnownExtensions.GetUpdate(installedpak) != null)
+        {
+          dlg.Add(Translation.Update);
+        }
+        if (MpeInstaller.InstalledExtensions.Get(pk) != null)
+        {
+          dlg.Add(Translation.Uninstall);
+        }
+        dlg.Add(_setting.IgnoredUpdates.Contains(pk.GeneralInfo.Id)
+                  ? Translation.AlwaysCheckForUpdates
+                  : Translation.NeverCheckForUpdates);
+      }
+      if (!string.IsNullOrEmpty(pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Trim()) && pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS).Length > 0)
+      {
+        dlg.Add(Translation.ShowSreenshots);
+      }
+      dlg.Add(Translation.ShowChangelogs);
+
+      GetPackageConfigFile(pk);
+      if (MpeInstaller.InstalledExtensions.Get(pk) != null && File.Exists(pk.LocationFolder + "extension_settings.xml"))
+      {
+        dlg.Add(Translation.Settings);
+      }
+
+      dlg.DoModal(GetID);
+      if (dlg.SelectedId == -1) return;
+      if (dlg.SelectedLabelText == Translation.Install)
+      {
+        ShowInstall(pk);
+      }
+      else if (dlg.SelectedLabelText == Translation.Uninstall)
+      {
+        queue.Add(new QueueCommand(pk, CommandEnum.Uninstall));
+        NotifyUser();
+      }
+      else if (dlg.SelectedLabelText == Translation.RevokeLastAction)
+      {
+        queue.Remove(pk.GeneralInfo.Id);
+        NotifyRemoveUser();
+      }
+      else if (dlg.SelectedLabelText == Translation.Update)
+      {
+        queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(installedpak), CommandEnum.Install));
+        NotifyUser();
+      }
+      else if (dlg.SelectedLabelText == Translation.NeverCheckForUpdates)
+      {
+        _setting.IgnoredUpdates.Add(pk.GeneralInfo.Id);
+      }
+      else if (dlg.SelectedLabelText == Translation.AlwaysCheckForUpdates)
+      {
+        _setting.IgnoredUpdates.Remove(pk.GeneralInfo.Id);
+      }
+      else if (dlg.SelectedLabelText == Translation.ShowSreenshots)
+      {
+        GUISlideShow SlideShow = (GUISlideShow)GUIWindowManager.GetWindow(802);
+        if (SlideShow == null)
+        {
+          return;
+        }
+
+        SlideShow.Reset();
+        foreach (string files in pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS))
+        {
+          if (!string.IsNullOrEmpty(files))
+            SlideShow.Add(files);
+        }
+
+        if (SlideShow.Count > 0)
+        {
+          //Thread.Sleep(1000);
+          GUIWindowManager.ActivateWindow(802);
+          SlideShow.StartSlideShow();
+        }
+      }
+      else if (dlg.SelectedLabelText == Translation.ShowChangelogs)
+      {
+        ShowChangeLog(pk);
+      }
+      else if (dlg.SelectedLabelText == Translation.Settings)
+      {
+        GUISettings guiSettings = (GUISettings)GUIWindowManager.GetWindow(803);
+        guiSettings.SettingsFile = pk.LocationFolder + "extension_settings.xml";
+        GUIWindowManager.ActivateWindow(803);
+      }
+      _setting.Save();
+      queue.Save();
+      
     }
     protected override void OnPageDestroy(int newWindowId)
     {
@@ -694,100 +688,6 @@ namespace MPEIPlugin
         }
       }
       base.OnPageDestroy(newWindowId);
-    }
-
-    public bool AskForRestart()
-    {
-      var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
-      dlgYesNo.SetHeading(Translation.Notification); //resume movie?
-      dlgYesNo.SetLine(1, Translation.NotificationMsg1);
-      dlgYesNo.SetLine(2, Translation.NotificationMsg2);
-      dlgYesNo.SetLine(3, Translation.NotificationMsg3);
-      dlgYesNo.SetDefaultToYes(true);
-      dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-      return dlgYesNo.IsConfirmed;
-    }
-
-    public void RestartMP()
-    {
-      string cmdLine = "/MPQUEUE";
-      using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
-      {
-        string m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
-        string skinFilePath = ReadSplashScreenXML();
-        if (string.IsNullOrEmpty(skinFilePath))
-          skinFilePath = ReadReferenceXML();
-        bool useFullScreenSplash = xmlreader.GetValueAsBool("general", "usefullscreensplash", true);
-        bool startFullScreen = xmlreader.GetValueAsBool("general", "startfullscreen", true);
-        if (useFullScreenSplash && startFullScreen)
-          cmdLine += " /BK=\"" + skinFilePath + "\"";
-      }
-      Log.Debug("MPEI Plugin Start :" + Config.GetFile(Config.Dir.Base, "MPEInstaller.exe ") + cmdLine);
-      System.Diagnostics.Process.Start(Config.GetFile(Config.Dir.Base, "MPEInstaller.exe"), cmdLine);
-    }
-
-
-    private string ReadSplashScreenXML()
-    {
-      string m_strSkin;
-      string SkinFilePath = string.Empty;
-
-      // try to find the splashscreen.xml ín the curent skin folder
-      using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
-      {
-        m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
-        SkinFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\splashscreen.xml");
-      }
-
-      XmlDocument doc = new XmlDocument();
-      doc.Load(SkinFilePath);
-      XmlNodeList ControlsList = doc.DocumentElement.SelectNodes("/window/controls/control");
-
-      foreach (XmlNode Control in ControlsList)
-      {
-        if (Control.SelectSingleNode("type/text()").Value.ToLower() == "image"
-            && Control.SelectSingleNode("id/text()").Value == "1") // if the background image control is found
-        {
-          string BackgoundImageName = Control.SelectSingleNode("texture/text()").Value;
-          string BackgroundImagePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\" + BackgoundImageName);
-          if (File.Exists(BackgroundImagePath))
-          {
-            return BackgroundImagePath;
-          }
-          continue;
-        }
-      }
-      return "";
-    }
-
-    private string ReadReferenceXML()
-    {
-      string m_strSkin;
-      string SkinReferenceFilePath = string.Empty;
-
-      using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
-      {
-        m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
-        SkinReferenceFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\references.xml");
-      }
-
-      XmlDocument doc = new XmlDocument();
-      doc.Load(SkinReferenceFilePath);
-      XmlNodeList ControlsList = doc.DocumentElement.SelectNodes("/controls/control");
-
-      foreach (XmlNode Control in ControlsList)
-      {
-        if (Control.SelectSingleNode("type/text()").Value.ToLower() == "image")
-        {
-          string BackgoundImageName = Control.SelectSingleNode("texture/text()").Value;
-          string BackgroundImagePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\" + BackgoundImageName);
-          if (File.Exists(BackgroundImagePath))
-          {
-            return BackgroundImagePath; // load the image as background
-          }
-        }
-      }
-      return "";
     }
 
     protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
@@ -942,122 +842,14 @@ namespace MPEIPlugin
       else
       {
         PackageClass pk = item.MusicTag as PackageClass;
-        if (pk == null)
-          return;
-        PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(pk.GeneralInfo.Id);
-
-        GUIDialogMenu dlg = (GUIDialogMenu) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_MENU);
-        if (dlg == null) return;
-        dlg.Reset();
-        if (queue.Get(pk.GeneralInfo.Id) != null)
-        {
-          dlg.SetHeading(string.Format("Action :{0} Version : {1}", queue.Get(pk.GeneralInfo.Id).CommandEnum,
-                                       queue.Get(pk.GeneralInfo.Id).TargetVersion.ToString()));
-          //dlg.AddLocalizedString(14008);//revoke action
-          dlg.Add(Translation.RevokeLastAction);
-        }
-        else
-        {
-          dlg.SetHeading(Translation.Actions);
-          dlg.Add(Translation.Install);
-          if (installedpak != null && MpeInstaller.KnownExtensions.GetUpdate(installedpak) != null)
-          {
-            dlg.Add(Translation.Update);
-          }
-          if (MpeInstaller.InstalledExtensions.Get(pk) != null)
-          {
-            dlg.Add(Translation.Uninstall);
-          }
-          dlg.Add(_setting.IgnoredUpdates.Contains(pk.GeneralInfo.Id)
-                    ? Translation.AlwaysCheckForUpdates
-                    : Translation.NeverCheckForUpdates);
-        }
-        if (!string.IsNullOrEmpty(pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Trim()) && pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS).Length > 0)
-        {
-          dlg.Add(Translation.ShowSreenshots);
-        }
-        dlg.Add(Translation.ShowChangelogs);
-
         GetPackageConfigFile(pk);
-        if (MpeInstaller.InstalledExtensions.Get(pk) != null && File.Exists(pk.LocationFolder + "extension_settings.xml"))
-        {
-          dlg.Add(Translation.Settings);
-        }
-
-        dlg.DoModal(GetID);
-        if (dlg.SelectedId == -1) return;
-        if (dlg.SelectedLabelText == Translation.Install)
-        {
-          ShowInstall(pk);
-        }
-        else if (dlg.SelectedLabelText == Translation.Uninstall)
-        {
-          queue.Add(new QueueCommand(pk, CommandEnum.Uninstall));
-          NotifyUser();
-        }
-        else if (dlg.SelectedLabelText == Translation.RevokeLastAction)
-        {
-          queue.Remove(pk.GeneralInfo.Id);
-          NotifyRemoveUser();
-        }
-        else if (dlg.SelectedLabelText == Translation.Update)
-        {
-          queue.Add(new QueueCommand(MpeInstaller.KnownExtensions.GetUpdate(installedpak), CommandEnum.Install));
-          NotifyUser();
-        }else if(dlg.SelectedLabelText==Translation.NeverCheckForUpdates)
-        {
-          _setting.IgnoredUpdates.Add(pk.GeneralInfo.Id);
-        }else if (dlg.SelectedLabelText == Translation.AlwaysCheckForUpdates)
-        {
-          _setting.IgnoredUpdates.Remove(pk.GeneralInfo.Id);
-        }else if(dlg.SelectedLabelText==Translation.ShowSreenshots)
-        {
-          GUISlideShow SlideShow = (GUISlideShow)GUIWindowManager.GetWindow(802);
-          if (SlideShow == null)
-          {
-            return;
-          }
-
-          SlideShow.Reset();
-          foreach (string files in pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS))
-          {
-            if (!string.IsNullOrEmpty(files))
-              SlideShow.Add(files);
-          }
-
-          if (SlideShow.Count > 0)
-          {
-            //Thread.Sleep(1000);
-            GUIWindowManager.ActivateWindow(802);
-            SlideShow.StartSlideShow();
-          }
-        }else if(dlg.SelectedLabelText==Translation.ShowChangelogs)
-        {
-          ShowChangeLog(pk);
-        }
-        else if (dlg.SelectedLabelText == Translation.Settings)
-        {
-          GUISettings guiSettings = (GUISettings)GUIWindowManager.GetWindow(803);
-          guiSettings.SettingsFile = pk.LocationFolder + "extension_settings.xml";
-          GUIWindowManager.ActivateWindow(803);
-        }
-        _setting.Save();
-        queue.Save();
-      }
-    }
-
-    void GetPackageConfigFile(PackageClass pk)
-    {
-      string configfile = pk.LocationFolder + "extension_settings.xml";
-      if (!File.Exists(configfile) && File.Exists(pk.LocationFolder + pk.GeneralInfo.Id + ".mpe2"))
-      {
-        pk = pk.ZipProvider.Load(pk.LocationFolder + pk.GeneralInfo.Id + ".mpe2");
-        foreach (FileItem fileItem in pk.UniqueFileList.Items)
-        {
-          if (Path.GetFileName(fileItem.DestinationFilename).ToLower() == "extension_settings.xml")
-            pk.ZipProvider.Extract(fileItem, configfile);
-        }
-
+        item_OnItemSelected(item, facadeView);
+        GUIInfo guiinfo = (GUIInfo)GUIWindowManager.GetWindow(804);
+        guiinfo.queue = queue;
+        guiinfo._askForRestart = _askForRestart;
+        guiinfo.Package = pk;
+        guiinfo.SettingsFile = pk.LocationFolder + "extension_settings.xml";
+        GUIWindowManager.ActivateWindow(804);
       }
     }
 
@@ -1625,15 +1417,56 @@ namespace MPEIPlugin
       PackageClass pak = item.MusicTag as PackageClass;
       if (pak != null)
       {
+        PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(pak);
+        if (update != null)
+        {
+          GUIPropertyManager.SetProperty("#MPE.Selected.haveupdate", "true");
+          GUIPropertyManager.SetProperty("#MPE.Selected.updatelog", update.GeneralInfo.VersionDescription);
+          GUIPropertyManager.SetProperty("#MPE.Selected.updatedate", update.GeneralInfo.ReleaseDate.ToShortDateString());
+          GUIPropertyManager.SetProperty("#MPE.Selected.updateversion", update.GeneralInfo.Version.ToString());
+        }
+        else
+        {
+          GUIPropertyManager.SetProperty("#MPE.Selected.haveupdate", "false");
+          GUIPropertyManager.SetProperty("#MPE.Selected.updatelog", " ");
+          GUIPropertyManager.SetProperty("#MPE.Selected.updatedate", " ");
+          GUIPropertyManager.SetProperty("#MPE.Selected.updateversion", " ");
+        }
+
+        PackageClass installed = MpeInstaller.InstalledExtensions.Get(pak);
+        if (installed != null)
+        {
+          GUIPropertyManager.SetProperty("#MPE.Selected.installedversion",installed.GeneralInfo.Version.ToString());
+          GUIPropertyManager.SetProperty("#MPE.Selected.isinstalled", "true");
+        }
+        else
+        {
+          GUIPropertyManager.SetProperty("#MPE.Selected.installedversion", " ");
+          GUIPropertyManager.SetProperty("#MPE.Selected.isinstalled", "false");
+        }
+
+        GUIPropertyManager.SetProperty("#MPE.Selected.Id", pak.GeneralInfo.Id);
         GUIPropertyManager.SetProperty("#MPE.Selected.Name", pak.GeneralInfo.Name);
         GUIPropertyManager.SetProperty("#MPE.Selected.Version", pak.GeneralInfo.Version.ToString());
         GUIPropertyManager.SetProperty("#MPE.Selected.Author", pak.GeneralInfo.Author);
         GUIPropertyManager.SetProperty("#MPE.Selected.Description", pak.GeneralInfo.ExtensionDescription);
         GUIPropertyManager.SetProperty("#MPE.Selected.VersionDescription", pak.GeneralInfo.VersionDescription);
-        GUIPropertyManager.SetProperty("#selectedthumb",item.IconImageBig);
+        GUIPropertyManager.SetProperty("#MPE.Selected.ReleaseDate", pak.GeneralInfo.ReleaseDate.ToShortDateString());
+        GUIPropertyManager.SetProperty("#MPE.Selected.Icon", item.IconImageBig);
+        GUIPropertyManager.SetProperty("#selectedthumb", item.IconImageBig);
       }
       else
       {
+        GUIPropertyManager.SetProperty("#MPE.Selected.installedversion", " ");
+        GUIPropertyManager.SetProperty("#MPE.Selected.isinstalled", "false");
+
+        GUIPropertyManager.SetProperty("#MPE.Selected.ReleaseDate", " ");
+        GUIPropertyManager.SetProperty("#MPE.Selected.haveupdate", "false");
+        GUIPropertyManager.SetProperty("#MPE.Selected.updatelog", " ");
+        GUIPropertyManager.SetProperty("#MPE.Selected.updatedate", " ");
+        GUIPropertyManager.SetProperty("#MPE.Selected.updateversion", " ");
+
+        GUIPropertyManager.SetProperty("#MPE.Selected.Id", " ");
         GUIPropertyManager.SetProperty("#MPE.Selected.Name", " ");
         GUIPropertyManager.SetProperty("#MPE.Selected.Version", " ");
         GUIPropertyManager.SetProperty("#MPE.Selected.Author", " ");

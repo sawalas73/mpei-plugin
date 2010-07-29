@@ -66,6 +66,8 @@
   <ItemGroup>
     <Compile Include="Classes\ExtensionSetting.cs" />
     <Compile Include="Classes\ExtensionSettings.cs" />
+    <Compile Include="GuiBase.cs" />
+    <Compile Include="GUIInfo.cs" />
     <Compile Include="GUISettings.cs" />
     <Compile Include="DownLoadInfo.cs" />
     <Compile Include="DownloadManager.cs" />

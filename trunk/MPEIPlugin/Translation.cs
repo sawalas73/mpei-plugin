@@ -198,15 +198,18 @@ namespace MPEIPlugin
     public static string Actions = "Actions";
     public static string ActionAdded = "Action was added to action queue";
     public static string ActionRemoved = "Action was removed from action queue";
+    public static string Author = "Author";
 
     // C
     public static string ChangeLogFor = "Change log for :";
-
+    public static string ChangeLog = "Change log";
     // D
     public static string Download = "Download";
+    public static string Disable = "Disable";
 
     // E
     public static string Exit = "Exit";
+    public static string Enable = "Enable";
 
     // F
 
@@ -215,6 +218,7 @@ namespace MPEIPlugin
     // H
 
     // I
+    public static string Id = "Id";
     public static string Install = "Install";
     public static string InstalledExtensions = "Installed Extensions";
 
@@ -241,6 +245,7 @@ namespace MPEIPlugin
     // P
 
     // R
+    public static string ReleaseDate = "Release date";
     public static string Restart = "Restart";
     public static string Rotate = "Rotate";
     public static string RevokeLastAction = "Revoke last action";
@@ -265,6 +270,7 @@ namespace MPEIPlugin
    
     // V
     public static string Views = "Views";
+    public static string Version = "Version";
 
     // W
 

@@ -98,6 +98,8 @@ namespace MPEIPlugin.Classes
 
     public ExtensionSetting Load(XmlNode node)
     {
+      if (node == null)
+        return new ExtensionSetting();
       if (node.Attributes["name"] != null)
         Name = node.Attributes["name"].Value;
       if (node.Attributes["displayname"] != null)
