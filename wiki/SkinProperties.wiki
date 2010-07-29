@@ -62,6 +62,14 @@ Update a extension
 Properties in main window
 
 {{{
+#MPE.Selected.installedversion
+#MPE.Selected.isinstalled
+#MPE.Selected.haveupdate
+#MPE.Selected.updatelog
+#MPE.Selected.updatedate
+#MPE.Selected.updateversion
+
+#MPE.Selected.Id
 #MPE.Selected.Name
 #MPE.Selected.Version
 #MPE.Selected.Author
