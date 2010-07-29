@@ -21,7 +21,7 @@ using MPEIPlugin.Classes;
 
 namespace MPEIPlugin
 {
-  public class GUISettings : GUIWindow
+  public class GUISettings : GuiBase
   {
     [SkinControlAttribute(50)]
     protected GUIFacadeControl facadeView = null;

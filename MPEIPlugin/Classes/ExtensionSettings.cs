@@ -10,9 +10,12 @@ namespace MPEIPlugin.Classes
   {
     public Dictionary<string ,List<ExtensionSetting>> Settings { get; set; }
 
+    public ExtensionSetting DisableSetting { get; set; }
+
     public ExtensionSettings()
     {
       Settings = new Dictionary<string, List<ExtensionSetting>>();
+      DisableSetting = new ExtensionSetting();
     }
 
     public void Load(string file)
@@ -23,6 +26,7 @@ namespace MPEIPlugin.Classes
       {
         doc.Load(file);
         XmlNode xml_file = doc.DocumentElement.SelectSingleNode("/extension_settings");
+        DisableSetting.Load(doc.DocumentElement.SelectSingleNode("/extension_settings/disable_entry/setting"));
         XmlNodeList sections = xml_file.SelectNodes("settings");
         if (sections != null)
           foreach (XmlNode section in sections)

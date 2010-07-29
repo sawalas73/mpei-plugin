@@ -68,6 +68,13 @@
               <ZipFileName>Installer{CopyFile}\{86306aff-a7ad-4224-9fc7-346c5b592469}-myextensions2settings.xml</ZipFileName>
               <DestinationFilename>%Skin%\Blue3wide\myextensions2settings.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\myextensions2info.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{007ee8d6-7a24-453a-a083-7619bc71b62f}-myextensions2info.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\myextensions2info.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -112,6 +119,13 @@
               <LocalFileName>Skin\Blue3wide\myextensions2settings.xml</LocalFileName>
               <ZipFileName>Installer{GenericSkinFile}\{c71b873a-512e-43ee-ab24-909f3d1600b4}-myextensions2settings.xml</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\myextensions2settings.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\myextensions2info.xml</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{cb5aa300-af78-4dd1-8d7b-75fbcad8def5}-myextensions2info.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2info.xml</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -264,13 +278,14 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>5</Build>
-      <Revision>1</Revision>
+      <Revision>2</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>Support for configure plugins</VersionDescription>
+    <VersionDescription>Separated info screen
+Possibility to enable/disable plugins</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.1.mpe1</OnlineLocation>
-    <ReleaseDate>2010-06-28T00:04:20</ReleaseDate>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.2.mpe1</OnlineLocation>
+    <ReleaseDate>2010-07-30T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>d:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
     <Params>
@@ -359,6 +374,13 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Skin\Blue3wide\myextensions2info.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{007ee8d6-7a24-453a-a083-7619bc71b62f}-myextensions2info.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\myextensions2info.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>language\MPEI\en-US.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
@@ -374,7 +396,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{658c8539-7708-4712-a507-f35ce665f556}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{5060d25a-db62-48bc-91ac-27a02951f1e0}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
@@ -412,7 +434,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
-    <ProjectFilename>d:\devel\vs2005\MPEIPlugin\Setup\mpeiplugin.xmp2</ProjectFilename>
+    <ProjectFilename>D:\devel\vs2005\MPEIPlugin\Setup\mpeiplugin.xmp2</ProjectFilename>
     <UpdatePath1>d:\devel\vs2005\MPEIPlugin\Setup\update2.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
