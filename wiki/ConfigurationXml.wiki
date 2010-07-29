@@ -4,6 +4,10 @@ To use this feature, in extension package should be included a xml file with "ex
 A example file used by radiotime plugin:
 {{{
 <extension_settings>
+	<disable_entry>
+		<setting entryname="plugins" name="RadioTime" displayname="Plugin Enabled" defaultvalue="yes" type="string" listvalues="yes|no" displaylistvalues="Yes|No"/> 
+	</disable_entry>
+
 	<settings section="Configuration">
  		<setting name="user" entryname="radiotime" displayname="User Name" defaultvalue="" type="string" listvalues="" displaylistvalues=""/> 
 		<setting name="password" entryname="radiotime" displayname="Password" defaultvalue="" type="string" listvalues="" displaylistvalues=""/> 
