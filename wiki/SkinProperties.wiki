@@ -75,5 +75,6 @@ Properties in main window
 #MPE.Selected.Author
 #MPE.Selected.Description
 #MPE.Selected.VersionDescription
+#MPE.Selected.Icon
 }}}
  
