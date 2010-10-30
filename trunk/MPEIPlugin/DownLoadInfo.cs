@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MediaPortal.GUI.Library;
 using MpeCore;
+using MPEIPlugin.MPSite;
 
 namespace MPEIPlugin
 {
@@ -28,6 +29,7 @@ namespace MPEIPlugin
     public object Tag { get; set; }
     public DownLoadItemType ItemType { get; set; }
     public PackageClass Package { get; set; }
+    public SiteItems SiteItem { get; set; }
     public GUIListItem ListItem { get; set; }
 
   }

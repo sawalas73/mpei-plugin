@@ -221,10 +221,11 @@ namespace MPEIPlugin
     public static string Id = "Id";
     public static string Install = "Install";
     public static string InstalledExtensions = "Installed Extensions";
-
+    public static string InstalledNotPossible = "Installation not possible";
     // L
     
     // M
+    public static string MPOnlineExtensions = "MP Online Extensions";
 
     // N
     public static string Name = "Extensions";
@@ -241,6 +242,7 @@ namespace MPEIPlugin
 
     // O
     public static string OnlineExtensions = "Online Extensions";
+   
 
     // P
 
@@ -267,7 +269,8 @@ namespace MPEIPlugin
     public static string UpdateAll = "Update All";
     public static string Updates = "Updates";
     public static string Uninstall = "Uninstall";
-   
+    public static string UnKnowFileTYpe = "Unknow file type !";
+
     // V
     public static string Views = "Views";
     public static string Version = "Version";

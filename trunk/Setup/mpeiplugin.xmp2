@@ -24,6 +24,20 @@
               <ZipFileName>Installer{CopyFile}\{1add684c-a959-43e2-bfcc-d19d80eafbda}-MPEIPlugin.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\MPEIPlugin.dll</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIHelper\bin\Debug\MPEIHelper.exe</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1297719d-f7f1-49d4-8f5a-740f807c311f}-MPEIHelper.exe</ZipFileName>
+              <DestinationFilename>%Base%\MPEIHelper.exe</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIHelper\bin\Debug\MPEIHelper.pdb</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d45affe6-1175-41f8-9c72-5693b1d58e66}-MPEIHelper.pdb</ZipFileName>
+              <DestinationFilename>%Base%\MPEIHelper.pdb</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -278,12 +292,11 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>5</Build>
-      <Revision>2</Revision>
+      <Revision>5</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>Separated info screen
-Possibility to enable/disable plugins</VersionDescription>
-    <DevelopmentStatus>Stable</DevelopmentStatus>
+    <VersionDescription>Support for MP site repository</VersionDescription>
+    <DevelopmentStatus>Beta</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.2.mpe1</OnlineLocation>
     <ReleaseDate>2010-07-30T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
@@ -335,6 +348,20 @@ Possibility to enable/disable plugins</VersionDescription>
         <LocalFileName>..\MPEIPlugin\bin\Debug\MPEIPlugin.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{1add684c-a959-43e2-bfcc-d19d80eafbda}-MPEIPlugin.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\MPEIPlugin.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIHelper\bin\Debug\MPEIHelper.exe</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1297719d-f7f1-49d4-8f5a-740f807c311f}-MPEIHelper.exe</ZipFileName>
+        <DestinationFilename>%Base%\MPEIHelper.exe</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIHelper\bin\Debug\MPEIHelper.pdb</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d45affe6-1175-41f8-9c72-5693b1d58e66}-MPEIHelper.pdb</ZipFileName>
+        <DestinationFilename>%Base%\MPEIHelper.pdb</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -396,7 +423,7 @@ Possibility to enable/disable plugins</VersionDescription>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{5060d25a-db62-48bc-91ac-27a02951f1e0}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{3986179f-1b54-4520-9070-8a1d3f08cfdc}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>

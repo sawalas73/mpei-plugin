@@ -118,7 +118,11 @@ namespace MPEIPlugin
       }
       if (control == btnInstall)
       {
-        InstallExtension(Package.GeneralInfo.Id);
+        if (Package != null)
+          InstallExtension(Package.GeneralInfo.Id);
+        if (SiteItem != null)
+          InstallExtension(SiteItem);
+        
       }
 
       if (control == btnChangeLog)

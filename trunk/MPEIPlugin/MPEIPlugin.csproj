@@ -73,6 +73,9 @@
     <Compile Include="DownloadManager.cs" />
     <Compile Include="GUIMpeiPlugin.cs" />
     <Compile Include="GUISlideShow.cs" />
+    <Compile Include="MPSite\Category.cs" />
+    <Compile Include="MPSite\MPSiteUtil.cs" />
+    <Compile Include="MPSite\SiteItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SlideCache.cs" />

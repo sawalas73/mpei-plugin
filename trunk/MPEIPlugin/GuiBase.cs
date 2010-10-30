@@ -9,6 +9,7 @@ using MediaPortal.GUI.Library;
 using MediaPortal.Profile;
 using MpeCore;
 using MpeCore.Classes;
+using MPEIPlugin.MPSite;
 
 namespace MPEIPlugin
 {
@@ -16,6 +17,7 @@ namespace MPEIPlugin
   {
     public bool _askForRestart = true;
     public QueueCommandCollection queue = new QueueCommandCollection();
+    public SiteItems SiteItem = null;
 
 
     public void GetPackageConfigFile(PackageClass pk)
@@ -79,6 +81,32 @@ namespace MPEIPlugin
       {
         Log.Error("No extension was found :{0}", id);
       }
+    }
+
+    public void InstallExtension(SiteItems items)
+    {
+      items.LoadFileName();
+
+      if (!string.IsNullOrEmpty(items.File) && (Path.GetExtension(items.File) == ".exe" || Path.GetExtension(items.File) == ".mpe1"))
+      {
+        if(AskForRestart1())
+        {
+          string conffile = Path.GetTempFileName();
+          TextWriter streamWriter = new StreamWriter(conffile, false);
+          streamWriter.WriteLine(items.FileUrl);
+          streamWriter.WriteLine(Path.Combine(Path.GetTempPath(), items.File));
+          streamWriter.WriteLine(items.Name);
+          streamWriter.Close();
+          System.Diagnostics.Process.Start(Config.GetFile(Config.Dir.Base, "MPEIHelper.exe"), conffile);
+        }
+        return;
+      }
+      var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
+      dlgYesNo.SetHeading(Translation.Notification); //resume movie?
+      dlgYesNo.SetLine(1, Translation.InstalledNotPossible);
+      dlgYesNo.SetLine(2, Translation.UnKnowFileTYpe);
+      dlgYesNo.SetDefaultToYes(true);
+      dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
     }
 
     public void UpdateExtension(string id)
@@ -177,6 +205,16 @@ namespace MPEIPlugin
       _askForRestart = false;
 
       // LoadDirectory(currentFolder);
+    }
+
+    public bool AskForRestart1()
+    {
+      var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
+      dlgYesNo.SetHeading(Translation.Notification); 
+      dlgYesNo.SetLine(3, Translation.NotificationMsg3);
+      dlgYesNo.SetDefaultToYes(true);
+      dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+      return dlgYesNo.IsConfirmed;
     }
 
     public bool AskForRestart()

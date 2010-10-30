@@ -17,6 +17,7 @@ using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
 using MpeCore;
 using MpeCore.Classes;
+using MPEIPlugin.MPSite;
 
 
 namespace MPEIPlugin
@@ -46,7 +47,8 @@ namespace MPEIPlugin
       Online = 1,
       Updates = 2,
       New = 3,
-      Queue = 4
+      Queue = 4,
+      MpSIte = 5
     }
 
     #endregion
@@ -56,6 +58,7 @@ namespace MPEIPlugin
     Views currentListing = Views.Local;
     SortMethod currentSortMethod = SortMethod.Date;
     bool sortAscending = true;
+    private MPSiteUtil SiteUtil = new MPSiteUtil();
 
     string currentFolder = string.Empty;
     int selectedItemIndex = -1;
@@ -122,6 +125,9 @@ namespace MPEIPlugin
 
       GUIGraphicsContext.Receivers += GUIGraphicsContext_Receivers;
       _timer.Enabled = true;
+
+      SiteUtil.LoadCatTree();
+
       return bResult;
     }
 
@@ -214,7 +220,7 @@ namespace MPEIPlugin
             File.Delete(info.Destinatiom);
             GenerateProperty();
             MpeInstaller.Save();
-            if (GUIWindowManager.ActiveWindow==GetID)
+            if (GUIWindowManager.ActiveWindow == GetID && currentListing != Views.MpSIte)
               LoadDirectory(currentFolder);
             if (_setting.UpdateAll)
             {
@@ -225,7 +231,10 @@ namespace MPEIPlugin
         case DownLoadItemType.Extension:
           break;
         case DownLoadItemType.Logo:
-          Logo(info.Package, info.ListItem);
+          if (info.Package != null)
+            Logo(info.Package, info.ListItem);
+          if (info.SiteItem != null)
+            Logo(info.SiteItem, info.ListItem);
           break;
         case DownLoadItemType.Other:
           break;
@@ -422,6 +431,7 @@ namespace MPEIPlugin
           else if (tmpLine == "updates") currentListing = Views.Updates;
           else if (tmpLine == "new") currentListing = Views.New;
           else if (tmpLine == "queue") currentListing = Views.Queue;
+          else if (tmpLine == "site") currentListing = Views.MpSIte;
         }
         sortAscending = xmlreader.GetValueAsBool("myextensions2", "sortascending", true);
       }
@@ -479,6 +489,9 @@ namespace MPEIPlugin
             break;
           case Views.Queue:
             xmlwriter.SetValue("myextensions2", "listing", "queue");
+            break;
+          case Views.MpSIte:
+            xmlwriter.SetValue("myextensions2", "listing", "site");
             break;
         }
 
@@ -559,6 +572,43 @@ namespace MPEIPlugin
     protected override void OnShowContextMenu()
     {
       GUIListItem item = facadeView.SelectedListItem;
+      SiteItems si = item.MusicTag as SiteItems;
+      if (si != null)
+      {
+        GUIDialogMenu dlg1 = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
+        if (dlg1 == null) return;
+        dlg1.Reset();
+        dlg1.Add(Translation.ShowSreenshots);
+        dlg1.DoModal(GetID);
+        if (dlg1.SelectedId == -1) return;
+        si.LoadInfo();
+        if (dlg1.SelectedLabelText == Translation.ShowSreenshots)
+        {
+          GUISlideShow SlideShow = (GUISlideShow)GUIWindowManager.GetWindow(802);
+          if (SlideShow == null)
+          {
+            return;
+          }
+
+          SlideShow.Reset();
+          foreach (string files in si.Images)
+          {
+            if (!string.IsNullOrEmpty(files))
+              SlideShow.Add(files);
+          }
+
+          if (SlideShow.Count > 0)
+          {
+            //Thread.Sleep(1000);
+            GUIWindowManager.ActivateWindow(802);
+            SlideShow.StartSlideShow();
+          }
+
+        }
+
+        return;
+      }
+
       PackageClass pk = item.MusicTag as PackageClass;
       if (pk == null)
         return;
@@ -834,6 +884,13 @@ namespace MPEIPlugin
     {
       GUIListItem item = facadeView.SelectedListItem;
       if (item == null) return;
+      Category category = item.MusicTag as Category;
+      if (category != null)
+      {
+        LoadDirectory(category.Id);
+        return;
+      }
+
       if (item.IsFolder)
       {
         selectedItemIndex = -1;
@@ -841,15 +898,31 @@ namespace MPEIPlugin
       }
       else
       {
-        PackageClass pk = item.MusicTag as PackageClass;
-        GetPackageConfigFile(pk);
-        item_OnItemSelected(item, facadeView);
-        GUIInfo guiinfo = (GUIInfo)GUIWindowManager.GetWindow(804);
-        guiinfo.queue = queue;
-        guiinfo._askForRestart = _askForRestart;
-        guiinfo.Package = pk;
-        guiinfo.SettingsFile = pk.LocationFolder + "extension_settings.xml";
-        GUIWindowManager.ActivateWindow(804);
+        SiteItems si = item.MusicTag as SiteItems;
+        if (si != null)
+        {
+          si.LoadInfo();
+          item_OnItemSelected(item, facadeView);
+          GUIInfo guiinfo = (GUIInfo)GUIWindowManager.GetWindow(804);
+          guiinfo.SiteItem = si;
+          guiinfo.queue = queue;
+          guiinfo._askForRestart = _askForRestart;
+          guiinfo.Package = null;
+          GUIWindowManager.ActivateWindow(804);
+        }
+        else
+        {
+          PackageClass pk = item.MusicTag as PackageClass;
+          GetPackageConfigFile(pk);
+          item_OnItemSelected(item, facadeView);
+          GUIInfo guiinfo = (GUIInfo) GUIWindowManager.GetWindow(804);
+          guiinfo.SiteItem = null;
+          guiinfo.queue = queue;
+          guiinfo._askForRestart = _askForRestart;
+          guiinfo.Package = pk;
+          guiinfo.SettingsFile = pk.LocationFolder + "extension_settings.xml";
+          GUIWindowManager.ActivateWindow(804);
+        }
       }
     }
 
@@ -1017,7 +1090,8 @@ namespace MPEIPlugin
         dlg.Add(Translation.Actions);
 
       dlg.Add(Translation.NewExtensions); // new
-    
+      dlg.Add(Translation.MPOnlineExtensions); // mp online
+
       dlg.SelectedLabel = (int)currentListing;
 
       // show dialog and wait for result
@@ -1039,6 +1113,9 @@ namespace MPEIPlugin
       if (dlg.SelectedLabelText == Translation.Actions)
         currentListing = Views.Queue;
 
+      if (dlg.SelectedLabelText == Translation.MPOnlineExtensions)
+        currentListing = Views.MpSIte;
+
       LoadDirectory(currentFolder);
     }
 
@@ -1055,6 +1132,8 @@ namespace MPEIPlugin
 
     public int Compare(GUIListItem item1, GUIListItem item2)
     {
+      if (currentListing == Views.MpSIte)
+        return -1;
       if (item1 == item2) return 0;
       if (item1 == null) return -1;
       if (item2 == null) return -1;
@@ -1291,6 +1370,62 @@ namespace MPEIPlugin
             }
           }
           break;
+        case Views.MpSIte:
+          {
+            GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.MPOnlineExtensions);
+            GUIListItem item = new GUIListItem();
+            List<Category> cats = new List<Category>();
+            Category pareCategory = SiteUtil.GetCat(strNewDirectory);
+            if (string.IsNullOrEmpty(strNewDirectory) || strNewDirectory == "0")
+            {
+              cats = SiteUtil.GetCats("0");
+            }
+            else
+            {
+              Category cate = new Category() { Name = "..", Id = pareCategory.PId };
+              item = new GUIListItem();
+              item.MusicTag = cate;
+              item.IsFolder = true;
+              item.Label = cate.Name;
+              item.Label2 = "";
+              //Logo(pk, item);
+              item.OnItemSelected += item_OnItemSelected;
+              Utils.SetDefaultIcons(item);
+              facadeView.Add(item);
+
+              cats = SiteUtil.GetCats(strNewDirectory);
+            }
+            foreach (Category category in cats)
+            {
+              item = new GUIListItem();
+              item.MusicTag = category;
+              item.IsFolder = true;
+              item.Label = category.Name;
+              item.Label2 = category.Number;
+              //Logo(pk, item);
+              item.OnItemSelected += item_OnItemSelected;
+              Utils.SetDefaultIcons(item);
+              facadeView.Add(item);
+            }
+            if(pareCategory!=null)
+            {
+              if (pareCategory.SiteItems.Count == 0)
+                SiteUtil.LoadItems(pareCategory);
+              foreach (SiteItems siteItem in pareCategory.SiteItems)
+              {
+                item = new GUIListItem();
+                item.MusicTag = siteItem;
+                item.IsFolder = false;
+                item.Label = siteItem.Name;
+                //item.Label2 = category.Number;
+                Logo(siteItem, item);
+                item.OnItemSelected += item_OnItemSelected;
+               facadeView.Add(item);
+              }
+            }
+
+          }
+          break;
       }
 
       //------------
@@ -1307,6 +1442,29 @@ namespace MPEIPlugin
       
       currentFolder = strNewDirectory;
       GUIWaitCursor.Hide();
+    }
+
+    void Logo(SiteItems items, GUIListItem listItem)
+    {
+      string tempFile = Path.Combine(Path.GetTempPath(),
+                                     Utils.EncryptLine(items.LogoUrl));
+      if (File.Exists(tempFile))
+      {
+        listItem.IconImage = tempFile;
+        listItem.IconImageBig = tempFile;
+      }
+      else
+      {
+        _downloadManager.Download(new DownLoadInfo()
+                                    {
+                                      Destinatiom = tempFile,
+                                      ItemType = DownLoadItemType.Logo,
+                                      ListItem = listItem,
+                                      //Package = packageClass,
+                                      SiteItem = items,
+                                      Url = items.LogoUrl
+                                    });
+      }
     }
 
     string Logo(PackageClass packageClass, GUIListItem listItem)
@@ -1414,6 +1572,21 @@ namespace MPEIPlugin
 
     void item_OnItemSelected(GUIListItem item, GUIControl parent)
     {
+      SiteItems siteItem = item.MusicTag as SiteItems;
+      if (siteItem != null)
+      {
+        GUIPropertyManager.SetProperty("#MPE.Selected.Id", " ");
+        GUIPropertyManager.SetProperty("#MPE.Selected.Name", siteItem.Name);
+        GUIPropertyManager.SetProperty("#MPE.Selected.Version", siteItem.Version);
+        GUIPropertyManager.SetProperty("#MPE.Selected.Author", siteItem.Author);
+        GUIPropertyManager.SetProperty("#MPE.Selected.Description", siteItem.Descriptions);
+        GUIPropertyManager.SetProperty("#MPE.Selected.VersionDescription", " ");
+        GUIPropertyManager.SetProperty("#MPE.Selected.ReleaseDate", siteItem.DateUpdated);
+        GUIPropertyManager.SetProperty("#MPE.Selected.Icon", item.IconImageBig);
+        GUIPropertyManager.SetProperty("#selectedthumb", item.IconImageBig);
+        return;
+      }
+
       PackageClass pak = item.MusicTag as PackageClass;
       if (pak != null)
       {
@@ -1573,26 +1746,29 @@ namespace MPEIPlugin
         GUIListItem item = facadeView[i];
         if (item.MusicTag != null)
         {
-          PackageClass pak = (PackageClass)item.MusicTag;
-          switch (method)
+          PackageClass pak = item.MusicTag as PackageClass;
+          if (pak != null)
           {
-            case SortMethod.Name:
-              item.Label2 = pak.GeneralInfo.Version.ToString();
-              break;
-            case SortMethod.Type:
-              //item.Label2 = pak.InstallerInfo.Group;
-              break;
-            case SortMethod.Date:
-              item.Label2 = pak.GeneralInfo.ReleaseDate.ToShortDateString();
-              break;
-            case SortMethod.Download:
-              //              item.Label2 = pak.DownloadCount.ToString();
-              break;
-            case SortMethod.Rating:
-              //              item.Label2 =((int) pak.VoteValue).ToString();
-              break;
-            default:
-              break;
+            switch (method)
+            {
+              case SortMethod.Name:
+                item.Label2 = pak.GeneralInfo.Version.ToString();
+                break;
+              case SortMethod.Type:
+                //item.Label2 = pak.InstallerInfo.Group;
+                break;
+              case SortMethod.Date:
+                item.Label2 = pak.GeneralInfo.ReleaseDate.ToShortDateString();
+                break;
+              case SortMethod.Download:
+                //              item.Label2 = pak.DownloadCount.ToString();
+                break;
+              case SortMethod.Rating:
+                //              item.Label2 =((int) pak.VoteValue).ToString();
+                break;
+              default:
+                break;
+            }
           }
           if (method == SortMethod.Name)
           {

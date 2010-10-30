@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window>
   <id>801</id>
-  <defaultcontrol>2</defaultcontrol>
+  <defaultcontrol>50</defaultcontrol>
   <allowoverlay>yes</allowoverlay>
   <define>#header.label:14001</define>
   <define>#header.image:-</define>
@@ -128,8 +128,8 @@
           <id>600</id>
           <posX>58</posX>
           <posY>426</posY>
-          <width>161</width>
-          <height>121</height>
+          <width>261</width>
+          <height>221</height>
           <keepaspectratio>yes</keepaspectratio>
           <centered>yes</centered>
           <texture flipY="true" diffuse="Thumb_Mask.png">#selectedthumb</texture>
