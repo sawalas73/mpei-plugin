@@ -2110,7 +2110,7 @@ namespace MPEIPlugin
             if (pFont != null)
             {
                 string szText = GUILocalizeStrings.Get(112);
-                pFont.DrawShadowText(500.0f, 60.0f, 0xffffffff, szText, GUIControl.Alignment.ALIGN_LEFT, 2, 2, 0xff000000);
+                //pFont.DrawShadowText(500.0f, 60.0f, 0xffffffff, szText, GUIControl.Alignment.ALIGN_LEFT, 2, 2, 0xff000000);
             }
             return true;
         }
