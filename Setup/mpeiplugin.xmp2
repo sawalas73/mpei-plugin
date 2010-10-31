@@ -297,7 +297,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
     <VersionDescription>Support for MP site repository</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.2.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.5.mpe1</OnlineLocation>
     <ReleaseDate>2010-07-30T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>d:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
@@ -326,7 +326,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
           <Description>Online stored screenshot urls separated by ; </Description>
         </SectionParam>
         <SectionParam Name="Force to uninstall on update">
-          <Value>yes</Value>
+          <Value>YES</Value>
           <ValueType>Bool</ValueType>
           <Description>Show dialog and force to uninstall previous version when updating an extension. Should only be disabled if you are using an NSIS/MSI installer.</Description>
         </SectionParam>
@@ -423,7 +423,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{3986179f-1b54-4520-9070-8a1d3f08cfdc}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{1c56b168-deb6-43b2-8012-ead0af6ff59a}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
