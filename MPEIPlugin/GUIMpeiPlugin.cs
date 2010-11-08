@@ -1584,6 +1584,9 @@ namespace MPEIPlugin
         GUIPropertyManager.SetProperty("#MPE.Selected.ReleaseDate", siteItem.DateUpdated);
         GUIPropertyManager.SetProperty("#MPE.Selected.Icon", item.IconImageBig);
         GUIPropertyManager.SetProperty("#selectedthumb", item.IconImageBig);
+        GUIPropertyManager.SetProperty("#MPE.Selected.JustAded", siteItem.JustAdded ? "true" : "false");
+        GUIPropertyManager.SetProperty("#MPE.Selected.Popular", siteItem.Popular ? "true" : "false");
+        GUIPropertyManager.SetProperty("#MPE.Selected.DeveloperPick", siteItem.EditorPick ? "true" : "false");
         return;
       }
 
@@ -1638,6 +1641,10 @@ namespace MPEIPlugin
         GUIPropertyManager.SetProperty("#MPE.Selected.updatelog", " ");
         GUIPropertyManager.SetProperty("#MPE.Selected.updatedate", " ");
         GUIPropertyManager.SetProperty("#MPE.Selected.updateversion", " ");
+
+        GUIPropertyManager.SetProperty("#MPE.Selected.JustAded", "false ");
+        GUIPropertyManager.SetProperty("#MPE.Selected.Popular", "false");
+        GUIPropertyManager.SetProperty("#MPE.Selected.DeveloperPick", "false");
 
         GUIPropertyManager.SetProperty("#MPE.Selected.Id", " ");
         GUIPropertyManager.SetProperty("#MPE.Selected.Name", " ");

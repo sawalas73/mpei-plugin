@@ -96,6 +96,10 @@ namespace MPEIPlugin
           streamWriter.WriteLine(items.FileUrl);
           streamWriter.WriteLine(Path.Combine(Path.GetTempPath(), items.File));
           streamWriter.WriteLine(items.Name);
+          if (Ask(Translation.UseSilent))
+            streamWriter.WriteLine("/S");
+          else
+            streamWriter.WriteLine("");
           streamWriter.Close();
           System.Diagnostics.Process.Start(Config.GetFile(Config.Dir.Base, "MPEIHelper.exe"), conffile);
         }
@@ -212,6 +216,16 @@ namespace MPEIPlugin
       var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
       dlgYesNo.SetHeading(Translation.Notification); 
       dlgYesNo.SetLine(3, Translation.NotificationMsg3);
+      dlgYesNo.SetDefaultToYes(true);
+      dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+      return dlgYesNo.IsConfirmed;
+    }
+
+    public bool Ask(string question)
+    {
+      var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
+      dlgYesNo.SetHeading(Translation.Notification);
+      dlgYesNo.SetLine(2, question);
       dlgYesNo.SetDefaultToYes(true);
       dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
       return dlgYesNo.IsConfirmed;

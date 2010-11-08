@@ -135,7 +135,10 @@ namespace MPEIPlugin.MPSite
                                   Url = matchResults.Groups["url"].Value,
                                   LogoUrl =
                                     Regex.Match(item, "<p.*?src=\"(?<img>.*?)\"", RegexOptions.Singleline).Groups["img"]
-                                    .Value
+                                    .Value,
+                                  EditorPick = matchResults.Value.Contains("status_editorpick.png"),
+                                  Popular = matchResults.Value.Contains("status_popular.png"),
+                                  JustAdded = matchResults.Value.Contains("status_new.png")
                                 };
             items.LoadFields(matchResults.Groups["fields"].Value);
             category.SiteItems.Add(items);

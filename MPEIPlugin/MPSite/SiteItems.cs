@@ -29,6 +29,9 @@ namespace MPEIPlugin.MPSite
     public string Version { get; set; }
     public string File { get; set; }
     public List<string> Images { get; set; }
+    public bool EditorPick { get; set; }
+    public bool JustAdded { get; set; }
+    public bool Popular { get; set; }
 
     public void LoadInfo()
     {
