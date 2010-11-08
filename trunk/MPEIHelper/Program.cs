@@ -18,7 +18,7 @@ namespace MPEIHelper
       string url = "";
       string file = "";
       string name = "";
-
+      string silen = "";
 
       string configFile = args[0];
       if (File.Exists(configFile))
@@ -27,13 +27,31 @@ namespace MPEIHelper
         url = reader.ReadLine();
         file = reader.ReadLine();
         name = reader.ReadLine();
+        silen = reader.ReadLine();
         KillProcces("Configuration");
         KillProcces("MediaPortal");
-
         DownloadFile dlg = new DownloadFile();
         dlg.Text = name;
         dlg.StartDownload(url, file);
-        System.Diagnostics.Process.Start(file);
+        if (Path.GetExtension(file).ToLower() == ".mpe1")
+        {
+          silen = file + " " + silen;
+          file = "mpeinstaller.exe";
+        }
+        try
+        {
+          if (File.Exists(file))
+          {
+            Process process = string.IsNullOrEmpty(silen) ? Process.Start(file) : Process.Start(file , silen);
+            process.WaitForExit();
+          }
+        }
+        catch (Exception exception)
+        {
+          MessageBox.Show(exception.Message);
+        }
+
+        Process.Start("MediaPortal.exe");
         return;
       }
 

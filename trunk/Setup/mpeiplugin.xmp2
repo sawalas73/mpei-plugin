@@ -89,6 +89,27 @@
               <ZipFileName>Installer{CopyFile}\{007ee8d6-7a24-453a-a083-7619bc71b62f}-myextensions2info.xml</ZipFileName>
               <DestinationFilename>%Skin%\Blue3wide\myextensions2info.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\Media\status_editorpick.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{657b35f7-1ed1-4455-af5a-9818484d7ad8}-status_editorpick.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\Media\status_editorpick.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\Media\status_new.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d4263302-cd59-4862-9823-cb71af3d996a}-status_new.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\Media\status_new.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\Media\status_popular.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{a1b2d4a7-8c71-4371-b818-3acd132dd6d4}-status_popular.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\Media\status_popular.png</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -140,6 +161,27 @@
               <LocalFileName>Skin\Blue3wide\myextensions2info.xml</LocalFileName>
               <ZipFileName>Installer{GenericSkinFile}\{cb5aa300-af78-4dd1-8d7b-75fbcad8def5}-myextensions2info.xml</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\myextensions2info.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\Media\status_editorpick.png</LocalFileName>
+              <ZipFileName>Installer{Font}\{d7da61dd-01f8-4a37-9de4-fa1361d75565}-status_editorpick.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\status_editorpick.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\Media\status_new.png</LocalFileName>
+              <ZipFileName>Installer{Font}\{9256d963-65ff-4d3d-88d4-e2994cda7889}-status_new.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\status_new.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\Blue3wide\Media\status_popular.png</LocalFileName>
+              <ZipFileName>Installer{Font}\{cb26798e-4603-4bce-b14c-f99fe25d592a}-status_popular.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\status_popular.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -292,12 +334,12 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>5</Build>
-      <Revision>5</Revision>
+      <Revision>6</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
     <VersionDescription>Support for MP site repository</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.5.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.6.mpe1</OnlineLocation>
     <ReleaseDate>2010-07-30T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>d:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
@@ -408,6 +450,27 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Skin\Blue3wide\Media\status_editorpick.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{657b35f7-1ed1-4455-af5a-9818484d7ad8}-status_editorpick.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\Media\status_editorpick.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Skin\Blue3wide\Media\status_new.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d4263302-cd59-4862-9823-cb71af3d996a}-status_new.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\Media\status_new.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Skin\Blue3wide\Media\status_popular.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{a1b2d4a7-8c71-4371-b818-3acd132dd6d4}-status_popular.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\Media\status_popular.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>language\MPEI\en-US.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
@@ -423,7 +486,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{1c56b168-deb6-43b2-8012-ead0af6ff59a}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{42b007bb-7387-460e-8589-cf7c114e6524}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>

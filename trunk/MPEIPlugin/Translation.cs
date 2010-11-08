@@ -265,6 +265,7 @@ namespace MPEIPlugin
 
 
     // U
+    public static string UseSilent = "Use silent mode";
     public static string Update = "Update";
     public static string UpdateAll = "Update All";
     public static string Updates = "Updates";
