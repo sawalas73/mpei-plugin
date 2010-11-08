@@ -77,4 +77,10 @@ Properties in main window
 #MPE.Selected.VersionDescription
 #MPE.Selected.Icon
 }}}
- 
+
+Properties only for main site view 
+{{{
+#MPE.Selected.JustAded
+#MPE.Selected.Popular
+#MPE.Selected.DeveloperPick
+}}}
