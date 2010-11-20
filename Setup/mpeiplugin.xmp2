@@ -162,21 +162,21 @@
               <ZipFileName>Installer{GenericSkinFile}\{cb5aa300-af78-4dd1-8d7b-75fbcad8def5}-myextensions2info.xml</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\myextensions2info.xml</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>NeverOverwrite</UpdateOption>
               <LocalFileName>Skin\Blue3wide\Media\status_editorpick.png</LocalFileName>
               <ZipFileName>Installer{Font}\{d7da61dd-01f8-4a37-9de4-fa1361d75565}-status_editorpick.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\status_editorpick.png</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>NeverOverwrite</UpdateOption>
               <LocalFileName>Skin\Blue3wide\Media\status_new.png</LocalFileName>
               <ZipFileName>Installer{Font}\{9256d963-65ff-4d3d-88d4-e2994cda7889}-status_new.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\status_new.png</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="CopyFont" SystemFile="false" Modified="false">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>NeverOverwrite</UpdateOption>
               <LocalFileName>Skin\Blue3wide\Media\status_popular.png</LocalFileName>
@@ -198,6 +198,13 @@
               <LocalFileName>language\MPEI\en-US.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
               <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>language\MPEI\fr.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{327c5cb9-86db-48c9-a1fb-0e68fb53b837}-fr.xml</ZipFileName>
+              <DestinationFilename>%Language%\MPEI\fr.xml</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -334,13 +341,13 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>5</Build>
-      <Revision>6</Revision>
+      <Revision>7</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>Support for MP site repository</VersionDescription>
+    <VersionDescription>Splashscreen when downloading extensions for mpsite</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.6.mpe1</OnlineLocation>
-    <ReleaseDate>2010-07-30T00:04:20</ReleaseDate>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.7.mpe1</OnlineLocation>
+    <ReleaseDate>2010-11-20T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>d:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
     <Params>
@@ -475,6 +482,13 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>language\MPEI\fr.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{327c5cb9-86db-48c9-a1fb-0e68fb53b837}-fr.xml</ZipFileName>
+        <DestinationFilename>%Language%\MPEI\fr.xml</DestinationFilename>
+      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
@@ -486,7 +500,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{42b007bb-7387-460e-8589-cf7c114e6524}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{b5453eda-0b29-40c5-8bc8-96f83cb12eb1}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>

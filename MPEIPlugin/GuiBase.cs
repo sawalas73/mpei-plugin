@@ -100,6 +100,20 @@ namespace MPEIPlugin
             streamWriter.WriteLine("/S");
           else
             streamWriter.WriteLine("");
+
+          using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
+          {
+            string skinFilePath = ReadSplashScreenXML();
+            if (string.IsNullOrEmpty(skinFilePath))
+              skinFilePath = ReadReferenceXML();
+            bool useFullScreenSplash = xmlreader.GetValueAsBool("general", "usefullscreensplash", true);
+            bool startFullScreen = xmlreader.GetValueAsBool("general", "startfullscreen", true);
+            if (useFullScreenSplash && startFullScreen)
+              streamWriter.WriteLine(skinFilePath);
+            else
+              streamWriter.WriteLine("");
+          }
+
           streamWriter.Close();
           System.Diagnostics.Process.Start(Config.GetFile(Config.Dir.Base, "MPEIHelper.exe"), conffile);
         }
@@ -146,6 +160,10 @@ namespace MPEIPlugin
 
     public void ShowChangeLog(PackageClass pk)
     {
+      if (pk == null)
+      {
+       return;
+      }
       string selected = "";
       while (true)
       {
@@ -215,7 +233,8 @@ namespace MPEIPlugin
     {
       var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
       dlgYesNo.SetHeading(Translation.Notification); 
-      dlgYesNo.SetLine(3, Translation.NotificationMsg3);
+      dlgYesNo.SetLine(1, Translation.AskForRestart1);
+      dlgYesNo.SetLine(2, Translation.AskForRestart2);
       dlgYesNo.SetDefaultToYes(true);
       dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
       return dlgYesNo.IsConfirmed;

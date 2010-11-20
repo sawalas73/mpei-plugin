@@ -61,17 +61,21 @@ namespace MPEIPlugin
       {
         Translation.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
       }
-      settings.Load(SettingsFile);
+
       GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "false");
       GUIPropertyManager.SetProperty("#MPE.Selected.IsEnabled", "false");
       GUIPropertyManager.SetProperty("#MPE.Selected.IsDisabled", "false");
-      PackageClass pak = MpeInstaller.InstalledExtensions.Get(Package);
-      checkstate();
-      if (pak != null)
+      if (Package != null)
       {
-        if (settings.Settings.Count > 0)
+        settings.Load(SettingsFile);
+        PackageClass pak = MpeInstaller.InstalledExtensions.Get(Package);
+        checkstate();
+        if (pak != null)
         {
-          GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "true");
+          if (settings.Settings.Count > 0)
+          {
+            GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "true");
+          }
         }
       }
       base.OnPageLoad();

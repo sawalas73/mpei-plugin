@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Security.Policy;
 using System.Text;
+using System.Web;
 using System.Text.RegularExpressions;
+using MediaPortal.GUI.Library;
 
 namespace MPEIPlugin.MPSite
 {
@@ -30,7 +33,7 @@ namespace MPEIPlugin.MPSite
           cats.Add(new Category()
           {
             Id = matchResults.Groups["id"].Value,
-            Name = matchResults.Groups["name"].Value,
+            Name = matchResults.Groups["name"].Value.Replace("&amp;","&"),
             Number = matchResults.Groups["nr"].Value,
             Url = matchResults.Groups["url"].Value,
             PId = matchResults.Groups["pid"].Value
@@ -130,8 +133,8 @@ namespace MPEIPlugin.MPSite
           {
             SiteItems items = new SiteItems()
                                 {
-                                  Name = matchResults.Groups["name"].Value,
-                                  Descriptions = matchResults.Groups["desc"].Value,
+                                  Name = HttpUtility.HtmlDecode(matchResults.Groups["name"].Value),
+                                  Descriptions =matchResults.Groups["desc"].Value,
                                   Url = matchResults.Groups["url"].Value,
                                   LogoUrl =
                                     Regex.Match(item, "<p.*?src=\"(?<img>.*?)\"", RegexOptions.Singleline).Groups["img"]
@@ -140,6 +143,7 @@ namespace MPEIPlugin.MPSite
                                   Popular = matchResults.Value.Contains("status_popular.png"),
                                   JustAdded = matchResults.Value.Contains("status_new.png")
                                 };
+            items.Descriptions = MediaPortal.Util.Utils.stripHTMLtags(HttpUtility.HtmlDecode(items.Descriptions));
             items.LoadFields(matchResults.Groups["fields"].Value);
             category.SiteItems.Add(items);
             matchResults = matchResults.NextMatch();

@@ -199,6 +199,8 @@ namespace MPEIPlugin
     public static string ActionAdded = "Action was added to action queue";
     public static string ActionRemoved = "Action was removed from action queue";
     public static string Author = "Author";
+    public static string AskForRestart1 = "This Operation will restart MediaPortal. Do you";
+    public static string AskForRestart2 = "wish to continue ? ";
 
     // C
     public static string ChangeLogFor = "Change log for :";
