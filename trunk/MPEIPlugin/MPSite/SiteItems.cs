@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
+using MediaPortal.GUI.Library;
 
 namespace MPEIPlugin.MPSite
 {
@@ -47,9 +50,12 @@ namespace MPEIPlugin.MPSite
       FileUrl =
         Regex.Match(site, "<div class=\"data-short\"><a href=\"(?<name>.*?)\" t", RegexOptions.Singleline).Groups["name"].
           Value;
-
+      Descriptions = Regex.Match(site, "<div class=\"listing-desc\"><p>(?<name>.*?)</p>", RegexOptions.Singleline).Groups["name"].
+          Value;
+      Descriptions = MediaPortal.Util.Utils.stripHTMLtags(HttpUtility.HtmlDecode(Descriptions));
       Regex regexObj = new Regex("<a rel=\"shadowbox.ca.\".*?href=\"(?<name>.*?)\">", RegexOptions.Singleline);
       Match matchResults = regexObj.Match(site);
+      LogoUrl = LogoUrl.Replace("/s/", "/m/");
       Images.Clear();
       while (matchResults.Success)
       {
@@ -62,16 +68,23 @@ namespace MPEIPlugin.MPSite
     {
       if(!string.IsNullOrEmpty(File))
         return;
-
-      var request = (HttpWebRequest)WebRequest.Create(FileUrl);
-      request.Method = "HEAD";
-      request.AllowAutoRedirect = true;
-
-      using (var response = request.GetResponse() as HttpWebResponse)
+      if (FileUrl.StartsWith("http://www.team-mediaportal.com/"))
       {
-        if (!string.IsNullOrEmpty(response.GetResponseHeader("Content-Disposition")))
-          File = response.GetResponseHeader("Content-Disposition").Split(';')[1].Split('=')[1].Replace("\"", "").ToLower();
-      }      
+        var request = (HttpWebRequest) WebRequest.Create(FileUrl);
+        request.Method = "HEAD";
+        request.AllowAutoRedirect = true;
+
+        using (var response = request.GetResponse() as HttpWebResponse)
+        {
+          if (!string.IsNullOrEmpty(response.GetResponseHeader("Content-Disposition")))
+            File =
+              response.GetResponseHeader("Content-Disposition").Split(';')[1].Split('=')[1].Replace("\"", "").ToLower();
+        }
+      }
+      else
+      {
+        File = Path.GetFileName(FileUrl);
+      }
     }
 
     public void LoadFields(string fields)

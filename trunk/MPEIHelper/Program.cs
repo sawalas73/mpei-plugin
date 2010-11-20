@@ -9,55 +9,103 @@ namespace MPEIHelper
 {
   static class Program
   {
+    private static SplashScreen splashScreen = new SplashScreen();
+
     /// <summary>
     /// The main entry point for the application.
     /// </summary>
     [STAThread]
     static void Main(string[] args)
     {
-      string url = "";
-      string file = "";
-      string name = "";
-      string silen = "";
-
       string configFile = args[0];
       if (File.Exists(configFile))
       {
         TextReader reader = new StreamReader(configFile);
-        url = reader.ReadLine();
-        file = reader.ReadLine();
-        name = reader.ReadLine();
-        silen = reader.ReadLine();
+        string url = reader.ReadLine();
+        string file = reader.ReadLine();
+        string name = reader.ReadLine();
+        string silen = reader.ReadLine();
+        string bkfile = reader.ReadLine();
+        reader.Close();
         KillProcces("Configuration");
         KillProcces("MediaPortal");
         DownloadFile dlg = new DownloadFile();
+        if (File.Exists(bkfile) && !String.IsNullOrEmpty(silen))
+        {
+          splashScreen.SetImg(bkfile);
+          splashScreen.Show();
+        }
+        dlg.Client.DownloadProgressChanged += Client_DownloadProgressChanged;
+        dlg.Client.DownloadFileCompleted += Client_DownloadFileCompleted;
         dlg.Text = name;
         dlg.StartDownload(url, file);
-        if (Path.GetExtension(file).ToLower() == ".mpe1")
+        string tempfile = file;
+        if (File.Exists(file))
         {
-          silen = file + " " + silen;
-          file = "mpeinstaller.exe";
-        }
-        try
-        {
-          if (File.Exists(file))
+          if (Path.GetExtension(file).ToLower() == ".mpe1")
           {
-            Process process = string.IsNullOrEmpty(silen) ? Process.Start(file) : Process.Start(file , silen);
-            process.WaitForExit();
+            silen = file + " " + silen;
+            file = "mpeinstaller.exe";
+          }
+          try
+          {
+            if (File.Exists(file))
+            {
+              if (splashScreen.Visible)
+              {
+                splashScreen.ResetProgress();
+                splashScreen.SetInfo("Installing extension.Please wait");
+              }
+              Process process = string.IsNullOrEmpty(silen) ? Process.Start(file) : Process.Start(file, silen);
+              process.WaitForExit();
+            }
+          }
+          catch (Exception exception)
+          {
+            if (splashScreen.Visible)
+            {
+              splashScreen.Close();
+            }
+            MessageBox.Show(exception.Message);
+          }
+          try
+          {
+            File.Delete(configFile);
+            File.Delete(tempfile);
+          }
+          catch (Exception)
+          {
+
           }
         }
-        catch (Exception exception)
-        {
-          MessageBox.Show(exception.Message);
-        }
-
         Process.Start("MediaPortal.exe");
+        Thread.Sleep(3000);
+        if (splashScreen.Visible)
+        {
+          splashScreen.Close();
+        }
         return;
       }
 
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       Application.Run(new Form1(args[0]));
+    }
+
+    static void Client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+    {
+      if (splashScreen.Visible)
+      {
+        splashScreen.ResetProgress();
+      }
+    }
+
+    static void Client_DownloadProgressChanged(object sender, System.Net.DownloadProgressChangedEventArgs e)
+    {
+      if(splashScreen.Visible)
+      {
+        splashScreen.SetProgress("Downloading", e.ProgressPercentage);
+      }
     }
 
     private static void KillProcces(string name)
