@@ -50,65 +50,65 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\myextensions2.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{fb960c8e-5cd5-4027-ad85-8b1aa60e5822}-myextensions2.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\myextensions2.xml</DestinationFilename>
+              <LocalFileName>Skin\DefaultWide\myextensions2.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{10344bcc-d1e8-46fc-b716-7c67b1ebb6d6}-myextensions2.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\myextensions2.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\extension_action.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{ce5678a8-0a01-4aab-b024-d87d00e300f5}-extension_action.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\Media\extension_action.png</DestinationFilename>
+              <LocalFileName>Skin\DefaultWide\myextensions2info.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{2613d5a4-5d95-43f6-8111-e0c233aa62e7}-myextensions2info.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\myextensions2info.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\extension_update.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{05bdeb07-c5b2-41f9-ae47-6f6f1e249f14}-extension_update.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\Media\extension_update.png</DestinationFilename>
+              <LocalFileName>Skin\DefaultWide\myextensions2settings.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b75b79b8-b945-4f2f-bbf3-f68f6adbe9c4}-myextensions2settings.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\myextensions2settings.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\myextensions2slideshow.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{29e8385a-0449-473f-8d6d-1b9249f76310}-myextensions2slideshow.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\myextensions2slideshow.xml</DestinationFilename>
+              <LocalFileName>Skin\DefaultWide\myextensions2slideshow.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8f2a53bc-c880-4522-a3e0-7b6d5f715247}-myextensions2slideshow.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\myextensions2slideshow.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\myextensions2settings.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{86306aff-a7ad-4224-9fc7-346c5b592469}-myextensions2settings.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\myextensions2settings.xml</DestinationFilename>
+              <LocalFileName>Skin\DefaultWide\Media\extension_action.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{83971b55-7880-4cc8-9e26-fc0fff5914ed}-extension_action.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\extension_action.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\myextensions2info.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{007ee8d6-7a24-453a-a083-7619bc71b62f}-myextensions2info.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\myextensions2info.xml</DestinationFilename>
+              <LocalFileName>Skin\DefaultWide\Media\extension_update.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{bb394189-8a88-425c-8ab7-54239673a98e}-extension_update.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\extension_update.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\status_editorpick.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{657b35f7-1ed1-4455-af5a-9818484d7ad8}-status_editorpick.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\Media\status_editorpick.png</DestinationFilename>
+              <LocalFileName>Skin\DefaultWide\Media\status_editorpick.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1e3a6252-ac52-440f-beb1-2b9851dc4a12}-status_editorpick.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\status_editorpick.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\status_new.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{d4263302-cd59-4862-9823-cb71af3d996a}-status_new.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\Media\status_new.png</DestinationFilename>
+              <LocalFileName>Skin\DefaultWide\Media\status_new.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{31fdb367-777f-4b5d-acf1-f75b5a10a9df}-status_new.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\status_new.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\status_popular.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{a1b2d4a7-8c71-4371-b818-3acd132dd6d4}-status_popular.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\Media\status_popular.png</DestinationFilename>
+              <LocalFileName>Skin\DefaultWide\Media\status_popular.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{411e64ab-f495-4d54-a22a-66e8882895a3}-status_popular.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\status_popular.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -120,67 +120,67 @@
         <Description>DefaultSkin</Description>
         <Files>
           <Items>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\myextensions2.xml</LocalFileName>
-              <ZipFileName>Installer{Font}\{3d985903-3ab3-4bd4-a21e-badde8899fee}-myextensions2.xml</ZipFileName>
+              <LocalFileName>Skin\DefaultWide\myextensions2.xml</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{fc379dea-5759-4975-8b16-1f6fc4bd6a42}-myextensions2.xml</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\myextensions2.xml</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\extension_action.png</LocalFileName>
-              <ZipFileName>Installer{Font}\{001d750c-3a9f-44f4-8079-e7b855104200}-extension_action.png</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_action.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\extension_update.png</LocalFileName>
-              <ZipFileName>Installer{Font}\{511b48cb-a91c-409d-b71b-ef8792fc445a}-extension_update.png</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_update.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\myextensions2slideshow.xml</LocalFileName>
-              <ZipFileName>Installer{Font}\{2101a853-d695-4620-9568-8655e6e6a6bf}-myextensions2slideshow.xml</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2slideshow.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\myextensions2settings.xml</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{c71b873a-512e-43ee-ab24-909f3d1600b4}-myextensions2settings.xml</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2settings.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="true">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\myextensions2info.xml</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{cb5aa300-af78-4dd1-8d7b-75fbcad8def5}-myextensions2info.xml</ZipFileName>
+              <LocalFileName>Skin\DefaultWide\myextensions2info.xml</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{420ec958-f5df-44c9-a959-0299a3e60983}-myextensions2info.xml</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\myextensions2info.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\status_editorpick.png</LocalFileName>
-              <ZipFileName>Installer{Font}\{d7da61dd-01f8-4a37-9de4-fa1361d75565}-status_editorpick.png</ZipFileName>
+              <LocalFileName>Skin\DefaultWide\myextensions2settings.xml</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{95b5833a-4659-45c6-83dd-9450d1f7adc9}-myextensions2settings.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2settings.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\DefaultWide\myextensions2slideshow.xml</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{686ac3f9-3d62-44d8-9075-342238254b44}-myextensions2slideshow.xml</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2slideshow.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\DefaultWide\Media\extension_action.png</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{81c5e1bb-3db0-450c-a442-f0fe0e47b6aa}-extension_action.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_action.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\DefaultWide\Media\extension_update.png</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{610ef1e1-8d87-4234-bd10-d7f3efe354dd}-extension_update.png</ZipFileName>
+              <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_update.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>NeverOverwrite</UpdateOption>
+              <LocalFileName>Skin\DefaultWide\Media\status_editorpick.png</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{275fa24c-a8d9-481c-8b0f-95dec302d4a0}-status_editorpick.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\status_editorpick.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\status_new.png</LocalFileName>
-              <ZipFileName>Installer{Font}\{9256d963-65ff-4d3d-88d4-e2994cda7889}-status_new.png</ZipFileName>
+              <LocalFileName>Skin\DefaultWide\Media\status_new.png</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{a690b1fd-a5a8-4966-b817-f94e9b12de27}-status_new.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\status_new.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\Blue3wide\Media\status_popular.png</LocalFileName>
-              <ZipFileName>Installer{Font}\{cb26798e-4603-4bce-b14c-f99fe25d592a}-status_popular.png</ZipFileName>
+              <LocalFileName>Skin\DefaultWide\Media\status_popular.png</LocalFileName>
+              <ZipFileName>Installer{GenericSkinFile}\{756c30cc-ab75-4279-8d8d-a27ddd42c5ee}-status_popular.png</ZipFileName>
               <DestinationFilename>%Skin%\[DEFAULT]\Media\status_popular.png</DestinationFilename>
             </FileItem>
           </Items>
@@ -341,12 +341,12 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>5</Build>
-      <Revision>7</Revision>
+      <Revision>8</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
-    <VersionDescription>Splashscreen when downloading extensions for mpsite</VersionDescription>
+    <VersionDescription>Compatibility with latest SVN</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.7.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.8.mpe1</OnlineLocation>
     <ReleaseDate>2010-11-20T00:04:20</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>d:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
@@ -415,65 +415,65 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\Blue3wide\myextensions2.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{fb960c8e-5cd5-4027-ad85-8b1aa60e5822}-myextensions2.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\myextensions2.xml</DestinationFilename>
+        <LocalFileName>Skin\DefaultWide\myextensions2.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{10344bcc-d1e8-46fc-b716-7c67b1ebb6d6}-myextensions2.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\myextensions2.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\Blue3wide\Media\extension_action.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{ce5678a8-0a01-4aab-b024-d87d00e300f5}-extension_action.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\Media\extension_action.png</DestinationFilename>
+        <LocalFileName>Skin\DefaultWide\myextensions2info.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{2613d5a4-5d95-43f6-8111-e0c233aa62e7}-myextensions2info.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\myextensions2info.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\Blue3wide\Media\extension_update.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{05bdeb07-c5b2-41f9-ae47-6f6f1e249f14}-extension_update.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\Media\extension_update.png</DestinationFilename>
+        <LocalFileName>Skin\DefaultWide\myextensions2settings.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b75b79b8-b945-4f2f-bbf3-f68f6adbe9c4}-myextensions2settings.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\myextensions2settings.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\Blue3wide\myextensions2slideshow.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{29e8385a-0449-473f-8d6d-1b9249f76310}-myextensions2slideshow.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\myextensions2slideshow.xml</DestinationFilename>
+        <LocalFileName>Skin\DefaultWide\myextensions2slideshow.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8f2a53bc-c880-4522-a3e0-7b6d5f715247}-myextensions2slideshow.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\myextensions2slideshow.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\Blue3wide\myextensions2settings.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{86306aff-a7ad-4224-9fc7-346c5b592469}-myextensions2settings.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\myextensions2settings.xml</DestinationFilename>
+        <LocalFileName>Skin\DefaultWide\Media\extension_action.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{83971b55-7880-4cc8-9e26-fc0fff5914ed}-extension_action.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\extension_action.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\Blue3wide\myextensions2info.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{007ee8d6-7a24-453a-a083-7619bc71b62f}-myextensions2info.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\myextensions2info.xml</DestinationFilename>
+        <LocalFileName>Skin\DefaultWide\Media\extension_update.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{bb394189-8a88-425c-8ab7-54239673a98e}-extension_update.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\extension_update.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\Blue3wide\Media\status_editorpick.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{657b35f7-1ed1-4455-af5a-9818484d7ad8}-status_editorpick.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\Media\status_editorpick.png</DestinationFilename>
+        <LocalFileName>Skin\DefaultWide\Media\status_editorpick.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1e3a6252-ac52-440f-beb1-2b9851dc4a12}-status_editorpick.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\status_editorpick.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\Blue3wide\Media\status_new.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{d4263302-cd59-4862-9823-cb71af3d996a}-status_new.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\Media\status_new.png</DestinationFilename>
+        <LocalFileName>Skin\DefaultWide\Media\status_new.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{31fdb367-777f-4b5d-acf1-f75b5a10a9df}-status_new.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\status_new.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\Blue3wide\Media\status_popular.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{a1b2d4a7-8c71-4371-b818-3acd132dd6d4}-status_popular.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\Media\status_popular.png</DestinationFilename>
+        <LocalFileName>Skin\DefaultWide\Media\status_popular.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{411e64ab-f495-4d54-a22a-66e8882895a3}-status_popular.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\status_popular.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -500,7 +500,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b5453eda-0b29-40c5-8bc8-96f83cb12eb1}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{0eff917f-191a-4733-9a77-ead2f3aeb49c}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
@@ -511,19 +511,19 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{6b3d3bfe-f849-4cc6-84ae-9a02a435a7ce}-</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide</DestinationFilename>
-        <Folder>Skin\Blue3wide</Folder>
-        <Group>Skin</Group>
+        <ZipFileName>Installer{CopyFile}\{8da00361-22df-4b34-99e3-d38c94735924}-</ZipFileName>
+        <DestinationFilename>%Language%\MPEI</DestinationFilename>
+        <Folder>language\MPEI</Folder>
+        <Group>Languages</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
-      <FolderGroup InstallType="CopyFont" SystemFile="false" Modified="true">
+      <FolderGroup InstallType="GenericSkinFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>NeverOverwrite</UpdateOption>
         <LocalFileName />
-        <ZipFileName>Installer{Font}\{48677756-43bf-4222-a9b3-6cc121259c21}-</ZipFileName>
+        <ZipFileName>Installer{GenericSkinFile}\{c522f82b-ac00-4aad-8200-69867a2165fc}-</ZipFileName>
         <DestinationFilename>%Skin%\[DEFAULT]\</DestinationFilename>
-        <Folder>Skin\Blue3wide</Folder>
+        <Folder>Skin\DefaultWide</Folder>
         <Group>DefaultSkin</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -531,10 +531,10 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{8da00361-22df-4b34-99e3-d38c94735924}-</ZipFileName>
-        <DestinationFilename>%Language%\MPEI</DestinationFilename>
-        <Folder>language\MPEI</Folder>
-        <Group>Languages</Group>
+        <ZipFileName>Installer{CopyFile}\{bda8b607-f1fd-4fd7-a7f7-35f5f46017e4}-</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide</DestinationFilename>
+        <Folder>Skin\DefaultWide</Folder>
+        <Group>Skin</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>

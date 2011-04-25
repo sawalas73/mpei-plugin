@@ -11,13 +11,14 @@ using System.Timers;
 using System.Xml;
 using System.Xml.Serialization;
 using MediaPortal.GUI.Library;
-using MediaPortal.Profile;
+//using MediaPortal.Profile;
 using MediaPortal.Util;
 using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
 using MpeCore;
 using MpeCore.Classes;
 using MPEIPlugin.Classes;
+using Action = MediaPortal.GUI.Library.Action;
 
 namespace MPEIPlugin
 {

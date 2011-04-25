@@ -6,6 +6,7 @@ using System.Xml;
 using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
 using MediaPortal.GUI.Library;
+//using MediaPortal.Profile;
 using MediaPortal.Profile;
 using MpeCore;
 using MpeCore.Classes;

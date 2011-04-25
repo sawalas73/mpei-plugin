@@ -11,6 +11,7 @@ using System.Timers;
 using System.Xml;
 using System.Xml.Serialization;
 using MediaPortal.GUI.Library;
+//using MediaPortal.Profile;
 using MediaPortal.Profile;
 using MediaPortal.Util;
 using MediaPortal.Configuration;
@@ -18,6 +19,7 @@ using MediaPortal.Dialogs;
 using MpeCore;
 using MpeCore.Classes;
 using MPEIPlugin.MPSite;
+using Action = MediaPortal.GUI.Library.Action;
 
 
 namespace MPEIPlugin
@@ -754,26 +756,26 @@ namespace MPEIPlugin
           {
             case View.List:
               currentView = View.Icons;
-              if (facadeView.ThumbnailView == null)
+              if (facadeView.ThumbnailLayout == null)
                 shouldContinue = true;
               else
-                facadeView.View = GUIFacadeControl.ViewMode.SmallIcons;
+                facadeView.CurrentLayout = GUIFacadeControl.Layout.SmallIcons;
               break;
 
             case View.Icons:
               currentView = View.LargeIcons;
-              if (facadeView.ThumbnailView == null)
+              if (facadeView.ThumbnailLayout == null)
                 shouldContinue = true;
               else
-                facadeView.View = GUIFacadeControl.ViewMode.LargeIcons;
+                facadeView.CurrentLayout = GUIFacadeControl.Layout.LargeIcons;
               break;
 
             case View.LargeIcons:
               currentView = View.List;
-              if (facadeView.ListView == null)
+              if (facadeView.ListLayout == null)
                 shouldContinue = true;
               else
-                facadeView.View = GUIFacadeControl.ViewMode.List;
+                facadeView.CurrentLayout = GUIFacadeControl.Layout.List;
               break;
           }
         } while (shouldContinue);
@@ -1723,13 +1725,13 @@ namespace MPEIPlugin
       switch (currentView)
       {
         case View.List:
-          facadeView.View = GUIFacadeControl.ViewMode.List;
+          facadeView.CurrentLayout = GUIFacadeControl.Layout.List;
           break;
         case View.Icons:
-          facadeView.View = GUIFacadeControl.ViewMode.SmallIcons;
+          facadeView.CurrentLayout = GUIFacadeControl.Layout.SmallIcons;
           break;
         case View.LargeIcons:
-          facadeView.View = GUIFacadeControl.ViewMode.LargeIcons;
+          facadeView.CurrentLayout = GUIFacadeControl.Layout.LargeIcons;
           break;
       }
       UpdateButtonStates();
