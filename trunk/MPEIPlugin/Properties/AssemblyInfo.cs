@@ -9,7 +9,7 @@ using MediaPortal.Common.Utils;
 [assembly: AssemblyTitle("MPEIPlugin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Csalad")]
+[assembly: AssemblyCompany("MEDIAPORTAL")]
 [assembly: AssemblyProduct("MPEIPlugin")]
 [assembly: AssemblyCopyright("Copyright © Dukus 2011")]
 [assembly: AssemblyTrademark("")]

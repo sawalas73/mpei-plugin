@@ -712,8 +712,8 @@ namespace MPEIPlugin
       else if (dlg.SelectedLabelText == Translation.Settings)
       {
         GUISettings guiSettings = (GUISettings)GUIWindowManager.GetWindow(803);
-        guiSettings.SettingsFile = pk.LocationFolder + "extension_settings.xml";
-        GUIWindowManager.ActivateWindow(803);
+        //guiSettings.SettingsFile = pk.LocationFolder + "extension_settings.xml";
+        GUIWindowManager.ActivateWindow(803,guiSettings.SettingsFile = pk.LocationFolder + "extension_settings.xml");
       }
       _setting.Save();
       queue.Save();
