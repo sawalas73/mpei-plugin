@@ -41,6 +41,7 @@ namespace MPEIPlugin
       return Load(GUIGraphicsContext.Skin + @"\myextensions2settings.xml");
     }
 
+
     protected override void OnPageLoad()
     {
       foreach (string name in Translation.Strings.Keys)
@@ -48,7 +49,10 @@ namespace MPEIPlugin
         Translation.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
       }
 
-      settings.Load(SettingsFile);
+      if (!string.IsNullOrEmpty(_loadParameter) && File.Exists(_loadParameter))
+        settings.Load(_loadParameter);
+      else
+        settings.Load(SettingsFile);
       PopulateFacade(0);
       base.OnPageLoad();
     }
