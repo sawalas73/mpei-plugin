@@ -328,8 +328,50 @@ Click Next to continue or Cancel to exit Setup.</Value>
     </Items>
   </Sections>
   <Dependencies>
-    <Items />
+    <Items>
+      <DependencyItem>
+        <Type>MediaPortal</Type>
+        <Id />
+        <MinVersion>
+          <Major>1</Major>
+          <Minor>1</Minor>
+          <Build>6</Build>
+          <Revision>27644</Revision>
+        </MinVersion>
+        <MaxVersion>
+          <Major>1</Major>
+          <Minor>1</Minor>
+          <Build>6</Build>
+          <Revision>27644</Revision>
+        </MaxVersion>
+        <WarnOnly>false</WarnOnly>
+        <Message>requires MediaPortal 1.2</Message>
+        <Name>MediaPortal</Name>
+      </DependencyItem>
+    </Items>
   </Dependencies>
+  <PluginDependencies>
+    <Items>
+      <PluginDependencyItem AssemblyName="MPEIPlugin.dll">
+        <CompatibleVersion>
+          <Items>
+            <CompatibleVersionItem>
+              <MinRequiredVersion>1.1.6.27644</MinRequiredVersion>
+              <DesignedForVersion>1.1.6.27644</DesignedForVersion>
+            </CompatibleVersionItem>
+          </Items>
+        </CompatibleVersion>
+        <SubSystemsUsed>
+          <Items>
+            <SubSystemItem Name="MP.Config" />
+            <SubSystemItem Name="MP.Players.Music" />
+            <SubSystemItem Name="MP.SkinEngine" />
+            <SubSystemItem Name="MP.Players.Video" />
+          </Items>
+        </SubSystemsUsed>
+      </PluginDependencyItem>
+    </Items>
+  </PluginDependencies>
   <GeneralInfo>
     <Name>Extensions</Name>
     <Id>a6afa4d6-4fd8-4607-8878-5911db044fd7</Id>
@@ -341,15 +383,15 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Major>0</Major>
       <Minor>0</Minor>
       <Build>5</Build>
-      <Revision>8</Revision>
+      <Revision>9</Revision>
     </Version>
     <ExtensionDescription>Windows Plugin to manage MediaPortal extensions. Install, update, uninstall extensions </ExtensionDescription>
     <VersionDescription>Compatibility with latest SVN</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.0.0.5.8.mpe1</OnlineLocation>
-    <ReleaseDate>2010-11-20T00:04:20</ReleaseDate>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.[Version].mpe1</OnlineLocation>
+    <ReleaseDate>2011-08-30T20:56:05.7031033-04:00</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
-    <Location>d:\devel\vs2005\MPEIPlugin\Setup\[Name].[Version].mpe1</Location>
+    <Location>.\[Name].[Version].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
@@ -538,9 +580,10 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
-    <ProjectFilename>D:\devel\vs2005\MPEIPlugin\Setup\mpeiplugin.xmp2</ProjectFilename>
-    <UpdatePath1>d:\devel\vs2005\MPEIPlugin\Setup\update2.xml</UpdatePath1>
+    <ProjectFilename>E:\My Documents\Visual Studio 2010\Projects\svnroot\mp-plugins\mpei-plugin\Setup\mpeiplugin.xmp2</ProjectFilename>
+    <UpdatePath1>.\update2.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
   </ProjectSettings>
+  <IsSkin>false</IsSkin>
 </PackageClass>
