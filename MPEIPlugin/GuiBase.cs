@@ -245,14 +245,7 @@ namespace MPEIPlugin
 
     public bool AskForRestart()
     {
-      var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
-      dlgYesNo.SetHeading(Translation.Notification); //resume movie?
-      dlgYesNo.SetLine(1, Translation.NotificationMsg1);
-      dlgYesNo.SetLine(2, Translation.NotificationMsg2);
-      dlgYesNo.SetLine(3, Translation.NotificationMsg3);
-      dlgYesNo.SetDefaultToYes(true);
-      dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-      return dlgYesNo.IsConfirmed;
+      return GUIUtils.ShowYesNoDialog(Translation.Notification, Translation.NotificationWarning, true);
     }
 
     public void RestartMP()

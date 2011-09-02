@@ -730,16 +730,7 @@ namespace MPEIPlugin
       SaveSettings();
       if (queue.Items.Count > 0)
       {
-        GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
-        if (null == dlgYesNo)
-          return;
-        dlgYesNo.SetHeading(Translation.Notification); //resume movie?
-        dlgYesNo.SetLine(1, Translation.NotificationMsg1);
-        dlgYesNo.SetLine(2, Translation.NotificationMsg1);
-        dlgYesNo.SetLine(3, Translation.NotificationMsg1);
-        dlgYesNo.SetDefaultToYes(true);
-        dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-        if (dlgYesNo.IsConfirmed)
+        if (GUIUtils.ShowYesNoDialog(Translation.Notification, Translation.NotificationWarning, true))
         {
           RestartMP();
         }
@@ -799,16 +790,7 @@ namespace MPEIPlugin
       {
         if (queue.Items.Count > 0)
         {
-          GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
-          if (null == dlgYesNo)
-            return;
-          dlgYesNo.SetHeading(Translation.Notification); 
-          dlgYesNo.SetLine(1, Translation.NotificationMsg3);
-          dlgYesNo.SetLine(2, Translation.NotificationMsg4);
-          dlgYesNo.SetLine(3, Translation.NotificationMsg2);
-          dlgYesNo.SetDefaultToYes(true);
-          dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-          if (dlgYesNo.IsConfirmed)
+          if (GUIUtils.ShowYesNoDialog(Translation.Notification, Translation.NotificationMessage, true))
           {
             RestartMP();
           }

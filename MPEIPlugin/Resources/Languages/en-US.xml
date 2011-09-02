@@ -40,12 +40,9 @@
   <string Field="NewExtensions">New Extensions</string>
   <string Field="NewUpdates">New updates</string>
   <string Field="Notification">Notification</string>
-  <string Field="NotificationMsg1">There are pending actions</string>
-  <string Field="NotificationMsg2">Do you want to execute it ?</string>
-  <string Field="NotificationMsg3">This operation will restart MediaPortal</string>
-  <string Field="NotificationMsg4">and execute the pending actions</string>
-
-
+  <string Field="NotificationWarning">There are tasks still outstanding.\nRestart and execute now?</string>
+  <string Field="NotificationMessage">Would you like to restart MediaPortal\nand execute pending tasks now?</string>
+  
   <!--  O  -->
   <string Field="OnlineExtensions">Online Extensions</string>
 
@@ -55,7 +52,7 @@
   <string Field="Restart">Restart</string>
   <string Field="Rotate">Rotate</string>
   <string Field="RevokeLastAction">Revoke last action</string>
-  <string Field="RestartNow">This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the action will queued.</string>
+  <string Field="RestartNow">This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the task will queued.</string>
 
   <!--  S  -->
   <string Field="Sections">Sections</string>
