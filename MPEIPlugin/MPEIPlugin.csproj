@@ -115,6 +115,19 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Languages\en-US.xml" />
+    <Content Include="Resources\Languages\fr.xml" />
+    <Content Include="Resources\Skins\DefaultWide\Media\extension_action.png" />
+    <Content Include="Resources\Skins\DefaultWide\Media\extension_update.png" />
+    <Content Include="Resources\Skins\DefaultWide\Media\status_editorpick.png" />
+    <Content Include="Resources\Skins\DefaultWide\Media\status_new.png" />
+    <Content Include="Resources\Skins\DefaultWide\Media\status_popular.png" />
+    <Content Include="Resources\Skins\DefaultWide\myextensions2.xml" />
+    <Content Include="Resources\Skins\DefaultWide\myextensions2info.xml" />
+    <Content Include="Resources\Skins\DefaultWide\myextensions2settings.xml" />
+    <Content Include="Resources\Skins\DefaultWide\myextensions2slideshow.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
