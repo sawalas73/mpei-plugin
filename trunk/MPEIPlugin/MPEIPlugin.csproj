@@ -87,6 +87,7 @@
     <Compile Include="DownloadManager.cs" />
     <Compile Include="GUIMpeiPlugin.cs" />
     <Compile Include="GUISlideShow.cs" />
+    <Compile Include="GUIUtils.cs" />
     <Compile Include="MPSite\Category.cs" />
     <Compile Include="MPSite\MPSiteUtil.cs" />
     <Compile Include="MPSite\SiteItems.cs" />
