@@ -41,169 +41,25 @@
           </Items>
         </Files>
       </GroupItem>
-      <GroupItem Name="Skin">
-        <DisplayName>Skin</DisplayName>
-        <DefaulChecked>true</DefaulChecked>
-        <Description>Skin</Description>
-        <Files>
-          <Items>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\myextensions2.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{10344bcc-d1e8-46fc-b716-7c67b1ebb6d6}-myextensions2.xml</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\myextensions2.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\myextensions2info.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{2613d5a4-5d95-43f6-8111-e0c233aa62e7}-myextensions2info.xml</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\myextensions2info.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\myextensions2settings.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{b75b79b8-b945-4f2f-bbf3-f68f6adbe9c4}-myextensions2settings.xml</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\myextensions2settings.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\myextensions2slideshow.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{8f2a53bc-c880-4522-a3e0-7b6d5f715247}-myextensions2slideshow.xml</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\myextensions2slideshow.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\extension_action.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{83971b55-7880-4cc8-9e26-fc0fff5914ed}-extension_action.png</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\Media\extension_action.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\extension_update.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{bb394189-8a88-425c-8ab7-54239673a98e}-extension_update.png</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\Media\extension_update.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\status_editorpick.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{1e3a6252-ac52-440f-beb1-2b9851dc4a12}-status_editorpick.png</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\Media\status_editorpick.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\status_new.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{31fdb367-777f-4b5d-acf1-f75b5a10a9df}-status_new.png</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\Media\status_new.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\status_popular.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{411e64ab-f495-4d54-a22a-66e8882895a3}-status_popular.png</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\Media\status_popular.png</DestinationFilename>
-            </FileItem>
-          </Items>
-        </Files>
-      </GroupItem>
-      <GroupItem Name="DefaultSkin">
-        <ParentGroup />
-        <DisplayName>DefaultSkin</DisplayName>
-        <DefaulChecked>true</DefaulChecked>
-        <Description>DefaultSkin</Description>
-        <Files>
-          <Items>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\myextensions2.xml</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{fc379dea-5759-4975-8b16-1f6fc4bd6a42}-myextensions2.xml</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\myextensions2info.xml</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{420ec958-f5df-44c9-a959-0299a3e60983}-myextensions2info.xml</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2info.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\myextensions2settings.xml</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{95b5833a-4659-45c6-83dd-9450d1f7adc9}-myextensions2settings.xml</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2settings.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\myextensions2slideshow.xml</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{686ac3f9-3d62-44d8-9075-342238254b44}-myextensions2slideshow.xml</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\myextensions2slideshow.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\extension_action.png</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{81c5e1bb-3db0-450c-a442-f0fe0e47b6aa}-extension_action.png</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_action.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\extension_update.png</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{610ef1e1-8d87-4234-bd10-d7f3efe354dd}-extension_update.png</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\Media\extension_update.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\status_editorpick.png</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{275fa24c-a8d9-481c-8b0f-95dec302d4a0}-status_editorpick.png</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\Media\status_editorpick.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\status_new.png</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{a690b1fd-a5a8-4966-b817-f94e9b12de27}-status_new.png</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\Media\status_new.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="GenericSkinFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>NeverOverwrite</UpdateOption>
-              <LocalFileName>Skin\DefaultWide\Media\status_popular.png</LocalFileName>
-              <ZipFileName>Installer{GenericSkinFile}\{756c30cc-ab75-4279-8d8d-a27ddd42c5ee}-status_popular.png</ZipFileName>
-              <DestinationFilename>%Skin%\[DEFAULT]\Media\status_popular.png</DestinationFilename>
-            </FileItem>
-          </Items>
-        </Files>
-      </GroupItem>
       <GroupItem Name="Languages">
+        <ParentGroup />
         <DisplayName>Languages</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>Languages</Description>
+        <Description>Translations for MPEI GUI plugin.</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>language\MPEI\en-US.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
+              <LocalFileName>..\MPEIPlugin\Resources\Languages\en-US.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{cfdd8643-646d-46c7-a801-79b651e3de85}-en-US.xml</ZipFileName>
               <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>language\MPEI\fr.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{327c5cb9-86db-48c9-a1fb-0e68fb53b837}-fr.xml</ZipFileName>
+              <LocalFileName>..\MPEIPlugin\Resources\Languages\fr.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{f563059b-f118-4331-befa-a6cca0f48339}-fr.xml</ZipFileName>
               <DestinationFilename>%Language%\MPEI\fr.xml</DestinationFilename>
             </FileItem>
           </Items>
@@ -222,6 +78,88 @@
               <LocalFileName>Settings\extension_settings.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{47c75ac8-73e1-4f2c-81b3-307647f66dd1}-extension_settings.xml</ZipFileName>
               <DestinationFilename>%Base%\extension_settings.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Skins">
+        <ParentGroup />
+        <DisplayName>Skins</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Default Skin support for MPEI GUI plugin.</Description>
+        <Files>
+          <Items />
+        </Files>
+      </GroupItem>
+      <GroupItem Name="DefaultWideSkin">
+        <ParentGroup>Skins</ParentGroup>
+        <DisplayName>DefaultWide</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>DefaultWide (16:9) Skin support for MPEI GUI plugin.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\myextensions2.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1bce9ff6-fdb6-43cc-81db-70bccd1ed6e6}-myextensions2.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\myextensions2.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\myextensions2info.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5f5506b7-f07a-4db4-afed-02e5dd4ee0b3}-myextensions2info.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\myextensions2info.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\myextensions2settings.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5d991a1e-2ea6-4b6b-b965-3dbb566ac0bc}-myextensions2settings.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\myextensions2settings.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\myextensions2slideshow.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3c6202ba-0925-4b73-bcae-78ed33cec735}-myextensions2slideshow.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\myextensions2slideshow.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\extension_action.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{38edc630-a44a-47ca-a7f6-9e4a5e3ca326}-extension_action.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\extension_action.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\extension_update.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{e1258ff4-1ce3-47a6-b7e3-d31f2ab098b3}-extension_update.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\extension_update.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\status_editorpick.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{4cb39fc9-89c1-47ae-9fd6-ef12824e5f97}-status_editorpick.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\status_editorpick.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\status_new.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{797053e4-d40f-41bd-b137-3bf6cd9e2d6c}-status_new.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\status_new.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\status_popular.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9c2d2964-cfeb-41dd-8235-1b28be98c5d9}-status_popular.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\status_popular.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -351,26 +289,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     </Items>
   </Dependencies>
   <PluginDependencies>
-    <Items>
-      <PluginDependencyItem AssemblyName="MPEIPlugin.dll">
-        <CompatibleVersion>
-          <Items>
-            <CompatibleVersionItem>
-              <MinRequiredVersion>1.1.6.27644</MinRequiredVersion>
-              <DesignedForVersion>1.1.6.27644</DesignedForVersion>
-            </CompatibleVersionItem>
-          </Items>
-        </CompatibleVersion>
-        <SubSystemsUsed>
-          <Items>
-            <SubSystemItem Name="MP.Config" />
-            <SubSystemItem Name="MP.Players.Music" />
-            <SubSystemItem Name="MP.SkinEngine" />
-            <SubSystemItem Name="MP.Players.Video" />
-          </Items>
-        </SubSystemsUsed>
-      </PluginDependencyItem>
-    </Items>
+    <Items />
   </PluginDependencies>
   <GeneralInfo>
     <Name>Extensions</Name>
@@ -389,7 +308,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <VersionDescription>Compatibility with latest SVN</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.[Version].mpe1</OnlineLocation>
-    <ReleaseDate>2011-08-30T20:56:05.7031033-04:00</ReleaseDate>
+    <ReleaseDate>2011-08-31T10:56:05.7031033+10:00</ReleaseDate>
     <Tags>installer, mpei, plugin </Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
@@ -457,78 +376,15 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\DefaultWide\myextensions2.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{10344bcc-d1e8-46fc-b716-7c67b1ebb6d6}-myextensions2.xml</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\myextensions2.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\DefaultWide\myextensions2info.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{2613d5a4-5d95-43f6-8111-e0c233aa62e7}-myextensions2info.xml</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\myextensions2info.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\DefaultWide\myextensions2settings.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b75b79b8-b945-4f2f-bbf3-f68f6adbe9c4}-myextensions2settings.xml</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\myextensions2settings.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\DefaultWide\myextensions2slideshow.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{8f2a53bc-c880-4522-a3e0-7b6d5f715247}-myextensions2slideshow.xml</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\myextensions2slideshow.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\DefaultWide\Media\extension_action.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{83971b55-7880-4cc8-9e26-fc0fff5914ed}-extension_action.png</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\Media\extension_action.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\DefaultWide\Media\extension_update.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{bb394189-8a88-425c-8ab7-54239673a98e}-extension_update.png</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\Media\extension_update.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\DefaultWide\Media\status_editorpick.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{1e3a6252-ac52-440f-beb1-2b9851dc4a12}-status_editorpick.png</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\Media\status_editorpick.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\DefaultWide\Media\status_new.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{31fdb367-777f-4b5d-acf1-f75b5a10a9df}-status_new.png</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\Media\status_new.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Skin\DefaultWide\Media\status_popular.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{411e64ab-f495-4d54-a22a-66e8882895a3}-status_popular.png</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\Media\status_popular.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>language\MPEI\en-US.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{2fd2e9de-8e04-45ee-a558-9a0bd5d381fe}-en-US.xml</ZipFileName>
+        <LocalFileName>..\MPEIPlugin\Resources\Languages\en-US.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{cfdd8643-646d-46c7-a801-79b651e3de85}-en-US.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\en-US.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>language\MPEI\fr.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{327c5cb9-86db-48c9-a1fb-0e68fb53b837}-fr.xml</ZipFileName>
+        <LocalFileName>..\MPEIPlugin\Resources\Languages\fr.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{f563059b-f118-4331-befa-a6cca0f48339}-fr.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\fr.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
@@ -537,6 +393,69 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <LocalFileName>Settings\extension_settings.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{47c75ac8-73e1-4f2c-81b3-307647f66dd1}-extension_settings.xml</ZipFileName>
         <DestinationFilename>%Base%\extension_settings.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\myextensions2.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1bce9ff6-fdb6-43cc-81db-70bccd1ed6e6}-myextensions2.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\myextensions2.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\myextensions2info.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{5f5506b7-f07a-4db4-afed-02e5dd4ee0b3}-myextensions2info.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\myextensions2info.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\myextensions2settings.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{5d991a1e-2ea6-4b6b-b965-3dbb566ac0bc}-myextensions2settings.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\myextensions2settings.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\myextensions2slideshow.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{3c6202ba-0925-4b73-bcae-78ed33cec735}-myextensions2slideshow.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\myextensions2slideshow.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\extension_action.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{38edc630-a44a-47ca-a7f6-9e4a5e3ca326}-extension_action.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\extension_action.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\extension_update.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{e1258ff4-1ce3-47a6-b7e3-d31f2ab098b3}-extension_update.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\extension_update.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\status_editorpick.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{4cb39fc9-89c1-47ae-9fd6-ef12824e5f97}-status_editorpick.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\status_editorpick.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\status_new.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{797053e4-d40f-41bd-b137-3bf6cd9e2d6c}-status_new.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\status_new.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\status_popular.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9c2d2964-cfeb-41dd-8235-1b28be98c5d9}-status_popular.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\status_popular.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
@@ -553,34 +472,24 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{8da00361-22df-4b34-99e3-d38c94735924}-</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{1a799560-64ba-46c6-96b5-3716ebe5883e}-</ZipFileName>
         <DestinationFilename>%Language%\MPEI</DestinationFilename>
-        <Folder>language\MPEI</Folder>
+        <Folder>..\MPEIPlugin\Resources\Languages</Folder>
         <Group>Languages</Group>
-        <Recursive>true</Recursive>
-      </FolderGroup>
-      <FolderGroup InstallType="GenericSkinFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>NeverOverwrite</UpdateOption>
-        <LocalFileName />
-        <ZipFileName>Installer{GenericSkinFile}\{c522f82b-ac00-4aad-8200-69867a2165fc}-</ZipFileName>
-        <DestinationFilename>%Skin%\[DEFAULT]\</DestinationFilename>
-        <Folder>Skin\DefaultWide</Folder>
-        <Group>DefaultSkin</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
       <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{bda8b607-f1fd-4fd7-a7f7-35f5f46017e4}-</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{3310ef82-4214-43f2-9596-30479e01aaca}-</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWide</DestinationFilename>
-        <Folder>Skin\DefaultWide</Folder>
-        <Group>Skin</Group>
+        <Folder>..\MPEIPlugin\Resources\Skins\DefaultWide</Folder>
+        <Group>DefaultWideSkin</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
-    <ProjectFilename>E:\My Documents\Visual Studio 2010\Projects\svnroot\mp-plugins\mpei-plugin\Setup\mpeiplugin.xmp2</ProjectFilename>
+    <ProjectFilename>mpeiplugin.xmp2</ProjectFilename>
     <UpdatePath1>.\update2.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
