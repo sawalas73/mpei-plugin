@@ -101,6 +101,11 @@ namespace MPEIPlugin
 
     }
 
+    public override string GetModuleName()
+    {
+      return Translation.Name;
+    }
+
     public override bool Init()
     {
       Log.Debug("Plugin init MPEIPlugin");
@@ -1424,7 +1429,7 @@ namespace MPEIPlugin
 
       //------------
       //set object count label
-      //GUIPropertyManager.SetProperty("#itemcount", MediaPortal.Util.Utils.GetObjectCountLabel(totalItems));
+      GUIPropertyManager.SetProperty("#itemcount", facadeView.Count.ToString());
       SetLabels();
       SwitchView();
       OnSort();
