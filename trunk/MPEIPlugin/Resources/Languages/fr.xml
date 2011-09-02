@@ -3,83 +3,78 @@
 <!-- French -->
 <!-- Note: English is the fallback for any strings not found in other languages -->
 <strings>
- 
-    <!--  A  -->
-	<string Field="All">Tout</string>
-    <string Field="AlwaysCheckForUpdates">Toujours vérifier les MAJ</string>
-    <string Field="Actions">Actions</string>
-    <string Field="ActionAdded">l'action a été ajouter en fin de liste</string>
-    <string Field="ActionRemoved">l'action a été supprimer de la liste</string>
 
-    <!--  C  -->
-    <string Field="ChangeLogFor">Change log pour :</string>
+  <!--  A  -->
+  <string Field="All">Tout</string>
+  <string Field="AlwaysCheckForUpdates">Toujours vérifier les MAJ</string>
+  <string Field="Actions">Actions</string>
+  <string Field="ActionAdded">l'action a été ajouter en fin de liste</string>
+  <string Field="ActionRemoved">l'action a été supprimer de la liste</string>
 
-    <!--  D  -->
-    <string Field="Download">Télécharger</string>
+  <!--  C  -->
+  <string Field="ChangeLogFor">Change log pour :</string>
 
-    <!--  E  -->
-    <string Field="Exit">Quitter</string>
+  <!--  D  -->
+  <string Field="Download">Télécharger</string>
 
-    <!--  F  -->
+  <!--  E  -->
+  <string Field="Exit">Quitter</string>
 
-    <!--  G  -->
+  <!--  F  -->
 
-    <!--  H  -->
+  <!--  G  -->
 
-    <!--  I  -->
-    <string Field="Install">Installer</string>
-    <string Field="InstalledExtensions">Extensions installées</string>
+  <!--  H  -->
 
-    <!--  L  -->
-    
-    <!--  M  -->
+  <!--  I  -->
+  <string Field="Install">Installer</string>
+  <string Field="InstalledExtensions">Extensions installées</string>
 
-    <!--  N -->
-	<string Field="Name">Extensions</string>
-    <string Field="NeverCheckForUpdates">Jamais vérifier les mise à jours</string>
-    <string Field="NewExtensions">Nouvelles Extensions</string>
-    <string Field="NewUpdates">Extensions Mise à jour</string>
-    <string Field="Notification">Notification</string>
-    <string Field="NotificationMsg1">Il y'a des actions en attentes</string>
-    <string Field="NotificationMsg2">Voulez-vous l'exécuter ?</string>
-    <string Field="NotificationMsg3">Cette opération va redémarrer MediaPortal</string>
-    <string Field="NotificationMsg4">et exécuter les actions en attentes</string>
+  <!--  L  -->
 
+  <!--  M  -->
 
-    <!--  O  -->
-    <string Field="OnlineExtensions">Extensions en ligne</string>
+  <!--  N -->
+  <string Field="Name">Extensions</string>
+  <string Field="NeverCheckForUpdates">Jamais vérifier les mise à jours</string>
+  <string Field="NewExtensions">Nouvelles Extensions</string>
+  <string Field="NewUpdates">Extensions Mise à jour</string>
+  <string Field="Notification">Notification</string>
 
-    <!--  P  -->
+  <!--  O  -->
+  <string Field="OnlineExtensions">Extensions en ligne</string>
 
-    <!--  R  -->
-    <string Field="Restart">Redémarrer</string>
-    <string Field="Rotate">Rotation</string>
-    <string Field="RevokeLastAction">Annuler la dernier action</string>
+  <!--  P  -->
 
-    <!--  S  -->
-	<string Field="Sections">Sections</string>
-	<string Field="Settings">Paramétres</string>
-	<string Field="ShowChangelogs">Afficher changelogs</string>
-    <string Field="ShowSreenshots">Voir screenshots</string>
-    <string Field="SelectVersionToInstall">Choisir la version à (Re)Installer</string>
-	<string Field="SelectVersion">Choisir la version</string>
-    <string Field="StartSlideshow">Démarrer le diaporama</string>
+  <!--  R  -->
+  <string Field="Restart">Redémarrer</string>
+  <string Field="Rotate">Rotation</string>
+  <string Field="RevokeLastAction">Annuler la dernier action</string>
 
-    <!--  T  -->
+  <!--  S  -->
+  <string Field="Sections">Sections</string>
+  <string Field="Settings">Paramétres</string>
+  <string Field="ShowChangelogs">Afficher changelogs</string>
+  <string Field="ShowSreenshots">Voir screenshots</string>
+  <string Field="SelectVersionToInstall">Choisir la version à (Re)Installer</string>
+  <string Field="SelectVersion">Choisir la version</string>
+  <string Field="StartSlideshow">Démarrer le diaporama</string>
+
+  <!--  T  -->
 
 
-    <!--  U  -->
-    <string Field="Update">Mettre à jours</string>
-    <string Field="UpdateAll">Tout mettre à jour</string>
-    <string Field="Updates">Mettres à jours</string>
-    <string Field="Uninstall">Désinstaller</string>
-   
-    <!--  V  -->
-    <string Field="Views">Vues</string>
+  <!--  U  -->
+  <string Field="Update">Mettre à jours</string>
+  <string Field="UpdateAll">Tout mettre à jour</string>
+  <string Field="Updates">Mettres à jours</string>
+  <string Field="Uninstall">Désinstaller</string>
 
-    <!--  W  -->
+  <!--  V  -->
+  <string Field="Views">Vues</string>
 
-    <!--  Y  -->
- 
- 
+  <!--  W  -->
+
+  <!--  Y  -->
+
+
 </strings>

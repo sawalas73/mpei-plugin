@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Xml;
 using System.Text.RegularExpressions;
+using System.Xml;
 using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
 
@@ -236,11 +236,8 @@ namespace MPEIPlugin
     public static string NewUpdates = "New updates";
     public static string NewVersion = "New version";
     public static string Notification = "Notification";
-    public static string NotificationMsg1 = "There are pending actions";
-    public static string NotificationMsg2 = "Do you want to execute it ?";
-    public static string NotificationMsg3 = "This operation will restart MediaPortal";
-    public static string NotificationMsg4 = "and execute the pending actions";
-
+    public static string NotificationWarning = "There are tasks still outstanding.\nRestart and execute now?";
+    public static string NotificationMessage = "Would you like to restart MediaPortal\nand execute pending tasks now?";
 
     // O
     public static string OnlineExtensions = "Online Extensions";
@@ -253,7 +250,8 @@ namespace MPEIPlugin
     public static string Restart = "Restart";
     public static string Rotate = "Rotate";
     public static string RevokeLastAction = "Revoke last action";
-    public static string RestartNow = "This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the action will queued.";
+    public static string RestartNow = "This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the task will queued.";
+    
 
     // S
     public static string Sections = "Sections";

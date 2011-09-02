@@ -3,80 +3,75 @@
 <!-- Danish (DA) -->
 <!-- Note: English is the fallback for any strings not found in other languages -->
 <strings>
- 
-    <!--  A  -->
-    <string Field="AlwaysCheckForUpdates">Tjek altid for opdateringer</string>
-    <string Field="Actions">Muligheder</string>
-    <string Field="ActionAdded">Handlingen blev tilføjet til køen</string>
-    <string Field="ActionRemoved">Handlingen blev fjernet fra køen</string>
 
-    <!--  C  -->
-    <string Field="ChangeLogFor">Changelog for:</string>
+  <!--  A  -->
+  <string Field="AlwaysCheckForUpdates">Tjek altid for opdateringer</string>
+  <string Field="Actions">Muligheder</string>
+  <string Field="ActionAdded">Handlingen blev tilføjet til køen</string>
+  <string Field="ActionRemoved">Handlingen blev fjernet fra køen</string>
 
-    <!--  D  -->
-    <string Field="Download">Hent</string>
+  <!--  C  -->
+  <string Field="ChangeLogFor">Changelog for:</string>
 
-    <!--  E  -->
-    <string Field="Exit">Exit</string>
+  <!--  D  -->
+  <string Field="Download">Hent</string>
 
-    <!--  F  -->
+  <!--  E  -->
+  <string Field="Exit">Exit</string>
 
-    <!--  G  -->
+  <!--  F  -->
 
-    <!--  H  -->
+  <!--  G  -->
 
-    <!--  I  -->
-    <string Field="Install">Installer</string>
-    <string Field="InstalledExtensions">Installerede udvidelser</string>
+  <!--  H  -->
 
-    <!--  L  -->
-    
-    <!--  M  -->
+  <!--  I  -->
+  <string Field="Install">Installer</string>
+  <string Field="InstalledExtensions">Installerede udvidelser</string>
 
-    <!--  N -->
-	<string Field="Name">Udvidelser</string>
-    <string Field="NeverCheckForUpdates">Tjek aldrig for opdateringer</string>
-    <string Field="NewExtensions">Nye udvidelser</string>
-    <string Field="NewUpdates">Nye opdateringer</string>
-    <string Field="Notification">Påmindelse</string>
-    <string Field="NotificationMsg1">Der er nye opdateringer!</string>
-    <string Field="NotificationMsg2">Ønsker du at påbegynde dem?</string>
-    <string Field="NotificationMsg3">Dette kræver genstart af MediaPortal</string>
-    <string Field="NotificationMsg4">for at blive udført</string>
+  <!--  L  -->
 
+  <!--  M  -->
 
-    <!--  O  -->
-    <string Field="OnlineExtensions">Online Extensions</string>
+  <!--  N -->
+  <string Field="Name">Udvidelser</string>
+  <string Field="NeverCheckForUpdates">Tjek aldrig for opdateringer</string>
+  <string Field="NewExtensions">Nye udvidelser</string>
+  <string Field="NewUpdates">Nye opdateringer</string>
+  <string Field="Notification">Påmindelse</string>
 
-    <!--  P  -->
+  <!--  O  -->
+  <string Field="OnlineExtensions">Online Extensions</string>
 
-    <!--  R  -->
-    <string Field="Restart">Genstart</string>
-    <string Field="Rotate">Rotér</string>
-    <string Field="RevokeLastAction">Fortryd sidste handling</string>
+  <!--  P  -->
 
-    <!--  S  -->
-	<string Field="ShowChangelogs">Vis changelogs</string>
-    <string Field="ShowSreenshots">Vis sreenshots</string>
-    <string Field="SelectVersionToInstall">Vælg version for at (gen)installere</string>
-	<string Field="SelectVersion">Vælg version</string>
-    <string Field="StartSlideshow">Start slideshow</string>
+  <!--  R  -->
+  <string Field="Restart">Genstart</string>
+  <string Field="Rotate">Rotér</string>
+  <string Field="RevokeLastAction">Fortryd sidste handling</string>
 
-    <!--  T  -->
+  <!--  S  -->
+  <string Field="ShowChangelogs">Vis changelogs</string>
+  <string Field="ShowSreenshots">Vis sreenshots</string>
+  <string Field="SelectVersionToInstall">Vælg version for at (gen)installere</string>
+  <string Field="SelectVersion">Vælg version</string>
+  <string Field="StartSlideshow">Start slideshow</string>
+
+  <!--  T  -->
 
 
-    <!--  U  -->
-    <string Field="Update">Opdater</string>
-    <string Field="UpdateAll">Opdater alle</string>
-    <string Field="Updates">Opdatering</string>
-    <string Field="Uninstall">Fjern</string>
-   
-    <!--  V  -->
-    <string Field="Views">Syn</string>
+  <!--  U  -->
+  <string Field="Update">Opdater</string>
+  <string Field="UpdateAll">Opdater alle</string>
+  <string Field="Updates">Opdatering</string>
+  <string Field="Uninstall">Fjern</string>
 
-    <!--  W  -->
+  <!--  V  -->
+  <string Field="Views">Syn</string>
 
-    <!--  Y  -->
- 
- 
+  <!--  W  -->
+
+  <!--  Y  -->
+
+
 </strings>
