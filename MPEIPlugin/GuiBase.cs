@@ -202,21 +202,13 @@ namespace MPEIPlugin
     {
       if (_askForRestart)
       {
-        GUIDialogYesNo dlgYesNo = (GUIDialogYesNo) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_YES_NO);
-        if (null == dlgYesNo)
-          return;
-        dlgYesNo.SetHeading(Translation.Notification);
-        dlgYesNo.SetLine(1, "This operation requaied restart of MediaPortal");
-        dlgYesNo.SetLine(2, "Do you want to restart now ?");
-        dlgYesNo.SetLine(3, "If no the action will be stored in queue");
-        dlgYesNo.SetDefaultToYes(true);
-        dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-        if (dlgYesNo.IsConfirmed)
+        if (GUIUtils.ShowYesNoDialog(Translation.Notification, Translation.RestartNow, true))
         {
           RestartMP();
           return;
         }
       }
+
       var dlg1 = (GUIDialogNotify) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_NOTIFY);
       if (dlg1 == null) return;
       dlg1.Reset();
