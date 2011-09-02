@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPEIPlugin", "MPEIPlugin\MPEIPlugin.csproj", "{B2266050-0E36-4C2E-87AE-5C4E296F3351}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5AA213DB-AEC5-46A4-9C51-8D441CAF334D} = {5AA213DB-AEC5-46A4-9C51-8D441CAF334D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{9575ACDA-0AA9-42F2-8172-EB0E79757B21}"
 EndProject
