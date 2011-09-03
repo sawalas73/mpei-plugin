@@ -108,7 +108,7 @@ namespace MPEIPlugin
 
     public override bool Init()
     {
-      Log.Debug("Plugin init MPEIPlugin");
+      Log.Debug("[MPEI] Init Start");
       MpeInstaller.Init();
       queue = QueueCommandCollection.Load();
       _downloadManager.DownloadDone += _downloadManager_DownloadDone;
@@ -125,7 +125,7 @@ namespace MPEIPlugin
       GenerateProperty();
       foreach (string name in Translation.Strings.Keys)
       {
-        Translation.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
+        GUIUtils.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
       }
 
       bool bResult = Load(GUIGraphicsContext.Skin + @"\myextensions2.xml");
@@ -134,6 +134,7 @@ namespace MPEIPlugin
       _timer.Enabled = true;
 
       SiteUtil.LoadCatTree();
+      Log.Debug("[MPEI] Init End");
 
       return bResult;
     }
@@ -223,7 +224,7 @@ namespace MPEIPlugin
             MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(info.Destinatiom));
             if (_setting.ShowOnlyStable)
               MpeInstaller.KnownExtensions.HideByRelease();
-            Log.Debug("[MPEI]Update info loded from {0}", info.Url);
+            Log.Debug("[MPEI] Update info loaded from {0}", info.Url);
             File.Delete(info.Destinatiom);
             GenerateProperty();
             MpeInstaller.Save();

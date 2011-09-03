@@ -38,7 +38,7 @@ namespace MPEIPlugin
         _info = DateTimeFormatInfo.GetInstance(CultureInfo.CurrentUICulture);
       }
 
-      Log.Info("Using language " + lang);
+      Log.Info("[MPEI] Using language " + lang);
 
       _path = Config.GetSubFolder(Config.Dir.Language, "MPEI");
 
@@ -93,10 +93,10 @@ namespace MPEIPlugin
           return 0; // otherwise we are in an endless loop!
 
         if (e.GetType() == typeof(FileNotFoundException))
-          Log.Warn("Cannot find translation file {0}.  Failing back to English", langPath);
+          Log.Warn("[MPEI] Cannot find translation file {0}.  Failing back to English", langPath);
         else
         {
-          Log.Error("Error in translation xml file: {0}. Failing back to English", lang);
+          Log.Error("[MPEI] Error in translation xml file: {0}. Failing back to English", lang);
           Log.Error(e);
         }
 
@@ -111,7 +111,7 @@ namespace MPEIPlugin
           }
           catch (Exception ex)
           {
-            Log.Error("Error in Translation Engine");
+            Log.Error("[MPEI] Error in Translation Engine");
             Log.Error(ex);
           }
       }
@@ -123,7 +123,7 @@ namespace MPEIPlugin
         if (TranslatedStrings != null && TranslatedStrings.ContainsKey(fi.Name))
           TransType.InvokeMember(fi.Name, BindingFlags.SetField, null, TransType, new object[] { TranslatedStrings[fi.Name] });
         else
-          Log.Info("Translation not found for field: {0}.  Using hard-coded English default.", fi.Name);
+          Log.Info("[MPEI] Translation not found for field: {0}.  Using hard-coded English default.", fi.Name);
       }
       return TranslatedStrings.Count;
     }
@@ -155,21 +155,6 @@ namespace MPEIPlugin
         input = input.Replace(match.Value, GetByName(match.Groups[1].Value));
       }
       return input;
-    }
-
-
-    internal static void SetProperty(string property, string value)
-    {
-      if (property == null)
-        return;
-
-      //// If the value is empty always add a space
-      //// otherwise the property will keep 
-      //// displaying it's previous value
-      if (String.IsNullOrEmpty(value))
-        value = " ";
-
-      GUIPropertyManager.SetProperty(property, value);
     }
 
     public static string GetDayName(DayOfWeek dayOfWeek)
