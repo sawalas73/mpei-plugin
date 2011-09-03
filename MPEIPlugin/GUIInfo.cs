@@ -41,7 +41,6 @@ namespace MPEIPlugin
     [SkinControlAttribute(8)]
     protected GUIButtonControl btnChangeLog = null;
 
-
     public string SettingsFile { get; set; }
     private ExtensionSettings settings = new ExtensionSettings();
 
@@ -58,11 +57,6 @@ namespace MPEIPlugin
 
     protected override void OnPageLoad()
     {
-      foreach (string name in Translation.Strings.Keys)
-      {
-        Translation.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
-      }
-
       GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "false");
       GUIPropertyManager.SetProperty("#MPE.Selected.IsEnabled", "false");
       GUIPropertyManager.SetProperty("#MPE.Selected.IsDisabled", "false");
