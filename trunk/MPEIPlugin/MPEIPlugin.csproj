@@ -119,6 +119,7 @@
   <ItemGroup>
     <Content Include="Resources\Languages\da.xml" />
     <Content Include="Resources\Languages\en-US.xml" />
+    <Content Include="Resources\Languages\es.xml" />
     <Content Include="Resources\Languages\fr.xml" />
     <Content Include="Resources\Skins\DefaultWide\Media\extension_action.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\extension_update.png" />
