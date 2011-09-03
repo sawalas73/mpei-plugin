@@ -197,7 +197,7 @@ namespace MPEIPlugin
       _timer.Enabled = false;
       if(queue.Items.Count>0)
       {
-       if(AskForRestart()) 
+       if(AskForRestartWarning()) 
          RestartMP();
       }
       else
@@ -405,8 +405,6 @@ namespace MPEIPlugin
     #region Serialisation
     void LoadSettings()
     {
-      bool shouldUpdate = false;
-
       _dlgProgress = (GUIDialogProgress)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_PROGRESS);
 
       using (MediaPortal.Profile.Settings xmlreader = new MPSettings())

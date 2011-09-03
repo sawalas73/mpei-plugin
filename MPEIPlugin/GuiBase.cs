@@ -90,14 +90,14 @@ namespace MPEIPlugin
 
       if (!string.IsNullOrEmpty(items.File) && (Path.GetExtension(items.File) == ".exe" || Path.GetExtension(items.File) == ".mpe1"))
       {
-        if(AskForRestart1())
+        if(AskForRestart())
         {
           string conffile = Path.GetTempFileName();
           TextWriter streamWriter = new StreamWriter(conffile, false);
           streamWriter.WriteLine(items.FileUrl);
           streamWriter.WriteLine(Path.Combine(Path.GetTempPath(), items.File));
           streamWriter.WriteLine(items.Name);
-          if (Ask(Translation.UseSilent))
+          if (AskYesNo(Translation.UseSilent))
             streamWriter.WriteLine("/S");
           else
             streamWriter.WriteLine("");
@@ -120,12 +120,7 @@ namespace MPEIPlugin
         }
         return;
       }
-      var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
-      dlgYesNo.SetHeading(Translation.Notification); //resume movie?
-      dlgYesNo.SetLine(1, Translation.InstalledNotPossible);
-      dlgYesNo.SetLine(2, Translation.UnKnowFileTYpe);
-      dlgYesNo.SetDefaultToYes(true);
-      dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+      GUIUtils.ShowOKDialog(Translation.Notification, Translation.UnKnownFileType);
     }
 
     public void UpdateExtension(string id)
@@ -147,17 +142,11 @@ namespace MPEIPlugin
         PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(installedpak);
         if (update != null)
         {
-          GUIDialogText dlgYesNo = (GUIDialogText)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_TEXT);
-          if (null == dlgYesNo)
-            return;
-          dlgYesNo.SetHeading(Translation.ChangeLogFor);
-          dlgYesNo.SetText(string.Format("{0} - {1} ", update.GeneralInfo.Name,
-                                            update.GeneralInfo.Version.ToString()) + "\n" + update.GeneralInfo.VersionDescription);
-          dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+          string text = string.Format("{0} - {1}", update.GeneralInfo.Name, update.GeneralInfo.Version.ToString()) + "\n" + update.GeneralInfo.VersionDescription;
+          GUIUtils.ShowTextDialog(Translation.ChangeLog, text);
         }
       }
     }
-
 
     public void ShowChangeLog(PackageClass pk)
     {
@@ -187,13 +176,8 @@ namespace MPEIPlugin
         selected = dlg.SelectedLabelText;
         if (ver != null)
         {
-          GUIDialogText dlgYesNo = (GUIDialogText)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_TEXT);
-          if (null == dlgYesNo)
-            return;
-          dlgYesNo.SetHeading(Translation.ChangeLogFor);
-          dlgYesNo.SetText(string.Format("{0} - {1} ", ver.GeneralInfo.Name,
-                                         ver.GeneralInfo.Version.ToString()) + "\n" + ver.GeneralInfo.VersionDescription);
-          dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+          string text = string.Format("{0} - {1}", ver.GeneralInfo.Name, ver.GeneralInfo.Version.ToString()) + "\n" + ver.GeneralInfo.VersionDescription;
+          GUIUtils.ShowTextDialog(Translation.ChangeLog, text);
         }
       }
     }
@@ -209,43 +193,23 @@ namespace MPEIPlugin
         }
       }
 
-      var dlg1 = (GUIDialogNotify) GUIWindowManager.GetWindow((int) Window.WINDOW_DIALOG_NOTIFY);
-      if (dlg1 == null) return;
-      dlg1.Reset();
-      dlg1.SetHeading(Translation.Notification);
-      dlg1.SetText(Translation.ActionAdded);
-      dlg1.Reset();
-      dlg1.TimeOut = 2;
-      dlg1.DoModal(GetID);
+      GUIUtils.ShowNotifyDialog(Translation.Notification, Translation.ActionAdded, 2);
       _askForRestart = false;
-
-      // LoadDirectory(currentFolder);
-    }
-
-    public bool AskForRestart1()
-    {
-      var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
-      dlgYesNo.SetHeading(Translation.Notification); 
-      dlgYesNo.SetLine(1, Translation.AskForRestart1);
-      dlgYesNo.SetLine(2, Translation.AskForRestart2);
-      dlgYesNo.SetDefaultToYes(true);
-      dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-      return dlgYesNo.IsConfirmed;
-    }
-
-    public bool Ask(string question)
-    {
-      var dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
-      dlgYesNo.SetHeading(Translation.Notification);
-      dlgYesNo.SetLine(2, question);
-      dlgYesNo.SetDefaultToYes(true);
-      dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
-      return dlgYesNo.IsConfirmed;
     }
 
     public bool AskForRestart()
     {
+      return GUIUtils.ShowYesNoDialog(Translation.Notification, Translation.AskForRestart, true);
+    }
+
+    public bool AskForRestartWarning()
+    {
       return GUIUtils.ShowYesNoDialog(Translation.Notification, Translation.NotificationWarning, true);
+    }
+
+    public bool AskYesNo(string question)
+    {
+      return GUIUtils.ShowYesNoDialog(Translation.Notification, question, true);
     }
 
     public void RestartMP()

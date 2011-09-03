@@ -116,7 +116,7 @@ namespace MPEIPlugin.MPSite
           matchResults = matchResults.NextMatch();
         }
       }
-      catch (ArgumentException ex)
+      catch (ArgumentException)
       {
         // Syntax error in the regular expression
       }

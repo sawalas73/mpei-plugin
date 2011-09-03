@@ -196,15 +196,14 @@ namespace MPEIPlugin
     public static string All = "All";
     public static string AlwaysCheckForUpdates = "Always check for updates";
     public static string Actions = "Actions";
-    public static string ActionAdded = "Action was added to action queue";
-    public static string ActionRemoved = "Action was removed from action queue";
+    public static string ActionAdded = "Action was added to queue";
+    public static string ActionRemoved = "Action was removed from queue";
     public static string Author = "Author";
-    public static string AskForRestart1 = "This Operation will restart MediaPortal. Do you";
-    public static string AskForRestart2 = "wish to continue ? ";
+    public static string AskForRestart = "This Operation will restart MediaPortal.\nDo you wish to continue?";    
 
     // C
-    public static string ChangeLogFor = "Change log for :";
-    public static string ChangeLog = "Change log";
+    public static string ChangeLog = "Change Log";
+
     // D
     public static string Download = "Download";
     public static string Disable = "Disable";
@@ -223,7 +222,7 @@ namespace MPEIPlugin
     public static string Id = "Id";
     public static string Install = "Install";
     public static string InstalledExtensions = "Installed Extensions";
-    public static string InstalledNotPossible = "Installation not possible";
+    
     // L
     
     // M
@@ -266,12 +265,12 @@ namespace MPEIPlugin
 
 
     // U
-    public static string UseSilent = "Use silent mode";
+    public static string UseSilent = "Install extension silently?";
     public static string Update = "Update";
     public static string UpdateAll = "Update All";
     public static string Updates = "Updates";
     public static string Uninstall = "Uninstall";
-    public static string UnKnowFileTYpe = "Unknow file type !";
+    public static string UnKnownFileType = "Installation is not possible\nUnknown file type detected!";
 
     // V
     public static string Views = "Views";
