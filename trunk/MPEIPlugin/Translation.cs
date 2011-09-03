@@ -220,7 +220,7 @@ namespace MPEIPlugin
     public static string NewUpdates = "New updates";
     public static string NewVersion = "New version";
     public static string Notification = "Notification";
-    public static string NotificationWarning = "There are tasks still outstanding.\nRestart and execute now?";
+    public static string NotificationWarning = "There are installation tasks still outstanding.\nRestart and execute now?";
     public static string NotificationMessage = "Would you like to restart MediaPortal\nand execute pending tasks now?";
 
     // O

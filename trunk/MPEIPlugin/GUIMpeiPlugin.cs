@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-//using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -11,7 +10,6 @@ using System.Timers;
 using System.Xml;
 using System.Xml.Serialization;
 using MediaPortal.GUI.Library;
-//using MediaPortal.Profile;
 using MediaPortal.Profile;
 using MediaPortal.Util;
 using MediaPortal.Configuration;
@@ -98,7 +96,6 @@ namespace MPEIPlugin
     public GUIMpeiPlugin()
     {
       GetID = 801;
-
     }
 
     public override string GetModuleName()
@@ -177,13 +174,10 @@ namespace MPEIPlugin
       }
     }
 
- 
-
     private void FilterList()
     {
       if (_setting.ShowOnlyStable)
       {
-        //MpeCore.MpeInstaller.InstalledExtensions.HideByRelease();
         MpeInstaller.KnownExtensions.HideByRelease();
       }
       else
@@ -196,14 +190,18 @@ namespace MPEIPlugin
     void _timer_Elapsed(object sender, ElapsedEventArgs e)
     {
       _timer.Enabled = false;
-      if(queue.Items.Count>0)
+      if(queue.Items.Count > 0)
       {
        if(AskForRestartWarning()) 
          RestartMP();
       }
       else
-      {
-        _downloadManager.Download(UpdateIndexUrl, Path.GetTempFileName(), DownLoadItemType.IndexList);        
+      {        
+        int i = DateTime.Now.Subtract(_setting.LastUpdate).Days;
+        if (_setting.DoUpdateInStartUp && i > _setting.UpdateDays)
+        {
+          _downloadManager.Download(UpdateIndexUrl, Path.GetTempFileName(), DownLoadItemType.IndexList);
+        }
       }
     }
 
@@ -317,23 +315,6 @@ namespace MPEIPlugin
 
     #endregion
 
-    void LoadUpdateInfo()
-    {
-      DateTime d = _setting.LastUpdate;
-      int i = DateTime.Now.Subtract(d).Days;
-      if (
-        !(_setting.DoUpdateInStartUp && i > _setting.UpdateDays &&
-          MpeInstaller.InstalledExtensions.Items.Count > 0))
-        return;
-
-
-      DownloadInfo();
-      if (_setting.UpdateAll)
-      {
-        UpdateAll();
-      }
-    }
-
     void DownloadUpdateInfo()
     {
       List<string> onlineFiles = MpeInstaller.InstalledExtensions.GetUpdateUrls(new List<string>());
@@ -343,10 +324,6 @@ namespace MPEIPlugin
       {
         _downloadManager.Download(onlineFile, Path.GetTempFileName(), DownLoadItemType.UpdateInfo);
       }
-    }
-
-    void DownloadInfo()
-    {
     }
 
     static void LoadExtensionIndex(string tempUpdateIndex)
@@ -365,8 +342,6 @@ namespace MPEIPlugin
         MpeInstaller.SetInitialUrlIndex(indexUrls);
       }
     }
-
-
 
     void UpdateAll()
     {
@@ -804,7 +779,6 @@ namespace MPEIPlugin
 
       if (control == btnUpdateAll)
       {
-        DownloadInfo();
         UpdateAll();
         LoadDirectory(currentFolder);
         GUIControl.FocusControl(GetID, facadeView.GetID);
@@ -812,8 +786,7 @@ namespace MPEIPlugin
 
       if (control == facadeView)
       {
-        GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0,
-                                        null);
+        GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0, null);
         OnMessage(msg);
         int itemIndex = (int)msg.Param1;
         if (actionType == Action.ActionType.ACTION_SELECT_ITEM)
@@ -834,29 +807,15 @@ namespace MPEIPlugin
         }
       }
 
-      var dlg1 = (GUIDialogNotify)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_NOTIFY);
-      if (dlg1 == null) return;
-      dlg1.Reset();
-      dlg1.SetHeading(Translation.Notification);
-      dlg1.SetText(Translation.ActionAdded);
-      dlg1.Reset();
-      dlg1.TimeOut = 2;
-      dlg1.DoModal(GetID);
       _askForRestart = false;
 
+      GUIUtils.ShowNotifyDialog(Translation.Notification, Translation.ActionAdded, 2);
       LoadDirectory(currentFolder);
     }
 
     void NotifyRemoveUser()
     {
-      var dlg1 = (GUIDialogNotify)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_NOTIFY);
-      if (dlg1 == null) return;
-      dlg1.Reset();
-      dlg1.SetHeading(Translation.Notification);
-      dlg1.SetText(Translation.ActionRemoved);
-      dlg1.Reset();
-      dlg1.TimeOut = 2;
-      dlg1.DoModal(GetID);
+      GUIUtils.ShowNotifyDialog(Translation.Notification, Translation.ActionRemoved, 2);
       LoadDirectory(currentFolder);
     }
 
