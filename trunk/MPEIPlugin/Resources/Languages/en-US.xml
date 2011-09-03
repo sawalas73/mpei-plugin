@@ -8,11 +8,12 @@
   <string Field="All">All</string>
   <string Field="AlwaysCheckForUpdates">Always check for updates</string>
   <string Field="Actions">Actions</string>
-  <string Field="ActionAdded">Action was added to action queue</string>
-  <string Field="ActionRemoved">Action was removed from action queue</string>
+  <string Field="ActionAdded">Action was added to queue</string>
+  <string Field="ActionRemoved">Action was removed from queue</string>
+  <string Field="AskForRestart">This Operation will restart MediaPortal.\nDo you wish to continue?</string>
 
   <!--  C  -->
-  <string Field="ChangeLogFor">Change log for :</string>
+  <string Field="ChangeLog">Change Log</string>
 
   <!--  D  -->
   <string Field="Download">Download</string>
@@ -71,7 +72,9 @@
   <string Field="UpdateAll">Update All</string>
   <string Field="Updates">Updates</string>
   <string Field="Uninstall">Uninstall</string>
-
+  <string Field="UnKnownFileType">Installation is not possible\nUnknown file type detected!</string>
+  <string Field="UseSilent">Install extension silently?</string>
+  
   <!--  V  -->
   <string Field="Views">Views</string>
 

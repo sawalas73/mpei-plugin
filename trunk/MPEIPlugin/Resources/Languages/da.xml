@@ -11,7 +11,7 @@
   <string Field="ActionRemoved">Handlingen blev fjernet fra køen</string>
 
   <!--  C  -->
-  <string Field="ChangeLogFor">Changelog for:</string>
+  <string Field="ChangeLog">Change Log</string>
 
   <!--  D  -->
   <string Field="Download">Hent</string>

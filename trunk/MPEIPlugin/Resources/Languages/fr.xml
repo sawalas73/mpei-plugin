@@ -12,7 +12,7 @@
   <string Field="ActionRemoved">l'action a été supprimer de la liste</string>
 
   <!--  C  -->
-  <string Field="ChangeLogFor">Change log pour :</string>
+  <string Field="ChangeLog">Change Log</string>
 
   <!--  D  -->
   <string Field="Download">Télécharger</string>
