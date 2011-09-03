@@ -226,7 +226,7 @@ namespace MPEIPlugin
         if (useFullScreenSplash && startFullScreen)
           cmdLine += " /BK=\"" + skinFilePath + "\"";
       }
-      Log.Debug("MPEI Plugin Start :" + Config.GetFile(Config.Dir.Base, "MPEInstaller.exe ") + cmdLine);
+      Log.Debug("[MPEI] Plugin Start:" + Config.GetFile(Config.Dir.Base, "MPEInstaller.exe ") + cmdLine);
       System.Diagnostics.Process.Start(Config.GetFile(Config.Dir.Base, "MPEInstaller.exe"), cmdLine);
     }
 
