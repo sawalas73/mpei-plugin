@@ -196,11 +196,17 @@ namespace MPEIPlugin
          RestartMP();
       }
       else
-      {        
+      {
+        if (_setting.DoUpdateInStartUp)
+          Log.Info("[MPEI] Next download of updates scheduled for {0}", _setting.LastUpdate.AddDays(_setting.UpdateDays));
+
         int i = DateTime.Now.Subtract(_setting.LastUpdate).Days;
         if (_setting.DoUpdateInStartUp && i > _setting.UpdateDays)
         {
+          Log.Info("[MPEI] Download of updates is required, downloading now...");
           _downloadManager.Download(UpdateIndexUrl, Path.GetTempFileName(), DownLoadItemType.IndexList);
+          _setting.LastUpdate = DateTime.Now;
+          _setting.Save();
         }
       }
     }
