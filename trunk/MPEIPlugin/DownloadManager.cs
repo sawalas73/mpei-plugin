@@ -21,7 +21,6 @@ namespace MPEIPlugin
 
     public DownloadManager()
     {
-      client.DownloadProgressChanged += client_DownloadProgressChanged;
       client.DownloadFileCompleted += client_DownloadFileCompleted;
       client.UseDefaultCredentials = true;
       client.Proxy.Credentials = CredentialCache.DefaultCredentials;
@@ -40,35 +39,29 @@ namespace MPEIPlugin
               Directory.CreateDirectory(dir);
             File.Copy(_currentItem.TempFile, _currentItem.Destinatiom, true);
             File.Delete(_currentItem.TempFile);
-          }
+          }          
           if (DownloadDone != null)
             DownloadDone(_currentItem);
         }
         catch (Exception exception)
         {
-          Log.Debug(exception.Message);
+          Log.Error("[MPEI] Failed to process {0}: {1}", _currentItem.Url, exception.Message);
         }
       }
       else
       {
-        Log.Debug(e.Error.Message);
+        Log.Warn("[MPEI] Failed to download update file from {0}: {1}", _currentItem.Url, e.Error.Message);
       }
       if (queue.Count > 0)
         StartDownload();
     }
-
-    void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-    {
-      //throw new NotImplementedException();
-    }
-
+    
     public void Download(DownLoadInfo info)
     {
       queue.Enqueue(info);
       if (!client.IsBusy)
         StartDownload();
     }
-
 
     private void StartDownload()
     {
@@ -82,11 +75,8 @@ namespace MPEIPlugin
           DownloadStart(_currentItem);
         client.DownloadFileAsync(new Uri(_currentItem.Url), _currentItem.TempFile);
       }
-      catch (Exception)
-      {
-      }
+      catch { }
     }
-
 
     public void Download(string source, string dest , DownLoadItemType type)
     {

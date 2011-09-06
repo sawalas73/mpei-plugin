@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Net;
 using System.Timers;
@@ -113,12 +114,9 @@ namespace MPEIPlugin
       _setting = ApplicationSettings.Load();
       MpeInstaller.InstalledExtensions.IgnoredUpdates = _setting.IgnoredUpdates;
       MpeInstaller.KnownExtensions.IgnoredUpdates = _setting.IgnoredUpdates;
-      FilterList();
+      MpeInstaller.KnownExtensions.Hide(_setting.ShowOnlyStable, _setting.ShowOnlyCompatible);
       currentFolder = string.Empty;
       
-      if (_setting.ShowOnlyStable)
-        MpeInstaller.KnownExtensions.HideByRelease();
-
       GenerateProperty();
       foreach (string name in Translation.Strings.Keys)
       {
@@ -174,19 +172,6 @@ namespace MPEIPlugin
       }
     }
 
-    private void FilterList()
-    {
-      if (_setting.ShowOnlyStable)
-      {
-        MpeInstaller.KnownExtensions.HideByRelease();
-      }
-      else
-      {
-        MpeInstaller.InstalledExtensions.ShowAll();
-        MpeInstaller.KnownExtensions.ShowAll();
-      }
-    }
-
     void _timer_Elapsed(object sender, ElapsedEventArgs e)
     {
       _timer.Enabled = false;
@@ -201,7 +186,7 @@ namespace MPEIPlugin
           Log.Info("[MPEI] Next download of updates scheduled for {0}", _setting.LastUpdate.AddDays(_setting.UpdateDays));
 
         int i = DateTime.Now.Subtract(_setting.LastUpdate).Days;
-        if (_setting.DoUpdateInStartUp && i > _setting.UpdateDays)
+        if (_setting.DoUpdateInStartUp && i >= _setting.UpdateDays)
         {
           Log.Info("[MPEI] Download of updates is required, downloading now...");
           _downloadManager.Download(UpdateIndexUrl, Path.GetTempFileName(), DownLoadItemType.IndexList);
@@ -226,8 +211,8 @@ namespace MPEIPlugin
         case DownLoadItemType.UpdateInfo:
           {
             MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(info.Destinatiom));
-            if (_setting.ShowOnlyStable)
-              MpeInstaller.KnownExtensions.HideByRelease();
+            MpeInstaller.KnownExtensions.Hide(_setting.ShowOnlyStable, _setting.ShowOnlyCompatible);
+            
             Log.Debug("[MPEI] Update info loaded from {0}", info.Url);
             File.Delete(info.Destinatiom);
             GenerateProperty();
