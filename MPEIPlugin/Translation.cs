@@ -240,8 +240,8 @@ namespace MPEIPlugin
     // S
     public static string Sections = "Sections";
     public static string Settings = "Settings";
-    public static string ShowSreenshots = "Show sreenshots";
-    public static string ShowChangelogs = "Show changelogs";
+    public static string ShowSreenshots = "Show Screenshots";
+    public static string ShowChangelogs = "Show Change Logs";
     public static string SelectVersion = "Select version";
     public static string SelectVersionToInstall = "Select version to (Re)Install";
     public static string StartSlideshow = "Start slideshow";
