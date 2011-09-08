@@ -11,15 +11,18 @@
   <string Field="ActionAdded">Action was added to queue</string>
   <string Field="ActionRemoved">Action was removed from queue</string>
   <string Field="AskForRestart">This Operation will restart MediaPortal.\nDo you wish to continue?</string>
+  <string Field="Author">Author</string>
 
   <!--  C  -->
   <string Field="ChangeLog">Change Log</string>
 
   <!--  D  -->
   <string Field="Download">Download</string>
+  <string Field="Disable">Disable</string>
 
   <!--  E  -->
   <string Field="Exit">Exit</string>
+  <string Field="Enable">Enable</string>
 
   <!--  F  -->
 
@@ -28,13 +31,15 @@
   <!--  H  -->
 
   <!--  I  -->
+  <string Field="Id">Id</string>
   <string Field="Install">Install</string>
   <string Field="InstalledExtensions">Installed Extensions</string>
 
   <!--  L  -->
 
   <!--  M  -->
-
+  <string Field="MPOnlineExtensions">MP Website Extensions</string>
+  
   <!--  N -->
   <string Field="Name">Extensions</string>
   <string Field="NeverCheckForUpdates">Never check for updates</string>
@@ -51,6 +56,7 @@
   <!--  P  -->
 
   <!--  R  -->
+  <string Field="ReleaseDate">Release Date</string>
   <string Field="Restart">Restart</string>
   <string Field="Rotate">Rotate</string>
   <string Field="RevokeLastAction">Revoke last action</string>
@@ -79,6 +85,7 @@
   
   <!--  V  -->
   <string Field="Views">Views</string>
+  <string Field="Version">Version</string>
 
   <!--  W  -->
 
