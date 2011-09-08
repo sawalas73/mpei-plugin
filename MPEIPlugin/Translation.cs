@@ -252,6 +252,7 @@ namespace MPEIPlugin
     // U
     public static string UseSilent = "Install extension silently?";
     public static string Update = "Update";
+    public static string UpdateAvailable = "Update Available";
     public static string UpdateAll = "Update All";
     public static string Updates = "Updates";
     public static string Uninstall = "Uninstall";
