@@ -50,6 +50,11 @@ namespace MPEIPlugin
       GetID = 804;
     }
 
+    public override string GetModuleName()
+    {
+      return Translation.Name;
+    }
+
     public override bool Init()
     {
       return Load(GUIGraphicsContext.Skin + @"\myextensions2info.xml");

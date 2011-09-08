@@ -233,6 +233,11 @@ namespace MPEIPlugin
 
         #region GUIWindow overrides
 
+        public override string GetModuleName()
+        {
+          return Translation.Name;
+        }
+
         public GUISlideShow()
         {
           GetID = 802;
