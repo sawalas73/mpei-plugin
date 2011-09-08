@@ -40,6 +40,7 @@
   <string Field="NeverCheckForUpdates">Never check for updates</string>
   <string Field="NewExtensions">New Extensions</string>
   <string Field="NewUpdates">New updates</string>
+  <string Field="NewVersion">New version</string>
   <string Field="Notification">Notification</string>
   <string Field="NotificationWarning">There are tasks still outstanding.\nRestart and execute now?</string>
   <string Field="NotificationMessage">Would you like to restart MediaPortal\nand execute pending tasks now?</string>
@@ -69,6 +70,7 @@
 
   <!--  U  -->
   <string Field="Update">Update</string>
+  <string Field="UpdateAvailable">Update Available</string>
   <string Field="UpdateAll">Update All</string>
   <string Field="Updates">Updates</string>
   <string Field="Uninstall">Uninstall</string>
