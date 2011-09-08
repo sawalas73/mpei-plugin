@@ -211,7 +211,7 @@ namespace MPEIPlugin
     // L
     
     // M
-    public static string MPOnlineExtensions = "MP Online Extensions";
+    public static string MPOnlineExtensions = "MP Website Extensions";
 
     // N
     public static string Name = "Extensions";
@@ -230,7 +230,7 @@ namespace MPEIPlugin
     // P
 
     // R
-    public static string ReleaseDate = "Release date";
+    public static string ReleaseDate = "Release Date";
     public static string Restart = "Restart";
     public static string Rotate = "Rotate";
     public static string RevokeLastAction = "Revoke last action";
