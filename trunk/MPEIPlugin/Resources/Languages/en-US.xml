@@ -59,8 +59,8 @@
   <!--  S  -->
   <string Field="Sections">Sections</string>
   <string Field="Settings">Settings</string>
-  <string Field="ShowChangelogs">Show changelogs</string>
-  <string Field="ShowSreenshots">Show sreenshots</string>
+  <string Field="ShowChangelogs">Show Change Logs</string>
+  <string Field="ShowSreenshots">Show Screenshots</string>
   <string Field="SelectVersionToInstall">Select version to (Re)Install</string>
   <string Field="SelectVersion">Select version</string>
   <string Field="StartSlideshow">Start slideshow</string>
