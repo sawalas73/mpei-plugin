@@ -124,6 +124,7 @@
     <Content Include="Resources\Languages\fr.xml" />
     <Content Include="Resources\Skins\DefaultWide\Media\extension_action.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\extension_update.png" />
+    <Content Include="Resources\Skins\DefaultWide\Media\hover_extensions.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\status_editorpick.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\status_new.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\status_popular.png" />
@@ -131,6 +132,16 @@
     <Content Include="Resources\Skins\DefaultWide\myextensions2info.xml" />
     <Content Include="Resources\Skins\DefaultWide\myextensions2settings.xml" />
     <Content Include="Resources\Skins\DefaultWide\myextensions2slideshow.xml" />
+    <Content Include="Resources\Skins\Default\Media\extension_action.png" />
+    <Content Include="Resources\Skins\Default\Media\extension_update.png" />
+    <Content Include="Resources\Skins\Default\Media\hover_extensions.png" />
+    <Content Include="Resources\Skins\Default\Media\status_editorpick.png" />
+    <Content Include="Resources\Skins\Default\Media\status_new.png" />
+    <Content Include="Resources\Skins\Default\Media\status_popular.png" />
+    <Content Include="Resources\Skins\Default\myextensions2.xml" />
+    <Content Include="Resources\Skins\Default\myextensions2info.xml" />
+    <Content Include="Resources\Skins\Default\myextensions2settings.xml" />
+    <Content Include="Resources\Skins\Default\myextensions2slideshow.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\VersionInfo.cs.tmpl" />
