@@ -36,6 +36,11 @@ namespace MPEIPlugin
       GetID = 803;
     }
 
+    public override string GetModuleName()
+    {
+      return Translation.Name;
+    }
+
     public override bool Init()
     {
       return Load(GUIGraphicsContext.Skin + @"\myextensions2settings.xml");
