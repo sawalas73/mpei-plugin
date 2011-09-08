@@ -3,9 +3,6 @@
   <id>803</id>
   <defaultcontrol>50</defaultcontrol>
   <allowoverlay>yes</allowoverlay>
-  <define>#header.label:14001</define>
-  <define>#header.image:-</define>
-  <define>#header.hover:-</define>
   <controls>
     <control>
       <description>BG</description>
@@ -15,10 +12,8 @@
       <width>1280</width>
       <height>720</height>
     </control>
-  <import>common.window.xml</import>
+    <import>common.window.xml</import>
     <import>common.time.xml</import>
-	
-
     <control>
       <type>actiongroup</type>
       <description>action menu</description>
@@ -54,7 +49,6 @@
         <posY>117</posY>
         <layout>StackLayout</layout>
         <visible>!Control.HasFocus(50)</visible>
-
         <control>
           <description>Sections</description>
           <type>button</type>
@@ -63,10 +57,8 @@
           <onright>50</onright>
           <onup>17</onup>
         </control>
-	
       </control>
     </control>
-	
     <control>
       <description>group element</description>
       <type>group</type>
@@ -78,14 +70,13 @@
       <animation effect="rotatey" start="20" end="0" center="525,0" tween="back" ease="easeout" time="300" reversible="false">hidden</animation>
       <animation effect="rotatey" start="0" end="20" center="525,0" tween="back" ease="easeout" time="300" reversible="false">visible</animation>
       <control>
-        <description>composite control consisting of a list control and a thumbnail panel</description>
         <type>facadeview</type>
         <id>50</id>
         <control>
           <description>listcontrol</description>
           <type>listcontrol</type>
           <id>50</id>
-		  <posX>88</posX>
+          <posX>88</posX>
           <posY>131</posY>
           <width>1173</width>
           <height>588</height>
@@ -93,9 +84,7 @@
           <onright>2</onright>
           <scrollOffset>2</scrollOffset>
         </control>
-
       </control>
     </control>
-
   </controls>
 </window>
