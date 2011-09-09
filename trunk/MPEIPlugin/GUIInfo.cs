@@ -86,15 +86,15 @@ namespace MPEIPlugin
     {
       if (MpeInstaller.KnownExtensions.GetUpdate(Package) != null)
       {
-        if (btnUpdate !=null) btnUpdate.Focus = true;
+        if (btnUpdate != null) GUIControl.FocusControl(GetID, btnUpdate.GetID);
       }
       else if (MpeInstaller.InstalledExtensions.Get(Package) != null)
       {
-        if (btnUnInstall != null) btnUnInstall.Focus = true;
+        if (btnUnInstall != null) GUIControl.FocusControl(GetID, btnUnInstall.GetID);
       }
       else
       {
-        if (btnInstall != null) btnInstall.Focus = true;
+        if (btnInstall != null) GUIControl.FocusControl(GetID, btnInstall.GetID);
       }
     }
 
