@@ -54,6 +54,8 @@ namespace MPEIPlugin
       }
       if (queue.Count > 0)
         StartDownload();
+      else
+        DownloadDone(new DownLoadInfo(){ ItemType = DownLoadItemType.UpdateInfoComplete });
     }
     
     public void Download(DownLoadInfo info)
