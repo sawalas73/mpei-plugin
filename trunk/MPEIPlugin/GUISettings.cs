@@ -76,6 +76,7 @@ namespace MPEIPlugin
         }
         i++;
       }
+      GUIPropertyManager.SetProperty("#itemcount", facadeView.Count.ToString());
     }
 
     protected override void OnPageDestroy(int new_windowId)
