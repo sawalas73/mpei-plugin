@@ -31,7 +31,7 @@ namespace MPEIPlugin
     [SkinControlAttribute(3)]
     protected GUIButtonControl btnUnInstall = null;
     [SkinControlAttribute(4)]
-    protected GUIButtonControl btnUpdapte = null;
+    protected GUIButtonControl btnUpdate = null;
     [SkinControlAttribute(5)]
     protected GUIButtonControl btnDisable = null;
     [SkinControlAttribute(6)]
@@ -70,6 +70,7 @@ namespace MPEIPlugin
         settings.Load(SettingsFile);
         PackageClass pak = MpeInstaller.InstalledExtensions.Get(Package);
         checkstate();
+        SetFocus();
         if (pak != null)
         {
           if (settings.Settings.Count > 0)
@@ -81,6 +82,22 @@ namespace MPEIPlugin
       base.OnPageLoad();
     }
 
+    void SetFocus()
+    {
+      if (MpeInstaller.KnownExtensions.GetUpdate(Package) != null)
+      {
+        if (btnUpdate !=null) btnUpdate.Focus = true;
+      }
+      else if (MpeInstaller.InstalledExtensions.Get(Package) != null)
+      {
+        if (btnUnInstall != null) btnUnInstall.Focus = true;
+      }
+      else
+      {
+        if (btnInstall != null) btnInstall.Focus = true;
+      }
+    }
+
     void checkstate()
     {
       if (!string.IsNullOrEmpty(settings.DisableSetting.Name))
@@ -89,7 +106,6 @@ namespace MPEIPlugin
         {
           GUIPropertyManager.SetProperty("#MPE.Selected.IsEnabled", "true");
           GUIPropertyManager.SetProperty("#MPE.Selected.IsDisabled", "false");
-
         }
         else
         {
@@ -108,7 +124,7 @@ namespace MPEIPlugin
     protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
     {
       base.OnClicked(controlId, control, actionType);
-      if (control == btnUpdapte)
+      if (control == btnUpdate)
       {
         UpdateExtension(Package.GeneralInfo.Id);
       }
