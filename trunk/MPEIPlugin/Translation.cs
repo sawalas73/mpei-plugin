@@ -230,6 +230,7 @@ namespace MPEIPlugin
     // P
 
     // R
+    public static string Revoke = "Revoke";
     public static string ReleaseDate = "Release Date";
     public static string Restart = "Restart";
     public static string Rotate = "Rotate";

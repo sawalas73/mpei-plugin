@@ -594,9 +594,7 @@ namespace MPEIPlugin
       dlg.Reset();
       if (queue.Get(pk.GeneralInfo.Id) != null)
       {
-        dlg.SetHeading(string.Format("Action :{0} Version : {1}", queue.Get(pk.GeneralInfo.Id).CommandEnum,
-                                     queue.Get(pk.GeneralInfo.Id).TargetVersion.ToString()));
-        //dlg.AddLocalizedString(14008);//revoke action
+        dlg.SetHeading(string.Format("{0} {1} v{2}", Translation.Revoke, queue.Get(pk.GeneralInfo.Id).CommandEnum == CommandEnum.Install ? Translation.Install : Translation.Uninstall, queue.Get(pk.GeneralInfo.Id).TargetVersion.ToString()));
         dlg.Add(Translation.RevokeLastAction);
       }
       else
