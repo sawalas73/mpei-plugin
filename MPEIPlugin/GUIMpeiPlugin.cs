@@ -55,7 +55,7 @@ namespace MPEIPlugin
     #endregion
 
     #region Base variabeles
-    View currentView = View.List;
+    View currentLayout = View.List;
     Views currentListing = Views.Local;
     SortMethod currentSortMethod = SortMethod.Date;
     bool sortAscending = true;
@@ -384,9 +384,9 @@ namespace MPEIPlugin
         tmpLine = xmlreader.GetValue("myextensions2", "viewby");
         if (tmpLine != null)
         {
-          if (tmpLine == "list") currentView = View.List;
-          else if (tmpLine == "icons") currentView = View.Icons;
-          else if (tmpLine == "largeicons") currentView = View.LargeIcons;
+          if (tmpLine == "list") currentLayout = View.List;
+          else if (tmpLine == "icons") currentLayout = View.Icons;
+          else if (tmpLine == "largeicons") currentLayout = View.LargeIcons;
         }
 
         tmpLine = (string)xmlreader.GetValue("myextensions2", "sort");
@@ -416,7 +416,7 @@ namespace MPEIPlugin
     {
       using (MediaPortal.Profile.Settings xmlwriter = new MPSettings())
       {
-        switch (currentView)
+        switch (currentLayout)
         {
           case View.List:
             xmlwriter.SetValue("myextensions2", "viewby", "list");
@@ -714,10 +714,10 @@ namespace MPEIPlugin
         do
         {
           shouldContinue = false;
-          switch (currentView)
+          switch (currentLayout)
           {
             case View.List:
-              currentView = View.Icons;
+              currentLayout = View.Icons;
               if (facadeView.ThumbnailLayout == null)
                 shouldContinue = true;
               else
@@ -725,7 +725,7 @@ namespace MPEIPlugin
               break;
 
             case View.Icons:
-              currentView = View.LargeIcons;
+              currentLayout = View.LargeIcons;
               if (facadeView.ThumbnailLayout == null)
                 shouldContinue = true;
               else
@@ -733,7 +733,7 @@ namespace MPEIPlugin
               break;
 
             case View.LargeIcons:
-              currentView = View.List;
+              currentLayout = View.List;
               if (facadeView.ListLayout == null)
                 shouldContinue = true;
               else
@@ -1363,14 +1363,18 @@ namespace MPEIPlugin
       //set object count label
       GUIPropertyManager.SetProperty("#itemcount", facadeView.Count.ToString());
       SetLabels();
-      SwitchView();
+      SwitchLayout();
       OnSort();
       SelectCurrentItem();
 
       //set selected item
       if (selectedItemIndex >= 0 && currentFolder == strNewDirectory)
         GUIControl.SelectItemControl(GetID, facadeView.GetID, selectedItemIndex);
-      
+
+      // set focus on view button if no items.
+      if (facadeView.Count == 0)
+        GUIControl.FocusControl(GetID, btnViews.GetID);
+
       currentFolder = strNewDirectory;
       GUIWaitCursor.Hide();
     }
@@ -1604,7 +1608,7 @@ namespace MPEIPlugin
       //GUIControl.FocusControl(GetID, facadeView.GetID);
 
       string strLine = string.Empty;
-      View view = currentView;
+      View view = currentLayout;
       switch (view)
       {
         case View.List:
@@ -1649,9 +1653,9 @@ namespace MPEIPlugin
       btnRestart.Disabled = !(queue.Items.Count > 0);
     }
 
-    void SwitchView()
+    void SwitchLayout()
     {
-      switch (currentView)
+      switch (currentLayout)
       {
         case View.List:
           facadeView.CurrentLayout = GUIFacadeControl.Layout.List;
