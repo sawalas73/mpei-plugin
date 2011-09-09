@@ -132,6 +132,7 @@
       <overlay>yes</overlay>
       <keepaspectratio>yes</keepaspectratio>
       <centered>yes</centered>
+      <visible>facadeview.list+Control.HasFocus(50)</visible>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
