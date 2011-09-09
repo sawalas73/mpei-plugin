@@ -217,13 +217,16 @@ namespace MPEIPlugin
             File.Delete(info.Destinatiom);
             GenerateProperty();
             MpeInstaller.Save();
-            if (GUIWindowManager.ActiveWindow == GetID && currentListing != Views.MpSIte)
-              LoadDirectory(currentFolder);
             if (_setting.UpdateAll)
             {
               UpdateAll();
             }
           }
+          break;
+        case DownLoadItemType.UpdateInfoComplete:
+          Log.Info("[MPEI] Finished downloading updates for extensions");
+          if (GUIWindowManager.ActiveWindow == GetID && currentListing != Views.MpSIte)
+            LoadDirectory(currentFolder);
           break;
         case DownLoadItemType.Extension:
           break;

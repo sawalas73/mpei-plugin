@@ -11,6 +11,7 @@ namespace MPEIPlugin
   {
     IndexList,
     UpdateInfo,
+    UpdateInfoComplete,
     Extension,
     Logo,
     Other
