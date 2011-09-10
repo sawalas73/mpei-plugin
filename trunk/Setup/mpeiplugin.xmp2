@@ -454,13 +454,24 @@ Click Next to continue or Cancel to exit Setup.
       <Major>1</Major>
       <Minor>0</Minor>
       <Build>0</Build>
-      <Revision>86</Revision>
+      <Revision>87</Revision>
     </Version>
-    <ExtensionDescription>Extensions plugin for MediaPortal allows you to browse, install, update and uninstall Extensions all from the GUI.</ExtensionDescription>
-    <VersionDescription>TBA</VersionDescription>
+    <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.</ExtensionDescription>
+    <VersionDescription>* Better checking for skins splashscreen when doing installations from GUI.
+* Fix standard skin properties like itemcount and currentmodule not working in all windows.
+* Set focus on views button when no extensions are loaded in the list, this gives a hint to user on what to do e.g. browse online extensions.
+* Fixed Info window not getting focus on available buttons when entering.
+* Removed all hard coded strings and updated translations, fixed typos etc. All translations are now in en-US.xml
+* Fixed constant refresh of extension list when updates are still downloading in background. Now only refreshed when all updates have finished downloading.
+* Refresh of Default skins including support now for (4:3) Default skin.
+* Refresh of packaged MPEI installer.
+* Fixed filtering of Incompatible plugins not working. Setting is now respected from MPEI Installer configuration.
+* Fixed extension updates always being downloaded on startup, was not respecting settings defined in MPEI Installer configuration.
+* Added Spanish translations, thanks riturrioz.
+* Added Danish translations, thanks Steffan.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/[Name].[Version].mpe1</OnlineLocation>
-    <ReleaseDate>2011-09-08T10:56:05</ReleaseDate>
+    <ReleaseDate>2011-09-10T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
