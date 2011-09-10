@@ -453,8 +453,8 @@ Click Next to continue or Cancel to exit Setup.
     <Version>
       <Major>1</Major>
       <Minor>0</Minor>
-      <Build>0</Build>
-      <Revision>87</Revision>
+      <Build>1</Build>
+      <Revision>88</Revision>
     </Version>
     <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.</ExtensionDescription>
     <VersionDescription>* Better checking for skins splashscreen when doing installations from GUI.
