@@ -96,7 +96,7 @@ namespace MPEIPlugin
 
     public GUIMpeiPlugin()
     {
-      GetID = 801;
+
     }
 
     public override string GetModuleName()
@@ -256,7 +256,7 @@ namespace MPEIPlugin
 
     public string PluginName()
     {
-      return Translation.Name;
+      return "Extensions";
     }
 
     public bool HasSetup()
@@ -279,13 +279,13 @@ namespace MPEIPlugin
       strButtonText = Translation.Name;
       strButtonImage = string.Empty;
       strButtonImageFocus = string.Empty;
-      strPictureImage = "";
+      strPictureImage = "hover_extensions.png";
       return true;
     }
 
     public string Author()
     {
-      return "Dukus";
+      return "Dukus, Migue, ltfearme";
     }
 
     public string Description()
@@ -476,6 +476,14 @@ namespace MPEIPlugin
     #endregion
 
     #region BaseWindow Members
+
+    public override int GetID
+    {
+      get
+      {
+        return 801;
+      }
+    }
 
     public override void OnAction(Action action)
     {
