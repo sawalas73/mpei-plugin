@@ -15,7 +15,7 @@
               <UpdateOption>OverwriteIfOlder</UpdateOption>
               <LocalFileName>..\MPEIPlugin\bin\Release\MPEIPlugin.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{036019c8-5911-455e-a6ac-7b057c34ff82}-MPEIPlugin.dll</ZipFileName>
-              <DestinationFilename>%Base%\MPEIPlugin.dll</DestinationFilename>
+              <DestinationFilename>%Plugins%\Windows\MPEIPlugin.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
@@ -422,7 +422,26 @@ Click Next to continue or Cancel to exit Setup.
     </Items>
   </Dependencies>
   <PluginDependencies>
-    <Items />
+    <Items>
+      <PluginDependencyItem AssemblyName="MPEIPlugin.dll">
+        <CompatibleVersion>
+          <Items>
+            <CompatibleVersionItem>
+              <MinRequiredVersion>1.1.6.27644</MinRequiredVersion>
+              <DesignedForVersion>1.1.6.27644</DesignedForVersion>
+            </CompatibleVersionItem>
+          </Items>
+        </CompatibleVersion>
+        <SubSystemsUsed>
+          <Items>
+            <SubSystemItem Name="MP.Config" />
+            <SubSystemItem Name="MP.Players.Music" />
+            <SubSystemItem Name="MP.Players.Video" />
+            <SubSystemItem Name="MP.SkinEngine" />
+          </Items>
+        </SubSystemsUsed>
+      </PluginDependencyItem>
+    </Items>
   </PluginDependencies>
   <GeneralInfo>
     <Name>Extensions</Name>
@@ -435,7 +454,7 @@ Click Next to continue or Cancel to exit Setup.
       <Major>1</Major>
       <Minor>0</Minor>
       <Build>0</Build>
-      <Revision>76</Revision>
+      <Revision>86</Revision>
     </Version>
     <ExtensionDescription>Extensions plugin for MediaPortal allows you to browse, install, update and uninstall Extensions all from the GUI.</ExtensionDescription>
     <VersionDescription>TBA</VersionDescription>
@@ -483,7 +502,7 @@ Click Next to continue or Cancel to exit Setup.
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>..\MPEIPlugin\bin\Release\MPEIPlugin.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{036019c8-5911-455e-a6ac-7b057c34ff82}-MPEIPlugin.dll</ZipFileName>
-        <DestinationFilename>%Base%\MPEIPlugin.dll</DestinationFilename>
+        <DestinationFilename>%Plugins%\Windows\MPEIPlugin.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
