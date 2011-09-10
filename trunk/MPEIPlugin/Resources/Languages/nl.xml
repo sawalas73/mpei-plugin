@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- MPEI Plugin translation file -->
+<!-- Dutch (NL) -->
+<!-- Note: English is the fallback for any strings not found in other languages -->
+<strings>
+
+  <!--  A  -->
+  <string Field="All">Alles</string>
+  <string Field="AlwaysCheckForUpdates">Controleer altijd op updates</string>
+  <string Field="Actions">Acties</string>
+  <string Field="ActionAdded">Actie is toegevoegd aan de wachtrij</string>
+  <string Field="ActionRemoved">Actie is verwijderd van de wachtrij</string>
+  <string Field="AskForRestart">Deze actie zal MediaPortal opnieuw opstarten.\nWilt u verder gaan?</string>
+  <string Field="Author">Auteur</string>
+
+  <!--  C  -->
+  <string Field="ChangeLog">Wijzigingen</string>
+
+  <!--  D  -->
+  <string Field="Download">Download</string>
+  <string Field="Disable">Uitschakelen</string>
+
+  <!--  E  -->
+  <string Field="Exit">Afsluiten</string>
+  <string Field="Enable">Inschakelen</string>
+
+  <!--  F  -->
+
+  <!--  G  -->
+
+  <!--  H  -->
+
+  <!--  I  -->
+  <string Field="Id">Id</string>
+  <string Field="Install">Installeren</string>
+  <string Field="InstalledExtensions">Geïnstalleerde Extensies</string>
+
+  <!--  L  -->
+
+  <!--  M  -->
+  <string Field="MPOnlineExtensions">MP Website Extensies</string>
+  
+  <!--  N -->
+  <string Field="Name">Extensies</string>
+  <string Field="NeverCheckForUpdates">Nooit op updates controleren</string>
+  <string Field="NewExtensions">Nieuwe Extensies</string>
+  <string Field="NewUpdates">Nieuwe updates</string>
+  <string Field="NewVersion">Nieuwe versie</string>
+  <string Field="Notification">Herinnering</string>
+  <string Field="NotificationWarning">Er staan nog taken gereed.\nHerstarten en nu uitvoeren?</string>
+  <string Field="NotificationMessage">Wilt u MediaPortal herstarten\nen de gereedstaande taken uitvoeren?</string>
+  
+  <!--  O  -->
+  <string Field="OnlineExtensions">Online Extensies</string>
+
+  <!--  P  -->
+
+  <!--  R  -->
+  <string Field="Revoke">Ongedaan maken</string>
+  <string Field="ReleaseDate">Release datum</string>
+  <string Field="Restart">Herstart</string>
+  <string Field="Rotate">Roteren</string>
+  <string Field="RevokeLastAction">Laatste actie ongedaan maken</string>
+  <string Field="RestartNow">Deze taak vraagt om een herstart\nvan MediaPortal. Wilt u nu herstarten?\nAnders zal de taak in de wachtrij geplaatst worden.</string>
+
+  <!--  S  -->
+  <string Field="Sections">Secties</string>
+  <string Field="Settings">Instellingen</string>
+  <string Field="ShowChangelogs">Wijzigingen weergeven</string>
+  <string Field="ShowSreenshots">Schermafdrukken weergeven</string>
+  <string Field="SelectVersionToInstall">Selecteer de verie om te (Her)Installeren</string>
+  <string Field="SelectVersion">Selecteer versie</string>
+  <string Field="StartSlideshow">Diashow starten</string>
+
+  <!--  T  -->
+
+
+  <!--  U  -->
+  <string Field="Update">Update</string>
+  <string Field="UpdateAvailable">Update beschikbaar</string>
+  <string Field="UpdateAll">Update alles</string>
+  <string Field="Updates">Updates</string>
+  <string Field="Uninstall">Deïnstalleren</string>
+  <string Field="UnKnownFileType">Installatie is niet mogelijk\nOnbekend bestandsformaat gevonden!</string>
+  <string Field="UseSilent">Stille installatie?</string>
+  
+  <!--  V  -->
+  <string Field="Views">Weergave</string>
+  <string Field="Version">Versie</string>
+
+  <!--  W  -->
+
+  <!--  Y  -->
+
+
+</strings>
