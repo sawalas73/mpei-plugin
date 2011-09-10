@@ -239,9 +239,13 @@ namespace MPEIPlugin
       // try to find the splashscreen.xml ín the curent skin folder
       using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
       {
-        m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
+        m_strSkin = xmlreader.GetValueAsString("skin", "name", "DefaultWide");
         SkinFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\splashscreen.xml");
       }
+
+      string BackgoundImageName = "splashscreen.png";
+      string BackgroundImagePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\" + BackgoundImageName);
+      if (File.Exists(BackgroundImagePath)) return BackgroundImagePath;
 
       XmlDocument doc = new XmlDocument();
       doc.Load(SkinFilePath);
@@ -252,8 +256,8 @@ namespace MPEIPlugin
         if (Control.SelectSingleNode("type/text()").Value.ToLower() == "image"
             && Control.SelectSingleNode("id/text()").Value == "1") // if the background image control is found
         {
-          string BackgoundImageName = Control.SelectSingleNode("texture/text()").Value;
-          string BackgroundImagePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\" + BackgoundImageName);
+          BackgoundImageName = Control.SelectSingleNode("texture/text()").Value;
+          BackgroundImagePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\media\\" + BackgoundImageName);
           if (File.Exists(BackgroundImagePath))
           {
             return BackgroundImagePath;
@@ -271,7 +275,7 @@ namespace MPEIPlugin
 
       using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
       {
-        m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
+        m_strSkin = xmlreader.GetValueAsString("skin", "name", "DefaultWide");
         SkinReferenceFilePath = Config.GetFile(Config.Dir.Skin, m_strSkin + "\\references.xml");
       }
 
