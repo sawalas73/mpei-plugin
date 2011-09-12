@@ -108,6 +108,8 @@ namespace MPEIPlugin
     {
       Log.Debug("[MPEI] Init Start");
       MpeInstaller.Init();
+      Translation.Init();
+
       queue = QueueCommandCollection.Load();
       _downloadManager.DownloadDone += _downloadManager_DownloadDone;
       _timer.Elapsed += _timer_Elapsed;
@@ -118,13 +120,10 @@ namespace MPEIPlugin
       currentFolder = string.Empty;
       
       GenerateProperty();
-      foreach (string name in Translation.Strings.Keys)
-      {
-        GUIUtils.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
-      }
 
       bool bResult = Load(GUIGraphicsContext.Skin + @"\myextensions2.xml");
 
+      GUIWindowManager.OnDeActivateWindow += new GUIWindowManager.WindowActivationHandler(GUIWindowManager_OnDeActivateWindow);
       GUIGraphicsContext.Receivers += GUIGraphicsContext_Receivers;
       _timer.Enabled = true;
 
@@ -132,6 +131,21 @@ namespace MPEIPlugin
       Log.Debug("[MPEI] Init End");
 
       return bResult;
+    }
+   
+    void GUIWindowManager_OnDeActivateWindow(int windowID)
+    {
+      // Settings/General window
+      // this is where a user can change skins\languages from GUI
+      if (windowID == (int)Window.WINDOW_SETTINGS_SKIN)
+      {
+        //did language change?
+        if (Translation.CurrentLanguage != Translation.PreviousLanguage)
+        {
+          Log.Info("Language Changed to '{0}' from GUI, re-initializing translations.", Translation.CurrentLanguage);
+          Translation.Init();
+        }
+      }
     }
 
     void GUIGraphicsContext_Receivers(GUIMessage message)

@@ -14,9 +14,8 @@ namespace MPEIPlugin
   {
     #region Private variables
 
-    //private static Logger logger = LogManager.GetCurrentClassLogger();
     private static Dictionary<string, string> _translations;
-    private static readonly string _path = string.Empty;
+    private static string _path = string.Empty;
     private static readonly DateTimeFormatInfo _info;
 
     #endregion
@@ -25,27 +24,7 @@ namespace MPEIPlugin
 
     static Translation()
     {
-      string lang;
-
-      try
-      {
-        lang = GUILocalizeStrings.GetCultureName(GUILocalizeStrings.CurrentLanguage());
-        _info = DateTimeFormatInfo.GetInstance(CultureInfo.CurrentUICulture);
-      }
-      catch (Exception)
-      {
-        lang = CultureInfo.CurrentUICulture.Name;
-        _info = DateTimeFormatInfo.GetInstance(CultureInfo.CurrentUICulture);
-      }
-
-      Log.Info("[MPEI] Using language " + lang);
-
-      _path = Config.GetSubFolder(Config.Dir.Language, "MPEI");
-
-      if (!System.IO.Directory.Exists(_path))
-        System.IO.Directory.CreateDirectory(_path);
-
-      LoadTranslations(lang);
+      _info = DateTimeFormatInfo.GetInstance(CultureInfo.CurrentUICulture);
     }
 
     #endregion
@@ -73,9 +52,48 @@ namespace MPEIPlugin
       }
     }
 
+    public static string CurrentLanguage
+    {
+      get
+      {
+        string language = string.Empty;
+        try
+        {
+          language = GUILocalizeStrings.GetCultureName(GUILocalizeStrings.CurrentLanguage());
+          
+        }
+        catch (Exception)
+        {
+          language = CultureInfo.CurrentUICulture.Name;
+        }
+        return language;
+      }
+    }
+    public static string PreviousLanguage { get; set; }
+
     #endregion
 
     #region Public Methods
+
+    public static void Init()
+    {
+      _translations = null;
+      Log.Info("[MPEI] Using language " + CurrentLanguage);
+
+      _path = Config.GetSubFolder(Config.Dir.Language, "MPEI");
+
+      if (!System.IO.Directory.Exists(_path))
+        System.IO.Directory.CreateDirectory(_path);
+
+      string lang = PreviousLanguage = CurrentLanguage;
+      LoadTranslations(lang);
+
+      // publish all available translation strings
+      foreach (string name in Strings.Keys)
+      {
+        GUIUtils.SetProperty("#MPEI.Translation." + name + ".Label", Translation.Strings[name]);
+      }
+    }
 
     public static int LoadTranslations(string lang)
     {
@@ -102,6 +120,7 @@ namespace MPEIPlugin
 
         return LoadTranslations("en");
       }
+
       foreach (XmlNode stringEntry in doc.DocumentElement.ChildNodes)
       {
         if (stringEntry.NodeType == XmlNodeType.Element)
