@@ -1246,6 +1246,7 @@ namespace MPEIPlugin
               item.IsFolder = true;
               item.MusicTag = null;
               item.ThumbnailImage = string.Empty;
+              item.OnItemSelected += item_OnBackSelected;
               Utils.SetDefaultIcons(item);
               facadeView.Add(item);
               foreach (PackageClass pk in MpeInstaller.KnownExtensions.GetUniqueList().Items)
@@ -1527,6 +1528,35 @@ namespace MPEIPlugin
       return logofile;
     }
 
+    void ClearProperties()
+    {
+      GUIUtils.SetProperty("#MPE.Selected.Id", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Name", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Version", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Author", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Description", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.VersionDescription", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.ReleaseDate", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Icon", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.JustAded", "false");
+      GUIUtils.SetProperty("#MPE.Selected.Popular", "false");
+      GUIUtils.SetProperty("#MPE.Selected.DeveloperPick", "false");
+      GUIUtils.SetProperty("#MPE.Selected.isinstalled", "false");
+      GUIUtils.SetProperty("#MPE.Selected.haveupdate", "false");
+      GUIUtils.SetProperty("#MPE.Selected.installedversion", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.updatelog", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.updatedate", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.updateversion", string.Empty);
+
+      GUIUtils.SetProperty("#selectedthumb", string.Empty);
+    }
+
+    void item_OnBackSelected(GUIListItem item, GUIControl parent)
+    {
+      // clear selection properties
+      ClearProperties();
+    }
+
     void item_OnItemSelected(GUIListItem item, GUIControl parent)
     {
       SiteItems siteItem = item.MusicTag as SiteItems;
@@ -1546,6 +1576,10 @@ namespace MPEIPlugin
         GUIPropertyManager.SetProperty("#MPE.Selected.DeveloperPick", siteItem.EditorPick ? "true" : "false");
         return;
       }
+
+      GUIPropertyManager.SetProperty("#MPE.Selected.JustAded", "false");
+      GUIPropertyManager.SetProperty("#MPE.Selected.Popular", "false");
+      GUIPropertyManager.SetProperty("#MPE.Selected.DeveloperPick", "false");
 
       PackageClass pak = item.MusicTag as PackageClass;
       if (pak != null)
@@ -1590,26 +1624,7 @@ namespace MPEIPlugin
       }
       else
       {
-        GUIPropertyManager.SetProperty("#MPE.Selected.installedversion", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.isinstalled", "false");
-
-        GUIPropertyManager.SetProperty("#MPE.Selected.ReleaseDate", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.haveupdate", "false");
-        GUIPropertyManager.SetProperty("#MPE.Selected.updatelog", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.updatedate", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.updateversion", " ");
-
-        GUIPropertyManager.SetProperty("#MPE.Selected.JustAded", "false ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.Popular", "false");
-        GUIPropertyManager.SetProperty("#MPE.Selected.DeveloperPick", "false");
-
-        GUIPropertyManager.SetProperty("#MPE.Selected.Id", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.Name", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.Version", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.Author", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.Description", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.VersionDescription", " ");
-        GUIPropertyManager.SetProperty("#selectedthumb", " ");
+        ClearProperties();
       }
     }
 
