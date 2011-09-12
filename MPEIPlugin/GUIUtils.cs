@@ -34,9 +34,9 @@ namespace MPEIPlugin
       if (log)
       {
         if (GUIPropertyManager.Changed)
-          Log.Debug("Set property \"" + property + "\" to \"" + value + "\" successful");
+          Log.Debug("[MPEI] Set property \"" + property + "\" to \"" + value + "\" successful");
         else
-          Log.Warn("Set property \"" + property + "\" to \"" + value + "\" failed");
+          Log.Warn("[MPEI] Set property \"" + property + "\" to \"" + value + "\" failed");
       }
     }
 
