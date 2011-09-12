@@ -205,7 +205,7 @@
       </control>
       <control>
         <type>image</type>
-        <visible>string.contains(#MPE.Selected.JustAded,true)</visible>
+        <visible>string.contains(#MPE.Selected.JustAdded,true)</visible>
         <texture>status_new.png</texture>
       </control>
       <control>

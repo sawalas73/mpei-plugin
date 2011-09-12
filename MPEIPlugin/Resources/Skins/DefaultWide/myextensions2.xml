@@ -152,7 +152,7 @@
       </control>
       <control>
         <type>image</type>
-        <visible>string.equals(#MPE.Selected.JustAded,true)</visible>
+        <visible>string.equals(#MPE.Selected.JustAdded,true)</visible>
         <texture>status_new.png</texture>
       </control>
       <control>
