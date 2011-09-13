@@ -1087,6 +1087,7 @@ namespace MPEIPlugin
       if (dlg.SelectedLabelText == Translation.MPOnlineExtensions)
         currentListing = Views.MpSIte;
 
+      ClearProperties();
       LoadDirectory(currentFolder);
     }
 
