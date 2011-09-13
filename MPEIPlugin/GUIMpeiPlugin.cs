@@ -1458,7 +1458,10 @@ namespace MPEIPlugin
 
     void FinializeDirectory(string strNewDirectory)
     {
-      GUIPropertyManager.SetProperty("#itemcount", facadeView.Count.ToString());
+      int itemCount = facadeView.Count;
+      if (itemCount > 0 && facadeView[0].Label == "..") itemCount--;
+
+      GUIPropertyManager.SetProperty("#itemcount", itemCount.ToString());
       SetLabels();
       SwitchLayout();
       OnSort();
