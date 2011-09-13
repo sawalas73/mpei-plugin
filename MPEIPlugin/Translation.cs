@@ -215,11 +215,15 @@ namespace MPEIPlugin
     // E
     public static string Exit = "Exit";
     public static string Enable = "Enable";
+    public static string Error = "Error";
+    public static string ErrorLoadingSite = "Error Loading Category list from the MediaPortal website";
+    public static string ErrorLoadingExtensionList = "Error Loading Extension list for category";
 
     // F
 
     // G
-
+    public static string GetCategories = "Getting Categories";
+   
     // H
 
     // I
@@ -267,7 +271,7 @@ namespace MPEIPlugin
     public static string StartSlideshow = "Start slideshow";
 
     // T
-
+    public static string Timeout = "Timeout";
 
     // U
     public static string UseSilent = "Install extension silently?";

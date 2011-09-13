@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Classes\ExtensionSetting.cs" />
     <Compile Include="Classes\ExtensionSettings.cs" />
+    <Compile Include="GUIBackgroundTask.cs" />
     <Compile Include="GuiBase.cs" />
     <Compile Include="GUIInfo.cs" />
     <Compile Include="GUISettings.cs" />
