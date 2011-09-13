@@ -31,6 +31,7 @@
 
   <!--  G  -->
   <string Field="GetCategories">Getting Categories</string>
+  <string Field="GetExtensionInfo">Getting Extension Info</string>
  
   <!--  H  -->
 
