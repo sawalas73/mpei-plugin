@@ -10,14 +10,27 @@ using MediaPortal.GUI.Library;
 namespace MPEIPlugin.MPSite
 {
   public class MPSiteUtil
-  {
-    
-    List<Category> cats = new List<Category>();
+  {    
+    List<Category> cats = new List<Category>();    
 
-    public void LoadCatTree()
+    public bool LoadCatTree()
     {
+      // just do this once as it doesnt really change
+      if (cats.Count > 0) return true;
+
+      string site = "http://www.team-mediaportal.com/extensions";
+
       WebClient client = new WebClient();
-      string site = client.DownloadString("http://www.team-mediaportal.com/extensions");
+      try
+      {
+        site = client.DownloadString(site);
+      }
+      catch (Exception e)
+      {
+        Log.Error("[MPEI] Error Loading items from '{0}': {1}", site, e.Message);
+        return false;
+      }      
+
       string resultString = null;
       Regex regexObj = new Regex(@"dTree\('(.+?)</script>", RegexOptions.Singleline);
       resultString = regexObj.Match(site).Groups[1].Value;
@@ -41,10 +54,12 @@ namespace MPEIPlugin.MPSite
           matchResults = matchResults.NextMatch();
         }
       }
-      catch (ArgumentException)
+      catch (Exception e)
       {
-        // Syntax error in the regular expression
+        Log.Error("[MPEI] Error: {0}", e.Message);
+        return false;
       }
+
       cats.Add(new Category()
       {
         Id = "-1",
@@ -109,25 +124,34 @@ namespace MPEIPlugin.MPSite
         Url = "/extensions/most-reviewed",
         PId = "0"
       });
-
+      
+      return true;
     }
 
-    public void LoadItems(Category category)
+    public bool LoadItems(Category category)
     {
       WebClient client = new WebClient();
-      string site = client.DownloadString("http://www.team-mediaportal.com" + category.Url);
-      //string resultString = null;
+      string site = "http://www.team-mediaportal.com" + category.Url;
+
+      try
+      {
+        site = client.DownloadString(site);
+      }
+      catch (Exception e)
+      {
+        Log.Error("[MPEI] Error Loading items from '{0}': {1}", site, e.Message);
+        return false;
+      }
+            
       Regex regexObj = new Regex("<div class=\"listing-summary(.*?)</div></div></div>", RegexOptions.Singleline);
-      category.SiteItems.Clear();
-      //resultString = regexObj.Match(site).Groups[1].Value;
+      category.SiteItems.Clear();      
       Match match = regexObj.Match(site);
       try
       {
         while (match.Success)
         {
           string item = match.Groups[0].Value;
-          Regex regexObj1 = new Regex("<h3><a href=\"(?<url>.*?)\".>(?<name>.*?)</a>.*?<p.*?</a>(?<desc>.*?)</p>.*?<div class=\"fields\">(?<fields>.*?)</div></div></div>",
-                                      RegexOptions.Singleline);
+          Regex regexObj1 = new Regex("<h3><a href=\"(?<url>.*?)\".>(?<name>.*?)</a>.*?<p.*?</a>(?<desc>.*?)</p>.*?<div class=\"fields\">(?<fields>.*?)</div></div></div>", RegexOptions.Singleline);
           Match matchResults = regexObj1.Match(item);
           while (matchResults.Success)
           {
@@ -151,10 +175,14 @@ namespace MPEIPlugin.MPSite
           match = match.NextMatch();
         }
       }
-      catch (ArgumentException)
+      catch (Exception e)
       {
         // Syntax error in the regular expression
+        Log.Error("[MPEI] Error: {0}", e.Message);
+        return false;
       }
+
+      return true;
     }
 
     public List<Category> GetCats(string pid)

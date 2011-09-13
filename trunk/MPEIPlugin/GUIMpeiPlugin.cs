@@ -126,8 +126,7 @@ namespace MPEIPlugin
       GUIWindowManager.OnDeActivateWindow += new GUIWindowManager.WindowActivationHandler(GUIWindowManager_OnDeActivateWindow);
       GUIGraphicsContext.Receivers += GUIGraphicsContext_Receivers;
       _timer.Enabled = true;
-
-      SiteUtil.LoadCatTree();
+      
       Log.Debug("[MPEI] Init End");
 
       return bResult;
@@ -728,6 +727,9 @@ namespace MPEIPlugin
 
     protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
     {
+      // wait for any background action to finish
+      if (GUIBackgroundTask.Instance.IsBusy) return;
+
       base.OnClicked(controlId, control, actionType);
 
       if (control == btnViewAs)
@@ -1170,7 +1172,6 @@ namespace MPEIPlugin
 
     void LoadDirectory(string strNewDirectory)
     {
-      GUIWaitCursor.Show();
       selectedItemIndex = facadeView.SelectedListItemIndex;
 
       GUIControl.ClearControl(GetID, facadeView.GetID);
@@ -1194,6 +1195,7 @@ namespace MPEIPlugin
               facadeView.Add(item);
             }
           }
+          FinializeDirectory(strNewDirectory);
           break;
         case Views.Online:
           {
@@ -1265,6 +1267,7 @@ namespace MPEIPlugin
               }
             }
           }
+          FinializeDirectory(strNewDirectory);
           break;
         case Views.Updates:
           {
@@ -1282,6 +1285,7 @@ namespace MPEIPlugin
               facadeView.Add(item);
             }
           }
+          FinializeDirectory(strNewDirectory);
           break;
         case Views.New:
           {
@@ -1302,6 +1306,7 @@ namespace MPEIPlugin
               }
             }
           }
+          FinializeDirectory(strNewDirectory);
           break;
         case Views.Queue:
           {
@@ -1323,67 +1328,136 @@ namespace MPEIPlugin
               }
             }
           }
+          FinializeDirectory(strNewDirectory);
           break;
         case Views.MpSIte:
           {
             GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.MPOnlineExtensions);
             GUIListItem item = new GUIListItem();
-            List<Category> cats = new List<Category>();
-            Category pareCategory = SiteUtil.GetCat(strNewDirectory);
-            if (string.IsNullOrEmpty(strNewDirectory) || strNewDirectory == "0")
+            List<Category> categories = new List<Category>();
+
+            Category parentCategory = SiteUtil.GetCat(strNewDirectory);
+
+            if (string.IsNullOrEmpty(strNewDirectory) || strNewDirectory == "0" || parentCategory == null)
             {
-              cats = SiteUtil.GetCats("0");
+              GUIBackgroundTask.Instance.ExecuteInBackgroundAndCallback(() =>
+              {
+                // this only goes online once unless there was an error on previous try
+                return SiteUtil.LoadCatTree();
+              },
+              delegate(bool success, object result)
+              {
+                if (success && (bool)result)
+                {
+                  // get the root categories once list is retrieved
+                  categories = SiteUtil.GetCats("0");
+                }
+                else if (success && !(bool)result)
+                {
+                  GUIUtils.ShowNotifyDialog(Translation.Error, Translation.ErrorLoadingSite);
+                }
+
+                // if its a success or not, doesn't matter
+                LoadMPSiteDirectory(strNewDirectory, parentCategory, categories);
+
+              }, Translation.GetCategories, true);
+
+              return;
             }
             else
             {
-              Category cate = new Category() { Name = "..", Id = pareCategory.PId };
+              // create back item
+              Category cate = new Category() { Name = "..", Id = parentCategory.PId };
               item = new GUIListItem();
               item.MusicTag = cate;
               item.IsFolder = true;
               item.Label = cate.Name;
               item.Label2 = "";
-              //Logo(pk, item);
               item.OnItemSelected += item_OnItemSelected;
               Utils.SetDefaultIcons(item);
               facadeView.Add(item);
 
-              cats = SiteUtil.GetCats(strNewDirectory);
-            }
-            foreach (Category category in cats)
-            {
-              item = new GUIListItem();
-              item.MusicTag = category;
-              item.IsFolder = true;
-              item.Label = category.Name;
-              item.Label2 = category.Number;
-              //Logo(pk, item);
-              item.OnItemSelected += item_OnItemSelected;
-              Utils.SetDefaultIcons(item);
-              facadeView.Add(item);
-            }
-            if(pareCategory!=null)
-            {
-              if (pareCategory.SiteItems.Count == 0)
-                SiteUtil.LoadItems(pareCategory);
-              foreach (SiteItems siteItem in pareCategory.SiteItems)
-              {
-                item = new GUIListItem();
-                item.MusicTag = siteItem;
-                item.IsFolder = false;
-                item.Label = siteItem.Name;
-                //item.Label2 = category.Number;
-                Logo(siteItem, item);
-                item.OnItemSelected += item_OnItemSelected;
-               facadeView.Add(item);
-              }
-            }
-
+              // get sub-categories
+              categories = SiteUtil.GetCats(strNewDirectory);
+              LoadMPSiteDirectory(strNewDirectory, parentCategory, categories);
+            }            
           }
           break;
       }
 
-      //------------
-      //set object count label
+    }
+
+    void LoadMPSiteDirectory(string strNewDirectory, Category parentCategory, List<Category> categories)
+    {
+      GUIListItem item = new GUIListItem();
+
+      if (categories.Count > 0)
+      {
+        foreach (Category category in categories)
+        {
+          item = new GUIListItem();
+          item.MusicTag = category;
+          item.IsFolder = true;
+          item.Label = category.Name;
+          item.Label2 = category.Number;
+          item.OnItemSelected += item_OnItemSelected;
+          Utils.SetDefaultIcons(item);
+          facadeView.Add(item);
+        }
+        FinializeDirectory(strNewDirectory);
+        return;
+      }
+
+      if (parentCategory != null)
+      {
+        // get extensions
+        if (parentCategory.SiteItems.Count == 0)
+        {
+          GUIBackgroundTask.Instance.ExecuteInBackgroundAndCallback(() =>
+          {
+            return SiteUtil.LoadItems(parentCategory);
+          },
+          delegate(bool success, object result)
+          {
+            if (success && (bool)result)
+            {
+              LoadExtensionDirectory(parentCategory);
+            }
+            else if (success && !(bool)result)
+            {
+              GUIUtils.ShowNotifyDialog(Translation.Error, Translation.ErrorLoadingExtensionList);
+            }
+
+            FinializeDirectory(strNewDirectory);
+            return;
+
+          }, Translation.GetCategories, true);
+        }
+        else
+        {
+          LoadExtensionDirectory(parentCategory);
+        }
+      }
+    }
+
+    void LoadExtensionDirectory(Category parentCategory)
+    {
+      GUIListItem item = new GUIListItem();
+
+      foreach (SiteItems siteItem in parentCategory.SiteItems)
+      {
+        item = new GUIListItem();
+        item.MusicTag = siteItem;
+        item.IsFolder = false;
+        item.Label = siteItem.Name;
+        Logo(siteItem, item);
+        item.OnItemSelected += item_OnItemSelected;
+        facadeView.Add(item);
+      }
+    }
+
+    void FinializeDirectory(string strNewDirectory)
+    {
       GUIPropertyManager.SetProperty("#itemcount", facadeView.Count.ToString());
       SetLabels();
       SwitchLayout();
@@ -1399,7 +1473,6 @@ namespace MPEIPlugin
         GUIControl.FocusControl(GetID, btnViews.GetID);
 
       currentFolder = strNewDirectory;
-      GUIWaitCursor.Hide();
     }
 
     void Logo(SiteItems items, GUIListItem listItem)

@@ -23,11 +23,15 @@
   <!--  E  -->
   <string Field="Exit">Exit</string>
   <string Field="Enable">Enable</string>
-
+  <string Field="Error">Error</string>
+  <string Field="ErrorLoadingSite">Error Loading Category list from the MediaPortal website</string>
+  <string Field="ErrorLoadingExtensionList">Error Loading Extension list for category</string>
+  
   <!--  F  -->
 
   <!--  G  -->
-
+  <string Field="GetCategories">Getting Categories</string>
+ 
   <!--  H  -->
 
   <!--  I  -->
@@ -73,7 +77,7 @@
   <string Field="StartSlideshow">Start slideshow</string>
 
   <!--  T  -->
-
+  <string Field="Timeout">Timeout</string>
 
   <!--  U  -->
   <string Field="Update">Update</string>
