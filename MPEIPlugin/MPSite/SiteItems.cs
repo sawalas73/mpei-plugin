@@ -36,23 +36,31 @@ namespace MPEIPlugin.MPSite
     public bool JustAdded { get; set; }
     public bool Popular { get; set; }
 
-    public void LoadInfo()
+    public bool LoadInfo()
     {
       if (string.IsNullOrEmpty(Url))
-        return;
+        return false;
+
       WebClient client = new WebClient();
-      string site = client.DownloadString("http://www.team-mediaportal.com" + Url);
-      Author =
-        Regex.Match(site, "Submitted By.*?\"><a.*?>(?<name>.*?)</a", RegexOptions.Singleline).Groups["name"].Value;
+      string site = "http://www.team-mediaportal.com" + Url;
+
+      try
+      {
+        site = client.DownloadString(site);
+      }
+      catch (WebException e)
+      {
+        Log.Error("[MPEI] Error Loading info from '{0}': {1}", site, e.Message);
+        return false;
+      }
+
+      Author = Regex.Match(site, "Submitted By.*?\"><a.*?>(?<name>.*?)</a", RegexOptions.Singleline).Groups["name"].Value;
       Version = Regex.Match(site, "Version.*?\">(?<name>.*?)</div", RegexOptions.Singleline).Groups["name"].Value;
-      Downloads =
-        Regex.Match(site, @" Count: </a> \((?<name>.*?) Downloads?", RegexOptions.Singleline).Groups["name"].Value;
-      FileUrl =
-        Regex.Match(site, "<div class=\"data-short\"><a href=\"(?<name>.*?)\" t", RegexOptions.Singleline).Groups["name"].
-          Value;
-      Descriptions = Regex.Match(site, "<div class=\"listing-desc\"><p>(?<name>.*?)</p>", RegexOptions.Singleline).Groups["name"].
-          Value;
+      Downloads = Regex.Match(site, @" Count: </a> \((?<name>.*?) Downloads?", RegexOptions.Singleline).Groups["name"].Value;
+      FileUrl = Regex.Match(site, "<div class=\"data-short\"><a href=\"(?<name>.*?)\" t", RegexOptions.Singleline).Groups["name"].Value;
+      Descriptions = Regex.Match(site, "<div class=\"listing-desc\"><p>(?<name>.*?)</p>", RegexOptions.Singleline).Groups["name"].Value;
       Descriptions = MediaPortal.Util.Utils.stripHTMLtags(HttpUtility.HtmlDecode(Descriptions));
+
       Regex regexObj = new Regex("<a rel=\"shadowbox.ca.\".*?href=\"(?<name>.*?)\">", RegexOptions.Singleline);
       Match matchResults = regexObj.Match(site);
       LogoUrl = LogoUrl.Replace("/s/", "/m/");
@@ -62,6 +70,8 @@ namespace MPEIPlugin.MPSite
         Images.Add(matchResults.Groups[1].Value);
         matchResults = matchResults.NextMatch();
       }
+
+      return true;
     }
 
     public void LoadFileName()

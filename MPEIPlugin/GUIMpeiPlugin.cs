@@ -713,6 +713,8 @@ namespace MPEIPlugin
     }
     protected override void OnPageDestroy(int newWindowId)
     {
+      GUIBackgroundTask.Instance.StopBackgroundTask();
+
       selectedItemIndex = facadeView.SelectedListItemIndex;
       SaveSettings();
       if (queue.Items.Count > 0)
@@ -856,14 +858,28 @@ namespace MPEIPlugin
         SiteItems si = item.MusicTag as SiteItems;
         if (si != null)
         {
-          si.LoadInfo();
-          item_OnItemSelected(item, facadeView);
-          GUIInfo guiinfo = (GUIInfo)GUIWindowManager.GetWindow(804);
-          guiinfo.SiteItem = si;
-          guiinfo.queue = queue;
-          guiinfo._askForRestart = _askForRestart;
-          guiinfo.Package = null;
-          GUIWindowManager.ActivateWindow(804);
+          GUIBackgroundTask.Instance.ExecuteInBackgroundAndCallback(() =>
+          {
+            return si.LoadInfo();
+          },
+          delegate(bool success, object result)
+          {
+            if (success && (bool)result)
+            {
+              // we can't click anything else until the current bg thread completes so this is safe
+              item_OnItemSelected(item, facadeView);
+              GUIInfo guiinfo = (GUIInfo)GUIWindowManager.GetWindow(804);
+              guiinfo.SiteItem = si;
+              guiinfo.queue = queue;
+              guiinfo._askForRestart = _askForRestart;
+              guiinfo.Package = null;
+              GUIWindowManager.ActivateWindow(804);
+            }
+            else if (success && !(bool)result)
+            {
+              GUIUtils.ShowNotifyDialog(Translation.Error, Translation.ErrorExtensionInfo);
+            }
+          }, Translation.GetExtensionInfo, true);
         }
         else
         {

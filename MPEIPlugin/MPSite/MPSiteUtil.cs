@@ -25,7 +25,7 @@ namespace MPEIPlugin.MPSite
       {
         site = client.DownloadString(site);
       }
-      catch (Exception e)
+      catch (WebException e)
       {
         Log.Error("[MPEI] Error Loading items from '{0}': {1}", site, e.Message);
         return false;
@@ -137,7 +137,7 @@ namespace MPEIPlugin.MPSite
       {
         site = client.DownloadString(site);
       }
-      catch (Exception e)
+      catch (WebException e)
       {
         Log.Error("[MPEI] Error Loading items from '{0}': {1}", site, e.Message);
         return false;

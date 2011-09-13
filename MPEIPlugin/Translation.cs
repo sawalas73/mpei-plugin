@@ -218,11 +218,13 @@ namespace MPEIPlugin
     public static string Error = "Error";
     public static string ErrorLoadingSite = "Error Loading Category list from the MediaPortal website";
     public static string ErrorLoadingExtensionList = "Error Loading Extension list for category";
+    public static string ErrorExtensionInfo = "Error getting Extension Info";
 
     // F
 
     // G
     public static string GetCategories = "Getting Categories";
+    public static string GetExtensionInfo = "Getting Extension Info";
    
     // H
 
