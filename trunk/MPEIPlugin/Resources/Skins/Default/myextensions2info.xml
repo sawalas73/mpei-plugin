@@ -109,6 +109,7 @@
         <onright>8</onright>
         <ondown>2</ondown>
         <onup>7</onup>
+        <visible>!string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
       </control>
     </control>
     <control>
@@ -200,11 +201,6 @@
       <animation effect="Fade" time="100">WindowClose</animation>
       <control>
         <type>image</type>
-        <visible>string.contains(#MPE.Selected.DeveloperPick,true)</visible>
-        <texture>status_editorpick.png</texture>
-      </control>
-      <control>
-        <type>image</type>
         <visible>string.contains(#MPE.Selected.JustAdded,true)</visible>
         <texture>status_new.png</texture>
       </control>
@@ -213,6 +209,11 @@
         <visible>string.contains(#MPE.Selected.Popular,true)</visible>
         <texture>status_popular.png</texture>
       </control>
-     </control>
+      <control>
+        <type>image</type>
+        <visible>string.contains(#MPE.Selected.DeveloperPick,true)</visible>
+        <texture>status_editorpick.png</texture>
+      </control>
+    </control>
   </controls>
 </window>
