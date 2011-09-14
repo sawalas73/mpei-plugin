@@ -122,6 +122,9 @@ namespace MPEIPlugin.MPSite
             case "Status":
               Status = matchResults.Groups["value"].Value;
               break;
+            case "Version":
+              Version = matchResults.Groups["value"].Value;
+              break;
           }
           matchResults = matchResults.NextMatch();
         }
