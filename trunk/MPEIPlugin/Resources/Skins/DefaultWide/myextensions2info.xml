@@ -137,7 +137,7 @@
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
     <control>
-      <type>label</type>
+      <type>fadelabel</type>
       <posX>595</posX>
       <posY>174</posY>
       <width>426</width>
@@ -179,7 +179,7 @@
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
     <control>
-      <type>label</type>
+      <type>fadelabel</type>
       <posX>595</posX>
       <posY>234</posY>
       <width>428</width>
@@ -201,7 +201,7 @@
       <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
     </control>
     <control>
-      <type>label</type>
+      <type>fadelabel</type>
       <posX>595</posX>
       <posY>264</posY>
       <width>428</width>
@@ -224,7 +224,7 @@
       <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
     </control>
     <control>
-      <type>label</type>
+      <type>fadelabel</type>
       <posX>595</posX>
       <posY>294</posY>
       <width>428</width>
@@ -236,7 +236,7 @@
       <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)+!string.equals(#MPE.Selected.Downloads,)</visible>
     </control>
     <control>
-      <type>label</type>
+      <type>fadelabel</type>
       <posX>595</posX>
       <posY>294</posY>
       <width>428</width>
@@ -260,7 +260,7 @@
       <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
     </control>
     <control>
-      <type>label</type>
+      <type>fadelabel</type>
       <posX>595</posX>
       <posY>324</posY>
       <width>428</width>
@@ -304,7 +304,7 @@
       <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
     </control>
     <control>
-      <type>label</type>
+      <type>fadelabel</type>
       <posX>730</posX>
       <posY>354</posY>
       <width>428</width>
