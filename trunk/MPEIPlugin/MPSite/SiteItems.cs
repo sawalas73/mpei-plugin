@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,7 +23,7 @@ namespace MPEIPlugin.MPSite
     public string Url { get; set; }
     public string DateAdded { get; set; }
     public string DateUpdated { get; set; }
-    public string Ratig { get; set; }
+    public string Rating { get; set; }
     public string Votes { get; set; }
     public string Status { get; set; }
     public string LogoUrl { get; set; }
@@ -35,6 +36,7 @@ namespace MPEIPlugin.MPSite
     public bool EditorPick { get; set; }
     public bool JustAdded { get; set; }
     public bool Popular { get; set; }
+    public string CompatibileVersions { get; set; }    
 
     public bool LoadInfo()
     {
@@ -53,14 +55,29 @@ namespace MPEIPlugin.MPSite
         Log.Error("[MPEI] Error Loading info from '{0}': {1}", site, e.Message);
         return false;
       }
-
-      Author = Regex.Match(site, "Submitted By.*?\"><a.*?>(?<name>.*?)</a", RegexOptions.Singleline).Groups["name"].Value;
+      
+      // try get author fields if available
+      Author = Regex.Match(site, "<div class=\"caption\">Author[^<]+</div><div class=\"data\">(?<authors>[^<]+)</div>", RegexOptions.Singleline).Groups["authors"].Value;
+      if (string.IsNullOrEmpty(Author))
+      {
+        // get submit by field instead
+        Author = Regex.Match(site, "Submitted By.*?\"><a.*?>(?<name>.*?)</a", RegexOptions.Singleline).Groups["name"].Value;
+      }
       Version = Regex.Match(site, "Version.*?\">(?<name>.*?)</div", RegexOptions.Singleline).Groups["name"].Value;
-      Downloads = Regex.Match(site, @" Count: </a> \((?<name>.*?) Downloads?", RegexOptions.Singleline).Groups["name"].Value;
+      Downloads = Regex.Match(site, @"(?<downloads>\d+) Downloads.</div></div>", RegexOptions.Singleline).Groups["downloads"].Value;
       FileUrl = Regex.Match(site, "<div class=\"data-short\"><a href=\"(?<name>.*?)\" t", RegexOptions.Singleline).Groups["name"].Value;
       Descriptions = Regex.Match(site, "<div class=\"listing-desc\"><p>(?<name>.*?)</p>", RegexOptions.Singleline).Groups["name"].Value;
       Descriptions = MediaPortal.Util.Utils.stripHTMLtags(HttpUtility.HtmlDecode(Descriptions));
 
+      CaptureCollection compVersions = Regex.Match(site, "<div class=\"caption\">Compatibility</div><div class=\"data_full_row\">(?:<img src=\"(?<comp_img>[^\"]+)\" alt=\"(?<comp_full>[^\"]+)\" title=\"MediaPortal (?<comp_ver>[^\"]+)\" />(?:&nbsp;)?)*</div>", RegexOptions.Singleline).Groups["comp_ver"].Captures;
+      // create a comma seperated list of versions that package supports
+      if (compVersions.Count > 0)
+        CompatibileVersions = compVersions.Cast<Capture>().Select(c => c.Value).Aggregate((c, n) => c + ", " + n);
+
+      // get 10 star rating value
+      var ratings = Regex.Match(site, "<div class=\"rating\"><div id=\"rating-msg\">(?<ratings>.+?)<div id=\"total-votes\">", RegexOptions.Singleline).Groups["ratings"].Value.Split(new char[] { ' ' });
+      Rating = ((ratings.Count(r => r.Contains("star_10.png")) * 2) + ratings.Count(r => r.Contains("star_05.png"))).ToString();
+      
       Regex regexObj = new Regex("<a rel=\"shadowbox.ca.\".*?href=\"(?<name>.*?)\">", RegexOptions.Singleline);
       Match matchResults = regexObj.Match(site);
       LogoUrl = LogoUrl.Replace("/s/", "/m/");
@@ -87,8 +104,7 @@ namespace MPEIPlugin.MPSite
         using (var response = request.GetResponse() as HttpWebResponse)
         {
           if (!string.IsNullOrEmpty(response.GetResponseHeader("Content-Disposition")))
-            File =
-              response.GetResponseHeader("Content-Disposition").Split(';')[1].Split('=')[1].Replace("\"", "").ToLower();
+            File = response.GetResponseHeader("Content-Disposition").Split(';')[1].Split('=')[1].Replace("\"", "").ToLower();
         }
       }
       else
@@ -97,42 +113,5 @@ namespace MPEIPlugin.MPSite
       }
     }
 
-    public void LoadFields(string fields)
-    {
-      try
-      {
-        Regex regexObj = new Regex("class=\"caption\">(?<name>.*?):</span>.*?\"output\">(?<value>.*?)</", RegexOptions.Singleline);
-        Match matchResults = regexObj.Match(fields);
-        while (matchResults.Success)
-        {
-          switch (matchResults.Groups["name"].Value)
-          {
-            case "Hits":
-              Hits = matchResults.Groups["value"].Value;
-              break;
-            case "Votes":
-              Votes = matchResults.Groups["value"].Value;
-              break;
-            case "Date Added":
-              DateAdded = matchResults.Groups["value"].Value;
-              break;
-            case "Last Update":
-              DateUpdated = matchResults.Groups["value"].Value;
-              break;
-            case "Status":
-              Status = matchResults.Groups["value"].Value;
-              break;
-            case "Version":
-              Version = matchResults.Groups["value"].Value;
-              break;
-          }
-          matchResults = matchResults.NextMatch();
-        }
-      }
-      catch (ArgumentException)
-      {
-        // Syntax error in the regular expression
-      }
-    }
   }
 }
