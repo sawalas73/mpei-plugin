@@ -63,11 +63,11 @@ namespace MPEIPlugin.MPSite
         // get submit by field instead
         Author = Regex.Match(site, "Submitted By.*?\"><a.*?>(?<name>.*?)</a", RegexOptions.Singleline).Groups["name"].Value;
       }
-      Version = Regex.Match(site, "Version.*?\">(?<name>.*?)</div", RegexOptions.Singleline).Groups["name"].Value;
+      Version = Regex.Match(site, "<div class=\"caption\">Version</div><div class=\"data\">(?<version>[^<]+)</div>", RegexOptions.Singleline).Groups["version"].Value;
       Downloads = Regex.Match(site, @"(?<downloads>\d+) Downloads.</div></div>", RegexOptions.Singleline).Groups["downloads"].Value;
       FileUrl = Regex.Match(site, "<div class=\"data-short\"><a href=\"(?<name>.*?)\" t", RegexOptions.Singleline).Groups["name"].Value;
-      Descriptions = Regex.Match(site, "<div class=\"listing-desc\"><p>(?<name>.*?)</p>", RegexOptions.Singleline).Groups["name"].Value;
-      Descriptions = MediaPortal.Util.Utils.stripHTMLtags(HttpUtility.HtmlDecode(Descriptions));
+      Descriptions = Regex.Match(site, "<div class=\"listing-desc\">(?<name>.*?)</div>", RegexOptions.Singleline).Groups["name"].Value;
+      Descriptions = MediaPortal.Util.Utils.stripHTMLtags(HttpUtility.HtmlDecode(Descriptions.Replace(@"</p>","\n")));
 
       CaptureCollection compVersions = Regex.Match(site, "<div class=\"caption\">Compatibility</div><div class=\"data_full_row\">(?:<img src=\"(?<comp_img>[^\"]+)\" alt=\"(?<comp_full>[^\"]+)\" title=\"MediaPortal (?<comp_ver>[^\"]+)\" />(?:&nbsp;)?)*</div>", RegexOptions.Singleline).Groups["comp_ver"].Captures;
       // create a comma seperated list of versions that package supports
