@@ -15,10 +15,13 @@
 
   <!--  C  -->
   <string Field="ChangeLog">Change Log</string>
+  <string Field="Compatibility">Compatibility</string>
 
   <!--  D  -->
   <string Field="Download">Download</string>
+  <string Field="Downloads">Downloads</string>
   <string Field="Disable">Disable</string>
+  <string Field="DateAdded">Date Added</string>
 
   <!--  E  -->
   <string Field="Exit">Exit</string>
@@ -34,7 +37,8 @@
   <string Field="GetExtensionInfo">Getting Extension Info</string>
  
   <!--  H  -->
-
+  <string Field="Hits">Hits</string>
+  
   <!--  I  -->
   <string Field="Id">Id</string>
   <string Field="Install">Install</string>
@@ -61,6 +65,7 @@
   <!--  P  -->
 
   <!--  R  -->
+  <string Field="Rating">Rating</string>
   <string Field="Revoke">Revoke</string>
   <string Field="ReleaseDate">Release Date</string>
   <string Field="Restart">Restart</string>
@@ -76,6 +81,7 @@
   <string Field="SelectVersionToInstall">Select version to (Re)Install</string>
   <string Field="SelectVersion">Select version</string>
   <string Field="StartSlideshow">Start slideshow</string>
+  <string Field="Status">Status</string>
 
   <!--  T  -->
   <string Field="Timeout">Timeout</string>
@@ -92,6 +98,7 @@
   <!--  V  -->
   <string Field="Views">Views</string>
   <string Field="Version">Version</string>
+  <string Field="Votes">Votes</string>
 
   <!--  W  -->
 
