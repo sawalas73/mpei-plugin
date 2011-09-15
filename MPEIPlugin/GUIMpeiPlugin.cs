@@ -1641,6 +1641,13 @@ namespace MPEIPlugin
       GUIUtils.SetProperty("#MPE.Selected.updatelog", string.Empty);
       GUIUtils.SetProperty("#MPE.Selected.updatedate", string.Empty);
       GUIUtils.SetProperty("#MPE.Selected.updateversion", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Downloads", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Hits", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Rating", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Status", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Votes", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.DateAdded", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.CompatibileVersions", string.Empty);
 
       GUIUtils.SetProperty("#selectedthumb", string.Empty);
     }
@@ -1656,26 +1663,41 @@ namespace MPEIPlugin
       SiteItems siteItem = item.MusicTag as SiteItems;
       if (siteItem != null)
       {
-        GUIPropertyManager.SetProperty("#MPE.Selected.Id", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.Name", siteItem.Name);
-        GUIPropertyManager.SetProperty("#MPE.Selected.Version", siteItem.Version);
-        GUIPropertyManager.SetProperty("#MPE.Selected.Author", siteItem.Author);
-        GUIPropertyManager.SetProperty("#MPE.Selected.Description", siteItem.Descriptions);
-        GUIPropertyManager.SetProperty("#MPE.Selected.VersionDescription", " ");
-        GUIPropertyManager.SetProperty("#MPE.Selected.ReleaseDate", siteItem.DateUpdated);
-        GUIPropertyManager.SetProperty("#MPE.Selected.Icon", item.IconImageBig);
-        GUIPropertyManager.SetProperty("#selectedthumb", item.IconImageBig);
-        GUIPropertyManager.SetProperty("#MPE.Selected.JustAded", siteItem.JustAdded ? "true" : "false");
-        GUIPropertyManager.SetProperty("#MPE.Selected.JustAdded", siteItem.JustAdded ? "true" : "false");
-        GUIPropertyManager.SetProperty("#MPE.Selected.Popular", siteItem.Popular ? "true" : "false");
-        GUIPropertyManager.SetProperty("#MPE.Selected.DeveloperPick", siteItem.EditorPick ? "true" : "false");
+        GUIUtils.SetProperty("#MPE.Selected.Id", string.Empty);
+        GUIUtils.SetProperty("#MPE.Selected.Name", siteItem.Name);
+        GUIUtils.SetProperty("#MPE.Selected.Version", siteItem.Version);
+        GUIUtils.SetProperty("#MPE.Selected.Author", siteItem.Author);
+        GUIUtils.SetProperty("#MPE.Selected.Description", siteItem.Descriptions);
+        GUIUtils.SetProperty("#MPE.Selected.VersionDescription", string.Empty);
+        GUIUtils.SetProperty("#MPE.Selected.ReleaseDate", siteItem.DateUpdated == "Never" ? siteItem.DateAdded : siteItem.DateUpdated);
+        GUIUtils.SetProperty("#MPE.Selected.Icon", item.IconImageBig);
+        GUIUtils.SetProperty("#MPE.Selected.JustAded", siteItem.JustAdded ? "true" : "false");
+        GUIUtils.SetProperty("#MPE.Selected.JustAdded", siteItem.JustAdded ? "true" : "false");
+        GUIUtils.SetProperty("#MPE.Selected.Popular", siteItem.Popular ? "true" : "false");
+        GUIUtils.SetProperty("#MPE.Selected.DeveloperPick", siteItem.EditorPick ? "true" : "false");
+        GUIUtils.SetProperty("#MPE.Selected.Downloads", siteItem.Downloads);
+        GUIUtils.SetProperty("#MPE.Selected.Hits", siteItem.Hits);
+        GUIUtils.SetProperty("#MPE.Selected.Rating", siteItem.Rating);
+        GUIUtils.SetProperty("#MPE.Selected.Status", siteItem.Status);
+        GUIUtils.SetProperty("#MPE.Selected.Votes", siteItem.Votes);
+        GUIUtils.SetProperty("#MPE.Selected.DateAdded", siteItem.DateAdded);
+        GUIUtils.SetProperty("#MPE.Selected.CompatibileVersions", siteItem.CompatibileVersions);
+
+        GUIUtils.SetProperty("#selectedthumb", item.IconImageBig);
         return;
       }
 
-      GUIPropertyManager.SetProperty("#MPE.Selected.JustAded", "false");
-      GUIPropertyManager.SetProperty("#MPE.Selected.JustAdded", "false");
-      GUIPropertyManager.SetProperty("#MPE.Selected.Popular", "false");
-      GUIPropertyManager.SetProperty("#MPE.Selected.DeveloperPick", "false");
+      GUIUtils.SetProperty("#MPE.Selected.JustAded", "false");
+      GUIUtils.SetProperty("#MPE.Selected.JustAdded", "false");
+      GUIUtils.SetProperty("#MPE.Selected.Popular", "false");
+      GUIUtils.SetProperty("#MPE.Selected.DeveloperPick", "false");
+      GUIUtils.SetProperty("#MPE.Selected.Downloads", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Hits", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Rating", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Status", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Votes", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.DateAdded", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.CompatibileVersions", string.Empty);
 
       PackageClass pak = item.MusicTag as PackageClass;
       if (pak != null)
@@ -1683,40 +1705,42 @@ namespace MPEIPlugin
         PackageClass update = MpeInstaller.KnownExtensions.GetUpdate(pak);
         if (update != null)
         {
-          GUIPropertyManager.SetProperty("#MPE.Selected.haveupdate", "true");
-          GUIPropertyManager.SetProperty("#MPE.Selected.updatelog", update.GeneralInfo.VersionDescription);
-          GUIPropertyManager.SetProperty("#MPE.Selected.updatedate", update.GeneralInfo.ReleaseDate.ToShortDateString());
-          GUIPropertyManager.SetProperty("#MPE.Selected.updateversion", update.GeneralInfo.Version.ToString());
+          GUIUtils.SetProperty("#MPE.Selected.haveupdate", "true");
+          GUIUtils.SetProperty("#MPE.Selected.updatelog", update.GeneralInfo.VersionDescription);
+          GUIUtils.SetProperty("#MPE.Selected.updatedate", update.GeneralInfo.ReleaseDate.ToShortDateString());
+          GUIUtils.SetProperty("#MPE.Selected.updateversion", update.GeneralInfo.Version.ToString());
         }
         else
         {
-          GUIPropertyManager.SetProperty("#MPE.Selected.haveupdate", "false");
-          GUIPropertyManager.SetProperty("#MPE.Selected.updatelog", " ");
-          GUIPropertyManager.SetProperty("#MPE.Selected.updatedate", " ");
-          GUIPropertyManager.SetProperty("#MPE.Selected.updateversion", " ");
+          GUIUtils.SetProperty("#MPE.Selected.haveupdate", "false");
+          GUIUtils.SetProperty("#MPE.Selected.updatelog", string.Empty);
+          GUIUtils.SetProperty("#MPE.Selected.updatedate", string.Empty);
+          GUIUtils.SetProperty("#MPE.Selected.updateversion", string.Empty);
         }
 
         PackageClass installed = MpeInstaller.InstalledExtensions.Get(pak);
         if (installed != null)
         {
-          GUIPropertyManager.SetProperty("#MPE.Selected.installedversion",installed.GeneralInfo.Version.ToString());
-          GUIPropertyManager.SetProperty("#MPE.Selected.isinstalled", "true");
+          GUIUtils.SetProperty("#MPE.Selected.installedversion", installed.GeneralInfo.Version.ToString());
+          GUIUtils.SetProperty("#MPE.Selected.isinstalled", "true");
         }
         else
         {
-          GUIPropertyManager.SetProperty("#MPE.Selected.installedversion", " ");
-          GUIPropertyManager.SetProperty("#MPE.Selected.isinstalled", "false");
+          GUIUtils.SetProperty("#MPE.Selected.installedversion", string.Empty);
+          GUIUtils.SetProperty("#MPE.Selected.isinstalled", "false");
         }
 
-        GUIPropertyManager.SetProperty("#MPE.Selected.Id", pak.GeneralInfo.Id);
-        GUIPropertyManager.SetProperty("#MPE.Selected.Name", pak.GeneralInfo.Name);
-        GUIPropertyManager.SetProperty("#MPE.Selected.Version", pak.GeneralInfo.Version.ToString());
-        GUIPropertyManager.SetProperty("#MPE.Selected.Author", pak.GeneralInfo.Author);
-        GUIPropertyManager.SetProperty("#MPE.Selected.Description", pak.GeneralInfo.ExtensionDescription);
-        GUIPropertyManager.SetProperty("#MPE.Selected.VersionDescription", pak.GeneralInfo.VersionDescription);
-        GUIPropertyManager.SetProperty("#MPE.Selected.ReleaseDate", pak.GeneralInfo.ReleaseDate.ToShortDateString());
-        GUIPropertyManager.SetProperty("#MPE.Selected.Icon", item.IconImageBig);
-        GUIPropertyManager.SetProperty("#selectedthumb", item.IconImageBig);
+        GUIUtils.SetProperty("#MPE.Selected.Id", pak.GeneralInfo.Id);
+        GUIUtils.SetProperty("#MPE.Selected.Name", pak.GeneralInfo.Name);
+        GUIUtils.SetProperty("#MPE.Selected.Version", pak.GeneralInfo.Version.ToString());
+        GUIUtils.SetProperty("#MPE.Selected.Author", pak.GeneralInfo.Author);
+        GUIUtils.SetProperty("#MPE.Selected.Description", pak.GeneralInfo.ExtensionDescription);
+        GUIUtils.SetProperty("#MPE.Selected.VersionDescription", pak.GeneralInfo.VersionDescription);
+        GUIUtils.SetProperty("#MPE.Selected.ReleaseDate", pak.GeneralInfo.ReleaseDate.ToShortDateString());
+        GUIUtils.SetProperty("#MPE.Selected.Status", pak.GeneralInfo.DevelopmentStatus);
+        GUIUtils.SetProperty("#MPE.Selected.Icon", item.IconImageBig);
+        GUIUtils.SetProperty("#selectedthumb", item.IconImageBig);
+        
       }
       else
       {
