@@ -120,6 +120,7 @@
       <height>192</height>
       <keepaspectratio>yes</keepaspectratio>
       <texture>#MPE.Selected.Icon</texture>
+      <font>font11</font>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
@@ -130,56 +131,189 @@
       <width>249</width>
       <label>#MPEI.Translation.Version.Label</label>
       <textcolor>ffa9d0f7</textcolor>
+      <font>font11</font>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
     <control>
       <type>label</type>
       <posX>595</posX>
-      <posY>175</posY>
+      <posY>174</posY>
       <width>426</width>
-      <label>#MPE.Selected.Version</label>
+      <label>v#MPE.Selected.Version</label>
+      <font>font11</font>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
     <control>
       <type>label</type>
       <posX>340</posX>
-      <posY>203</posY>
+      <posY>204</posY>
       <width>249</width>
       <label>#MPEI.Translation.Author.Label</label>
       <textcolor>ffa9d0f7</textcolor>
+      <font>font11</font>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
     <control>
       <type>label</type>
       <posX>595</posX>
-      <posY>201</posY>
+      <posY>204</posY>
       <width>428</width>
       <label>#MPE.Selected.Author</label>
+      <font>font11</font>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
     <control>
       <type>label</type>
       <posX>340</posX>
-      <posY>229</posY>
+      <posY>234</posY>
       <width>248</width>
       <label>#MPEI.Translation.ReleaseDate.Label</label>
       <textcolor>ffa9d0f7</textcolor>
+      <font>font11</font>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
     <control>
       <type>label</type>
       <posX>595</posX>
-      <posY>228</posY>
+      <posY>234</posY>
       <width>428</width>
+      <font>font11</font>
       <label>#MPE.Selected.ReleaseDate</label>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
     </control>
+    <control>
+      <type>label</type>
+      <posX>340</posX>
+      <posY>264</posY>
+      <width>248</width>
+      <label>#MPEI.Translation.Status.Label</label>
+      <textcolor>ffa9d0f7</textcolor>
+      <font>font11</font>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>595</posX>
+      <posY>264</posY>
+      <width>428</width>
+      <font>font11</font>
+      <label>#MPE.Selected.Status</label>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>340</posX>
+      <posY>294</posY>
+      <width>248</width>
+      <label>#MPEI.Translation.Downloads.Label</label>
+      <textcolor>ffa9d0f7</textcolor>
+      <font>font11</font>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>595</posX>
+      <posY>294</posY>
+      <width>428</width>
+      <font>font11</font>
+      <!-- Show Downloads and Hits -->
+      <label>#(string.format('{0:#,0} ({1:#,0} #MPEI.Translation.Hits.Label)',cint(#MPE.Selected.Downloads),cint(#MPE.Selected.Hits)))</label>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)+!string.equals(#MPE.Selected.Downloads,)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>595</posX>
+      <posY>294</posY>
+      <width>428</width>
+      <font>font11</font>
+      <!-- Show Hits Only (avoid skin expression error) -->
+      <label>#(string.format('{0:#,0} #MPEI.Translation.Hits.Label',cint(#MPE.Selected.Hits)))</label>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)+string.equals(#MPE.Selected.Downloads,)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>340</posX>
+      <posY>324</posY>
+      <width>248</width>
+      <label>#MPEI.Translation.Compatibility.Label</label>
+      <textcolor>ffa9d0f7</textcolor>
+      <font>font11</font>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>595</posX>
+      <posY>324</posY>
+      <width>428</width>
+      <font>font11</font>
+      <label>v#MPE.Selected.CompatibileVersions</label>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>340</posX>
+      <posY>354</posY>
+      <width>248</width>
+      <label>#MPEI.Translation.Rating.Label</label>
+      <textcolor>ffa9d0f7</textcolor>
+      <font>font11</font>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
+    </control>
+    <control>
+      <type>imagelist</type>
+      <description>-</description>
+      <id>0</id>
+      <posX>595</posX>
+      <posY>356</posY>
+      <width>130</width>
+      <height>24</height>
+      <colordiffuse>ffffffff</colordiffuse>
+      <percentage>#MPE.Selected.Rating</percentage>
+      <textureHeight>24</textureHeight>
+      <orientation>horizontal</orientation>
+      <textureWidth>24</textureWidth>
+      <subitems>
+        <subitem>starbad.png</subitem>
+        <subitem>stargood.png</subitem>
+      </subitems>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>730</posX>
+      <posY>354</posY>
+      <width>428</width>
+      <font>font11</font>
+      <label>#(div(cint(#MPE.Selected.Rating), cflt(2))) #(string.format('({0:#,0} #MPEI.Translation.Votes.Label)',cint(#MPE.Selected.Votes)))</label>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
+    </control>
+    
     <control>
       <type>textboxscrollup</type>
       <posX>336</posX>
@@ -190,12 +324,25 @@
       <label>#MPE.Selected.Description</label>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>!string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
+    </control>
+    <control>
+      <type>textboxscrollup</type>
+      <posX>336</posX>
+      <posY>390</posY>
+      <width>911</width>
+      <height>180</height>
+      <font>font11</font>
+      <label>#MPE.Selected.Description</label>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+      <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>
     </control>
     <control>
       <description>Image Tags</description>
       <type>group</type>
-      <posX>340</posX>
-      <posY>270</posY>
+      <posX>60</posX>
+      <posY>75</posY>
       <layout>StackLayout(4, Horizontal, true)</layout>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
