@@ -207,10 +207,14 @@ namespace MPEIPlugin
 
     // C
     public static string ChangeLog = "Change Log";
+    public static string Compatibility = "Compatibility";
+
 
     // D
     public static string Download = "Download";
+    public static string Downloads = "Downloads";
     public static string Disable = "Disable";
+    public static string DateAdded = "Date Added";
 
     // E
     public static string Exit = "Exit";
@@ -227,6 +231,7 @@ namespace MPEIPlugin
     public static string GetExtensionInfo = "Getting Extension Info";
    
     // H
+    public static string Hits = "Hits";
 
     // I
     public static string Id = "Id";
@@ -255,6 +260,7 @@ namespace MPEIPlugin
     // P
 
     // R
+    public static string Rating = "Rating";
     public static string Revoke = "Revoke";
     public static string ReleaseDate = "Release Date";
     public static string Restart = "Restart";
@@ -271,6 +277,7 @@ namespace MPEIPlugin
     public static string SelectVersion = "Select version";
     public static string SelectVersionToInstall = "Select version to (Re)Install";
     public static string StartSlideshow = "Start slideshow";
+    public static string Status = "Status";
 
     // T
     public static string Timeout = "Timeout";
@@ -287,6 +294,7 @@ namespace MPEIPlugin
     // V
     public static string Views = "Views";
     public static string Version = "Version";
+    public static string Votes = "Votes";
 
     // W
 
