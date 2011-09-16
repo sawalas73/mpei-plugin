@@ -1453,6 +1453,7 @@ namespace MPEIPlugin
         else
         {
           LoadExtensionDirectory(parentCategory);
+          FinializeDirectory(strNewDirectory);
         }
       }
     }
