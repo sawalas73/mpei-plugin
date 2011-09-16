@@ -95,16 +95,25 @@ namespace MPEIPlugin.MPSite
     {
       if(!string.IsNullOrEmpty(File))
         return;
+
       if (FileUrl.StartsWith("http://www.team-mediaportal.com/"))
       {
-        var request = (HttpWebRequest) WebRequest.Create(FileUrl);
-        request.Method = "HEAD";
-        request.AllowAutoRedirect = true;
-
-        using (var response = request.GetResponse() as HttpWebResponse)
+        try
         {
-          if (!string.IsNullOrEmpty(response.GetResponseHeader("Content-Disposition")))
-            File = response.GetResponseHeader("Content-Disposition").Split(';')[1].Split('=')[1].Replace("\"", "").ToLower();
+          var request = (HttpWebRequest)WebRequest.Create(FileUrl);
+          request.Method = "HEAD";
+          request.AllowAutoRedirect = true;
+
+          using (var response = request.GetResponse() as HttpWebResponse)
+          {
+            if (!string.IsNullOrEmpty(response.GetResponseHeader("Content-Disposition")))
+              File = response.GetResponseHeader("Content-Disposition").Split(';')[1].Split('=')[1].Replace("\"", "").ToLower();
+          }
+        }
+        catch (Exception e)
+        {
+          Log.Error("[MPEI] Unable to generate filename from url: {0}", e.Message);
+          File = string.Empty;
         }
       }
       else

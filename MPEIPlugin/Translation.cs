@@ -237,7 +237,8 @@ namespace MPEIPlugin
     public static string Id = "Id";
     public static string Install = "Install";
     public static string InstalledExtensions = "Installed Extensions";
-    
+    public static string InvalidUrl = "Invalid Url, extension can not be downloaded!";
+
     // L
     
     // M

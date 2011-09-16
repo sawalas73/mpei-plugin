@@ -43,6 +43,7 @@
   <string Field="Id">Id</string>
   <string Field="Install">Install</string>
   <string Field="InstalledExtensions">Installed Extensions</string>
+  <string Field="InvalidUrl">Invalid Url, extension can not be downloaded!</string>
 
   <!--  L  -->
 
