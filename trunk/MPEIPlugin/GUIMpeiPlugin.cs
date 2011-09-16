@@ -1411,7 +1411,7 @@ namespace MPEIPlugin
       // display sub-categories
       if (categories.Count > 0)
       {
-        foreach (Category category in categories)
+        foreach (Category category in categories.Where(c => c.Number != "0"))
         {
           item = new GUIListItem();
           item.MusicTag = category;
