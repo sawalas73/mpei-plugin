@@ -50,7 +50,7 @@ namespace MPEIPlugin
       }
       else
       {
-        Log.Warn("[MPEI] Failed to download update file from {0}: {1}", _currentItem.Url, e.Error.Message);
+        Log.Warn("[MPEI] Failed to download file from {0}: {1}", _currentItem.Url, e.Error.Message);
       }
       if (queue.Count > 0)
         StartDownload();
