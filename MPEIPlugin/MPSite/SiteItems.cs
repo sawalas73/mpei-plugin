@@ -36,7 +36,7 @@ namespace MPEIPlugin.MPSite
     public bool EditorPick { get; set; }
     public bool JustAdded { get; set; }
     public bool Popular { get; set; }
-    public string CompatibileVersions { get; set; }    
+    public string CompatibleVersions { get; set; }    
 
     public bool LoadInfo()
     {
@@ -72,7 +72,7 @@ namespace MPEIPlugin.MPSite
       CaptureCollection compVersions = Regex.Match(site, "<div class=\"caption\">Compatibility</div><div class=\"data_full_row\">(?:<img src=\"(?<comp_img>[^\"]+)\" alt=\"(?<comp_full>[^\"]+)\" title=\"MediaPortal (?<comp_ver>[^\"]+)\" />(?:&nbsp;)?)*</div>", RegexOptions.Singleline).Groups["comp_ver"].Captures;
       // create a comma seperated list of versions that package supports
       if (compVersions.Count > 0)
-        CompatibileVersions = compVersions.Cast<Capture>().Select(c => c.Value).Aggregate((c, n) => c + ", " + n);
+        CompatibleVersions = compVersions.Cast<Capture>().Select(c => c.Value).Aggregate((c, n) => c + ", " + n);
 
       // get 10 star rating value
       var ratings = Regex.Match(site, "<div class=\"rating\"><div id=\"rating-msg\">(?<ratings>.+?)<div id=\"total-votes\">", RegexOptions.Singleline).Groups["ratings"].Value.Split(new char[] { ' ' });

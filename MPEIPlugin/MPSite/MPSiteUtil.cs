@@ -176,7 +176,7 @@ namespace MPEIPlugin.MPSite
             CaptureCollection compVersions = matchResults.Groups["compatability"].Captures;
             // create a comma seperated list of versions that package supports
             if (compVersions.Count > 0)
-              items.CompatibileVersions = compVersions.Cast<Capture>().Select(c => c.Value).Aggregate((c, n) => c + ", " + n);
+              items.CompatibleVersions = compVersions.Cast<Capture>().Select(c => c.Value).Aggregate((c, n) => c + ", " + n);
 
             // get 10 star rating value
             var ratings = HttpUtility.HtmlDecode(matchResults.Groups["rating"].Value).Split(new char[] { ' ' });
