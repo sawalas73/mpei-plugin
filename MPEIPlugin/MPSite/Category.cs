@@ -16,6 +16,7 @@ namespace MPEIPlugin.MPSite
     public string PId { get; set; }
     public string Number { get; set; }
     public List<SiteItems> SiteItems { get; set; }
+    public bool Updated { get; set; }
 
     public override string ToString()
     {

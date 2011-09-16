@@ -1408,6 +1408,7 @@ namespace MPEIPlugin
     {
       GUIListItem item = new GUIListItem();
 
+      // display sub-categories
       if (categories.Count > 0)
       {
         foreach (Category category in categories)
@@ -1421,14 +1422,12 @@ namespace MPEIPlugin
           Utils.SetDefaultIcons(item);
           facadeView.Add(item);
         }
-        FinializeDirectory(strNewDirectory);
-        return;
       }
 
       if (parentCategory != null)
       {
         // get extensions
-        if (parentCategory.SiteItems.Count == 0)
+        if (parentCategory.SiteItems.Count == 0 && !parentCategory.Updated)
         {
           GUIBackgroundTask.Instance.ExecuteInBackgroundAndCallback(() =>
           {
@@ -1438,6 +1437,7 @@ namespace MPEIPlugin
           {
             if (success && (bool)result)
             {
+              parentCategory.Updated = true;
               LoadExtensionDirectory(parentCategory);
             }
             else if (success && !(bool)result)
@@ -1455,6 +1455,10 @@ namespace MPEIPlugin
           LoadExtensionDirectory(parentCategory);
           FinializeDirectory(strNewDirectory);
         }
+      }
+      else
+      {
+        FinializeDirectory(strNewDirectory);
       }
     }
 
