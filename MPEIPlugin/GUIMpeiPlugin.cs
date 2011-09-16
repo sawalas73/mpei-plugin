@@ -1088,7 +1088,7 @@ namespace MPEIPlugin
         currentListing = Views.MpSIte;
 
       ClearProperties();
-      LoadDirectory(currentFolder);
+      LoadDirectory(string.Empty);
     }
 
     #endregion
