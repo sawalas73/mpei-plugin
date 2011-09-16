@@ -1698,6 +1698,7 @@ namespace MPEIPlugin
       GUIUtils.SetProperty("#MPE.Selected.Votes", string.Empty);
       GUIUtils.SetProperty("#MPE.Selected.DateAdded", string.Empty);
       GUIUtils.SetProperty("#MPE.Selected.CompatibileVersions", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.CompatibleVersions", string.Empty);
 
       GUIUtils.SetProperty("#selectedthumb", string.Empty);
     }
@@ -1731,7 +1732,8 @@ namespace MPEIPlugin
         GUIUtils.SetProperty("#MPE.Selected.Status", siteItem.Status);
         GUIUtils.SetProperty("#MPE.Selected.Votes", siteItem.Votes);
         GUIUtils.SetProperty("#MPE.Selected.DateAdded", siteItem.DateAdded);
-        GUIUtils.SetProperty("#MPE.Selected.CompatibileVersions", siteItem.CompatibileVersions);
+        GUIUtils.SetProperty("#MPE.Selected.CompatibileVersions", siteItem.CompatibleVersions);
+        GUIUtils.SetProperty("#MPE.Selected.CompatibleVersions", siteItem.CompatibleVersions);
 
         GUIUtils.SetProperty("#selectedthumb", item.IconImageBig);
         return;
@@ -1748,6 +1750,7 @@ namespace MPEIPlugin
       GUIUtils.SetProperty("#MPE.Selected.Votes", string.Empty);
       GUIUtils.SetProperty("#MPE.Selected.DateAdded", string.Empty);
       GUIUtils.SetProperty("#MPE.Selected.CompatibileVersions", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.CompatibleVersions", string.Empty);
 
       PackageClass pak = item.MusicTag as PackageClass;
       if (pak != null)
