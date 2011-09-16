@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- MPEI Plugin translation file -->
+<!-- English (US) -->
+<!-- Note: English is the fallback for any strings not found in other languages -->
+<strings>
+
+  <!--  A  -->
+  <string Field="All">All</string>
+  <string Field="AlwaysCheckForUpdates">Always check for updates</string>
+  <string Field="Actions">Actions</string>
+  <string Field="ActionAdded">Action was added to queue</string>
+  <string Field="ActionRemoved">Action was removed from queue</string>
+  <string Field="AskForRestart">This Operation will restart MediaPortal.\nDo you wish to continue?</string>
+  <string Field="Author">Author</string>
+
+  <!--  C  -->
+  <string Field="ChangeLog">Change Log</string>
+  <string Field="Compatibility">Compatibility</string>
+
+  <!--  D  -->
+  <string Field="Download">Download</string>
+  <string Field="Downloads">Downloads</string>
+  <string Field="Disable">Disable</string>
+  <string Field="DateAdded">Date Added</string>
+
+  <!--  E  -->
+  <string Field="Exit">Exit</string>
+  <string Field="Enable">Enable</string>
+  <string Field="Error">Error</string>
+  <string Field="ErrorLoadingSite">Error Loading Category list from the MediaPortal website</string>
+  <string Field="ErrorLoadingExtensionList">Error Loading Extension list for category</string>
+  
+  <!--  F  -->
+
+  <!--  G  -->
+  <string Field="GetCategories">Getting Categories</string>
+  <string Field="GetExtensionInfo">Getting Extension Info</string>
+ 
+  <!--  H  -->
+  <string Field="Hits">Hits</string>
+  
+  <!--  I  -->
+  <string Field="Id">Id</string>
+  <string Field="Install">Install</string>
+  <string Field="InstalledExtensions">Installed Extensions</string>
+  <string Field="InvalidUrl">Invalid Url, extension can not be downloaded!</string>
+
+  <!--  L  -->
+
+  <!--  M  -->
+  <string Field="MPOnlineExtensions">MP Website Extensions</string>
+  
+  <!--  N -->
+  <string Field="Name">Extensions</string>
+  <string Field="NeverCheckForUpdates">Never check for updates</string>
+  <string Field="NewExtensions">New Extensions</string>
+  <string Field="NewUpdates">New updates</string>
+  <string Field="NewVersion">New version</string>
+  <string Field="Notification">Notification</string>
+  <string Field="NotificationWarning">There are tasks still outstanding.\nRestart and execute now?</string>
+  <string Field="NotificationMessage">Would you like to restart MediaPortal\nand execute pending tasks now?</string>
+  
+  <!--  O  -->
+  <string Field="OnlineExtensions">Online Extensions</string>
+
+  <!--  P  -->
+
+  <!--  R  -->
+  <string Field="Rating">Rating</string>
+  <string Field="Revoke">Revoke</string>
+  <string Field="ReleaseDate">Release Date</string>
+  <string Field="Restart">Restart</string>
+  <string Field="Rotate">Rotate</string>
+  <string Field="RevokeLastAction">Revoke last action</string>
+  <string Field="RestartNow">This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the task will queued.</string>
+
+  <!--  S  -->
+  <string Field="Sections">Sections</string>
+  <string Field="Settings">Settings</string>
+  <string Field="ShowChangelogs">Show Change Logs</string>
+  <string Field="ShowSreenshots">Show Screenshots</string>
+  <string Field="SelectVersionToInstall">Select version to (Re)Install</string>
+  <string Field="SelectVersion">Select version</string>
+  <string Field="StartSlideshow">Start slideshow</string>
+  <string Field="Status">Status</string>
+
+  <!--  T  -->
+  <string Field="Timeout">Timeout</string>
+
+  <!--  U  -->
+  <string Field="Update">Update</string>
+  <string Field="UpdateAvailable">Update Available</string>
+  <string Field="UpdateAll">Update All</string>
+  <string Field="Updates">Updates</string>
+  <string Field="Uninstall">Uninstall</string>
+  <string Field="UnKnownFileType">Installation is not possible\nUnknown file type detected!</string>
+  <string Field="UseSilent">Install extension silently?</string>
+  
+  <!--  V  -->
+  <string Field="Views">Views</string>
+  <string Field="Version">Version</string>
+  <string Field="Votes">Votes</string>
+
+  <!--  W  -->
+
+  <!--  Y  -->
+
+
+</strings>
