@@ -22,62 +22,77 @@ namespace MPEIHelper
       {
         TextReader reader = new StreamReader(configFile);
         string url = reader.ReadLine();
-        string file = reader.ReadLine();
-        string name = reader.ReadLine();
-        string silen = reader.ReadLine();
-        string bkfile = reader.ReadLine();
+        string fileName = reader.ReadLine();
+        string pluginName = reader.ReadLine();
+        string silentMode = reader.ReadLine();
+        string splashFile = reader.ReadLine();
         reader.Close();
-        KillProcces("Configuration");
-        KillProcces("MediaPortal");
+
+        KillProcess("Configuration");
+        KillProcess("MediaPortal");
+
         DownloadFile dlg = new DownloadFile();
-        if (File.Exists(bkfile) && !String.IsNullOrEmpty(silen))
+
+        if (File.Exists(splashFile) && !String.IsNullOrEmpty(silentMode))
         {
-          splashScreen.SetImg(bkfile);
+          splashScreen.SetImg(splashFile);
           splashScreen.Show();
         }
         dlg.Client.DownloadProgressChanged += Client_DownloadProgressChanged;
         dlg.Client.DownloadFileCompleted += Client_DownloadFileCompleted;
-        dlg.Text = name;
-        dlg.StartDownload(url, file);
-        string tempfile = file;
-        if (File.Exists(file))
+        dlg.Text = pluginName;
+        dlg.SilentMode = !String.IsNullOrEmpty(silentMode);
+
+        if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
+          dlg.StartDownload(url, fileName);
+        else
         {
-          if (Path.GetExtension(file).ToLower() == ".mpe1")
+          if (String.IsNullOrEmpty(silentMode))
+            MessageBox.Show("Uri is not valid, aborting install", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        string tempfile = fileName;
+        if (File.Exists(fileName))
+        {
+          if (Path.GetExtension(fileName).ToLower() == ".mpe1")
           {
-            silen = file + " " + silen;
-            file = "mpeinstaller.exe";
+            silentMode = fileName + " " + silentMode;
+            fileName = "mpeinstaller.exe";
           }
+
           try
           {
-            if (File.Exists(file))
+            if (File.Exists(fileName))
             {
               if (splashScreen.Visible)
               {
                 splashScreen.ResetProgress();
-                splashScreen.SetInfo("Installing extension.Please wait");
+                splashScreen.SetInfo("Installing extension. Please wait...");
               }
-              Process process = string.IsNullOrEmpty(silen) ? Process.Start(file) : Process.Start(file, silen);
+              Process process = string.IsNullOrEmpty(silentMode) ? Process.Start(fileName) : Process.Start(fileName, silentMode);
               process.WaitForExit();
             }
           }
-          catch (Exception exception)
+          catch (Exception e)
           {
             if (splashScreen.Visible)
             {
               splashScreen.Close();
             }
-            MessageBox.Show(exception.Message);
+            if (String.IsNullOrEmpty(silentMode))
+              MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
           }
+
           try
           {
+            // cleanup
             File.Delete(configFile);
             File.Delete(tempfile);
           }
-          catch (Exception)
-          {
-
-          }
+          catch { }         
         }
+
+        // Start MediaPortal, installation complete
         Process.Start("MediaPortal.exe");
         Thread.Sleep(3000);
         if (splashScreen.Visible)
@@ -108,7 +123,7 @@ namespace MPEIHelper
       }
     }
 
-    private static void KillProcces(string name)
+    private static void KillProcess(string name)
     {
       Process[] prs = Process.GetProcesses();
       foreach (Process pr in prs)

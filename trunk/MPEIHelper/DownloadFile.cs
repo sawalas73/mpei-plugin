@@ -36,6 +36,7 @@ namespace MPEIHelper
     private string Source;
     private string Dest;
     public WebClient Client = new WebClient();
+    public bool SilentMode { get; set; }
 
     public DownloadFile()
     {
@@ -58,9 +59,10 @@ namespace MPEIHelper
             catch (Exception) {}
           }
         }
-        MessageBox.Show(e.Error.Message + "\n" + e.Error.InnerException);
+        if (!SilentMode)
+          MessageBox.Show(e.Error.Message + "\n" + e.Error.InnerException, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
-      button1.Enabled = false;
+      btnCancel.Enabled = false;
       Close();
     }
 
@@ -68,18 +70,17 @@ namespace MPEIHelper
     {
       if (e.TotalBytesToReceive > 0)
       {
-        progressBar1.Style = ProgressBarStyle.Blocks;
-        progressBar1.Value = e.ProgressPercentage;
-        label1.Text = string.Format("{0} kb/{1} kb", e.BytesReceived / 1024, e.TotalBytesToReceive / 1024);
+        progressBar.Style = ProgressBarStyle.Blocks;
+        progressBar.Value = e.ProgressPercentage;
+        lblProgress.Text = string.Format("{0} kb/{1} kb", e.BytesReceived / 1024, e.TotalBytesToReceive / 1024);
       }
       else
       {
-        progressBar1.Value = e.ProgressPercentage;
-        progressBar1.Style = ProgressBarStyle.Marquee;
-        label1.Text = string.Format("{0} kb", e.BytesReceived / 1024);
+        progressBar.Value = e.ProgressPercentage;
+        progressBar.Style = ProgressBarStyle.Marquee;
+        lblProgress.Text = string.Format("{0} kb", e.BytesReceived / 1024);
       }
     }
-
 
     public DownloadFile(string source, string dest)
     {
@@ -95,20 +96,30 @@ namespace MPEIHelper
       Client.DownloadFileCompleted += client_DownloadFileCompleted;
       Client.UseDefaultCredentials = true;
       Client.Proxy.Credentials = CredentialCache.DefaultCredentials;
-      //Client.CachePolicy = new RequestCachePolicy();
 
-      progressBar1.Minimum = 0;
-      progressBar1.Maximum = 100;
-      progressBar1.Value = 0;
+      progressBar.Minimum = 0;
+      progressBar.Maximum = 100;
+      progressBar.Value = 0;
       ShowDialog();
     }
 
     private void DownloadFile_Shown(object sender, EventArgs e)
     {
-      Client.DownloadFileAsync(new Uri(Source), Dest);
+      Uri uri = null;
+      try
+      {
+        uri = new Uri(Source);
+        Client.DownloadFileAsync(uri, Dest);
+      }
+      catch(Exception ex)
+      {
+        if (!SilentMode)
+          MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        this.Close();
+      }      
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    private void btnCancel_Click(object sender, EventArgs e)
     {
       Client.CancelAsync();
       WaitForNoBusy();

@@ -88,6 +88,12 @@ namespace MPEIPlugin
     {
       items.LoadFileName();
 
+      if (!Uri.IsWellFormedUriString(items.FileUrl, UriKind.Absolute))
+      {
+        GUIUtils.ShowOKDialog(Translation.Notification, Translation.UnKnownFileType);
+        return;
+      }
+
       if (!string.IsNullOrEmpty(items.File) && (Path.GetExtension(items.File) == ".exe" || Path.GetExtension(items.File) == ".mpe1"))
       {
         if(AskForRestart())
