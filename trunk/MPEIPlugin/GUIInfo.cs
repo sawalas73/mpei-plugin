@@ -24,8 +24,6 @@ namespace MPEIPlugin
 {
   public class GUIInfo : GuiBase
   {
-    [SkinControlAttribute(50)]
-    protected GUIFacadeControl facadeView = null;
     [SkinControlAttribute(2)]
     protected GUIButtonControl btnInstall = null;
     [SkinControlAttribute(3)]
