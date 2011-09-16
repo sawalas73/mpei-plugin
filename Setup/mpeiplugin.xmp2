@@ -62,6 +62,20 @@
               <ZipFileName>Installer{CopyFile}\{89efc694-38db-4be4-aa87-df7572a58b81}-es.xml</ZipFileName>
               <DestinationFilename>%Language%\MPEI\es.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Languages\de.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{94262ed7-d13c-4d0f-ab7f-781d65d8d387}-de.xml</ZipFileName>
+              <DestinationFilename>%Language%\MPEI\de.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Languages\nl.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{ec4d50f6-2940-4b89-bc29-dca468f2488c}-nl.xml</ZipFileName>
+              <DestinationFilename>%Language%\MPEI\nl.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -454,24 +468,30 @@ Click Next to continue or Cancel to exit Setup.
       <Major>1</Major>
       <Minor>0</Minor>
       <Build>1</Build>
-      <Revision>88</Revision>
+      <Revision>116</Revision>
     </Version>
     <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.</ExtensionDescription>
-    <VersionDescription>* Better checking for skins splashscreen when doing installations from GUI.
-* Fix standard skin properties like itemcount and currentmodule not working in all windows.
-* Set focus on views button when no extensions are loaded in the list, this gives a hint to user on what to do e.g. browse online extensions.
-* Fixed Info window not getting focus on available buttons when entering.
-* Removed all hard coded strings and updated translations, fixed typos etc. All translations are now in en-US.xml
-* Fixed constant refresh of extension list when updates are still downloading in background. Now only refreshed when all updates have finished downloading.
-* Refresh of Default skins including support now for (4:3) Default skin.
-* Refresh of packaged MPEI installer.
-* Fixed filtering of Incompatible plugins not working. Setting is now respected from MPEI Installer configuration.
-* Fixed extension updates always being downloaded on startup, was not respecting settings defined in MPEI Installer configuration.
-* Added Spanish translations, thanks riturrioz.
-* Added Danish translations, thanks Steffan.</VersionDescription>
+    <VersionDescription>* Added Loading Parameter support to main window, currently can jump to a view. This is esp. useful for skinners that what to display a button when there is an update available for atleast one extension installed. This can be used in conjuction with the mpei.updates property ie show button if this property is not empty.
+* Added new skin properties for selected extensions: Downloads, Hits, Rating, Votes, Status, DateAdded, CompatiblieVersions. DefaultWide skin updated in Info window.
+* Added more error checking when downloading and installing extensions.
+* Added German translations, thanks catavolt.
+* Added Dutch translations, thanks Lbr_Lion.
+* Fixed correct usage of Plugin Name translation, now only used for currentmodule property and menu item name.
+* Fixed translations not being updated when changing language settings from GUI until restart.
+* Fixed skin properties not being cleared when Back folder item was selected.
+* Fixed a type in the JustAdded skin property, old one is left in for backwards compatibility,
+* Fixed incorrect itemcount skin property when navigating MP Website view.
+* Fixed focus on disabled button in Settings window in Default skins.
+* Fixed Change Log being visible in Info window when in MP Website view.
+* Fixed Author property incorrectly displaying SubmittedBy field instead of list of Authors.
+* Fixed label in MPEIHelper utility overlapping progress bar.
+* Improved Usability and Reliability for the MP Website Extensions view. Also thanks to Rochess for helping out with regular expressions.
+* Changed ReleaseDate property to show DateAdded when there has never been an update (only applicable in MP Website view).
+
+Plus many more little fixes and updates.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/[Name].[Version].mpe1</OnlineLocation>
-    <ReleaseDate>2011-09-10T10:56:05</ReleaseDate>
+    <ReleaseDate>2011-09-16T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
@@ -549,6 +569,20 @@ Click Next to continue or Cancel to exit Setup.
         <LocalFileName>..\MPEIPlugin\Resources\Languages\es.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{89efc694-38db-4be4-aa87-df7572a58b81}-es.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\es.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Languages\de.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{94262ed7-d13c-4d0f-ab7f-781d65d8d387}-de.xml</ZipFileName>
+        <DestinationFilename>%Language%\MPEI\de.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Languages\nl.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{ec4d50f6-2940-4b89-bc29-dca468f2488c}-nl.xml</ZipFileName>
+        <DestinationFilename>%Language%\MPEI\nl.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
