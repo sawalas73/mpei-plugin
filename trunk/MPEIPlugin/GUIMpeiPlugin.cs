@@ -486,6 +486,46 @@ namespace MPEIPlugin
         xmlwriter.SetValueAsBool("myextensions2", "sortascending", sortAscending);
       }
     }
+
+    private void GetLoadingParameters()
+    {
+      try
+      {
+        foreach (String currParam in _loadParameter.Split('|'))
+        {
+          String[] keyValue = currParam.Split(':');
+          String key = keyValue[0];
+          String value = keyValue[1];
+
+          try
+          {
+            switch (key)
+            {
+              case "view":
+                if (value == "local") currentListing = Views.Local;
+                else if (value == "online") currentListing = Views.Online;
+                else if (value == "updates") currentListing = Views.Updates;
+                else if (value == "new") currentListing = Views.New;
+                else if (value == "queue") currentListing = Views.Queue;
+                else if (value == "site") currentListing = Views.MpSIte;
+                break;
+
+              default:
+                break;
+            }
+          }
+          catch (FormatException)
+          {
+            Log.Warn("[MPEI] Received invalid parameter: " + currParam);
+          }
+        }
+      }
+      catch (Exception ex)
+      {
+        Log.Error("[MPEI] Unexpected error parsing paramaters: " + _loadParameter, ex);
+      }
+    }
+
     #endregion
 
     #region BaseWindow Members
@@ -535,6 +575,12 @@ namespace MPEIPlugin
     protected override void OnPageLoad()
     {
       LoadSettings();
+
+      if (!string.IsNullOrEmpty(_loadParameter))
+      {
+        GetLoadingParameters();
+      }
+
       switch (currentSortMethod)
       {
         case SortMethod.Name:
@@ -553,7 +599,6 @@ namespace MPEIPlugin
           btnSortBy.SelectedItem = 4;
           break;
       }
-
 
       SelectCurrentItem();
       UpdateButtonStates();

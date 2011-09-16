@@ -49,7 +49,7 @@ namespace MPEIPlugin
       }
       else
       {
-        Log.Error("The {0} extension isn't installed", id);
+        Log.Error("[MPEI] The {0} extension isn't installed", id);
       }
     }
 
@@ -65,7 +65,7 @@ namespace MPEIPlugin
       }
       else
       {
-        Log.Error("The {0} extension isn't installed", id);
+        Log.Error("[MPEI] The {0} extension isn't installed", id);
       }
     }
 
@@ -80,7 +80,7 @@ namespace MPEIPlugin
       }
       else
       {
-        Log.Error("No extension was found :{0}", id);
+        Log.Error("[MPEI] No extension was found :{0}", id);
       }
     }
 
