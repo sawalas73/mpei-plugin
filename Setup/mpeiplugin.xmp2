@@ -467,31 +467,22 @@ Click Next to continue or Cancel to exit Setup.
     <Version>
       <Major>1</Major>
       <Minor>0</Minor>
-      <Build>1</Build>
-      <Revision>116</Revision>
+      <Build>2</Build>
+      <Revision>124</Revision>
     </Version>
     <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.</ExtensionDescription>
-    <VersionDescription>* Added Loading Parameter support to main window, currently can jump to a view. This is esp. useful for skinners that what to display a button when there is an update available for atleast one extension installed. This can be used in conjuction with the mpei.updates property ie show button if this property is not empty.
-* Added new skin properties for selected extensions: Downloads, Hits, Rating, Votes, Status, DateAdded, CompatiblieVersions. DefaultWide skin updated in Info window.
-* Added more error checking when downloading and installing extensions.
-* Added German translations, thanks catavolt.
-* Added Dutch translations, thanks Lbr_Lion.
-* Fixed correct usage of Plugin Name translation, now only used for currentmodule property and menu item name.
-* Fixed translations not being updated when changing language settings from GUI until restart.
-* Fixed skin properties not being cleared when Back folder item was selected.
-* Fixed a type in the JustAdded skin property, old one is left in for backwards compatibility,
-* Fixed incorrect itemcount skin property when navigating MP Website view.
-* Fixed focus on disabled button in Settings window in Default skins.
-* Fixed Change Log being visible in Info window when in MP Website view.
-* Fixed Author property incorrectly displaying SubmittedBy field instead of list of Authors.
-* Fixed label in MPEIHelper utility overlapping progress bar.
-* Improved Usability and Reliability for the MP Website Extensions view. Also thanks to Rochess for helping out with regular expressions.
-* Changed ReleaseDate property to show DateAdded when there has never been an update (only applicable in MP Website view).
+    <VersionDescription>* Fixed a possible hang when invoking the ChangeLog menu, also only display list of versions if there is more than one to choose from.
 
-Plus many more little fixes and updates.</VersionDescription>
+* Fixed flicker/lock-ups when extension had an invalid online icon. Also don't try to download a failed update/icon file more than once in the same session.
+
+* Updated views button label in Default skins to a better translation.
+
+* Fixed a typo in CompatibleVersions skin property. Old one left in for backwards compatibility.
+
+* Reword log message so its less confusing if a file fails to download.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/[Name].[Version].mpe1</OnlineLocation>
-    <ReleaseDate>2011-09-16T10:56:05</ReleaseDate>
+    <ReleaseDate>2011-09-17T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
