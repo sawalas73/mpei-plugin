@@ -265,7 +265,7 @@
       <posY>324</posY>
       <width>428</width>
       <font>font11</font>
-      <label>#(iif(eq(#MPE.Selected.CompatibileVersions,' '),'N/A','v#MPE.Selected.CompatibileVersions'))</label>
+      <label>#(iif(eq(#MPE.Selected.CompatibleVersions,' '),'N/A','v#MPE.Selected.CompatibleVersions'))</label>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
       <visible>string.equals(#MPE.View.Name,#MPEI.Translation.MPOnlineExtensions.Label)</visible>

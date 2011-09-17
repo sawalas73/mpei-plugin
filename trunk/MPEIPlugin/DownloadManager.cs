@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Net;
 using MediaPortal.GUI.Library;
@@ -18,6 +19,8 @@ namespace MPEIPlugin
     public delegate void DownloadDoneEventHadler(DownLoadInfo info);
 
     private DownLoadInfo _currentItem = new DownLoadInfo();
+
+    private List<string> failedDownloads = new List<string>();
 
     public DownloadManager()
     {
@@ -42,6 +45,7 @@ namespace MPEIPlugin
           }          
           if (DownloadDone != null)
             DownloadDone(_currentItem);
+
         }
         catch (Exception exception)
         {
@@ -51,15 +55,30 @@ namespace MPEIPlugin
       else
       {
         Log.Warn("[MPEI] Failed to download file from {0}: {1}", _currentItem.Url, e.Error.Message);
+        
+        // don't download again in the same session..could add an expire but dont think its nessarcary
+        if (_currentItem.ItemType == DownLoadItemType.UpdateInfo || _currentItem.ItemType == DownLoadItemType.Logo)
+        {
+          if (!failedDownloads.Contains(_currentItem.Url))
+            failedDownloads.Add(_currentItem.Url);
+        }
       }
+
+      // signal reload of the facade
+      if (queue.Count(d => d.ItemType == DownLoadItemType.UpdateInfo) == 0 && _currentItem.ItemType == DownLoadItemType.UpdateInfo)
+      {
+        DownloadDone(new DownLoadInfo() { ItemType = DownLoadItemType.UpdateInfoComplete });
+      }
+
+      // continue on with queue
       if (queue.Count > 0)
         StartDownload();
-      else
-        DownloadDone(new DownLoadInfo(){ ItemType = DownLoadItemType.UpdateInfoComplete });
     }
     
     public void Download(DownLoadInfo info)
     {
+      if (failedDownloads.Contains(info.Url)) return;
+
       queue.Enqueue(info);
       if (!client.IsBusy)
         StartDownload();
@@ -82,6 +101,8 @@ namespace MPEIPlugin
 
     public void Download(string source, string dest , DownLoadItemType type)
     {
+      if (failedDownloads.Contains(source)) return;
+
       Download(new DownLoadInfo()
                  {
                    Destinatiom = dest,
