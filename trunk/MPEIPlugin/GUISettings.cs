@@ -34,7 +34,7 @@ namespace MPEIPlugin
     private string GUID { get; set; }
     private ExtensionSettings settings = new ExtensionSettings();
 
-    public delegate void SettingsChangedHandler(string settingsFile);
+    public delegate void SettingsChangedHandler(string guid);
     public event SettingsChangedHandler OnSettingsChanged;
 
     public GUISettings()
