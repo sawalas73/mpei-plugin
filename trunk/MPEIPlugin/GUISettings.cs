@@ -7,11 +7,11 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Timers;
 using System.Xml;
 using System.Xml.Serialization;
 using MediaPortal.GUI.Library;
-//using MediaPortal.Profile;
 using MediaPortal.Util;
 using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
@@ -30,7 +30,13 @@ namespace MPEIPlugin
     protected GUIButtonControl btnSections = null;
 
     public string SettingsFile { get; set; }
+    private bool SettingsChanged { get; set; }
+    private string GUID { get; set; }
     private ExtensionSettings settings = new ExtensionSettings();
+
+    public delegate void SettingsChangedHandler(string settingsFile);
+    public event SettingsChangedHandler OnSettingsChanged;
+
     public GUISettings()
     {
       GetID = 803;
@@ -49,14 +55,16 @@ namespace MPEIPlugin
     protected override void OnPageLoad()
     {
       if (!string.IsNullOrEmpty(_loadParameter) && File.Exists(_loadParameter))
-        settings.Load(_loadParameter);
-      else
-        settings.Load(SettingsFile);
+        SettingsFile = _loadParameter;
+
+      GUID = Regex.Match(SettingsFile, @"\\Installer\\V\d+\\(?<guid>[^\\]+)\\", RegexOptions.Singleline).Groups["guid"].Value;      
+
+      settings.Load(SettingsFile);
       PopulateFacade(0);
       base.OnPageLoad();
     }
 
-    void PopulateFacade(int sec)
+    void PopulateFacade(int section)
     {
       GUIControl.ClearControl(GetID, facadeView.GetID);
       if (settings.Settings.Count > 1)
@@ -66,7 +74,7 @@ namespace MPEIPlugin
       int i = 0;
       foreach (KeyValuePair<string, List<ExtensionSetting>> settingsection in settings.Settings)
       {
-        if (i == sec)
+        if (i == section)
         {
           foreach (ExtensionSetting setting in settingsection.Value)
           {
@@ -82,6 +90,11 @@ namespace MPEIPlugin
     protected override void OnPageDestroy(int new_windowId)
     {
       MediaPortal.Profile.Settings.SaveCache();
+
+      // signal to plugins that property re-load should occur
+      if (OnSettingsChanged != null && SettingsChanged)
+        OnSettingsChanged(GUID);
+
       base.OnPageDestroy(new_windowId);
     }
 
@@ -100,13 +113,13 @@ namespace MPEIPlugin
         }
         dlg.DoModal(GetID);
         if (dlg.SelectedId == -1) return;
-        PopulateFacade(dlg.SelectedId-1);
+        PopulateFacade(dlg.SelectedId - 1);
         GUIControl.FocusControl(GetID, facadeView.GetID);
       }
+
       if (control == facadeView)
       {
-        GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0,
-                                        null);
+        GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0, null);
         OnMessage(msg);
         int itemIndex = (int)msg.Param1;
         if (actionType == Action.ActionType.ACTION_SELECT_ITEM)
@@ -122,7 +135,9 @@ namespace MPEIPlugin
 
     private void GetValue(ExtensionSetting setting)
     {
-      if(setting.Values.Count>0)
+      string settingValue = setting.Value;
+
+      if(setting.Values.Count > 0)
       {
         GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
         if (dlg == null) return;
@@ -139,17 +154,17 @@ namespace MPEIPlugin
       }
       else
       {
-        VirtualKeyboard keyboard = (VirtualKeyboard)GUIWindowManager.GetWindow((int)Window.WINDOW_VIRTUAL_KEYBOARD);
-        keyboard.Reset();
-        keyboard.Text = setting.Value;
-        keyboard.DoModal(GetID);
-        if (keyboard.IsConfirmed)
+        if (GUIUtils.GetStringFromKeyboard(ref settingValue))
         {
-          // input confirmed -- execute the search
-          setting.Value = keyboard.Text;
+          setting.Value = settingValue;
         }
-        ;
       }
+
+      if (settingValue != setting.Value)
+      {
+        SettingsChanged = true;
+      }
+
     }
   }
 }
