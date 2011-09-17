@@ -9,31 +9,41 @@
   <string Field="AlwaysCheckForUpdates">Controleer altijd op updates</string>
   <string Field="Actions">Acties</string>
   <string Field="ActionAdded">Actie is toegevoegd aan de wachtrij</string>
-  <string Field="ActionRemoved">Actie is verwijderd van de wachtrij</string>
+  <string Field="ActionRemoved">Actie is verwijderd uit de wachtrij</string>
   <string Field="AskForRestart">Deze actie zal MediaPortal opnieuw opstarten.\nWilt u verder gaan?</string>
   <string Field="Author">Auteur</string>
 
   <!--  C  -->
   <string Field="ChangeLog">Wijzigingen</string>
+  <string Field="Compatibility">Compatibiliteit</string>
 
   <!--  D  -->
   <string Field="Download">Download</string>
+  <string Field="Downloads">Downloads</string>
   <string Field="Disable">Uitschakelen</string>
+  <string Field="DateAdded">Datum toegevoegd</string>
 
   <!--  E  -->
   <string Field="Exit">Afsluiten</string>
   <string Field="Enable">Inschakelen</string>
+  <string Field="Error">Fout</string>
+  <string Field="ErrorLoadingSite">Er is een fout opgetreden tijdens het laden van de Categorielijst van de MediaPortal website</string>
+  <string Field="ErrorLoadingExtensionList">Er is een fout opgetreden tijdens het laden van de Extensielijst van de geselecteerde categorie</string>
 
   <!--  F  -->
 
   <!--  G  -->
+  <string Field="GetCategories">Categorieën ophalen</string>
+  <string Field="GetExtensionInfo">Extensie informatie ophalen</string>
 
   <!--  H  -->
+  <string Field="Hits">Hits</string>
 
   <!--  I  -->
   <string Field="Id">Id</string>
   <string Field="Install">Installeren</string>
   <string Field="InstalledExtensions">Geïnstalleerde Extensies</string>
+  <string Field="InvalidUrl">Ongeldige Url, extensie kan niet worden gedownload!</string>
 
   <!--  L  -->
 
@@ -56,6 +66,7 @@
   <!--  P  -->
 
   <!--  R  -->
+  <string Field="Rating">Waardering</string>
   <string Field="Revoke">Ongedaan maken</string>
   <string Field="ReleaseDate">Release datum</string>
   <string Field="Restart">Herstart</string>
@@ -71,8 +82,10 @@
   <string Field="SelectVersionToInstall">Selecteer de verie om te (Her)Installeren</string>
   <string Field="SelectVersion">Selecteer versie</string>
   <string Field="StartSlideshow">Diashow starten</string>
+  <string Field="Status">Status</string>
 
   <!--  T  -->
+  <string Field="Timeout">Time-out</string>
 
 
   <!--  U  -->
@@ -87,6 +100,7 @@
   <!--  V  -->
   <string Field="Views">Weergave</string>
   <string Field="Version">Versie</string>
+  <string Field="Votes">Stemmen</string>
 
   <!--  W  -->
 
