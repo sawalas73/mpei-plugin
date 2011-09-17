@@ -167,23 +167,35 @@ namespace MPEIPlugin
         if (dlg == null) return;
         dlg.Reset();
         dlg.SetHeading(Translation.SelectVersion);
+        
         ExtensionCollection paks = MpeInstaller.KnownExtensions.GetList(pk.GeneralInfo.Id);
-        foreach (PackageClass item in paks.Items)
+        PackageClass ver = null;
+
+        if (paks.Items.Count > 1)
         {
-          GUIListItem guiListItem = new GUIListItem(item.GeneralInfo.Version.ToString());
-          if (MpeInstaller.InstalledExtensions.Get(item) != null)
-            guiListItem.Selected = true;
-          dlg.Add(guiListItem);
+          foreach (PackageClass item in paks.Items)
+          {
+            GUIListItem guiListItem = new GUIListItem(item.GeneralInfo.Version.ToString());
+            if (MpeInstaller.InstalledExtensions.Get(item) != null)
+              guiListItem.Selected = true;
+            dlg.Add(guiListItem);
+          }
+          dlg.selectOption(selected);
+          dlg.DoModal(GetID);
+          if (dlg.SelectedId == -1) return;
+          ver = MpeInstaller.KnownExtensions.Get(pk.GeneralInfo.Id, dlg.SelectedLabelText);
+          selected = dlg.SelectedLabelText;
         }
-        dlg.selectOption(selected);
-        dlg.DoModal(GetID);
-        if (dlg.SelectedId == -1) return;
-        PackageClass ver = MpeInstaller.KnownExtensions.Get(pk.GeneralInfo.Id, dlg.SelectedLabelText);
-        selected = dlg.SelectedLabelText;
+        else
+        {
+          ver = pk;
+        }
+
         if (ver != null)
         {
           string text = string.Format("{0} - {1}", ver.GeneralInfo.Name, ver.GeneralInfo.Version.ToString()) + "\n" + ver.GeneralInfo.VersionDescription;
           GUIUtils.ShowTextDialog(Translation.ChangeLog, text);
+          if (paks.Items.Count <= 1) return;
         }
       }
     }
