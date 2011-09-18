@@ -59,8 +59,16 @@ namespace MPEIPlugin
       if (!string.IsNullOrEmpty(_loadParameter) && File.Exists(_loadParameter))
         SettingsFile = _loadParameter;
 
-      GUID = Regex.Match(SettingsFile, @"\\Installer\\V\d+\\(?<guid>[^\\]+)\\", RegexOptions.Singleline).Groups["guid"].Value;      
+      if (SettingsFile == null)
+      {
+        Log.Error("[MPEI] Error Loading SettingsFile, file must exist!");
+        GUIWindowManager.ShowPreviousWindow();
+        return;
+      }
 
+      Match match = Regex.Match(SettingsFile, @"\\Installer\\V\d+\\(?<guid>[^\\]+)\\", RegexOptions.Singleline);
+      if (match.Success) GUID = match.Groups["guid"].Value;
+        
       settings.Load(SettingsFile);
       PopulateFacade(0);
       base.OnPageLoad();

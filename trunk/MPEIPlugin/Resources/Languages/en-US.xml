@@ -60,6 +60,7 @@
   <string Field="Notification">Notification</string>
   <string Field="NotificationWarning">There are tasks still outstanding.\nRestart and execute now?</string>
   <string Field="NotificationMessage">Would you like to restart MediaPortal\nand execute pending tasks now?</string>
+  <string Field="No">No</string>
   
   <!--  O  -->
   <string Field="OnlineExtensions">Online Extensions</string>
@@ -84,6 +85,12 @@
   <string Field="SelectVersion">Select version</string>
   <string Field="StartSlideshow">Start slideshow</string>
   <string Field="Status">Status</string>
+  <string Field="SettingPluginEnabledName">Plugin Enabled</string>
+  <string Field="SettingPluginEnabledDescription">Enable / Disable this setting to control if Extensions plugin is loaded with MediaPortal.</string>
+  <string Field="SettingListedHomeName">Listed in Home</string>
+  <string Field="SettingListedHomeDescription">Enable this setting for Extensions plugin to appear in the main Home screen menu items.</string>
+  <string Field="SettingListedPluginsName">Listed in My Plugins</string>
+  <string Field="SettingListedPluginsDescription">Enable this setting for Extensions plugin to appear in the My Plugins screen menu items.</string>
 
   <!--  T  -->
   <string Field="Timeout">Timeout</string>
@@ -105,6 +112,6 @@
   <!--  W  -->
 
   <!--  Y  -->
-
+  <string Field="Yes">Yes</string>
 
 </strings>
