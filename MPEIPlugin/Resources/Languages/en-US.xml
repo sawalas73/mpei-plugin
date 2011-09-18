@@ -53,6 +53,8 @@
   
   <!--  N -->
   <string Field="Name">Extensions</string>
+  <string Field="NameInfo">Extension Information</string>
+  <string Field="NameSettings">Extension Settings</string>
   <string Field="NeverCheckForUpdates">Never check for updates</string>
   <string Field="NewExtensions">New Extensions</string>
   <string Field="NewUpdates">New updates</string>
