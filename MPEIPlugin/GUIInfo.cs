@@ -122,25 +122,28 @@ namespace MPEIPlugin
     protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
     {
       base.OnClicked(controlId, control, actionType);
+
       if (control == btnUpdate)
       {
         UpdateExtension(Package.GeneralInfo.Id);
       }
+
       if (control == btnUnInstall)
       {
         UnInstallExtension(Package.GeneralInfo.Id);
       }
+
       if (control == btnSettings)
       {
         ConfigureExtension(Package.GeneralInfo.Id);
       }
+
       if (control == btnInstall)
       {
         if (Package != null)
           InstallExtension(Package.GeneralInfo.Id);
         if (SiteItem != null)
-          InstallExtension(SiteItem);
-        
+          InstallExtension(SiteItem);        
       }
 
       if (control == btnChangeLog)
@@ -152,13 +155,20 @@ namespace MPEIPlugin
       {
         settings.DisableSetting.Value = "yes";
         MediaPortal.Profile.Settings.SaveCache();
+        checkstate();
+        GUIWindowManager.Process();
+        GUIControl.FocusControl(GetID, btnDisable.GetID);
       }
+
       if (control == btnDisable)
       {
         settings.DisableSetting.Value = "no";
         MediaPortal.Profile.Settings.SaveCache();
+        checkstate();
+        GUIWindowManager.Process();
+        GUIControl.FocusControl(GetID, btnEnable.GetID);
       }
-      checkstate();
+      
     }
 
   }
