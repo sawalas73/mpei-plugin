@@ -158,18 +158,21 @@ namespace MPEIPlugin
         dlg.SetHeading(setting.DisplayName);
         foreach (string displayValue in setting.DisplayValues)
         {
-          dlg.Add(displayValue);
+          GUIListItem pItem = new GUIListItem(displayValue);
+          if (displayValue == setting.DisplayValue)
+            pItem.Selected = true;
+          dlg.Add(pItem);
         }
-        dlg.selectOption(setting.Value);
         dlg.DoModal(GetID);
         if (dlg.SelectedId == -1) return;
         setting.Value = setting.Values[dlg.SelectedId - 1];
       }
       else
       {
-        if (GUIUtils.GetStringFromKeyboard(ref settingValue))
+        string enteredValue = settingValue;
+        if (GUIUtils.GetStringFromKeyboard(ref enteredValue))
         {
-          setting.Value = settingValue;
+          setting.Value = enteredValue;
         }
       }
 
