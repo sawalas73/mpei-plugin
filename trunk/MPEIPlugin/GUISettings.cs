@@ -44,7 +44,7 @@ namespace MPEIPlugin
 
     public override string GetModuleName()
     {
-      return Translation.Name;
+      return Translation.NameSettings;
     }
 
     public override bool Init()
