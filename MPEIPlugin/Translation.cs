@@ -215,6 +215,7 @@ namespace MPEIPlugin
     public static string Downloads = "Downloads";
     public static string Disable = "Disable";
     public static string DateAdded = "Date Added";
+    public static string Description = "Description";
 
     // E
     public static string Exit = "Exit";

@@ -80,12 +80,38 @@
           <posX>88</posX>
           <posY>131</posY>
           <width>1173</width>
-          <height>588</height>
+          <height>450</height>
           <onleft>2</onleft>
           <onright>2</onright>
           <scrollOffset>2</scrollOffset>
+					<textXOff>-20</textXOff>
+					<spinPosX>1160</spinPosX>
+					<spinPosY>540</spinPosY>
         </control>
       </control>
+    </control>
+		<control>
+      <type>label</type>
+      <posX>88</posX>
+      <posY>545</posY>
+      <width>500</width>
+      <label>#MPEI.Translation.Description.Label</label>
+      <textcolor>ffa9d0f7</textcolor>
+      <font>font12</font>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
+			<visible>!string.equals(#MPE.Selection.Description,)</visible>
+    </control>
+		<control>
+      <type>textboxscrollup</type>
+      <posX>88</posX>
+      <posY>580</posY>
+      <width>1170</width>
+      <height>100</height>
+      <font>font12</font>
+      <label>#MPE.Selection.Description</label>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="100">WindowClose</animation>
     </control>
   </controls>
 </window>

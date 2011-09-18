@@ -16,11 +16,11 @@ namespace MPEIPlugin.Classes
 
   public class ExtensionSetting
   {
-
     public string Name { get; set; }
     public string DisplayName { get; set; }
     public string EntryName { get; set; }
     public string DefaultValue { get; set; }
+    public string Description { get; set; }
     
     private string _value;
     public string Value
@@ -112,6 +112,8 @@ namespace MPEIPlugin.Classes
         ListValues = node.Attributes["listvalues"].Value;
       if (node.Attributes["displaylistvalues"] != null)
         DisplayListValues = node.Attributes["displaylistvalues"].Value;
+      if (node.Attributes["description"] != null)
+        Description = node.Attributes["description"].Value;
       if (node.Attributes["type"] != null)
       {
         if (node.Attributes["type"].Value == "string")
@@ -130,7 +132,7 @@ namespace MPEIPlugin.Classes
     string GetName(string name)
     {
       name = name.Trim();
-      if(name.StartsWith("$")&& name.Contains("."))
+      if(name.StartsWith("$") && name.Contains("."))
       {
         string entryName = name.Substring(1).Split('.')[0];
         string valname = name.Substring(1).Split('.')[1];
