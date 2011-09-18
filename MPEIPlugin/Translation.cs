@@ -254,12 +254,13 @@ namespace MPEIPlugin
     public static string Notification = "Notification";
     public static string NotificationWarning = "There are installation tasks still outstanding.\nRestart and execute now?";
     public static string NotificationMessage = "Would you like to restart MediaPortal\nand execute pending tasks now?";
+    public static string No = "No";
 
     // O
     public static string OnlineExtensions = "Online Extensions";
    
 
-    // P
+    // P    
 
     // R
     public static string Rating = "Rating";
@@ -280,6 +281,12 @@ namespace MPEIPlugin
     public static string SelectVersionToInstall = "Select version to (Re)Install";
     public static string StartSlideshow = "Start slideshow";
     public static string Status = "Status";
+    public static string SettingPluginEnabledName = "Plugin Enabled";
+    public static string SettingPluginEnabledDescription = "Enable / Disable this setting to control if Extensions plugin is loaded with MediaPortal.";
+    public static string SettingListedHomeName = "Listed in Home";
+    public static string SettingListedHomeDescription = "Enable this setting for Extensions plugin to appear in the main Home screen menu items.";
+    public static string SettingListedPluginsName = "Listed in My Plugins";
+    public static string SettingListedPluginsDescription = "Enable this setting for Extensions plugin to appear in the My Plugins screen menu items.";
 
     // T
     public static string Timeout = "Timeout";
@@ -301,6 +308,7 @@ namespace MPEIPlugin
     // W
 
     // Y
+    public static string Yes = "Yes";
 
     #endregion
 

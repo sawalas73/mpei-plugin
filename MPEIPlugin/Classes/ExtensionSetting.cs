@@ -45,7 +45,7 @@ namespace MPEIPlugin.Classes
 
     public SettingType Type { get; set; }
     public string ListValues { get; set; }
-    public string DisplayListValues { get; set; }
+    public List<string> DisplayValues { get; set; }
 
     public List<string> Values
     {
@@ -62,27 +62,12 @@ namespace MPEIPlugin.Classes
       }
     }
 
-    public List<string> DisplayValues
-    {
-      get
-      {
-        var vallist = new List<string>();
-        string[] val = DisplayListValues.Split('|');
-        foreach (string s in val)
-        {
-          if (!string.IsNullOrEmpty(s))
-            vallist.Add(s);
-        }
-        return vallist;
-      }
-    }
-
     public string DisplayValue
     {
       get
       {
         string s = Value;
-        if(DisplayValues.Count>0)
+        if(DisplayValues.Count > 0)
         {
           int i = 0;
           foreach (string value in Values)
@@ -103,7 +88,7 @@ namespace MPEIPlugin.Classes
       if (node.Attributes["name"] != null)
         Name = node.Attributes["name"].Value;
       if (node.Attributes["displayname"] != null)
-        DisplayName = node.Attributes["displayname"].Value;
+        DisplayName = GetTranslatedString(node.Attributes["displayname"].Value);
       if (node.Attributes["entryname"] != null)
         EntryName = node.Attributes["entryname"].Value;
       if (node.Attributes["defaultvalue"] != null)
@@ -111,9 +96,9 @@ namespace MPEIPlugin.Classes
       if (node.Attributes["listvalues"] != null)
         ListValues = node.Attributes["listvalues"].Value;
       if (node.Attributes["displaylistvalues"] != null)
-        DisplayListValues = node.Attributes["displaylistvalues"].Value;
+        DisplayValues = GetTranslatedStrings(node.Attributes["displaylistvalues"].Value);
       if (node.Attributes["description"] != null)
-        Description = node.Attributes["description"].Value;
+        Description = GetTranslatedString(node.Attributes["description"].Value);
       if (node.Attributes["type"] != null)
       {
         if (node.Attributes["type"].Value == "string")
@@ -127,6 +112,34 @@ namespace MPEIPlugin.Classes
 
       }
       return this;
+    }
+
+    /// <summary>
+    /// Gets a translated string from a skin property
+    /// </summary>
+    /// <param name="description">Translation Property</param>
+    /// <returns>Translated string</returns>
+    string GetTranslatedString(string description)
+    {
+      string translatedString = description.Trim();
+      if (translatedString.StartsWith("#") && translatedString.Contains("."))
+      {
+        translatedString = GUIUtils.GetProperty(description);
+      }
+      return translatedString;
+    }
+
+    List<string> GetTranslatedStrings(string descriptions)
+    {
+      var translatedStrings = descriptions.Trim().Split('|');
+      var returnStrings = new List<string>();
+
+      foreach (var translatedString in translatedStrings)
+      {
+        returnStrings.Add(GetTranslatedString(translatedString));
+      }
+
+      return returnStrings;
     }
 
     string GetName(string name)

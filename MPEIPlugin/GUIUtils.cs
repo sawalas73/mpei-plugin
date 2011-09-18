@@ -18,6 +18,14 @@ namespace MPEIPlugin
 
     public static readonly string GlobalSearchLogo = GUIGraphicsContext.Skin + "\\Media\\Logos\\extensions.png";
 
+
+    public static string GetProperty(string property)
+    {
+      string value = GUIPropertyManager.GetProperty(property);
+      if (string.IsNullOrEmpty(value)) value = property;
+      return value;
+    }
+
     public static void SetProperty(string property, string value)
     {
       SetProperty(property, value, false);
