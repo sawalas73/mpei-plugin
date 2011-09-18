@@ -8,7 +8,7 @@ namespace MPEIPlugin.Classes
 {
   public class ExtensionSettings
   {
-    public Dictionary<string ,List<ExtensionSetting>> Settings { get; set; }
+    public Dictionary<string, List<ExtensionSetting>> Settings { get; set; }
 
     public ExtensionSetting DisableSetting { get; set; }
 
@@ -21,6 +21,8 @@ namespace MPEIPlugin.Classes
     public void Load(string file)
     {
       Settings.Clear();
+      DisableSetting = new ExtensionSetting();
+
       XmlDocument doc = new XmlDocument();
       if(File.Exists(file))
       {
