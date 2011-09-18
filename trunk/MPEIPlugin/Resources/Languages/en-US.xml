@@ -22,6 +22,7 @@
   <string Field="Downloads">Downloads</string>
   <string Field="Disable">Disable</string>
   <string Field="DateAdded">Date Added</string>
+  <string Field="Description">Description</string>
 
   <!--  E  -->
   <string Field="Exit">Exit</string>

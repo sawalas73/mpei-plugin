@@ -54,6 +54,8 @@ namespace MPEIPlugin
 
     protected override void OnPageLoad()
     {
+      ClearProperties();
+
       if (!string.IsNullOrEmpty(_loadParameter) && File.Exists(_loadParameter))
         SettingsFile = _loadParameter;
 
@@ -79,11 +81,14 @@ namespace MPEIPlugin
           foreach (ExtensionSetting setting in settingsection.Value)
           {
             var item = new GUIListItem {Label = setting.DisplayName, Label2 = setting.DisplayValue, MusicTag = setting};
+            item.OnItemSelected += new GUIListItem.ItemSelectedHandler(item_OnItemSelected);
             facadeView.Add(item);
           }
         }
         i++;
       }
+      
+      GUIControl.SelectItemControl(GetID, facadeView.GetID, 0);
       GUIPropertyManager.SetProperty("#itemcount", facadeView.Count.ToString());
     }
 
@@ -166,5 +171,19 @@ namespace MPEIPlugin
       }
 
     }
+
+    private void ClearProperties()
+    {
+      GUIUtils.SetProperty("#MPE.Selection.Description", string.Empty);
+    }
+
+    private void item_OnItemSelected(GUIListItem item, GUIControl parent)
+    {
+      ExtensionSetting setting = item.MusicTag as ExtensionSetting;
+      if (setting == null) return;
+
+      GUIUtils.SetProperty("#MPE.Selection.Description", setting.Description);
+    }
+
   }
 }
