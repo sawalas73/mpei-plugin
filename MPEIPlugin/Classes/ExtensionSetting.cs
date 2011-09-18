@@ -27,6 +27,7 @@ namespace MPEIPlugin.Classes
     {
       get
       {
+        if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(EntryName)) return null;
         using (var xmlreader = new MediaPortal.Profile.Settings(Config.GetFile(Config.Dir.Config, "MediaPortal.xml")))
         {
           _value = xmlreader.GetValueAsString(GetName(EntryName), GetName(Name), DefaultValue);
@@ -51,6 +52,8 @@ namespace MPEIPlugin.Classes
     {
       get
       {
+        if (ListValues == null) return null;
+
         var vallist = new List<string>();
         string[] val = ListValues.Split('|');
         foreach (string s in val)
@@ -66,6 +69,8 @@ namespace MPEIPlugin.Classes
     {
       get
       {
+        if (string.IsNullOrEmpty(Value)) return string.Empty;
+
         string s = Value;
         if(DisplayValues.Count > 0)
         {
