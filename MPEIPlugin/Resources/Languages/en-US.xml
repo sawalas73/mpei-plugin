@@ -63,6 +63,7 @@
   <string Field="NotificationWarning">There are tasks still outstanding.\nRestart and execute now?</string>
   <string Field="NotificationMessage">Would you like to restart MediaPortal\nand execute pending tasks now?</string>
   <string Field="No">No</string>
+  <string Field="NoScreenshots">No Screenshots are available for this extension.</string>
   
   <!--  O  -->
   <string Field="OnlineExtensions">Online Extensions</string>
@@ -86,6 +87,7 @@
   <string Field="SelectVersionToInstall">Select version to (Re)Install</string>
   <string Field="SelectVersion">Select version</string>
   <string Field="StartSlideshow">Start slideshow</string>
+  <string Field="Screenshots">Screenshots</string>
   <string Field="Status">Status</string>
   <string Field="SettingPluginEnabledName">Plugin Enabled</string>
   <string Field="SettingPluginEnabledDescription">Enable / Disable this setting to control if Extensions plugin is loaded with MediaPortal.</string>

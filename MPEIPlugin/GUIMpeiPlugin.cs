@@ -87,8 +87,6 @@ namespace MPEIPlugin
     protected GUIButtonControl btnRestart = null;
     [SkinControlAttribute(6)]
     protected GUIButtonControl btnViews = null;
-    //[SkinControlAttribute(7)]
-    //protected GUIButtonControl btnUpdate = null;
     [SkinControlAttribute(8)]
     protected GUIButtonControl btnUpdateAll = null;
 
@@ -625,28 +623,8 @@ namespace MPEIPlugin
         si.LoadInfo();
         if (dlg1.SelectedLabelText == Translation.ShowSreenshots)
         {
-          GUISlideShow SlideShow = (GUISlideShow)GUIWindowManager.GetWindow(802);
-          if (SlideShow == null)
-          {
-            return;
-          }
-
-          SlideShow.Reset();
-          foreach (string files in si.Images)
-          {
-            if (!string.IsNullOrEmpty(files))
-              SlideShow.Add(files);
-          }
-
-          if (SlideShow.Count > 0)
-          {
-            //Thread.Sleep(1000);
-            GUIWindowManager.ActivateWindow(802);
-            SlideShow.StartSlideShow();
-          }
-
+          ShowSlideShow(si);
         }
-
         return;
       }
 
@@ -722,25 +700,7 @@ namespace MPEIPlugin
       }
       else if (dlg.SelectedLabelText == Translation.ShowSreenshots)
       {
-        GUISlideShow SlideShow = (GUISlideShow)GUIWindowManager.GetWindow(802);
-        if (SlideShow == null)
-        {
-          return;
-        }
-
-        SlideShow.Reset();
-        foreach (string files in pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS))
-        {
-          if (!string.IsNullOrEmpty(files))
-            SlideShow.Add(files);
-        }
-
-        if (SlideShow.Count > 0)
-        {
-          //Thread.Sleep(1000);
-          GUIWindowManager.ActivateWindow(802);
-          SlideShow.StartSlideShow();
-        }
+        ShowSlideShow(pk);
       }
       else if (dlg.SelectedLabelText == Translation.ShowChangelogs)
       {
@@ -749,7 +709,6 @@ namespace MPEIPlugin
       else if (dlg.SelectedLabelText == Translation.Settings)
       {
         GUISettings guiSettings = (GUISettings)GUIWindowManager.GetWindow(803);
-        //guiSettings.SettingsFile = pk.LocationFolder + "extension_settings.xml";
         GUIWindowManager.ActivateWindow(803,guiSettings.SettingsFile = pk.LocationFolder + "extension_settings.xml");
       }
       _setting.Save();
