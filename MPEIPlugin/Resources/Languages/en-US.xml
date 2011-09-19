@@ -16,6 +16,49 @@
   <!--  C  -->
   <string Field="ChangeLog">Change Log</string>
   <string Field="Compatibility">Compatibility</string>
+  <string field="CategoryRecentlyAdded">Recently Added Extensions</string>
+  <string field="CategoryRecentlyUpdated">Recently Updated Extensions</string>
+  <string field="CategoryMostInstalled">Most Installed Extensions</string>
+  <string field="CategoryFeatured">Featured Extensions</string>
+  <string field="CategoryMostPopular">Most Popular Extensions</string>
+  <string field="CategoryMostRated">Most Rated Extensions</string>
+  <string field="CategoryTopRated">Top Rated Extensions</string>
+  <string field="CategoryMostReviewed">Most Reviewed Extensions</string>
+  <string field="CategoryHTPC">HTPC</string>
+  <string field="CategoryCustomization">Customization</string>
+  <string field="CategoryBootScreens">Boot Screens</string>
+  <string field="CategoryTools">Tools</string>
+  <string field="CategorySystemUtilities">System/Utilities</string>
+  <string field="CategoryUtilities">Utilities</string>
+  <string field="CategoryDriversFirmware"><![CDATA[Drivers & Firmware]]></string>
+  <string field="CategoryCodecs">Codecs</string>
+  <string field="CategoryLogos">Logos</string>
+  <string field="CategoryTVChannels">TV Channels</string>
+  <string field="CategoryRadioStations">Radio Stations</string>
+  <string field="CategoryMediaInfo">Media Info</string>
+  <string field="CategorySkins">Skins</string>
+  <string field="CategoryWidescreen">Widescreen</string>
+  <string field="CategoryNonWidescreen">Non-Widescreen</string>
+  <string field="CategoryPlugins">Plugins</string>
+  <string field="CategoryWeather">Weather</string>
+  <string field="CategoryOther">Other</string>
+  <string field="CategorySystem">System</string>
+  <string field="CategoryEmail">Email</string>
+  <string field="CategoryPIMs">PIMs</string>
+  <string field="CategoryHomeAutomation">Home Automation</string>
+  <string field="CategoryPictures">Pictures</string>
+  <string field="CategoryRadio">Radio</string>
+  <string field="CategoryInputOutput"><![CDATA[Input & Output]]></string>
+  <string field="CategoryOtherInputDevices">Other Input Devices</string>
+  <string field="CategoryExternalDisplays">External Displays</string>
+  <string field="CategoryRemotes">Remotes</string>
+  <string field="CategoryNewsInfo"><![CDATA[News & Info]]></string>
+  <string field="CategoryInfo">Info</string>
+  <string field="CategoryNews">News</string>
+  <string field="CategoryGamesFun"><![CDATA[Games & Fun]]></string>
+  <string field="CategoryMusic">Music</string>
+  <string field="CategoryTelevision">Television</string>
+  <string field="CategoryMoviesVideos"><![CDATA[Movies & Videos]]></string>
 
   <!--  D  -->
   <string Field="Download">Download</string>
@@ -69,7 +112,8 @@
   <string Field="OnlineExtensions">Online Extensions</string>
 
   <!--  P  -->
-
+  <string Field="Plugin">Plugin</string>
+  
   <!--  R  -->
   <string Field="Rating">Rating</string>
   <string Field="Revoke">Revoke</string>

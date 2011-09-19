@@ -127,7 +127,7 @@ namespace MPEIPlugin.Classes
     /// </summary>
     /// <param name="description">Translation Property</param>
     /// <returns>Translated string</returns>
-    string GetTranslatedString(string description)
+    public static string GetTranslatedString(string description)
     {
       string translatedString = description.Trim();
       if (translatedString.StartsWith("#") && translatedString.Contains("."))

@@ -36,7 +36,7 @@ namespace MPEIPlugin.Classes
             if (section.Attributes != null)
             {
               List<ExtensionSetting> set;
-              string sectionname = section.Attributes["section"].Value;
+              string sectionname = ExtensionSetting.GetTranslatedString(section.Attributes["section"].Value);
               if (Settings.ContainsKey(sectionname))
                 set = Settings[sectionname];
               else
