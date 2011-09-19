@@ -21,6 +21,7 @@ namespace MPEIPlugin.Classes
     public string EntryName { get; set; }
     public string DefaultValue { get; set; }
     public string Description { get; set; }
+    public string ConfigFile { get; set; }
     
     private string _value;
     public string Value
@@ -28,7 +29,7 @@ namespace MPEIPlugin.Classes
       get
       {
         if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(EntryName)) return null;
-        using (var xmlreader = new MediaPortal.Profile.Settings(Config.GetFile(Config.Dir.Config, "MediaPortal.xml")))
+        using (var xmlreader = new MediaPortal.Profile.Settings(Config.GetFile(Config.Dir.Config, string.IsNullOrEmpty(ConfigFile) ? "MediaPortal.xml" : ConfigFile)))
         {
           _value = xmlreader.GetValueAsString(GetName(EntryName), GetName(Name), DefaultValue);
         }
@@ -37,7 +38,7 @@ namespace MPEIPlugin.Classes
       set
       {
         _value = value;
-        using (var xmlwriter = new MediaPortal.Profile.Settings(Config.GetFile(Config.Dir.Config, "MediaPortal.xml")))
+        using (var xmlwriter = new MediaPortal.Profile.Settings(Config.GetFile(Config.Dir.Config, string.IsNullOrEmpty(ConfigFile) ? "MediaPortal.xml" : ConfigFile)))
         {
           xmlwriter.SetValue(GetName(EntryName), GetName(Name), _value);
         }
@@ -104,6 +105,8 @@ namespace MPEIPlugin.Classes
         DisplayValues = GetTranslatedStrings(node.Attributes["displaylistvalues"].Value);
       if (node.Attributes["description"] != null)
         Description = GetTranslatedString(node.Attributes["description"].Value);
+      if (node.Attributes["configfile"] != null)
+        ConfigFile = GetTranslatedString(node.Attributes["configfile"].Value);
       if (node.Attributes["type"] != null)
       {
         if (node.Attributes["type"].Value == "string")
@@ -154,7 +157,7 @@ namespace MPEIPlugin.Classes
       {
         string entryName = name.Substring(1).Split('.')[0];
         string valname = name.Substring(1).Split('.')[1];
-        using (var xmlreader = new MediaPortal.Profile.Settings(Config.GetFile(Config.Dir.Config, "MediaPortal.xml")))
+        using (var xmlreader = new MediaPortal.Profile.Settings(Config.GetFile(Config.Dir.Config, string.IsNullOrEmpty(ConfigFile) ? "MediaPortal.xml" : ConfigFile)))
         {
           _value = xmlreader.GetValueAsString(entryName, valname, "");
         }
