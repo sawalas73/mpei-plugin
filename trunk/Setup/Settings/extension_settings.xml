@@ -3,8 +3,8 @@
 		<setting entryname="plugins" name="Extensions" displayname="Plugin Enabled" defaultvalue="yes" type="string" listvalues="yes|no" displaylistvalues="Yes|No"/> 
 	</disable_entry>
 	<settings section="Plugin">
-			<setting entryname="plugins" name="Extensions" displayname="Plugin Enabled" defaultvalue="yes" type="string" listvalues="yes|no" displaylistvalues="Yes|No" description="Enable / Disable this setting to control if plugin is loaded with MediaPortal." /> 
-			<setting entryname="home" name="Extensions" displayname="Listed in Home" defaultvalue="yes" type="string" listvalues="yes|no" displaylistvalues="Yes|No" description="Enable this setting for Extensions plugin to appear in the main Home screen menu items." /> 
-			<setting entryname="myplugins" name="Extensions" displayname="Listed in My Plugins" defaultvalue="no" type="string" listvalues="yes|no" displaylistvalues="Yes|No" description="Enable this setting for Extensions plugin to appear in the Plugins screen menu items." /> 
+			<setting entryname="plugins" name="Extensions" displayname="#MPEI.Translation.SettingPluginEnabledName.Label" defaultvalue="yes" type="string" listvalues="yes|no" displaylistvalues="#MPEI.Translation.Yes.Label|#MPEI.Translation.No.Label" description="#MPEI.Translation.SettingPluginEnabledDescription.Label" /> 
+			<setting entryname="home" name="Extensions" displayname="#MPEI.Translation.SettingListedHomeName.Label" defaultvalue="yes" type="string" listvalues="yes|no" displaylistvalues="#MPEI.Translation.Yes.Label|#MPEI.Translation.No.Label" description="#MPEI.Translation.SettingListedHomeDescription.Label" /> 
+			<setting entryname="myplugins" name="Extensions" displayname="#MPEI.Translation.SettingListedPluginsName.Label" defaultvalue="no" type="string" listvalues="yes|no" displaylistvalues="#MPEI.Translation.Yes.Label|#MPEI.Translation.No.Label" description="#MPEI.Translation.SettingListedPluginsDescription.Label" /> 
 	</settings>
 </extension_settings>
