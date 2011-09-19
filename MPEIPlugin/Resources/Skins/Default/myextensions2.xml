@@ -142,6 +142,7 @@
       <type>group</type>
       <posX>58</posX>
       <posY>80</posY>
+      <dimColor>FFffffff</dimColor>
       <layout>StackLayout(4, Horizontal, true)</layout>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="100">WindowClose</animation>
