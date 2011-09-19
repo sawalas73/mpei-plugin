@@ -140,6 +140,56 @@ namespace MPEIPlugin
       }
     }
 
+    public void ShowSlideShow(SiteItems si)
+    {
+      if (si == null) return;
+
+      List<string> images = new List<string>();
+
+      foreach (string files in si.Images)
+      {
+        if (!string.IsNullOrEmpty(files)) images.Add(files);
+      }
+
+      ShowSlideShow(images);
+    }
+
+    public void ShowSlideShow(PackageClass pk)
+    {
+        if (pk == null) return;
+
+        List<string> images = new List<string>();
+
+        foreach (string files in pk.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS))
+        {
+          if (!string.IsNullOrEmpty(files)) images.Add(files);
+        }
+
+        ShowSlideShow(images);
+    }
+
+    void ShowSlideShow(List<string> images)
+    {
+      if (images.Count == 0)
+      {
+        GUIUtils.ShowOKDialog(Translation.Screenshots, Translation.NoScreenshots);
+        return;
+      }
+
+      GUISlideShow slideShow = (GUISlideShow)GUIWindowManager.GetWindow(802);
+      if (slideShow == null) return;
+
+      slideShow.Reset();
+      foreach (string image in images)
+      {
+        slideShow.Add(image);
+      }
+
+      GUIWindowManager.ActivateWindow(802);
+      slideShow.StartSlideShow();
+    
+    }
+
     public void ShowChangeLog(string id)
     {
       PackageClass installedpak = MpeInstaller.InstalledExtensions.Get(id);

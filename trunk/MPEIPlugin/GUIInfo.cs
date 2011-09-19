@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-//using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -11,7 +10,6 @@ using System.Timers;
 using System.Xml;
 using System.Xml.Serialization;
 using MediaPortal.GUI.Library;
-//using MediaPortal.Profile;
 using MediaPortal.Util;
 using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
@@ -38,6 +36,8 @@ namespace MPEIPlugin
     protected GUIButtonControl btnSettings = null;
     [SkinControlAttribute(8)]
     protected GUIButtonControl btnChangeLog = null;
+    [SkinControlAttribute(9)]
+    protected GUIButtonControl btnScreenShots = null;
 
     public string SettingsFile { get; set; }
     private ExtensionSettings settings = new ExtensionSettings();
@@ -61,20 +61,37 @@ namespace MPEIPlugin
     protected override void OnPageLoad()
     {
       GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "false");
+      GUIPropertyManager.SetProperty("#MPE.Selected.HaveScreenShots", "false");
       GUIPropertyManager.SetProperty("#MPE.Selected.IsEnabled", "false");
       GUIPropertyManager.SetProperty("#MPE.Selected.IsDisabled", "false");
+
       if (Package != null)
       {
         settings.Load(SettingsFile);
         PackageClass pak = MpeInstaller.InstalledExtensions.Get(Package);
-        checkstate();
+        SetDisableState();
         SetFocus();
+
         if (pak != null)
         {
           if (settings.Settings.Count > 0)
           {
             GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "true");
           }
+        }
+
+        if (!string.IsNullOrEmpty(pak.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Trim()) && pak.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS).Length > 0)
+        {
+          GUIPropertyManager.SetProperty("#MPE.Selected.HaveScreenShots", "true");
+        }
+
+      }
+
+      if (SiteItem != null)
+      {
+        if (SiteItem.Images.Count > 0)
+        {
+          GUIPropertyManager.SetProperty("#MPE.Selected.HaveScreenShots", "true");
         }
       }
       base.OnPageLoad();
@@ -96,7 +113,7 @@ namespace MPEIPlugin
       }
     }
 
-    void checkstate()
+    void SetDisableState()
     {
       if (!string.IsNullOrEmpty(settings.DisableSetting.Name))
       {
@@ -142,7 +159,7 @@ namespace MPEIPlugin
       {
         if (Package != null)
           InstallExtension(Package.GeneralInfo.Id);
-        if (SiteItem != null)
+        else if (SiteItem != null)
           InstallExtension(SiteItem);        
       }
 
@@ -151,11 +168,19 @@ namespace MPEIPlugin
         ShowChangeLog(Package);
       }
 
+      if (control == btnScreenShots)
+      {
+        if (SiteItem != null)
+          ShowSlideShow(SiteItem);
+        else if (Package != null)
+          ShowSlideShow(Package);
+      }
+
       if (control == btnEnable)
       {
         settings.DisableSetting.Value = "yes";
         MediaPortal.Profile.Settings.SaveCache();
-        checkstate();
+        SetDisableState();
         GUIWindowManager.Process();
         GUIControl.FocusControl(GetID, btnDisable.GetID);
       }
@@ -164,7 +189,7 @@ namespace MPEIPlugin
       {
         settings.DisableSetting.Value = "no";
         MediaPortal.Profile.Settings.SaveCache();
-        checkstate();
+        SetDisableState();
         GUIWindowManager.Process();
         GUIControl.FocusControl(GetID, btnEnable.GetID);
       }
