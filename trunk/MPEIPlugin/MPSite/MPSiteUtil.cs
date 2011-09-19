@@ -47,7 +47,7 @@ namespace MPEIPlugin.MPSite
           cats.Add(new Category()
           {
             Id = matchResults.Groups["id"].Value,
-            Name = matchResults.Groups["name"].Value.Replace("&amp;","&"),
+            Name = GetCategoryTranslation(matchResults.Groups["name"].Value.Replace("&amp;","&").Trim()),
             Number = matchResults.Groups["nr"].Value,
             Url = matchResults.Groups["url"].Value,
             PId = matchResults.Groups["pid"].Value
@@ -64,7 +64,7 @@ namespace MPEIPlugin.MPSite
       cats.Add(new Category()
       {
         Id = "-1",
-        Name = "Recently Added Extensions",
+        Name = Translation.CategoryRecentlyAdded,
         Number = "",
         Url = "/extensions/new-listing",
         PId = "0"
@@ -72,7 +72,7 @@ namespace MPEIPlugin.MPSite
       cats.Add(new Category()
       {
         Id = "-2",
-        Name = "Recently Updated Extensions",
+        Name = Translation.CategoryRecentlyUpdated,
         Number = "",
         Url = "/extensions/recently-updated",
         PId = "0"
@@ -80,7 +80,7 @@ namespace MPEIPlugin.MPSite
       cats.Add(new Category()
       {
         Id = "-3",
-        Name = "Most Installed Extensions ",
+        Name = Translation.CategoryMostInstalled,
         Number = "",
         Url = "/extensions/most-favoured",
         PId = "0"
@@ -88,7 +88,7 @@ namespace MPEIPlugin.MPSite
       cats.Add(new Category()
       {
         Id = "-4",
-        Name = "Featured Extensions",
+        Name = Translation.CategoryFeatured,
         Number = "",
         Url = "/extensions/featured-listing",
         PId = "0"
@@ -96,7 +96,7 @@ namespace MPEIPlugin.MPSite
       cats.Add(new Category()
       {
         Id = "-5",
-        Name = "Most Popular Extensions",
+        Name = Translation.CategoryMostPopular,
         Number = "",
         Url = "/extensions/popular-listing-2",
         PId = "0"
@@ -104,7 +104,7 @@ namespace MPEIPlugin.MPSite
       cats.Add(new Category()
       {
         Id = "-6",
-        Name = "Most Rated Extensions",
+        Name = Translation.CategoryMostRated,
         Number = "",
         Url = "/extensions/most-rated",
         PId = "0"
@@ -112,7 +112,7 @@ namespace MPEIPlugin.MPSite
       cats.Add(new Category()
       {
         Id = "-7",
-        Name = "Top Rated Extensions",
+        Name = Translation.CategoryTopRated,
         Number = "",
         Url = "/extensions/top-rated",
         PId = "0"
@@ -120,13 +120,34 @@ namespace MPEIPlugin.MPSite
       cats.Add(new Category()
       {
         Id = "-8",
-        Name = "Most Reviewed Extensions",
+        Name = Translation.CategoryMostReviewed,
         Number = "",
         Url = "/extensions/most-reviewed",
         PId = "0"
       });
       
       return true;
+    }
+
+    string GetCategoryTranslation(string originalName)
+    {
+      string before = originalName;
+      string after = string.Empty;
+      string translation = string.Empty;
+
+      // try to find a corresponding translation field
+      foreach(var c in new char[]{' ', '-', '_', '&', '/', '\\'})
+      {
+        before = before.Replace(c.ToString(), string.Empty);
+      }
+
+      before = string.Format("Category{0}", before);
+      translation = Translation.GetByName(before);
+
+      if (translation == before)
+        translation = originalName;
+
+      return translation;
     }
 
     public bool LoadItems(Category category)

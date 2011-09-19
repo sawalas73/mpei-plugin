@@ -208,7 +208,49 @@ namespace MPEIPlugin
     // C
     public static string ChangeLog = "Change Log";
     public static string Compatibility = "Compatibility";
-
+    public static string CategoryRecentlyAdded = "Recently Added Extensions";
+    public static string CategoryRecentlyUpdated = "Recently Updated Extensions";
+    public static string CategoryMostInstalled = "Most Installed Extensions";
+    public static string CategoryFeatured = "Featured Extensions";
+    public static string CategoryMostPopular = "Most Popular Extensions";
+    public static string CategoryMostRated = "Most Rated Extensions";
+    public static string CategoryTopRated = "Top Rated Extensions";
+    public static string CategoryMostReviewed = "Most Reviewed Extensions";
+    public static string CategoryHTPC = "HTPC";
+    public static string CategoryCustomization = "Customization";
+    public static string CategoryBootScreens = "Boot Screens";
+    public static string CategoryTools = "Tools";
+    public static string CategorySystemUtilities = "System/Utilities";
+    public static string CategoryUtilities = "Utilities";
+    public static string CategoryDriversFirmware = "Drivers & Firmware";
+    public static string CategoryCodecs = "Codecs";
+    public static string CategoryLogos = "Logos";
+    public static string CategoryTVChannels = "TV Channels";
+    public static string CategoryRadioStations = "Radio Stations";
+    public static string CategoryMediaInfo = "Media Info";
+    public static string CategorySkins = "Skins";
+    public static string CategoryWidescreen = "Widescreen";
+    public static string CategoryNonWidescreen = "Non-Widescreen";
+    public static string CategoryPlugins = "Plugins";
+    public static string CategoryWeather = "Weather";
+    public static string CategoryOther = "Other";
+    public static string CategorySystem = "System";
+    public static string CategoryEmail = "Email";
+    public static string CategoryPIMs = "PIMs";
+    public static string CategoryHomeAutomation = "Home Automation";
+    public static string CategoryPictures = "Pictures";
+    public static string CategoryRadio = "Radio";
+    public static string CategoryInputOutput = "Input & Output";
+    public static string CategoryOtherInputDevices = "Other Input Devices";
+    public static string CategoryExternalDisplays = "External Displays";
+    public static string CategoryRemotes = "Remotes";
+    public static string CategoryNewsInfo = "News & Info";
+    public static string CategoryInfo = "Info";
+    public static string CategoryNews = "News";
+    public static string CategoryGamesFun = "Games & Fun";
+    public static string CategoryMusic = "Music";
+    public static string CategoryTelevision = "Television";
+    public static string CategoryMoviesVideos = "Movies & Videos";
 
     // D
     public static string Download = "Download";
@@ -264,6 +306,7 @@ namespace MPEIPlugin
    
 
     // P    
+    public static string Plugin = "Plugin";
 
     // R
     public static string Rating = "Rating";
