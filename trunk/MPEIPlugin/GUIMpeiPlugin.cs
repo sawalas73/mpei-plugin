@@ -367,7 +367,6 @@ namespace MPEIPlugin
       }
       if (queue.Items.Count > 0)
         queue.Save();
-        //NotifyUser();
     }
 
     List<PackageClass> GetUpdates()
