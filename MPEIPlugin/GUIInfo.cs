@@ -78,13 +78,12 @@ namespace MPEIPlugin
           {
             GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "true");
           }
-        }
 
-        if (!string.IsNullOrEmpty(pak.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Trim()) && pak.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS).Length > 0)
-        {
-          GUIPropertyManager.SetProperty("#MPE.Selected.HaveScreenShots", "true");
+          if (!string.IsNullOrEmpty(pak.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Trim()) && pak.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS).Length > 0)
+          {
+              GUIPropertyManager.SetProperty("#MPE.Selected.HaveScreenShots", "true");
+          }
         }
-
       }
 
       if (SiteItem != null)
