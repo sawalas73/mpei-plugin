@@ -98,7 +98,7 @@ namespace MPEIPlugin
       {
         if(AskForRestart())
         {
-          string conffile = Path.GetTempFileName();
+          string conffile = DownloadManager.GetTempFilename();
           TextWriter streamWriter = new StreamWriter(conffile, false);
           streamWriter.WriteLine(items.FileUrl);
           streamWriter.WriteLine(Path.Combine(Path.GetTempPath(), items.File));
