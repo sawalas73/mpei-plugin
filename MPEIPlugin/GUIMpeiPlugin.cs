@@ -200,7 +200,7 @@ namespace MPEIPlugin
         if (_setting.DoUpdateInStartUp && i >= _setting.UpdateDays)
         {
           Log.Info("[MPEI] Download of updates is required, downloading now...");
-          _downloadManager.Download(UpdateIndexUrl, Path.GetTempFileName(), DownLoadItemType.IndexList);
+          _downloadManager.Download(UpdateIndexUrl, DownloadManager.GetTempFilename(), DownLoadItemType.IndexList);
           _setting.LastUpdate = DateTime.Now;
           _setting.Save();
         }
@@ -327,7 +327,7 @@ namespace MPEIPlugin
       onlineFiles = MpeInstaller.GetInitialUrlIndex(onlineFiles);
       foreach (string onlineFile in onlineFiles)
       {
-        _downloadManager.Download(onlineFile, Path.GetTempFileName(), DownLoadItemType.UpdateInfo);
+        _downloadManager.Download(onlineFile, DownloadManager.GetTempFilename(), DownLoadItemType.UpdateInfo);
       }
     }
 

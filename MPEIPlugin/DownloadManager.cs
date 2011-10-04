@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Net;
+using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
 
 namespace MPEIPlugin
@@ -91,7 +92,7 @@ namespace MPEIPlugin
         if (client.IsBusy)
           return;
         _currentItem = queue.Dequeue();
-        _currentItem.TempFile = Path.GetTempFileName();
+        _currentItem.TempFile = DownloadManager.GetTempFilename();
         if (DownloadStart != null)
           DownloadStart(_currentItem);
         client.DownloadFileAsync(new Uri(_currentItem.Url), _currentItem.TempFile);
@@ -107,9 +108,24 @@ namespace MPEIPlugin
                  {
                    Destinatiom = dest,
                    ItemType = type,
-                   TempFile = Path.GetTempFileName(),
+                   TempFile = DownloadManager.GetTempFilename(),
                    Url = source
                  });
+    }
+
+    public static string GetTempFilename()
+    {
+      string tempFile = string.Empty;
+      try
+      {
+        tempFile = Path.GetTempFileName();
+      }
+      catch (IOException)
+      {
+        // Most likely too many files in %temp%
+        tempFile = Config.GetFile(Config.Dir.Cache, string.Format(@"mpei-{0}", Guid.NewGuid()));
+      }
+      return tempFile;
     }
 
   }
