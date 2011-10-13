@@ -467,39 +467,27 @@ Click Next to continue or Cancel to exit Setup.
     <Version>
       <Major>1</Major>
       <Minor>0</Minor>
-      <Build>3</Build>
-      <Revision>141</Revision>
+      <Build>4</Build>
+      <Revision>152</Revision>
     </Version>
     <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
 
 Extensions also allows plugin developers to create their own GUI for settings which can save users from having to exit MediaPortal to change configuration.</ExtensionDescription>
-    <VersionDescription>* Fully translatable settings window for plugin developers that include extensions settings xml with their package. Plugins with translation classes should ensure that they initialize properties on Init().
+    <VersionDescription>* Added periodic checks on server to download update info. This re-uses the 'Update Days' setting in MPEI Installer configuration.
 
-* Added new setting attributes for description and settings file (not all plugins have settings stored in mediaportal.xml.
+* Fixed issues when returning to extensions window after restart of MediaPortal.
 
-* Added screenshots button to Info window, will also show slideshow of images from website if in website view. Skin property added to control visibility of button, see default skins for example.
+* Fix an IO Exception and failure to download updates if there is too many files in the users TEMP directory.
 
-* Fixed disable/enable button being visisble in info window for unsupported extensions.
+* Fix Null Reference Exception in en-US translations file.
 
-* Fixed website image tags dimcolor in default skins.
+* Fix a possible Null Reference Exception that could occur in the Extension Info window.
 
-* Fixed focus of disable/enable buttons when option is toggled.
-
-* Fixed current selection not being highlighted in setting menus.
-
-* Fixed first item in settings window not being selected on page load.
-
-* Updated currentmodule properties in Info and Settings window to be more descriptive of their content.
-
-* Added event for plugin developers that can listen to a change in settings for their plugin. The installation GUID will be parsed as an event parameter so this can be used to distinguish between settings changed in other plugins.
-
-* Updated German translations, thanks catavolt.
-
-* Updated Dutch translations, thanks Lbr_Lion.</VersionDescription>
+* Some minor changes to english translations.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.1.0.3.141.mpe1</OnlineLocation>
-    <ReleaseDate>2011-09-19T10:56:05</ReleaseDate>
-    <Tags>installer, mpei, plugin</Tags>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.[Version].mpe1</OnlineLocation>
+    <ReleaseDate>2011-10-13T10:56:05</ReleaseDate>
+    <Tags>installer, mpei, plugin, extensions</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
       <Items>
@@ -742,14 +730,14 @@ Extensions also allows plugin developers to create their own GUI for settings wh
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>LeftBanner.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{4496812e-205c-4929-93a3-dfcbf69fb503}-LeftBanner.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{b2251f1f-0362-4ce4-af1b-64193c46561a}-LeftBanner.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{18bf103c-0171-4e71-8fc9-d245a2479185}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{ac1210ac-5828-40ba-8751-40f4d6bc6d2b}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
