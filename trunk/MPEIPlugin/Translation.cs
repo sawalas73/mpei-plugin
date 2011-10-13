@@ -315,7 +315,7 @@ namespace MPEIPlugin
     public static string Restart = "Restart";
     public static string Rotate = "Rotate";
     public static string RevokeLastAction = "Revoke last action";
-    public static string RestartNow = "This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the task will queued.";
+    public static string RestartNow = "This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the task will be queued.";
     
 
     // S

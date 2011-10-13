@@ -121,7 +121,7 @@
   <string Field="Restart">Restart</string>
   <string Field="Rotate">Rotate</string>
   <string Field="RevokeLastAction">Revoke last action</string>
-  <string Field="RestartNow">This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the task will queued.</string>
+  <string Field="RestartNow">This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the task will be queued.</string>
 
   <!--  S  -->
   <string Field="Sections">Sections</string>
