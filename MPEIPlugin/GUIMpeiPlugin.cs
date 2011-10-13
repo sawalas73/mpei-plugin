@@ -1303,8 +1303,15 @@ namespace MPEIPlugin
               Logo(pk, item);
               item.OnItemSelected += item_OnItemSelected;
               facadeView.Add(item);
-            }
+            }            
           }
+
+          if (facadeView.Count == 0)
+          {
+            currentListing = Views.Local;
+            LoadDirectory(string.Empty);
+          }
+
           FinializeDirectory(strNewDirectory);
           break;
         case Views.New:
@@ -1348,6 +1355,13 @@ namespace MPEIPlugin
               }
             }
           }
+
+          if (facadeView.Count == 0)
+          {
+            currentListing = Views.Local;
+            LoadDirectory(string.Empty);
+          }
+
           FinializeDirectory(strNewDirectory);
           break;
         case Views.MpSIte:
