@@ -59,6 +59,7 @@ namespace MPEIPlugin
     Views currentListing = Views.Local;
     SortMethod currentSortMethod = SortMethod.Date;
     bool sortAscending = true;
+    bool periodicUpdateCheck = true;
     private MPSiteUtil SiteUtil = new MPSiteUtil();
 
     string currentFolder = string.Empty;
@@ -69,10 +70,13 @@ namespace MPEIPlugin
     private ApplicationSettings _setting = new ApplicationSettings();
 
     private Timer _timer = new Timer(4000);
+    private System.Threading.Timer updatesTimer;
+    private int updatesPeriod;
 
     private const string UpdateIndexUrl = "http://install.team-mediaportal.com/MPEI/extensions.txt";
 
     private const int newdays = 10;
+    private const int daysToMs = 24 * 60 * 60 * 1000;
     #endregion
 
     #region SkinControls
@@ -124,12 +128,28 @@ namespace MPEIPlugin
       GUIWindowManager.OnDeActivateWindow += new GUIWindowManager.WindowActivationHandler(GUIWindowManager_OnDeActivateWindow);
       GUIGraphicsContext.Receivers += GUIGraphicsContext_Receivers;
       _timer.Enabled = true;
-      
+
+      LoadSettings();
+
+      // schedule periodic updates, we already handle updates on startup so dont need to start now
+      if (periodicUpdateCheck)
+        updatesPeriod = _setting.UpdateDays == 0 ? daysToMs : _setting.UpdateDays * daysToMs;
+      else
+        updatesPeriod = System.Threading.Timeout.Infinite;
+
+      updatesTimer = new System.Threading.Timer(new System.Threading.TimerCallback((o) => { DownloadUpdateXmlInfo(); }), null, updatesPeriod, updatesPeriod);
+
       Log.Debug("[MPEI] Init End");
 
       return bResult;
     }
-   
+
+    public override void DeInit()
+    {
+      SaveSettings();
+      base.DeInit();
+    }
+
     void GUIWindowManager_OnDeActivateWindow(int windowID)
     {
       // Settings/General window
@@ -194,17 +214,26 @@ namespace MPEIPlugin
       else
       {
         if (_setting.DoUpdateInStartUp)
-          Log.Info("[MPEI] Next download of updates scheduled for {0}", _setting.LastUpdate.AddDays(_setting.UpdateDays));
-
-        int i = DateTime.Now.Subtract(_setting.LastUpdate).Days;
-        if (_setting.DoUpdateInStartUp && i >= _setting.UpdateDays)
         {
-          Log.Info("[MPEI] Download of updates is required, downloading now...");
-          _downloadManager.Download(UpdateIndexUrl, DownloadManager.GetTempFilename(), DownLoadItemType.IndexList);
-          _setting.LastUpdate = DateTime.Now;
-          _setting.Save();
+          Log.Info("[MPEI] Next download of updates scheduled for {0}", _setting.LastUpdate.AddDays(_setting.UpdateDays));
+          
+          int i = DateTime.Now.Subtract(_setting.LastUpdate).Days;
+          if (_setting.DoUpdateInStartUp && i >= _setting.UpdateDays)
+          {
+            Log.Info("[MPEI] Download of updates is required, downloading now...");
+            DownloadUpdateXmlInfo();
+          }
         }
       }
+    }
+
+    void DownloadUpdateXmlInfo()
+    {
+      _downloadManager.Download(UpdateIndexUrl, DownloadManager.GetTempFilename(), DownLoadItemType.IndexList);
+      _setting.LastUpdate = DateTime.Now;
+      _setting.Save();
+
+      updatesTimer.Change(updatesPeriod, updatesPeriod);
     }
 
     #region downloadmanager
@@ -385,11 +414,11 @@ namespace MPEIPlugin
     #region Serialisation
     void LoadSettings()
     {
+      Log.Info("[MPEI] Loading settings");
       _dlgProgress = (GUIDialogProgress)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_PROGRESS);
 
       using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
       {
-
         string tmpLine = string.Empty;
         tmpLine = xmlreader.GetValue("myextensions2", "viewby");
         if (tmpLine != null)
@@ -419,11 +448,14 @@ namespace MPEIPlugin
           else if (tmpLine == "site") currentListing = Views.MpSIte;
         }
         sortAscending = xmlreader.GetValueAsBool("myextensions2", "sortascending", true);
+        periodicUpdateCheck = xmlreader.GetValueAsBool("myextensions2", "periodicupdatecheck", true);
       }
     }
 
     void SaveSettings()
     {
+      Log.Info("[MPEI] Saving settings");
+
       using (MediaPortal.Profile.Settings xmlwriter = new MPSettings())
       {
         switch (currentLayout)
@@ -481,6 +513,7 @@ namespace MPEIPlugin
         }
 
         xmlwriter.SetValueAsBool("myextensions2", "sortascending", sortAscending);
+        xmlwriter.SetValueAsBool("myextensions2", "periodicupdatecheck", periodicUpdateCheck);
       }
     }
 
