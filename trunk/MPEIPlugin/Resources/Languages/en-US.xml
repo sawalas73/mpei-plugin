@@ -102,8 +102,8 @@
   <string Field="NewExtensions">New Extensions</string>
   <string Field="NewUpdates">New updates</string>
   <string Field="NewVersion">New version</string>
-  <string Field="Notification">Notification</string>
-  <string Field="NotificationWarning">There are tasks still outstanding.\nRestart and execute now?</string>
+  <string Field="Notification">MPEI Notification</string>
+  <string Field="NotificationWarning">There are installation tasks still pending.\nRestart and execute now?</string>
   <string Field="NotificationMessage">Would you like to restart MediaPortal\nand execute pending tasks now?</string>
   <string Field="No">No</string>
   <string Field="NoScreenshots">No Screenshots are available for this extension.</string>
