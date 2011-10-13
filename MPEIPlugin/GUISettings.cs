@@ -61,7 +61,7 @@ namespace MPEIPlugin
 
       if (SettingsFile == null)
       {
-        Log.Error("[MPEI] Error Loading SettingsFile, file must exist!");
+        Log.Debug("[MPEI] Unable to Load Settings File, file must exist!");
         GUIWindowManager.ShowPreviousWindow();
         return;
       }
