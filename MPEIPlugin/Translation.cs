@@ -295,8 +295,8 @@ namespace MPEIPlugin
     public static string NewExtensions = "New Extensions";
     public static string NewUpdates = "New updates";
     public static string NewVersion = "New version";
-    public static string Notification = "Notification";
-    public static string NotificationWarning = "There are installation tasks still outstanding.\nRestart and execute now?";
+    public static string Notification = "MPEI Notification";
+    public static string NotificationWarning = "There are installation tasks still pending.\nRestart and execute now?";
     public static string NotificationMessage = "Would you like to restart MediaPortal\nand execute pending tasks now?";
     public static string No = "No";
     public static string NoScreenshots = "No Screenshots are available for this extension.";
