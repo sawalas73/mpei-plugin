@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- MPEI Plugin translation file -->
+<!-- English (US) -->
+<!-- Note: English is the fallback for any strings not found in other languages -->
+<strings>
+
+  <!--  A  -->
+  <string Field="All">All</string>
+  <string Field="AlwaysCheckForUpdates">Always check for updates</string>
+  <string Field="Actions">Actions</string>
+  <string Field="ActionAdded">Action was added to queue</string>
+  <string Field="ActionRemoved">Action was removed from queue</string>
+  <string Field="AskForRestart">This Operation will restart MediaPortal.\nDo you wish to continue?</string>
+  <string Field="Author">Author</string>
+
+  <!--  C  -->
+  <string Field="ChangeLog">Change Log</string>
+  <string Field="Compatibility">Compatibility</string>
+  <string Field="CategoryRecentlyAdded">Recently Added Extensions</string>
+  <string Field="CategoryRecentlyUpdated">Recently Updated Extensions</string>
+  <string Field="CategoryMostInstalled">Most Installed Extensions</string>
+  <string Field="CategoryFeatured">Featured Extensions</string>
+  <string Field="CategoryMostPopular">Most Popular Extensions</string>
+  <string Field="CategoryMostRated">Most Rated Extensions</string>
+  <string Field="CategoryTopRated">Top Rated Extensions</string>
+  <string Field="CategoryMostReviewed">Most Reviewed Extensions</string>
+  <string Field="CategoryHTPC">HTPC</string>
+  <string Field="CategoryCustomization">Customization</string>
+  <string Field="CategoryBootScreens">Boot Screens</string>
+  <string Field="CategoryTools">Tools</string>
+  <string Field="CategorySystemUtilities">System/Utilities</string>
+  <string Field="CategoryUtilities">Utilities</string>
+  <string Field="CategoryDriversFirmware"><![CDATA[Drivers & Firmware]]></string>
+  <string Field="CategoryCodecs">Codecs</string>
+  <string Field="CategoryLogos">Logos</string>
+  <string Field="CategoryTVChannels">TV Channels</string>
+  <string Field="CategoryRadioStations">Radio Stations</string>
+  <string Field="CategoryMediaInfo">Media Info</string>
+  <string Field="CategorySkins">Skins</string>
+  <string Field="CategoryWidescreen">Widescreen</string>
+  <string Field="CategoryNonWidescreen">Non-Widescreen</string>
+  <string Field="CategoryPlugins">Plugins</string>
+  <string Field="CategoryWeather">Weather</string>
+  <string Field="CategoryOther">Other</string>
+  <string Field="CategorySystem">System</string>
+  <string Field="CategoryEmail">Email</string>
+  <string Field="CategoryPIMs">PIMs</string>
+  <string Field="CategoryHomeAutomation">Home Automation</string>
+  <string Field="CategoryPictures">Pictures</string>
+  <string Field="CategoryRadio">Radio</string>
+  <string Field="CategoryInputOutput"><![CDATA[Input & Output]]></string>
+  <string Field="CategoryOtherInputDevices">Other Input Devices</string>
+  <string Field="CategoryExternalDisplays">External Displays</string>
+  <string Field="CategoryRemotes">Remotes</string>
+  <string Field="CategoryNewsInfo"><![CDATA[News & Info]]></string>
+  <string Field="CategoryInfo">Info</string>
+  <string Field="CategoryNews">News</string>
+  <string Field="CategoryGamesFun"><![CDATA[Games & Fun]]></string>
+  <string Field="CategoryMusic">Music</string>
+  <string Field="CategoryTelevision">Television</string>
+  <string Field="CategoryMoviesVideos"><![CDATA[Movies & Videos]]></string>
+
+  <!--  D  -->
+  <string Field="Download">Download</string>
+  <string Field="Downloads">Downloads</string>
+  <string Field="Disable">Disable</string>
+  <string Field="DateAdded">Date Added</string>
+  <string Field="Description">Description</string>
+
+  <!--  E  -->
+  <string Field="Exit">Exit</string>
+  <string Field="Enable">Enable</string>
+  <string Field="Error">Error</string>
+  <string Field="ErrorLoadingSite">Error Loading Category list from the MediaPortal website</string>
+  <string Field="ErrorLoadingExtensionList">Error Loading Extension list for category</string>
+  
+  <!--  F  -->
+
+  <!--  G  -->
+  <string Field="GetCategories">Getting Categories</string>
+  <string Field="GetExtensionInfo">Getting Extension Info</string>
+ 
+  <!--  H  -->
+  <string Field="Hits">Hits</string>
+  
+  <!--  I  -->
+  <string Field="Id">Id</string>
+  <string Field="Install">Install</string>
+  <string Field="InstalledExtensions">Installed Extensions</string>
+  <string Field="InvalidUrl">Invalid Url, extension can not be downloaded!</string>
+
+  <!--  L  -->
+
+  <!--  M  -->
+  <string Field="MPOnlineExtensions">MP Website Extensions</string>
+  
+  <!--  N -->
+  <string Field="Name">Extensions</string>
+  <string Field="NameInfo">Extension Information</string>
+  <string Field="NameSettings">Extension Settings</string>
+  <string Field="NeverCheckForUpdates">Never check for updates</string>
+  <string Field="NewExtensions">New Extensions</string>
+  <string Field="NewUpdates">New updates</string>
+  <string Field="NewVersion">New version</string>
+  <string Field="Notification">MPEI Notification</string>
+  <string Field="NotificationWarning">There are installation tasks still pending.\nRestart and execute now?</string>
+  <string Field="NotificationMessage">Would you like to restart MediaPortal\nand execute pending tasks now?</string>
+  <string Field="No">No</string>
+  <string Field="NoScreenshots">No Screenshots are available for this extension.</string>
+  
+  <!--  O  -->
+  <string Field="OnlineExtensions">Online Extensions</string>
+
+  <!--  P  -->
+  <string Field="Plugin">Plugin</string>
+  
+  <!--  R  -->
+  <string Field="Rating">Rating</string>
+  <string Field="Revoke">Revoke</string>
+  <string Field="ReleaseDate">Release Date</string>
+  <string Field="Restart">Restart</string>
+  <string Field="Rotate">Rotate</string>
+  <string Field="RevokeLastAction">Revoke last action</string>
+  <string Field="RestartNow">This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the task will be queued.</string>
+
+  <!--  S  -->
+  <string Field="Sections">Sections</string>
+  <string Field="Settings">Settings</string>
+  <string Field="ShowChangelogs">Show Change Logs</string>
+  <string Field="ShowSreenshots">Show Screenshots</string>
+  <string Field="SelectVersionToInstall">Select version to (Re)Install</string>
+  <string Field="SelectVersion">Select version</string>
+  <string Field="StartSlideshow">Start slideshow</string>
+  <string Field="Screenshots">Screenshots</string>
+  <string Field="Status">Status</string>
+  <string Field="SettingPluginEnabledName">Plugin Enabled</string>
+  <string Field="SettingPluginEnabledDescription">Enable / Disable this setting to control if Extensions plugin is loaded with MediaPortal.</string>
+  <string Field="SettingListedHomeName">Listed in Home</string>
+  <string Field="SettingListedHomeDescription">Enable this setting for Extensions plugin to appear in the main Home screen menu items.</string>
+  <string Field="SettingListedPluginsName">Listed in My Plugins</string>
+  <string Field="SettingListedPluginsDescription">Enable this setting for Extensions plugin to appear in the My Plugins screen menu items.</string>
+
+  <!--  T  -->
+  <string Field="Timeout">Timeout</string>
+
+  <!--  U  -->
+  <string Field="Update">Update</string>
+  <string Field="UpdateAvailable">Update Available</string>
+  <string Field="UpdateAll">Update All</string>
+  <string Field="Updates">Updates</string>
+  <string Field="Uninstall">Uninstall</string>
+  <string Field="UnKnownFileType">Installation is not possible\nUnknown file type detected!</string>
+  <string Field="UseSilent">Install extension silently?</string>
+  
+  <!--  V  -->
+  <string Field="Views">Views</string>
+  <string Field="Version">Version</string>
+  <string Field="Votes">Votes</string>
+
+  <!--  W  -->
+
+  <!--  Y  -->
+  <string Field="Yes">Yes</string>
+
+</strings>
