@@ -60,6 +60,12 @@ namespace MPEIPlugin
 
     protected override void OnPageLoad()
     {
+      if (Package == null && SiteItem == null)
+      {
+        Log.Debug("[MPEI] Unable to Load Info window, Package/SiteItem not set!");
+        GUIWindowManager.ShowPreviousWindow();
+      }
+
       GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "false");
       GUIPropertyManager.SetProperty("#MPE.Selected.HaveScreenShots", "false");
       GUIPropertyManager.SetProperty("#MPE.Selected.IsEnabled", "false");
