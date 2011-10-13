@@ -571,8 +571,9 @@ namespace MPEIPlugin
 
     protected override void OnPageLoad()
     {
+      ClearProperties();
       LoadSettings();
-
+      
       if (!string.IsNullOrEmpty(_loadParameter))
       {
         GetLoadingParameters();
