@@ -125,6 +125,8 @@
     <Content Include="Resources\Languages\es.xml" />
     <Content Include="Resources\Languages\fr.xml" />
     <Content Include="Resources\Languages\nl.xml" />
+    <Content Include="Resources\Skins\DefaultWide\Media\defaultExtension.png" />
+    <Content Include="Resources\Skins\DefaultWide\Media\defaultExtensionBig.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\extension_action.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\extension_update.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\hover_extensions.png" />
@@ -135,6 +137,8 @@
     <Content Include="Resources\Skins\DefaultWide\myextensions2info.xml" />
     <Content Include="Resources\Skins\DefaultWide\myextensions2settings.xml" />
     <Content Include="Resources\Skins\DefaultWide\myextensions2slideshow.xml" />
+    <Content Include="Resources\Skins\Default\Media\defaultExtension.png" />
+    <Content Include="Resources\Skins\Default\Media\defaultExtensionBig.png" />
     <Content Include="Resources\Skins\Default\Media\extension_action.png" />
     <Content Include="Resources\Skins\Default\Media\extension_update.png" />
     <Content Include="Resources\Skins\Default\Media\hover_extensions.png" />
