@@ -68,7 +68,11 @@ namespace MPEIPlugin
 
       Match match = Regex.Match(SettingsFile, @"\\Installer\\V\d+\\(?<guid>[^\\]+)\\", RegexOptions.Singleline);
       if (match.Success) GUID = match.Groups["guid"].Value;
-        
+
+      // get package details (we may have jumped from external plugin so properties may not be loaded)
+      PackageClass pk = MpeInstaller.KnownExtensions.Get(GUID);
+      SetProperties(pk);
+      
       settings.Load(SettingsFile);
       PopulateFacade(0);
       base.OnPageLoad();
@@ -186,6 +190,28 @@ namespace MPEIPlugin
     private void ClearProperties()
     {
       GUIUtils.SetProperty("#MPE.Selection.Description", string.Empty);
+
+      GUIUtils.SetProperty("#MPE.Selected.Id", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Name", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Version", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Author", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Description", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.VersionDescription", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.ReleaseDate", string.Empty);
+      GUIUtils.SetProperty("#MPE.Selected.Status", string.Empty);
+    }
+
+    private void SetProperties(PackageClass package)
+    {
+      if (package == null) return;
+      GUIUtils.SetProperty("#MPE.Selected.Id", package.GeneralInfo.Id);
+      GUIUtils.SetProperty("#MPE.Selected.Name", package.GeneralInfo.Name);
+      GUIUtils.SetProperty("#MPE.Selected.Version", package.GeneralInfo.Version.ToString());
+      GUIUtils.SetProperty("#MPE.Selected.Author", package.GeneralInfo.Author);
+      GUIUtils.SetProperty("#MPE.Selected.Description", package.GeneralInfo.ExtensionDescription);
+      GUIUtils.SetProperty("#MPE.Selected.VersionDescription", package.GeneralInfo.VersionDescription);
+      GUIUtils.SetProperty("#MPE.Selected.ReleaseDate", package.GeneralInfo.ReleaseDate.ToShortDateString());
+      GUIUtils.SetProperty("#MPE.Selected.Status", package.GeneralInfo.DevelopmentStatus);
     }
 
     private void item_OnItemSelected(GUIListItem item, GUIControl parent)

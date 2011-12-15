@@ -16,7 +16,7 @@ namespace MPEIPlugin
     private delegate void ShowTextDialogDelegate(string heading, string text);
     private delegate bool GetStringFromKeyboardDelegate(ref string strLine, bool isPassword);
 
-    public static readonly string GlobalSearchLogo = GUIGraphicsContext.Skin + "\\Media\\Logos\\extensions.png";
+    public static readonly string NotifyLogo = GUIGraphicsContext.Skin + "\\Media\\Logos\\extensions.png";
 
 
     public static string GetProperty(string property)
@@ -168,7 +168,7 @@ namespace MPEIPlugin
     /// </summary>
     public static void ShowNotifyDialog(string heading, string text)
     {
-      ShowNotifyDialog(heading, text, GlobalSearchLogo, GUILocalizeStrings.Get(186), -1);
+      ShowNotifyDialog(heading, text, NotifyLogo, GUILocalizeStrings.Get(186), -1);
     }
 
     /// <summary>
@@ -176,7 +176,7 @@ namespace MPEIPlugin
     /// </summary>
     public static void ShowNotifyDialog(string heading, string text, int timeOut)
     {
-      ShowNotifyDialog(heading, text, GlobalSearchLogo, GUILocalizeStrings.Get(186), timeOut);
+      ShowNotifyDialog(heading, text, NotifyLogo, GUILocalizeStrings.Get(186), timeOut);
     }
 
     /// <summary>
