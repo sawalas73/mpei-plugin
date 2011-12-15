@@ -83,15 +83,16 @@
           <type>button</type>
           <onright>50</onright>
           <label>#MPEI.Translation.UpdateAll.Label</label>
+          <visible>string.contains(#mpei.updates,.::.)</visible>
         </control>
-        <control>
+        <!--<control>
           <id>90</id>
           <description>MPEIUPDATE:a6afa4d6-4fd8-4607-8878-5911db044fd7</description>
           <type>button</type>
           <onright>50</onright>
           <visible>string.equals(#mpei.a6afa4d6_4fd8_4607_8878_5911db044fd7.haveupdate,true)</visible>
           <label>#MPEI.Translation.UpdateAvailable.Label</label>
-        </control>
+        </control>-->
       </control>
     </control>
     <control>
