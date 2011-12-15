@@ -1236,10 +1236,13 @@ namespace MPEIPlugin
         case Views.Local:
           {
             GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.InstalledExtensions);
-            GUIListItem item = new GUIListItem();
+            GUIListItem item = new GUIListItem();            
             foreach (PackageClass pk in MpeInstaller.InstalledExtensions.Items)
             {
               item = new GUIListItem();
+              item.IconImage = "defaultExtension.png";
+              item.IconImageBig = "defaultExtensionBig.png";
+              item.ThumbnailImage = "defaultExtensionBig.png";
               item.MusicTag = pk;
               item.IsFolder = false;
               item.Label = pk.GeneralInfo.Name;
@@ -1283,6 +1286,9 @@ namespace MPEIPlugin
                 if (tagList.Value > 1)
                 {
                   item = new GUIListItem();
+                  item.IconImage = "defaultExtension.png";
+                  item.IconImageBig = "defaultExtensionBig.png";
+                  item.ThumbnailImage = "defaultExtensionBig.png";
                   item.Label = tagList.Key;
                   item.Path = tagList.Key;
                   item.IsFolder = true;
@@ -1310,6 +1316,9 @@ namespace MPEIPlugin
                 if ((pk.GeneralInfo.TagList.Tags.Contains(strNewDirectory) || strNewDirectory == Translation.All))
                 {
                   item = new GUIListItem();
+                  item.IconImage = "defaultExtension.png";
+                  item.IconImageBig = "defaultExtensionBig.png";
+                  item.ThumbnailImage = "defaultExtensionBig.png";
                   item.MusicTag = pk;
                   item.IsFolder = false;
                   item.Label = pk.GeneralInfo.Name;
@@ -1330,6 +1339,9 @@ namespace MPEIPlugin
             foreach (PackageClass pk in GetUpdates())
             {
               item = new GUIListItem();
+              item.IconImage = "defaultExtension.png";
+              item.IconImageBig = "defaultExtensionBig.png";
+              item.ThumbnailImage = "defaultExtensionBig.png";
               item.MusicTag = pk;
               item.IsFolder = false;
               item.Label = pk.GeneralInfo.Name;
@@ -1357,6 +1369,9 @@ namespace MPEIPlugin
               if (DateTime.Now.Subtract(pk.GeneralInfo.ReleaseDate).Days < newdays)
               {
                 item = new GUIListItem();
+                item.IconImage = "defaultExtension.png";
+                item.IconImageBig = "defaultExtensionBig.png";
+                item.ThumbnailImage = "defaultExtensionBig.png";
                 item.MusicTag = pk;
                 item.IsFolder = false;
                 item.Label = pk.GeneralInfo.Name;
@@ -1379,6 +1394,9 @@ namespace MPEIPlugin
               if (pk != null)
               {
                 item = new GUIListItem();
+                item.IconImage = "defaultExtension.png";
+                item.IconImageBig = "defaultExtensionBig.png";
+                item.ThumbnailImage = "defaultExtensionBig.png";
                 item.MusicTag = pk;
                 item.IsFolder = false;
                 item.Label = pk.GeneralInfo.Name+" - "+command.CommandEnum.ToString();
@@ -1520,6 +1538,9 @@ namespace MPEIPlugin
       foreach (SiteItems siteItem in parentCategory.SiteItems)
       {
         item = new GUIListItem();
+        item.IconImage = "defaultExtension.png";
+        item.IconImageBig = "defaultExtensionBig.png";
+        item.ThumbnailImage = "defaultExtensionBig.png";
         item.MusicTag = siteItem;
         item.IsFolder = false;
         item.Label = siteItem.Name;
