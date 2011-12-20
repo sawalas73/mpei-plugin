@@ -182,6 +182,20 @@
               <ZipFileName>Installer{CopyFile}\{48e84f99-133a-41e3-8c82-e86b61e17c5f}-hover_extensions.png</ZipFileName>
               <DestinationFilename>%Skin%\DefaultWide\Media\hover_extensions.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\defaultExtension.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{13c5fff3-d74a-4dc6-95ee-36e10a9a06f2}-defaultExtension.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\defaultExtension.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\defaultExtensionBig.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d3ce05a2-68c2-4a52-82f4-eecbdc66049a}-defaultExtensionBig.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\defaultExtensionBig.png</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -261,6 +275,20 @@
               <LocalFileName>..\MPEIPlugin\Resources\Skins\Default\Media\status_popular.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{929f43c4-10aa-4731-86f4-277fc4a4f499}-status_popular.png</ZipFileName>
               <DestinationFilename>%Skin%\Default\Media\status_popular.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\Default\Media\defaultExtension.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{67086cce-9354-4171-ac3d-3e38bbc9bfec}-defaultExtension.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\defaultExtension.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Skins\Default\Media\defaultExtensionBig.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8bddb218-2513-4984-b31e-bea14fc8c797}-defaultExtensionBig.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\defaultExtensionBig.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -467,26 +495,28 @@ Click Next to continue or Cancel to exit Setup.
     <Version>
       <Major>1</Major>
       <Minor>0</Minor>
-      <Build>4</Build>
-      <Revision>152</Revision>
+      <Build>5</Build>
+      <Revision>163</Revision>
     </Version>
-    <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
-
+    <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
+
 Extensions also allows plugin developers to create their own GUI for settings which can save users from having to exit MediaPortal to change configuration.</ExtensionDescription>
-    <VersionDescription>* Added periodic checks on server to download update info. This re-uses the 'Update Days' setting in MPEI Installer configuration.
+    <VersionDescription>* Added a default list icon/thumbnail in case extension does not have a local/online icon. Skins can create what ever image they want in their skin media directory.
 
-* Fixed issues when returning to extensions window after restart of MediaPortal.
+* Added visible condition for 'Update All' button in default skins. Will only be visible if there are updates available.
 
-* Fix an IO Exception and failure to download updates if there is too many files in the users TEMP directory.
+* Added Prompt to Restart when 'Update All' is clicked.
 
-* Fix Null Reference Exception in en-US translations file.
+* Added a 'Download Updates' button, with this you can check for updates on your Installed Extensions or All Extensions. You can disable auto-updates from MPEI installer if you wish to manage manually from GUI only.
 
-* Fix a possible Null Reference Exception that could occur in the Extension Info window.
+* Updated hover image in Default skins with default plugin one.
 
-* Some minor changes to english translations.</VersionDescription>
+* Removed the 'Update Available' button in Default skins as its not needed for itself, you can see update available from the list of installed extensions. Its also less confusing.
+
+* Fixed extension skin properties not being available when jumping to Settings window from external plugin.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.[Version].mpe1</OnlineLocation>
-    <ReleaseDate>2011-10-13T10:56:05</ReleaseDate>
+    <ReleaseDate>2011-12-20T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin, extensions</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
@@ -659,6 +689,20 @@ Extensions also allows plugin developers to create their own GUI for settings wh
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\defaultExtension.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{13c5fff3-d74a-4dc6-95ee-36e10a9a06f2}-defaultExtension.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\defaultExtension.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\DefaultWide\Media\defaultExtensionBig.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d3ce05a2-68c2-4a52-82f4-eecbdc66049a}-defaultExtensionBig.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\defaultExtensionBig.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>..\MPEIPlugin\Resources\Skins\Default\myextensions2.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{8c2370e4-f2e2-437d-a27c-cb4b29836941}-myextensions2.xml</ZipFileName>
         <DestinationFilename>%Skin%\Default\myextensions2.xml</DestinationFilename>
@@ -725,6 +769,20 @@ Extensions also allows plugin developers to create their own GUI for settings wh
         <LocalFileName>..\MPEIPlugin\Resources\Skins\Default\Media\status_popular.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{929f43c4-10aa-4731-86f4-277fc4a4f499}-status_popular.png</ZipFileName>
         <DestinationFilename>%Skin%\Default\Media\status_popular.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\Default\Media\defaultExtension.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{67086cce-9354-4171-ac3d-3e38bbc9bfec}-defaultExtension.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\defaultExtension.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Skins\Default\Media\defaultExtensionBig.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8bddb218-2513-4984-b31e-bea14fc8c797}-defaultExtensionBig.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\defaultExtensionBig.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
