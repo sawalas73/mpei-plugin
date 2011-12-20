@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- MPEI Plugin translation file -->
+<!-- French -->
+<!-- Note: English is the fallback for any strings not found in other languages -->
+<strings>
+
+  <!--  A  -->
+  <string Field="All">Tout</string>
+  <string Field="AlwaysCheckForUpdates">Toujours vérifier les MAJ</string>
+  <string Field="Actions">Actions</string>
+  <string Field="ActionAdded">l'action a été ajouter en fin de liste</string>
+  <string Field="ActionRemoved">l'action a été supprimer de la liste</string>
+
+  <!--  C  -->
+  <string Field="ChangeLog">Change Log</string>
+
+  <!--  D  -->
+  <string Field="Download">Télécharger</string>
+
+  <!--  E  -->
+  <string Field="Exit">Quitter</string>
+
+  <!--  F  -->
+
+  <!--  G  -->
+
+  <!--  H  -->
+
+  <!--  I  -->
+  <string Field="Install">Installer</string>
+  <string Field="InstalledExtensions">Extensions installées</string>
+
+  <!--  L  -->
+
+  <!--  M  -->
+
+  <!--  N -->
+  <string Field="Name">Extensions</string>
+  <string Field="NeverCheckForUpdates">Jamais vérifier les mise à jours</string>
+  <string Field="NewExtensions">Nouvelles Extensions</string>
+  <string Field="NewUpdates">Extensions Mise à jour</string>
+  <string Field="Notification">Notification</string>
+
+  <!--  O  -->
+  <string Field="OnlineExtensions">Extensions en ligne</string>
+
+  <!--  P  -->
+
+  <!--  R  -->
+  <string Field="Restart">Redémarrer</string>
+  <string Field="Rotate">Rotation</string>
+  <string Field="RevokeLastAction">Annuler la dernier action</string>
+
+  <!--  S  -->
+  <string Field="Sections">Sections</string>
+  <string Field="Settings">Paramétres</string>
+  <string Field="ShowChangelogs">Afficher changelogs</string>
+  <string Field="ShowSreenshots">Voir screenshots</string>
+  <string Field="SelectVersionToInstall">Choisir la version à (Re)Installer</string>
+  <string Field="SelectVersion">Choisir la version</string>
+  <string Field="StartSlideshow">Démarrer le diaporama</string>
+
+  <!--  T  -->
+
+
+  <!--  U  -->
+  <string Field="Update">Mettre à jours</string>
+  <string Field="UpdateAll">Tout mettre à jour</string>
+  <string Field="Updates">Mettres à jours</string>
+  <string Field="Uninstall">Désinstaller</string>
+
+  <!--  V  -->
+  <string Field="Views">Vues</string>
+
+  <!--  W  -->
+
+  <!--  Y  -->
+
+
+</strings>
