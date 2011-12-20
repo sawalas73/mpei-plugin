@@ -1588,6 +1588,7 @@ namespace MPEIPlugin
       {
         listItem.IconImage = tempFile;
         listItem.IconImageBig = tempFile;
+        listItem.ThumbnailImage = tempFile;
       }
       else
       {
@@ -1624,6 +1625,7 @@ namespace MPEIPlugin
         {
           listItem.IconImage = signfile;
           listItem.IconImageBig = signfile;
+          listItem.ThumbnailImage = signfile;
           return signfile;
         }
 
@@ -1645,6 +1647,7 @@ namespace MPEIPlugin
 
         listItem.IconImage = tempFile;
         listItem.IconImageBig = tempFile;
+        listItem.ThumbnailImage = tempFile;
         return tempFile;
       }
 
@@ -1658,6 +1661,7 @@ namespace MPEIPlugin
         {
           listItem.IconImage = signfile;
           listItem.IconImageBig = signfile;
+          listItem.ThumbnailImage = signfile;
           return signfile;
         }
 
@@ -1678,6 +1682,7 @@ namespace MPEIPlugin
         }
         listItem.IconImage = tempFile;
         listItem.IconImageBig = tempFile;
+        listItem.ThumbnailImage = tempFile;
 
         return tempFile;
 
@@ -1686,6 +1691,7 @@ namespace MPEIPlugin
       {
         listItem.IconImage = logofile;
         listItem.IconImageBig = logofile;
+        listItem.ThumbnailImage = logofile;
       }
       else
       {
