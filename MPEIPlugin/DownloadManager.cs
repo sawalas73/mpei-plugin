@@ -128,6 +128,29 @@ namespace MPEIPlugin
       return tempFile;
     }
 
+    /// <summary>
+    /// Synchronous Download
+    /// </summary>
+    public static bool DownloadFile(string url, string localFile)
+    {
+      WebClient webClient = new WebClient();
+
+      try
+      {
+        Directory.CreateDirectory(Path.GetDirectoryName(localFile));
+        Log.Debug("[MPEI] Downloading file from: {0}", url);
+        webClient.DownloadFile(url, localFile);
+        return true;
+      }
+      catch (Exception)
+      {
+        Log.Error("[MPEI] Download failed from '{0}' to '{1}'", url, localFile);
+        try { if (File.Exists(localFile)) File.Delete(localFile); }
+        catch { }
+        return false;
+      }
+    }
+
   }
 
 }
