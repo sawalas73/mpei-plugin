@@ -285,7 +285,6 @@ namespace MPEIPlugin
       string cmdLine = "/MPQUEUE";
       using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
       {
-        string m_strSkin = xmlreader.GetValueAsString("skin", "name", "Blue3");
         string skinFilePath = ReadSplashScreenXML();
         if (string.IsNullOrEmpty(skinFilePath))
           skinFilePath = ReadReferenceXML();

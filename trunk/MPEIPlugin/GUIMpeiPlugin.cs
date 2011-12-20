@@ -837,6 +837,14 @@ namespace MPEIPlugin
         UpdateAll();
         LoadDirectory(currentFolder);
         GUIControl.FocusControl(GetID, facadeView.GetID);
+
+        if (queue.Items.Count > 0)
+        {
+          if (GUIUtils.ShowYesNoDialog(Translation.Notification, Translation.NotificationMessage, true))
+          {
+            RestartMP();
+          }
+        }
       }
 
       if (control == facadeView)
