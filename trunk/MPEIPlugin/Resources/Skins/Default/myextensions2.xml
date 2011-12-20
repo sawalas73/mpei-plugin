@@ -85,6 +85,14 @@
           <label>#MPEI.Translation.UpdateAll.Label</label>
           <visible>string.contains(#mpei.updates,.::.)</visible>
         </control>
+        <control>
+          <id>9</id>
+          <description>Check for Updates</description>
+          <type>button</type>
+          <onright>50</onright>
+          <label>#MPEI.Translation.DownloadUpdates.Label</label>
+          <ondown>2</ondown>
+        </control>
         <!--<control>
           <id>90</id>
           <description>MPEIUPDATE:a6afa4d6-4fd8-4607-8878-5911db044fd7</description>

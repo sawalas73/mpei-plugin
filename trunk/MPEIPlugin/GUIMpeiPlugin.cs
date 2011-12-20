@@ -77,6 +77,8 @@ namespace MPEIPlugin
 
     private const int newdays = 10;
     private const int daysToMs = 24 * 60 * 60 * 1000;
+
+    private static bool cancelDownloadCheck;
     #endregion
 
     #region SkinControls
@@ -93,7 +95,8 @@ namespace MPEIPlugin
     protected GUIButtonControl btnViews = null;
     [SkinControlAttribute(8)]
     protected GUIButtonControl btnUpdateAll = null;
-
+    [SkinControlAttribute(9)]
+    protected GUIButtonControl btnCheckForUpdates = null;
     #endregion
 
     public GUIMpeiPlugin()
@@ -138,7 +141,7 @@ namespace MPEIPlugin
         updatesPeriod = System.Threading.Timeout.Infinite;
 
       updatesTimer = new System.Threading.Timer(new System.Threading.TimerCallback((o) => { DownloadUpdateXmlInfo(); }), null, updatesPeriod, updatesPeriod);
-
+      
       Log.Debug("[MPEI] Init End");
 
       return bResult;
@@ -570,8 +573,15 @@ namespace MPEIPlugin
 
     public override void OnAction(Action action)
     {
+      if (action.wID == Action.ActionType.ACTION_KEY_PRESSED && action.m_key.KeyChar == 27)
+      {
+        cancelDownloadCheck = true;
+      }
+
       if (action.wID == Action.ActionType.ACTION_PREVIOUS_MENU)
       {
+        cancelDownloadCheck = true;
+
         if (facadeView.Focus)
         {
           GUIListItem item = facadeView[0];
@@ -750,6 +760,7 @@ namespace MPEIPlugin
     }
     protected override void OnPageDestroy(int newWindowId)
     {
+      cancelDownloadCheck = true;
       GUIBackgroundTask.Instance.StopBackgroundTask();
 
       selectedItemIndex = facadeView.SelectedListItemIndex;
@@ -847,6 +858,13 @@ namespace MPEIPlugin
         }
       }
 
+      if (control == btnCheckForUpdates)
+      {
+        GUIControl.FocusControl(GetID, facadeView.GetID);
+        CheckForUpdates();
+        return;
+      }
+
       if (control == facadeView)
       {
         GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0, null);
@@ -857,6 +875,103 @@ namespace MPEIPlugin
           OnClick(itemIndex);
         }
       }
+    }
+
+    void CheckForUpdates()
+    {
+      // let user choose between all or installed extensions
+      List<GUIListItem> choices = new List<GUIListItem>();
+      GUIListItem item = new GUIListItem();
+
+      choices.Add(new GUIListItem(Translation.InstalledExtensions) { });
+      choices.Add(new GUIListItem(Translation.AllExtensions) { });
+      
+      int choice = GUIUtils.ShowMenuDialog(Translation.DownloadUpdates, choices);
+      if (choice < 0) return;
+
+      bool installedExtensionsOnly = choice == 0;
+
+      // setup progress dialog
+      GUIDialogProgress progressDialog = (GUIDialogProgress)GUIWindowManager.GetWindow((int)GUIWindow.Window.WINDOW_DIALOG_PROGRESS);
+      progressDialog.Reset();
+      progressDialog.DisplayProgressBar = true;
+      progressDialog.ShowWaitCursor = false;
+      progressDialog.DisableCancel(true);
+      progressDialog.SetHeading(Translation.DownloadingUpdates);
+      progressDialog.Percentage = 0;
+      progressDialog.SetLine(1, string.Empty);
+      progressDialog.SetLine(2, string.Empty);
+      progressDialog.StartModal(GetID);
+      
+      // Download Main Update File
+      progressDialog.SetLine(1, Translation.DownloadingExtensionIndex);
+      GUIWindowManager.Process();
+
+      string extensionIndex = DownloadManager.GetTempFilename();
+
+      cancelDownloadCheck = false;
+      bool success = DownloadManager.DownloadFile(UpdateIndexUrl, extensionIndex);
+      if (!success)
+      {
+        progressDialog.Close();
+        GUIUtils.ShowNotifyDialog(Translation.Error, Translation.ErrorDownloadingExtensionIndex);
+        return;
+      }     
+
+      // Load Index List
+      LoadExtensionIndex(extensionIndex);
+
+      int downloadCounter = 0;
+
+      List<string> onlineFiles = MpeInstaller.InstalledExtensions.GetUpdateUrls(new List<string>());
+      if (!installedExtensionsOnly)
+      {
+        onlineFiles = MpeInstaller.KnownExtensions.GetUpdateUrls(onlineFiles);
+        onlineFiles = MpeInstaller.GetInitialUrlIndex(onlineFiles);
+      }
+      
+      foreach (string onlineFile in onlineFiles)
+      {
+        if (cancelDownloadCheck) break;
+
+        // update progress
+        int progress = Convert.ToInt32(((double)downloadCounter++ / (double)onlineFiles.Count) * 100.0);
+
+        progressDialog.SetLine(1, Translation.DownloadingExtension);
+        progressDialog.SetLine(2, string.Format(Translation.DownloadProgress, downloadCounter, onlineFiles.Count, progress));
+        progressDialog.Percentage = progress;
+        GUIWindowManager.Process();
+
+        string tempFile = DownloadManager.GetTempFilename();
+        if (DownloadManager.DownloadFile(onlineFile, tempFile))
+        {
+          Log.Info("[MPEI] Update info loaded from " + onlineFile);
+          MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(tempFile));
+          MpeInstaller.KnownExtensions.Hide(_setting.ShowOnlyStable, _setting.ShowOnlyCompatible);
+          GenerateProperty();
+
+          try
+          {
+            MpeInstaller.Save();
+            File.Delete(tempFile);
+          }
+          catch { }
+        }
+
+        if (progressDialog.IsCanceled)
+        {
+          Log.Info("[MPEI] Download Updates Cancelled.");
+          break;
+        }
+
+      }
+
+      // close dialog
+      progressDialog.Close();
+
+      // update listing
+      LoadDirectory(currentFolder);
+
     }
 
     void NotifyUser()
@@ -1234,6 +1349,8 @@ namespace MPEIPlugin
 
     void LoadDirectory(string strNewDirectory)
     {
+      if (GUIWindowManager.ActiveWindow != GetID) return;
+
       selectedItemIndex = facadeView.SelectedListItemIndex;
 
       GUIControl.ClearControl(GetID, facadeView.GetID);

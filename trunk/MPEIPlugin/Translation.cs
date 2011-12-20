@@ -203,7 +203,8 @@ namespace MPEIPlugin
     public static string ActionAdded = "Action was added to queue";
     public static string ActionRemoved = "Action was removed from queue";
     public static string Author = "Author";
-    public static string AskForRestart = "This Operation will restart MediaPortal.\nDo you wish to continue?";    
+    public static string AskForRestart = "This Operation will restart MediaPortal.\nDo you wish to continue?";
+    public static string AllExtensions = "All Extensions";
 
     // C
     public static string ChangeLog = "Change Log";
@@ -258,6 +259,11 @@ namespace MPEIPlugin
     public static string Disable = "Disable";
     public static string DateAdded = "Date Added";
     public static string Description = "Description";
+    public static string DownloadUpdates = "Download Updates";
+    public static string DownloadingUpdates = "Downloading Updates";
+    public static string DownloadingExtensionIndex = "Downloading Extension Index";
+    public static string DownloadingExtension = "Downloading Extension Update Definitions";
+    public static string DownloadProgress = "Download Progress [{0}/{1}] {2}%";
 
     // E
     public static string Exit = "Exit";
@@ -266,6 +272,7 @@ namespace MPEIPlugin
     public static string ErrorLoadingSite = "Error Loading Category list from the MediaPortal website";
     public static string ErrorLoadingExtensionList = "Error Loading Extension list for category";
     public static string ErrorExtensionInfo = "Error getting Extension Info";
+    public static string ErrorDownloadingExtensionIndex = "Error downloading extension list from server";
 
     // F
 

@@ -12,6 +12,7 @@
   <string Field="ActionRemoved">Action was removed from queue</string>
   <string Field="AskForRestart">This Operation will restart MediaPortal.\nDo you wish to continue?</string>
   <string Field="Author">Author</string>
+  <string Field="AllExtensions">All Extensions</string>
 
   <!--  C  -->
   <string Field="ChangeLog">Change Log</string>
@@ -66,6 +67,11 @@
   <string Field="Disable">Disable</string>
   <string Field="DateAdded">Date Added</string>
   <string Field="Description">Description</string>
+  <string Field="DownloadUpdates">Download Updates</string>
+  <string Field="DownloadingUpdates">Downloading Updates</string>
+  <string Field="DownloadingExtensionIndex">Downloading Extension Index</string>
+  <string Field="DownloadingExtension">Downloading Extension Update Definitions</string>
+  <string Field="DownloadProgress">Download Progress [{0}/{1}] {2}%</string>
 
   <!--  E  -->
   <string Field="Exit">Exit</string>
@@ -73,6 +79,7 @@
   <string Field="Error">Error</string>
   <string Field="ErrorLoadingSite">Error Loading Category list from the MediaPortal website</string>
   <string Field="ErrorLoadingExtensionList">Error Loading Extension list for category</string>
+  <string Field="ErrorDownloadingExtensionIndex">Error downloading extension list from server</string>
   
   <!--  F  -->
 
@@ -88,7 +95,7 @@
   <string Field="Install">Install</string>
   <string Field="InstalledExtensions">Installed Extensions</string>
   <string Field="InvalidUrl">Invalid Url, extension can not be downloaded!</string>
-
+  
   <!--  L  -->
 
   <!--  M  -->
