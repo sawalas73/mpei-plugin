@@ -341,6 +341,9 @@ namespace MPEIPlugin
     public static string SettingListedHomeDescription = "Enable this setting for Extensions plugin to appear in the main Home screen menu items.";
     public static string SettingListedPluginsName = "Listed in My Plugins";
     public static string SettingListedPluginsDescription = "Enable this setting for Extensions plugin to appear in the My Plugins screen menu items.";
+    public static string SettingsValidationInt = "The entered value must be a number.";
+    public static string SettingsValidationIntMin = "The entered value must be greater than or equal to {0}.";
+    public static string SettingsValidationIntMax = "The entered value must be less than or equal to {0}.";
 
     // T
     public static string Timeout = "Timeout";
