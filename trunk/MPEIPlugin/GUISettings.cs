@@ -176,6 +176,32 @@ namespace MPEIPlugin
         string enteredValue = settingValue;
         if (GUIUtils.GetStringFromKeyboard(ref enteredValue))
         {
+          // do some validation based on type
+          switch (setting.Type)
+          {
+            case SettingType.SInt:
+              int outValue;
+              if (!Int32.TryParse(enteredValue, out outValue))
+              {
+                GUIUtils.ShowOKDialog(Translation.Error, Translation.SettingsValidationInt);
+                return;
+              }
+              else
+              {
+                // check withing min/max value limits
+                if (setting.HasMinValue && setting.MinValue > outValue)
+                {
+                  GUIUtils.ShowOKDialog(Translation.Error, Translation.SettingsValidationIntMin);
+                  return;
+                }
+                if (setting.HasMaxValue && setting.MaxValue < outValue)
+                {
+                  GUIUtils.ShowOKDialog(Translation.Error, Translation.SettingsValidationIntMax);
+                  return;
+                }
+              }
+              break;
+          }
           setting.Value = enteredValue;
         }
       }

@@ -48,6 +48,10 @@ namespace MPEIPlugin.Classes
     public SettingType Type { get; set; }
     public string ListValues { get; set; }
     public List<string> DisplayValues { get; set; }
+    public int MinValue { get; set; }
+    public int MaxValue { get; set; }
+    public bool HasMinValue { get; set; }
+    public bool HasMaxValue { get; set; }
 
     public List<string> Values
     {
@@ -107,6 +111,20 @@ namespace MPEIPlugin.Classes
         Description = GetTranslatedString(node.Attributes["description"].Value);
       if (node.Attributes["configfile"] != null)
         ConfigFile = GetTranslatedString(node.Attributes["configfile"].Value);
+      if (node.Attributes["minvalue"] != null)
+      {
+        int outValue = Int32.MinValue;
+        Int32.TryParse(node.Attributes["minvalue"].Value, out outValue);
+        MinValue = outValue;
+        HasMinValue = true;
+      }
+      if (node.Attributes["maxvalue"] != null)
+      {
+        int outValue = Int32.MaxValue;
+        Int32.TryParse(node.Attributes["maxvalue"].Value, out outValue);
+        MaxValue = outValue;
+        HasMaxValue = true;
+      }
       if (node.Attributes["type"] != null)
       {
         if (node.Attributes["type"].Value == "string")
@@ -117,7 +135,6 @@ namespace MPEIPlugin.Classes
           Type = SettingType.SList;
         if (node.Attributes["type"].Value == "int")
           Type = SettingType.SInt;
-
       }
       return this;
     }

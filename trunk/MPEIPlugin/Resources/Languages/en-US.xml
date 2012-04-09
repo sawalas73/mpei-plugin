@@ -146,6 +146,9 @@
   <string Field="SettingListedHomeDescription">Enable this setting for Extensions plugin to appear in the main Home screen menu items.</string>
   <string Field="SettingListedPluginsName">Listed in My Plugins</string>
   <string Field="SettingListedPluginsDescription">Enable this setting for Extensions plugin to appear in the My Plugins screen menu items.</string>
+  <string Field="SettingsValidationInt">The entered value must be a number.</string>
+  <string Field="SettingsValidationIntMin">The entered value must be greater than or equal to {0}.</string>
+  <string Field="SettingsValidationIntMax">The entered value must be less than or equal to {0}.</string>
 
   <!--  T  -->
   <string Field="Timeout">Timeout</string>
