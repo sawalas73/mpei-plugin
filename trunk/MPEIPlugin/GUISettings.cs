@@ -185,7 +185,7 @@ namespace MPEIPlugin
         setting.Value = setting.DefaultValue;
         facadeView.SelectedListItem.Label2 = setting.DisplayValue;
       }
-      else if (dlg.SelectedLabelText == Translation.RestoreDefaults)
+      else if (dlg.SelectedLabelText == Translation.RestoreAllDefaults)
       {
         RestoreDefaults();
       }
