@@ -77,7 +77,7 @@ namespace MPEIPlugin.Classes
         if (string.IsNullOrEmpty(Value)) return string.Empty;
 
         string s = Value;
-        if(DisplayValues.Count > 0)
+        if (DisplayValues != null && DisplayValues.Count > 0)
         {
           int i = 0;
           foreach (string value in Values)
