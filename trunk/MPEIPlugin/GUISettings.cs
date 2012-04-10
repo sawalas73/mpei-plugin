@@ -140,14 +140,7 @@ namespace MPEIPlugin
 
       if (control == btnDefaults)
       {
-        // restore the defaults for selected section
-        var sectionSettings = settings.Settings[CurrentSection.Value];
-        foreach (var setting in sectionSettings)
-        {
-          setting.Value = setting.DefaultValue;
-        }
-        PopulateFacade(CurrentSection.Key);
-        GUIControl.FocusControl(GetID, facadeView.GetID);
+        RestoreDefaults();
         return;
       }
 
@@ -167,6 +160,49 @@ namespace MPEIPlugin
       }
 
       base.OnClicked(controlId, control, actionType);
+    }
+
+    protected override void OnShowContextMenu()
+    {
+      GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
+      if (dlg == null) return;
+      
+      dlg.Reset();
+      dlg.SetHeading(Translation.Settings);
+
+      dlg.Add(new GUIListItem(Translation.RestoreDefaultValue));
+      dlg.Add(new GUIListItem(Translation.RestoreAllDefaults));
+
+      dlg.DoModal(GetID);
+      if (dlg.SelectedId == -1) return;
+
+      if (dlg.SelectedLabelText == Translation.RestoreDefaultValue)
+      {
+        // get currently selected setting
+        ExtensionSetting setting = facadeView.SelectedListItem.MusicTag as ExtensionSetting;
+        if (setting == null) return;
+
+        setting.Value = setting.DefaultValue;
+        facadeView.SelectedListItem.Label2 = setting.DisplayValue;
+      }
+      else if (dlg.SelectedLabelText == Translation.RestoreDefaults)
+      {
+        RestoreDefaults();
+      }
+
+      base.OnShowContextMenu();
+    }
+
+    private void RestoreDefaults()
+    {
+      // restore the defaults for selected section
+      var sectionSettings = settings.Settings[CurrentSection.Value];
+      foreach (var setting in sectionSettings)
+      {
+        setting.Value = setting.DefaultValue;
+      }
+      PopulateFacade(CurrentSection.Key);
+      GUIControl.FocusControl(GetID, facadeView.GetID);
     }
 
     private void GetValue(ExtensionSetting setting)
