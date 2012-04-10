@@ -173,7 +173,7 @@ namespace MPEIPlugin
     {
       string settingValue = setting.Value;
 
-      if(setting.Values.Count > 0)
+      if (setting.Values != null && setting.Values.Count > 0)
       {
         GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
         if (dlg == null) return;
