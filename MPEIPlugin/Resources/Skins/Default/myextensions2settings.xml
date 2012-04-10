@@ -55,8 +55,19 @@
           <id>2</id>
           <label>#MPEI.Translation.Sections.Label</label>
           <onright>50</onright>
-					<onleft>50</onleft>
+					<onleft>3</onleft>
           <onup>17</onup>
+          <ondown>3</ondown>
+        </control>
+        <control>
+          <description>Restore Defaults</description>
+          <type>button</type>
+          <id>3</id>
+          <label>#MPEI.Translation.RestoreDefaults.Label</label>
+          <onleft>50</onleft>
+          <onright>50</onright>
+          <onup>2</onup>
+          <ondown>2</ondown>
         </control>
       </control>
     </control>

@@ -28,9 +28,12 @@ namespace MPEIPlugin
     protected GUIFacadeControl facadeView = null;
     [SkinControlAttribute(2)]
     protected GUIButtonControl btnSections = null;
+    [SkinControlAttribute(3)]
+    protected GUIButtonControl btnDefaults = null;
 
     public string SettingsFile { get; set; }
     private bool SettingsChanged { get; set; }
+    private KeyValuePair<int,string> CurrentSection { get; set; }
     private string GUID { get; set; }
     private ExtensionSettings settings = new ExtensionSettings();
 
@@ -90,6 +93,7 @@ namespace MPEIPlugin
       {
         if (i == section)
         {
+          CurrentSection = new KeyValuePair<int, string>(i, settingsection.Key);
           foreach (ExtensionSetting setting in settingsection.Value)
           {
             var item = new GUIListItem {Label = setting.DisplayName, Label2 = setting.DisplayValue, MusicTag = setting};
@@ -117,7 +121,6 @@ namespace MPEIPlugin
 
     protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
     {
-      base.OnClicked(controlId, control, actionType);
       if (control == btnSections)
       {
         GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
@@ -132,6 +135,20 @@ namespace MPEIPlugin
         if (dlg.SelectedId == -1) return;
         PopulateFacade(dlg.SelectedId - 1);
         GUIControl.FocusControl(GetID, facadeView.GetID);
+        return;
+      }
+
+      if (control == btnDefaults)
+      {
+        // restore the defaults for selected section
+        var sectionSettings = settings.Settings[CurrentSection.Value];
+        foreach (var setting in sectionSettings)
+        {
+          setting.Value = setting.DefaultValue;
+        }
+        PopulateFacade(CurrentSection.Key);
+        GUIControl.FocusControl(GetID, facadeView.GetID);
+        return;
       }
 
       if (control == facadeView)
@@ -145,9 +162,11 @@ namespace MPEIPlugin
           ExtensionSetting set = item.MusicTag as ExtensionSetting;
           GetValue(set);
           item.Label2 = set.DisplayValue;
+          return;
         }
       }
 
+      base.OnClicked(controlId, control, actionType);
     }
 
     private void GetValue(ExtensionSetting setting)

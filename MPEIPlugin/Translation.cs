@@ -323,7 +323,7 @@ namespace MPEIPlugin
     public static string Rotate = "Rotate";
     public static string RevokeLastAction = "Revoke last action";
     public static string RestartNow = "This operation requires a restart of\nMediaPortal. Do you want to restart now?\nIf not, the task will be queued.";
-    
+    public static string RestoreDefaults = "Restore Defaults";
 
     // S
     public static string Sections = "Sections";
