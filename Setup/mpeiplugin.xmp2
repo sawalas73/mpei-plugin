@@ -476,10 +476,10 @@ Click Next to continue or Cancel to exit Setup.
         </CompatibleVersion>
         <SubSystemsUsed>
           <Items>
-            <SubSystemItem Name="MP.Config" />
-            <SubSystemItem Name="MP.Players.Music" />
             <SubSystemItem Name="MP.Players.Video" />
             <SubSystemItem Name="MP.SkinEngine" />
+            <SubSystemItem Name="MP.Config" />
+            <SubSystemItem Name="MP.Players.Music" />
           </Items>
         </SubSystemsUsed>
       </PluginDependencyItem>
@@ -495,28 +495,24 @@ Click Next to continue or Cancel to exit Setup.
     <Version>
       <Major>1</Major>
       <Minor>0</Minor>
-      <Build>5</Build>
-      <Revision>163</Revision>
+      <Build>6</Build>
+      <Revision>171</Revision>
     </Version>
-    <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
-
+    <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
+
 Extensions also allows plugin developers to create their own GUI for settings which can save users from having to exit MediaPortal to change configuration.</ExtensionDescription>
-    <VersionDescription>* Added a default list icon/thumbnail in case extension does not have a local/online icon. Skins can create what ever image they want in their skin media directory.
+    <VersionDescription>*  Added validation of settings manually entered via keyboard for integer (number) types.
 
-* Added visible condition for 'Update All' button in default skins. Will only be visible if there are updates available.
+* Added a 'Restore Defaults' button in skin so that default settings can be restored to all settings in the current section.
 
-* Added Prompt to Restart when 'Update All' is clicked.
+* Added context menu in Settings GUI to allow user to restore the default value of the currently selected setting as well as option to restore all defaults (in case skin does not support button).
 
-* Added a 'Download Updates' button, with this you can check for updates on your Installed Extensions or All Extensions. You can disable auto-updates from MPEI installer if you wish to manage manually from GUI only.
+* Fixed issues with settings window not working properly if there were some settings missing key attributes. This occurred in latest OnlineVideos release.
 
-* Updated hover image in Default skins with default plugin one.
-
-* Removed the 'Update Available' button in Default skins as its not needed for itself, you can see update available from the list of installed extensions. Its also less confusing.
-
-* Fixed extension skin properties not being available when jumping to Settings window from external plugin.</VersionDescription>
+</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.[Version].mpe1</OnlineLocation>
-    <ReleaseDate>2011-12-20T10:56:05</ReleaseDate>
+    <ReleaseDate>2012-04-11T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin, extensions</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
