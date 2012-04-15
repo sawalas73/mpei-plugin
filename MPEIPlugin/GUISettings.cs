@@ -246,12 +246,12 @@ namespace MPEIPlugin
                 // check withing min/max value limits
                 if (setting.HasMinValue && setting.MinValue > outValue)
                 {
-                  GUIUtils.ShowOKDialog(Translation.Error, Translation.SettingsValidationIntMin);
+                  GUIUtils.ShowOKDialog(Translation.Error, string.Format(Translation.SettingsValidationIntMin, setting.MinValue));
                   return;
                 }
                 if (setting.HasMaxValue && setting.MaxValue < outValue)
                 {
-                  GUIUtils.ShowOKDialog(Translation.Error, Translation.SettingsValidationIntMax);
+                  GUIUtils.ShowOKDialog(Translation.Error, string.Format(Translation.SettingsValidationIntMax, setting.MaxValue));
                   return;
                 }
               }
