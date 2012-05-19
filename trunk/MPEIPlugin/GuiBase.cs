@@ -115,7 +115,7 @@ namespace MPEIPlugin
               skinFilePath = ReadReferenceXML();
             bool useFullScreenSplash = xmlreader.GetValueAsBool("general", "usefullscreensplash", true);
             bool startFullScreen = xmlreader.GetValueAsBool("general", "startfullscreen", true);
-            if (useFullScreenSplash && startFullScreen)
+            if (useFullScreenSplash && startFullScreen && QueueSupportsSilentMode())
               streamWriter.WriteLine(skinFilePath);
             else
               streamWriter.WriteLine("");
@@ -290,7 +290,7 @@ namespace MPEIPlugin
           skinFilePath = ReadReferenceXML();
         bool useFullScreenSplash = xmlreader.GetValueAsBool("general", "usefullscreensplash", true);
         bool startFullScreen = xmlreader.GetValueAsBool("general", "startfullscreen", true);
-        if (useFullScreenSplash && startFullScreen)
+        if (useFullScreenSplash && startFullScreen && QueueSupportsSilentMode())
           cmdLine += " /BK=\"" + skinFilePath + "\"";
       }
       Log.Debug("[MPEI] Plugin Start:" + Config.GetFile(Config.Dir.Base, "MPEInstaller.exe ") + cmdLine);
@@ -363,6 +363,15 @@ namespace MPEIPlugin
         }
       }
       return "";
+    }
+
+    private bool QueueSupportsSilentMode()
+    {
+        // check if there is an ignored package
+        if (queue.Items.Exists(q => GUIMpeiPlugin.ignoredFullScreenPackages.Contains(q.TargetId)))
+            return false;
+        
+        return true;
     }
   }
 }

@@ -60,12 +60,12 @@ namespace MPEIPlugin
     SortMethod currentSortMethod = SortMethod.Date;
     bool sortAscending = true;
     bool periodicUpdateCheck = true;
+    public static List<string> ignoredFullScreenPackages = new List<string>();
     private MPSiteUtil SiteUtil = new MPSiteUtil();
 
     string currentFolder = string.Empty;
     int selectedItemIndex = -1;
     private DownloadManager _downloadManager = new DownloadManager();
-    static GUIDialogProgress _dlgProgress;
 
     private ApplicationSettings _setting = new ApplicationSettings();
 
@@ -112,6 +112,7 @@ namespace MPEIPlugin
     public override bool Init()
     {
       Log.Debug("[MPEI] Init Start");
+      LoadSettings();
       MpeInstaller.Init();
       Translation.Init();
 
@@ -132,7 +133,6 @@ namespace MPEIPlugin
       GUIGraphicsContext.Receivers += GUIGraphicsContext_Receivers;
       _timer.Enabled = true;
 
-      LoadSettings();
 
       // schedule periodic updates, we already handle updates on startup so dont need to start now
       if (periodicUpdateCheck)
@@ -418,8 +418,7 @@ namespace MPEIPlugin
     void LoadSettings()
     {
       Log.Info("[MPEI] Loading settings");
-      _dlgProgress = (GUIDialogProgress)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_PROGRESS);
-
+    
       using (MediaPortal.Profile.Settings xmlreader = new MPSettings())
       {
         string tmpLine = string.Empty;
@@ -452,6 +451,15 @@ namespace MPEIPlugin
         }
         sortAscending = xmlreader.GetValueAsBool("myextensions2", "sortascending", true);
         periodicUpdateCheck = xmlreader.GetValueAsBool("myextensions2", "periodicupdatecheck", true);
+        // default packages to ignore
+        // user can add more to settings file
+        List<string> ignoreList = new List<string>()
+        {
+            //"b7738156-b6ec-4f0f-b1a8-b5010349d8b1", // LAV Filters
+            "88f9a821-bd54-4a40-9bfc-222b3324973d", // Backup Settings
+            //"269bd257-7ce5-450a-b786-1c2834c81849"  // OnlineVideos (includes LAV)
+        };
+        ignoredFullScreenPackages = xmlreader.GetValueAsString("myextensions2", "ignoredfullscreenpackages", ignoreList.ToJSON()).FromJSONArray<string>().ToList();
       }
     }
 
@@ -517,6 +525,7 @@ namespace MPEIPlugin
 
         xmlwriter.SetValueAsBool("myextensions2", "sortascending", sortAscending);
         xmlwriter.SetValueAsBool("myextensions2", "periodicupdatecheck", periodicUpdateCheck);
+        xmlwriter.SetValue("myextensions2", "ignoredfullscreenpackages", ignoredFullScreenPackages.ToJSON());
       }
     }
 
