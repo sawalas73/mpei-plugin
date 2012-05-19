@@ -477,8 +477,8 @@ Click Next to continue or Cancel to exit Setup.
         <SubSystemsUsed>
           <Items>
             <SubSystemItem Name="MP.Players.Video" />
-            <SubSystemItem Name="MP.SkinEngine" />
             <SubSystemItem Name="MP.Config" />
+            <SubSystemItem Name="MP.SkinEngine" />
             <SubSystemItem Name="MP.Players.Music" />
           </Items>
         </SubSystemsUsed>
@@ -495,24 +495,18 @@ Click Next to continue or Cancel to exit Setup.
     <Version>
       <Major>1</Major>
       <Minor>0</Minor>
-      <Build>6</Build>
-      <Revision>171</Revision>
+      <Build>7</Build>
+      <Revision>176</Revision>
     </Version>
     <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
 
 Extensions also allows plugin developers to create their own GUI for settings which can save users from having to exit MediaPortal to change configuration.</ExtensionDescription>
-    <VersionDescription>*  Added validation of settings manually entered via keyboard for integer (number) types.
+    <VersionDescription>*  Added setting to ignore certain packages from full screen install. These packages are usually ones that do not respect silent installs such Backup Settings. By default BackupSettings,OnlineVideos and LAVFilters (can prompt for restart) are ignored but users can add/remove any package guid to the settings file.
 
-* Added a 'Restore Defaults' button in skin so that default settings can be restored to all settings in the current section.
-
-* Added context menu in Settings GUI to allow user to restore the default value of the currently selected setting as well as option to restore all defaults (in case skin does not support button).
-
-* Fixed issues with settings window not working properly if there were some settings missing key attributes. This occurred in latest OnlineVideos release.
-
-</VersionDescription>
+* Fixed error message not correctly formatted for setting maxvalue and minvalue check in Settings GUI.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.[Version].mpe1</OnlineLocation>
-    <ReleaseDate>2012-04-11T10:56:05</ReleaseDate>
+    <ReleaseDate>2012-05-19T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin, extensions</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
