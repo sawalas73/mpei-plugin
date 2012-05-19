@@ -455,9 +455,9 @@ namespace MPEIPlugin
         // user can add more to settings file
         List<string> ignoreList = new List<string>()
         {
-            //"b7738156-b6ec-4f0f-b1a8-b5010349d8b1", // LAV Filters
+            "b7738156-b6ec-4f0f-b1a8-b5010349d8b1", // LAV Filters
             "88f9a821-bd54-4a40-9bfc-222b3324973d", // Backup Settings
-            //"269bd257-7ce5-450a-b786-1c2834c81849"  // OnlineVideos (includes LAV)
+            "269bd257-7ce5-450a-b786-1c2834c81849"  // OnlineVideos (includes LAV)
         };
         ignoredFullScreenPackages = xmlreader.GetValueAsString("myextensions2", "ignoredfullscreenpackages", ignoreList.ToJSON()).FromJSONArray<string>().ToList();
       }
