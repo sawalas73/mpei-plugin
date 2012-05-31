@@ -12,16 +12,66 @@
   <string Field="ActionRemoved">Actie is verwijderd uit de wachtrij</string>
   <string Field="AskForRestart">Deze actie zal MediaPortal opnieuw opstarten.\nWilt u verder gaan?</string>
   <string Field="Author">Auteur</string>
+  <string Field="AllExtensions">All Extensies</string>
 
   <!--  C  -->
   <string Field="ChangeLog">Wijzigingen</string>
   <string Field="Compatibility">Compatibiliteit</string>
+  <string Field="CategoryRecentlyAdded">Recent toegevoegde extensies</string>
+  <string Field="CategoryRecentlyUpdated">Recent bijgewerkte extensies</string>
+  <string Field="CategoryMostInstalled">Meest geïnstalleerde extensies</string>
+  <string Field="CategoryFeatured">Aanbevolen extensies</string>
+  <string Field="CategoryMostPopular">Populaire extensies</string>
+  <string Field="CategoryMostRated">Meest beoordeelde extensies</string>
+  <string Field="CategoryTopRated">Best beoordeelde extensies</string>
+  <string Field="CategoryMostReviewed">Meest gerecenseerde extensies</string>
+  <string Field="CategoryHTPC">HTPC</string>
+  <string Field="CategoryCustomization">Aanpassingen</string>
+  <string Field="CategoryBootScreens">Opstart schermen</string>
+  <string Field="CategoryTools">Gereedschappen</string>
+  <string Field="CategorySystemUtilities">Systeem/Hulpmiddelen</string>
+  <string Field="CategoryUtilities">Hulpmiddelen</string>
+  <string Field="CategoryDriversFirmware"><![CDATA[Drivers & Firmware]]></string>
+  <string Field="CategoryCodecs">Codecs</string>
+  <string Field="CategoryLogos">Logo's</string>
+  <string Field="CategoryTVChannels">TV Zenders</string>
+  <string Field="CategoryRadioStations">Radiostations</string>
+  <string Field="CategoryMediaInfo">Media Info</string>
+  <string Field="CategorySkins">Skins</string>
+  <string Field="CategoryWidescreen">Breedbeeld</string>
+  <string Field="CategoryNonWidescreen">Niet-Breedbeeld</string>
+  <string Field="CategoryPlugins">Plug-ins</string>
+  <string Field="CategoryWeather">Weer</string>
+  <string Field="CategoryOther">Overige</string>
+  <string Field="CategorySystem">Systeem</string>
+  <string Field="CategoryEmail">E-mail</string>
+  <string Field="CategoryPIMs">PIM's</string>
+  <string Field="CategoryHomeAutomation">Huis automatisering</string>
+  <string Field="CategoryPictures">Afbeeldingen</string>
+  <string Field="CategoryRadio">Radio</string>
+  <string Field="CategoryInputOutput"><![CDATA[In- & Uitvoer]]></string>
+  <string Field="CategoryOtherInputDevices">Overige invoer apparaten</string>
+  <string Field="CategoryExternalDisplays">Externe beeldschermen</string>
+  <string Field="CategoryRemotes">Afstandsbedieningen</string>
+  <string Field="CategoryNewsInfo"><![CDATA[Nieuws & Info]]></string>
+  <string Field="CategoryInfo">Info</string>
+  <string Field="CategoryNews">Nieuws</string>
+  <string Field="CategoryGamesFun"><![CDATA[Spel & Plezier]]></string>
+  <string Field="CategoryMusic">Muziek</string>
+  <string Field="CategoryTelevision">Televisie</string>
+  <string Field="CategoryMoviesVideos"><![CDATA[Films & Video's]]></string>
 
   <!--  D  -->
   <string Field="Download">Download</string>
   <string Field="Downloads">Downloads</string>
   <string Field="Disable">Uitschakelen</string>
   <string Field="DateAdded">Datum toegevoegd</string>
+  <string Field="Description">Beschrijving</string>
+  <string Field="DownloadUpdates">Download Updates</string>
+  <string Field="DownloadingUpdates">Updates aan het downloaden</string>
+  <string Field="DownloadingExtensionIndex">Downloaden extensie index</string>
+  <string Field="DownloadingExtension">Bezig met het downloaden van de extensie update definities</string>
+  <string Field="DownloadProgress">Download voortgang [{0}/{1}] {2}%</string>
 
   <!--  E  -->
   <string Field="Exit">Afsluiten</string>
@@ -29,6 +79,7 @@
   <string Field="Error">Fout</string>
   <string Field="ErrorLoadingSite">Er is een fout opgetreden tijdens het laden van de Categorielijst van de MediaPortal website</string>
   <string Field="ErrorLoadingExtensionList">Er is een fout opgetreden tijdens het laden van de Extensielijst van de geselecteerde categorie</string>
+  <string Field="ErrorDownloadingExtensionIndex">Er is een fout opgetreden tijdens het laden van de Extensielijst van de server</string>
 
   <!--  F  -->
 
@@ -52,6 +103,8 @@
   
   <!--  N -->
   <string Field="Name">Extensies</string>
+  <string Field="NameInfo">Extensie informatie</string>
+  <string Field="NameSettings">Extensie instellingen</string>
   <string Field="NeverCheckForUpdates">Nooit op updates controleren</string>
   <string Field="NewExtensions">Nieuwe Extensies</string>
   <string Field="NewUpdates">Nieuwe updates</string>
@@ -59,34 +112,49 @@
   <string Field="Notification">Herinnering</string>
   <string Field="NotificationWarning">Er staan nog taken gereed.\nHerstarten en nu uitvoeren?</string>
   <string Field="NotificationMessage">Wilt u MediaPortal herstarten\nen de gereedstaande taken uitvoeren?</string>
+  <string Field="No">Nee</string>
+  <string Field="NoScreenshots">Er zijn geen schermafbeeldingen beschikbaar.</string>
   
   <!--  O  -->
   <string Field="OnlineExtensions">Online Extensies</string>
 
   <!--  P  -->
+  <string Field="Plugin">Plug-in</string>
 
   <!--  R  -->
   <string Field="Rating">Waardering</string>
   <string Field="Revoke">Ongedaan maken</string>
   <string Field="ReleaseDate">Release datum</string>
   <string Field="Restart">Herstart</string>
-  <string Field="Rotate">Roteren</string>
+  <string Field="Rotate">Draaien</string>
   <string Field="RevokeLastAction">Laatste actie ongedaan maken</string>
   <string Field="RestartNow">Deze taak vraagt om een herstart\nvan MediaPortal. Wilt u nu herstarten?\nAnders zal de taak in de wachtrij geplaatst worden.</string>
+  <string Field="RestoreDefaultValue">Standaardwaarde herstellen</string>
+  <string Field="RestoreDefaults">Instellingen herstellen</string>
+  <string Field="RestoreAllDefaults">Alle instellingen herstellen</string>
 
   <!--  S  -->
   <string Field="Sections">Secties</string>
   <string Field="Settings">Instellingen</string>
   <string Field="ShowChangelogs">Wijzigingen weergeven</string>
   <string Field="ShowSreenshots">Schermafdrukken weergeven</string>
-  <string Field="SelectVersionToInstall">Selecteer de verie om te (Her)Installeren</string>
+  <string Field="SelectVersionToInstall">Selecteer de verie om te (her)installeren</string>
   <string Field="SelectVersion">Selecteer versie</string>
   <string Field="StartSlideshow">Diashow starten</string>
+  <string Field="Screenshots">Schermafbeeldingen</string>
   <string Field="Status">Status</string>
+  <string Field="SettingPluginEnabledName">Plug-in ingeschakeld</string>
+  <string Field="SettingPluginEnabledDescription">Schakel deze instelling in of uit om de Extensie plug-in te laden tijdens het opstarten van MediaPortal.</string>
+  <string Field="SettingListedHomeName">Weergeven in hoofdmenu</string>
+  <string Field="SettingListedHomeDescription">Schakel deze instelling in om de Extensie plug-in weer te geven in het hoofdmenu.</string>
+  <string Field="SettingListedPluginsName">Weergeven in plug-in menu</string>
+  <string Field="SettingListedPluginsDescription">Schakel deze instelling in om de Extensie plug-in weer te geven in het plug-in menu.</string>
+  <string Field="SettingsValidationInt">De ingevoerde waarde moet een nummer zijn.</string>
+  <string Field="SettingsValidationIntMin">De ingevoerde waarde moet groter dan of gelijk zijn aan {0}.</string>
+  <string Field="SettingsValidationIntMax">De ingevoerde waarde moet kleiner dan of gelijk zijn aan {0}.</string>
 
   <!--  T  -->
   <string Field="Timeout">Time-out</string>
-
 
   <!--  U  -->
   <string Field="Update">Update</string>
@@ -95,7 +163,7 @@
   <string Field="Updates">Updates</string>
   <string Field="Uninstall">Deïnstalleren</string>
   <string Field="UnKnownFileType">Installatie is niet mogelijk\nOnbekend bestandsformaat gevonden!</string>
-  <string Field="UseSilent">Stille installatie?</string>
+  <string Field="UseSilent">Extensie stil installeren?</string>
   
   <!--  V  -->
   <string Field="Views">Weergave</string>
@@ -105,6 +173,6 @@
   <!--  W  -->
 
   <!--  Y  -->
-
+  <string Field="Yes">Ja</string>
 
 </strings>
