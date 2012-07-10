@@ -7,11 +7,11 @@ using MediaPortal.Common.Utils;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MPEIPlugin")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Extensions plugin for MediaPortal")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MEDIAPORTAL")]
+[assembly: AssemblyCompany("MediaPortal")]
 [assembly: AssemblyProduct("MPEIPlugin")]
-[assembly: AssemblyCopyright("Copyright © Dukus 2011")]
+[assembly: AssemblyCopyright("Copyright © MediaPortal 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -23,7 +23,7 @@ using MediaPortal.Common.Utils;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("66130e87-42a1-441e-a670-cda3e50605e0")]
 
-[assembly: CompatibleVersion("1.1.6.27644")]
+[assembly: CompatibleVersion("1.2.100.0", "1.1.6.27644")]
 [assembly: UsesSubsystem("MP.SkinEngine")]
 [assembly: UsesSubsystem("MP.Players.Video")]
 [assembly: UsesSubsystem("MP.Players.Music")]
