@@ -31,7 +31,7 @@
         <ParentGroup />
         <DisplayName>Languages</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>Translations for the [Name] GUI plugin.</Description>
+        <Description>Translations for theExtensions GUI plugin.</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
@@ -100,7 +100,7 @@
         <ParentGroup />
         <DisplayName>Skins</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>Default Skin support for [Name] GUI plugin.</Description>
+        <Description>Default Skin support for Extensions GUI plugin.</Description>
         <Files>
           <Items />
         </Files>
@@ -109,7 +109,7 @@
         <ParentGroup>Skins</ParentGroup>
         <DisplayName>DefaultWide</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>DefaultWide (16:9) Skin support for [Name] GUI plugin.</Description>
+        <Description>DefaultWide (16:9) Skin support for Extensions GUI plugin.</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
@@ -203,7 +203,7 @@
         <ParentGroup>Skins</ParentGroup>
         <DisplayName>Default Skin</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>DefaultWide (4:3) Skin support for [Name] GUI plugin.</Description>
+        <Description>DefaultWide (4:3) Skin support for Extensions GUI plugin.</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
@@ -301,7 +301,7 @@
         <Params>
           <Items>
             <SectionParam Name="Header text">
-              <Value>Welcome to the Setup Wizard for the [Name] plugin</Value>
+              <Value>Welcome to the Setup Wizard for the Extensions plugin</Value>
               <ValueType>String</ValueType>
               <Description />
             </SectionParam>
@@ -380,7 +380,7 @@ Click Next to continue or Cancel to exit Setup.
               <Description>Header title</Description>
             </SectionParam>
             <SectionParam Name="Header description">
-              <Value>Please wait while the [Name] plugin is being installed</Value>
+              <Value>Please wait while the Extensions plugin is being installed</Value>
               <ValueType>String</ValueType>
               <Description>Description of section, shown in under section title</Description>
             </SectionParam>
@@ -415,7 +415,7 @@ Click Next to continue or Cancel to exit Setup.
         <Params>
           <Items>
             <SectionParam Name="Header text">
-              <Value>The Setup Wizard has successfully installed the [Name] plugin.</Value>
+              <Value>The Setup Wizard has successfully installed the Extensions plugin.</Value>
               <ValueType>String</ValueType>
               <Description />
             </SectionParam>
@@ -458,7 +458,7 @@ Click Next to continue or Cancel to exit Setup.
           <Revision>27644</Revision>
         </MaxVersion>
         <WarnOnly>false</WarnOnly>
-        <Message>This version of [Name] plugin is only supported on MediaPortal 1.2 RC1 or above. Please download version that is supported by your version of MediaPortal.</Message>
+        <Message>This version of [Name] plugin is only supported on MediaPortal 1.2 or above. Please download version that is supported by your version of MediaPortal.</Message>
         <Name>MediaPortal</Name>
       </DependencyItem>
     </Items>
@@ -470,7 +470,7 @@ Click Next to continue or Cancel to exit Setup.
           <Items>
             <CompatibleVersionItem>
               <MinRequiredVersion>1.1.6.27644</MinRequiredVersion>
-              <DesignedForVersion>1.1.6.27644</DesignedForVersion>
+              <DesignedForVersion>1.2.100.0</DesignedForVersion>
             </CompatibleVersionItem>
           </Items>
         </CompatibleVersion>
@@ -495,18 +495,18 @@ Click Next to continue or Cancel to exit Setup.
     <Version>
       <Major>1</Major>
       <Minor>0</Minor>
-      <Build>7</Build>
-      <Revision>176</Revision>
+      <Build>8</Build>
+      <Revision>180</Revision>
     </Version>
     <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
 
 Extensions also allows plugin developers to create their own GUI for settings which can save users from having to exit MediaPortal to change configuration.</ExtensionDescription>
-    <VersionDescription>*  Added setting to ignore certain packages from full screen install. These packages are usually ones that do not respect silent installs such Backup Settings. By default BackupSettings,OnlineVideos and LAVFilters (can prompt for restart) are ignored but users can add/remove any package guid to the settings file.
+    <VersionDescription>*  Added compatibility with MediaPortal 1.3 Alpha.
 
-* Fixed error message not correctly formatted for setting maxvalue and minvalue check in Settings GUI.</VersionDescription>
+* Updated Dutch translations.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.[Version].mpe1</OnlineLocation>
-    <ReleaseDate>2012-05-19T10:56:05</ReleaseDate>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.1.0.8.180.mpe1</OnlineLocation>
+    <ReleaseDate>2012-07-11T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin, extensions</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
@@ -778,14 +778,14 @@ Extensions also allows plugin developers to create their own GUI for settings wh
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>LeftBanner.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b2251f1f-0362-4ce4-af1b-64193c46561a}-LeftBanner.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{1e0321d9-6046-4b2b-9948-e9be8a3941b9}-LeftBanner.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{ac1210ac-5828-40ba-8751-40f4d6bc6d2b}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{b9bc33c6-4b3f-4f98-a8cf-134f75aed7c3}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
