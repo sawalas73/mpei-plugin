@@ -26,7 +26,7 @@ namespace MPEIPlugin
 
     public string Url { get; set; }
     public string TempFile { get; set; }
-    public string Destinatiom { get; set; }
+    public string Destination { get; set; }
     public object Tag { get; set; }
     public DownLoadItemType ItemType { get; set; }
     public PackageClass Package { get; set; }

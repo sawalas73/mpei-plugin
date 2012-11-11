@@ -2,155 +2,212 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Net;
 using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
 
 namespace MPEIPlugin
 {
-  public class DownloadManager
+  public class DownloadManager : IDisposable
   {
-    private WebClient client = new WebClient();
-    private Queue<DownLoadInfo> queue = new Queue<DownLoadInfo>();
+    public delegate void DownloadDoneEventHandler(DownLoadInfo info);
 
-    public event DownloadDoneEventHadler DownloadDone;
-    public event DownloadDoneEventHadler DownloadStart;
+    public event DownloadDoneEventHandler DownloadDone;
 
-    public delegate void DownloadDoneEventHadler(DownLoadInfo info);
+    public event DownloadDoneEventHandler DownloadStart;
 
-    private DownLoadInfo _currentItem = new DownLoadInfo();
+    private readonly WebClient _client = new WebClient();
 
-    private List<string> failedDownloads = new List<string>();
+    private readonly Queue<DownLoadInfo> _queue = new Queue<DownLoadInfo>();
+
+    private readonly HashSet<string> _failedDownloads = new HashSet<string>();
 
     public DownloadManager()
     {
-      client.DownloadFileCompleted += client_DownloadFileCompleted;
-      client.UseDefaultCredentials = true;
-      client.Proxy.Credentials = CredentialCache.DefaultCredentials;
-    }
-
-    void client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-    {
-      if (e.Error == null)
-      {
-        try
-        {
-          if (File.Exists(_currentItem.TempFile))
-          {
-            string dir = Path.GetDirectoryName(_currentItem.Destinatiom);
-            if (!Directory.Exists(dir))
-              Directory.CreateDirectory(dir);
-            File.Copy(_currentItem.TempFile, _currentItem.Destinatiom, true);
-            File.Delete(_currentItem.TempFile);
-          }          
-          if (DownloadDone != null)
-            DownloadDone(_currentItem);
-
-        }
-        catch (Exception exception)
-        {
-          Log.Error("[MPEI] Failed to process {0}: {1}", _currentItem.Url, exception.Message);
-        }
-      }
-      else
-      {
-        Log.Warn("[MPEI] Failed to download file from {0}: {1}", _currentItem.Url, e.Error.Message);
-        
-        // don't download again in the same session..could add an expire but dont think its nessarcary
-        if (_currentItem.ItemType == DownLoadItemType.UpdateInfo || _currentItem.ItemType == DownLoadItemType.Logo)
-        {
-          if (!failedDownloads.Contains(_currentItem.Url))
-            failedDownloads.Add(_currentItem.Url);
-        }
-      }
-
-      // signal reload of the facade
-      if (queue.Count(d => d.ItemType == DownLoadItemType.UpdateInfo) == 0 && _currentItem.ItemType == DownLoadItemType.UpdateInfo)
-      {
-        DownloadDone(new DownLoadInfo() { ItemType = DownLoadItemType.UpdateInfoComplete });
-      }
-
-      // continue on with queue
-      if (queue.Count > 0)
-        StartDownload();
-    }
-    
-    public void Download(DownLoadInfo info)
-    {
-      if (failedDownloads.Contains(info.Url)) return;
-
-      queue.Enqueue(info);
-      if (!client.IsBusy)
-        StartDownload();
-    }
-
-    private void StartDownload()
-    {
-      try
-      {
-        if (client.IsBusy)
-          return;
-        _currentItem = queue.Dequeue();
-        _currentItem.TempFile = DownloadManager.GetTempFilename();
-        if (DownloadStart != null)
-          DownloadStart(_currentItem);
-        client.DownloadFileAsync(new Uri(_currentItem.Url), _currentItem.TempFile);
-      }
-      catch { }
-    }
-
-    public void Download(string source, string dest , DownLoadItemType type)
-    {
-      if (failedDownloads.Contains(source)) return;
-
-      Download(new DownLoadInfo()
-                 {
-                   Destinatiom = dest,
-                   ItemType = type,
-                   TempFile = DownloadManager.GetTempFilename(),
-                   Url = source
-                 });
-    }
-
-    public static string GetTempFilename()
-    {
-      string tempFile = string.Empty;
-      try
-      {
-        tempFile = Path.GetTempFileName();
-      }
-      catch (IOException)
-      {
-        // Most likely too many files in %temp%
-        tempFile = Config.GetFile(Config.Dir.Cache, string.Format(@"mpei-{0}", Guid.NewGuid()));
-      }
-      return tempFile;
+      _client.DownloadFileCompleted += client_DownloadFileCompleted;
+      _client.UseDefaultCredentials = true;
+      _client.Proxy.Credentials = CredentialCache.DefaultCredentials;
     }
 
     /// <summary>
-    /// Synchronous Download
+    /// Adds download to the download queue. If the queue is empty, download begins immediately.
     /// </summary>
-    public static bool DownloadFile(string url, string localFile)
+    public void AddToDownloadQueue(string source, string dest, DownLoadItemType type)
     {
-      WebClient webClient = new WebClient();
+      AddToDownloadQueue(new DownLoadInfo
+      {
+        Destination = dest,
+        ItemType = type,
+        TempFile = GetTempFilename(),
+        Url = source
+      });
+    }
 
+    /// <summary>
+    /// Adds download to the download queue. If the queue is empty, download begins immediately.
+    /// </summary>
+    public void AddToDownloadQueue(DownLoadInfo info)
+    {
+      lock (_failedDownloads)
+      {
+        if (_failedDownloads.Contains(info.Url))
+          return;
+      }
+
+      lock (_queue)
+      {
+        _queue.Enqueue(info); 
+      }
+
+      DownloadNextInQueue();
+    }
+
+    /// <summary>
+    /// Downloads the file from given URL immediately and returns after download is success/failed.
+    /// </summary>
+    public bool DownloadNow(string url, string localFile)
+    {
       try
       {
         Directory.CreateDirectory(Path.GetDirectoryName(localFile));
+
         Log.Debug("[MPEI] Downloading file from: {0}", url);
-        webClient.DownloadFile(url, localFile);
+
+        using (WebClient webClient = new WebClient())
+        {
+          webClient.DownloadFile(url, localFile);
+        }
+
         return true;
       }
-      catch (Exception)
+      catch (Exception e)
       {
-        Log.Error("[MPEI] Download failed from '{0}' to '{1}'", url, localFile);
-        try { if (File.Exists(localFile)) File.Delete(localFile); }
-        catch { }
+        Log.Error("[MPEI] Download failed from '{0}' to '{1}: {2}'", url, localFile, e.Message);
+
+        try
+        {
+          if (File.Exists(localFile))
+            File.Delete(localFile);
+        }
+        catch
+        {
+          // Ignore, nothing we can do
+        }
+
         return false;
       }
     }
 
-  }
+    public static string GetTempFilename()
+    {
+      try
+      {
+        return Path.GetTempFileName();
+      }
+      catch (IOException)
+      {
+        // This is ugly: most likely too many files in %temp%
+        return Config.GetFile(Config.Dir.Cache, string.Format(@"mpei-{0}", Guid.NewGuid()));
+      }
+    }
 
+    private void DownloadNextInQueue()
+    {
+      try
+      {
+        if (_client.IsBusy)
+          return;
+
+        DownLoadInfo info;
+
+        lock (_queue)
+        {
+          if (_queue.Count == 0)
+            return;
+
+          info = _queue.Dequeue(); 
+        }
+
+        info.TempFile = GetTempFilename();
+
+        if (DownloadStart != null)
+          DownloadStart(info);
+
+        _client.DownloadFileAsync(new Uri(info.Url), info.TempFile, info);
+      }
+      catch (Exception e)
+      {
+        Log.Error(e);
+      }
+    }
+
+    private void client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+    {
+      DownLoadInfo item = (DownLoadInfo) e.UserState;
+
+      if (e.Error == null)
+      {
+        try
+        {
+          if (File.Exists(item.TempFile))
+          {
+            string dir = Path.GetDirectoryName(item.Destination);
+            
+            if (!Directory.Exists(dir))
+              Directory.CreateDirectory(dir);
+
+            File.Copy(item.TempFile, item.Destination, true);
+            File.Delete(item.TempFile);
+          }          
+          
+          if (DownloadDone != null)
+            DownloadDone(item);
+
+        }
+        catch (Exception exception)
+        {
+          Log.Error("[MPEI] Failed to process {0}: {1}", item.Url, exception.Message);
+        }
+      }
+      else
+      {
+        Log.Warn("[MPEI] Failed to download file from {0}: {1}", item.Url, e.Error.Message);
+
+        // don't download again in the same session..could add an expire but dont think its necessary
+        if (item.ItemType == DownLoadItemType.UpdateInfo || item.ItemType == DownLoadItemType.Logo)
+        {
+          lock (_failedDownloads)
+          {
+            _failedDownloads.Add(item.Url); 
+          }
+        }
+      }
+
+      NotifyUpdateInfoCompleteIfRequired(item);
+
+      DownloadNextInQueue();
+    }
+
+    private void NotifyUpdateInfoCompleteIfRequired(DownLoadInfo item)
+    {
+      bool updateInfoComplete = false;
+
+      lock (_queue)
+      {
+        if (_queue.Count(d => d.ItemType == DownLoadItemType.UpdateInfo) == 0 &&
+            item.ItemType == DownLoadItemType.UpdateInfo)
+        {
+          updateInfoComplete = true;
+        }
+      }
+
+      if (DownloadDone != null && updateInfoComplete)
+        DownloadDone(new DownLoadInfo() { ItemType = DownLoadItemType.UpdateInfoComplete }); 
+    }
+
+    public void Dispose()
+    {
+      _client.Dispose();
+    }
+  }
 }

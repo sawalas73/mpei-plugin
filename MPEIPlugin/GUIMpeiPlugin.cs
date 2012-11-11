@@ -232,7 +232,7 @@ namespace MPEIPlugin
 
     void DownloadUpdateXmlInfo()
     {
-      _downloadManager.Download(UpdateIndexUrl, DownloadManager.GetTempFilename(), DownLoadItemType.IndexList);
+      _downloadManager.AddToDownloadQueue(UpdateIndexUrl, DownloadManager.GetTempFilename(), DownLoadItemType.IndexList);
       _setting.LastUpdate = DateTime.Now;
       _setting.Save();
 
@@ -247,17 +247,17 @@ namespace MPEIPlugin
       {
         case DownLoadItemType.IndexList:
           {
-            LoadExtensionIndex(info.Destinatiom);
+            LoadExtensionIndex(info.Destination);
             DownloadUpdateInfo();
           }
           break;
         case DownLoadItemType.UpdateInfo:
           {
-            MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(info.Destinatiom));
+            MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(info.Destination));
             MpeInstaller.KnownExtensions.Hide(_setting.ShowOnlyStable, _setting.ShowOnlyCompatible);
             
             Log.Debug("[MPEI] Update info loaded from {0}", info.Url);
-            File.Delete(info.Destinatiom);
+            File.Delete(info.Destination);
             GenerateProperty();
             MpeInstaller.Save();
             if (_setting.UpdateAll)
@@ -359,7 +359,7 @@ namespace MPEIPlugin
       onlineFiles = MpeInstaller.GetInitialUrlIndex(onlineFiles);
       foreach (string onlineFile in onlineFiles)
       {
-        _downloadManager.Download(onlineFile, DownloadManager.GetTempFilename(), DownLoadItemType.UpdateInfo);
+        _downloadManager.AddToDownloadQueue(onlineFile, DownloadManager.GetTempFilename(), DownLoadItemType.UpdateInfo);
       }
     }
 
@@ -919,7 +919,7 @@ namespace MPEIPlugin
       string extensionIndex = DownloadManager.GetTempFilename();
 
       cancelDownloadCheck = false;
-      bool success = DownloadManager.DownloadFile(UpdateIndexUrl, extensionIndex);
+      bool success = _downloadManager.DownloadNow(UpdateIndexUrl, extensionIndex);
       if (!success)
       {
         progressDialog.Close();
@@ -952,7 +952,7 @@ namespace MPEIPlugin
         GUIWindowManager.Process();
 
         string tempFile = DownloadManager.GetTempFilename();
-        if (DownloadManager.DownloadFile(onlineFile, tempFile))
+        if (_downloadManager.DownloadNow(onlineFile, tempFile))
         {
           Log.Info("[MPEI] Update info loaded from " + onlineFile);
           MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(tempFile));
@@ -1070,9 +1070,9 @@ namespace MPEIPlugin
     {
       string pak = packageClass.LocationFolder + packageClass.GeneralInfo.Id + ".mpe2";
       if (!File.Exists(pak) && !string.IsNullOrEmpty(packageClass.GeneralInfo.OnlineLocation))
-        _downloadManager.Download(new DownLoadInfo
+        _downloadManager.AddToDownloadQueue(new DownLoadInfo
         {
-          Destinatiom = pak,
+          Destination = pak,
           ItemType = DownLoadItemType.Extension,
           Package = packageClass,
           Url = packageClass.GeneralInfo.OnlineLocation
@@ -1718,9 +1718,9 @@ namespace MPEIPlugin
       }
       else
       {
-        _downloadManager.Download(new DownLoadInfo()
+        _downloadManager.AddToDownloadQueue(new DownLoadInfo()
                                     {
-                                      Destinatiom = tempFile,
+                                      Destination = tempFile,
                                       ItemType = DownLoadItemType.Logo,
                                       ListItem = listItem,
                                       //Package = packageClass,
@@ -1825,9 +1825,9 @@ namespace MPEIPlugin
         string url = packageClass.GeneralInfo.Params[ParamNamesConst.ONLINE_ICON].Value;
         if (!string.IsNullOrEmpty(url))
         {
-          _downloadManager.Download(new DownLoadInfo()
+          _downloadManager.AddToDownloadQueue(new DownLoadInfo()
                                       {
-                                        Destinatiom = logofile,
+                                        Destination = logofile,
                                         ItemType = DownLoadItemType.Logo,
                                         ListItem = listItem,
                                         Package = packageClass,
