@@ -852,9 +852,9 @@ public class Script
 Extensions also allows plugin developers to create their own GUI for settings which can save users from having to exit MediaPortal to change configuration.</ExtensionDescription>
     <VersionDescription>* Added support for MediaPortal 1.3 Default skins
 
-* Improved handling of background downloading, fixes crashes on some occasions. </VersionDescription>
+* Improvements to the Download Manager, should resolve some crashes reported.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.1.0.8.180.mpe1</OnlineLocation>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.1.0.9.185.mpe1</OnlineLocation>
     <ReleaseDate>2012-12-26T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin, extensions</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
