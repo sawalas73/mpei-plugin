@@ -127,6 +127,7 @@
     <Content Include="Resources\Languages\es.xml" />
     <Content Include="Resources\Languages\fr.xml" />
     <Content Include="Resources\Languages\nl.xml" />
+    <Content Include="Resources\Languages\sv.xml" />
     <Content Include="Resources\Skins\DefaultWide\Media\defaultExtension.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\defaultExtensionBig.png" />
     <Content Include="Resources\Skins\DefaultWide\Media\extension_action.png" />
@@ -139,6 +140,17 @@
     <Content Include="Resources\Skins\DefaultWide\myextensions2info.xml" />
     <Content Include="Resources\Skins\DefaultWide\myextensions2settings.xml" />
     <Content Include="Resources\Skins\DefaultWide\myextensions2slideshow.xml" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\Media\defaultExtension.png" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\Media\defaultExtensionBig.png" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\Media\extension_action.png" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\Media\extension_update.png" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\Media\status_editorpick.png" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\Media\status_new.png" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\Media\status_popular.png" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\myextensions2.xml" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\myextensions2info.xml" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\myextensions2settings.xml" />
+    <Content Include="Resources\Skins\DefaultWide_MP1.3\myextensions2slideshow.xml" />
     <Content Include="Resources\Skins\Default\Media\defaultExtension.png" />
     <Content Include="Resources\Skins\Default\Media\defaultExtensionBig.png" />
     <Content Include="Resources\Skins\Default\Media\extension_action.png" />
@@ -151,6 +163,17 @@
     <Content Include="Resources\Skins\Default\myextensions2info.xml" />
     <Content Include="Resources\Skins\Default\myextensions2settings.xml" />
     <Content Include="Resources\Skins\Default\myextensions2slideshow.xml" />
+    <Content Include="Resources\Skins\Default_MP1.3\Media\defaultExtension.png" />
+    <Content Include="Resources\Skins\Default_MP1.3\Media\defaultExtensionBig.png" />
+    <Content Include="Resources\Skins\Default_MP1.3\Media\extension_action.png" />
+    <Content Include="Resources\Skins\Default_MP1.3\Media\extension_update.png" />
+    <Content Include="Resources\Skins\Default_MP1.3\Media\status_editorpick.png" />
+    <Content Include="Resources\Skins\Default_MP1.3\Media\status_new.png" />
+    <Content Include="Resources\Skins\Default_MP1.3\Media\status_popular.png" />
+    <Content Include="Resources\Skins\Default_MP1.3\myextensions2.xml" />
+    <Content Include="Resources\Skins\Default_MP1.3\myextensions2info.xml" />
+    <Content Include="Resources\Skins\Default_MP1.3\myextensions2settings.xml" />
+    <Content Include="Resources\Skins\Default_MP1.3\myextensions2slideshow.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\VersionInfo.cs.tmpl" />
