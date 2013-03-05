@@ -70,6 +70,7 @@
   <string name="Exit">Exit</string>
   <string name="Enable">Enable</string>
   <string name="Error">Error</string>
+  <string name="ErrorExtensionInfo">Error getting Extension Info</string>
   <string name="ErrorLoadingSite">Error Loading Category list from the MediaPortal website</string>
   <string name="ErrorLoadingExtensionList">Error Loading Extension list for category</string>
   <string name="ErrorDownloadingExtensionIndex">Error downloading extension list from server</string>
