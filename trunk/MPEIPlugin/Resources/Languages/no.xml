@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Alle</string>
+  <string name="Actions">Handlinger</string>
+  <!--C-->
+  <string name="CategoryPlugins">Tillegg</string>
+  <string name="CategoryEmail">Epost</string>
+  <!--D-->
+  <string name="Download">Last Ned</string>
+  <string name="DateAdded">Dato lagt til</string>
+  <!--E-->
+  <string name="Error">Feil</string>
+  <!--F-->
+  <!--G-->
+  <!--H-->
+  <!--I-->
+  <!--L-->
+  <!--M-->
+  <!--N-->
+  <string name="No">Nei</string>
+  <!--O-->
+  <!--P-->
+  <!--R-->
+  <string name="Rating">Gi karakter</string>
+  <string name="ReleaseDate">Utgivelsesdato</string>
+  <string name="RestoreDefaults">Restore Defaults</string>
+  <!--S-->
+  <string name="Settings">Innstillinger</string>
+  <!--T-->
+  <string name="Timeout">Tiden gikk ut</string>
+  <!--U-->
+  <!--V-->
+  <string name="Votes">Stemmer</string>
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Ja</string>
+</resources>

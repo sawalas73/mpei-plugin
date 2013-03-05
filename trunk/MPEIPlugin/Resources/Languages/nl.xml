@@ -1,178 +1,154 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- MPEI Plugin translation file -->
-<!-- Dutch (NL) -->
-<!-- Note: English is the fallback for any strings not found in other languages -->
-<strings>
-
-  <!--  A  -->
-  <string Field="All">Alles</string>
-  <string Field="AlwaysCheckForUpdates">Controleer altijd op updates</string>
-  <string Field="Actions">Acties</string>
-  <string Field="ActionAdded">Actie is toegevoegd aan de wachtrij</string>
-  <string Field="ActionRemoved">Actie is verwijderd uit de wachtrij</string>
-  <string Field="AskForRestart">Deze actie zal MediaPortal opnieuw opstarten.\nWilt u verder gaan?</string>
-  <string Field="Author">Auteur</string>
-  <string Field="AllExtensions">All Extensies</string>
-
-  <!--  C  -->
-  <string Field="ChangeLog">Wijzigingen</string>
-  <string Field="Compatibility">Compatibiliteit</string>
-  <string Field="CategoryRecentlyAdded">Recent toegevoegde extensies</string>
-  <string Field="CategoryRecentlyUpdated">Recent bijgewerkte extensies</string>
-  <string Field="CategoryMostInstalled">Meest geïnstalleerde extensies</string>
-  <string Field="CategoryFeatured">Aanbevolen extensies</string>
-  <string Field="CategoryMostPopular">Populaire extensies</string>
-  <string Field="CategoryMostRated">Meest beoordeelde extensies</string>
-  <string Field="CategoryTopRated">Best beoordeelde extensies</string>
-  <string Field="CategoryMostReviewed">Meest gerecenseerde extensies</string>
-  <string Field="CategoryHTPC">HTPC</string>
-  <string Field="CategoryCustomization">Aanpassingen</string>
-  <string Field="CategoryBootScreens">Opstart schermen</string>
-  <string Field="CategoryTools">Gereedschappen</string>
-  <string Field="CategorySystemUtilities">Systeem/Hulpmiddelen</string>
-  <string Field="CategoryUtilities">Hulpmiddelen</string>
-  <string Field="CategoryDriversFirmware"><![CDATA[Drivers & Firmware]]></string>
-  <string Field="CategoryCodecs">Codecs</string>
-  <string Field="CategoryLogos">Logo's</string>
-  <string Field="CategoryTVChannels">TV Zenders</string>
-  <string Field="CategoryRadioStations">Radiostations</string>
-  <string Field="CategoryMediaInfo">Media Info</string>
-  <string Field="CategorySkins">Skins</string>
-  <string Field="CategoryWidescreen">Breedbeeld</string>
-  <string Field="CategoryNonWidescreen">Niet-Breedbeeld</string>
-  <string Field="CategoryPlugins">Plug-ins</string>
-  <string Field="CategoryWeather">Weer</string>
-  <string Field="CategoryOther">Overige</string>
-  <string Field="CategorySystem">Systeem</string>
-  <string Field="CategoryEmail">E-mail</string>
-  <string Field="CategoryPIMs">PIM's</string>
-  <string Field="CategoryHomeAutomation">Huis automatisering</string>
-  <string Field="CategoryPictures">Afbeeldingen</string>
-  <string Field="CategoryRadio">Radio</string>
-  <string Field="CategoryInputOutput"><![CDATA[In- & Uitvoer]]></string>
-  <string Field="CategoryOtherInputDevices">Overige invoer apparaten</string>
-  <string Field="CategoryExternalDisplays">Externe beeldschermen</string>
-  <string Field="CategoryRemotes">Afstandsbedieningen</string>
-  <string Field="CategoryNewsInfo"><![CDATA[Nieuws & Info]]></string>
-  <string Field="CategoryInfo">Info</string>
-  <string Field="CategoryNews">Nieuws</string>
-  <string Field="CategoryGamesFun"><![CDATA[Spel & Plezier]]></string>
-  <string Field="CategoryMusic">Muziek</string>
-  <string Field="CategoryTelevision">Televisie</string>
-  <string Field="CategoryMoviesVideos"><![CDATA[Films & Video's]]></string>
-
-  <!--  D  -->
-  <string Field="Download">Download</string>
-  <string Field="Downloads">Downloads</string>
-  <string Field="Disable">Uitschakelen</string>
-  <string Field="DateAdded">Datum toegevoegd</string>
-  <string Field="Description">Beschrijving</string>
-  <string Field="DownloadUpdates">Download Updates</string>
-  <string Field="DownloadingUpdates">Updates aan het downloaden</string>
-  <string Field="DownloadingExtensionIndex">Downloaden extensie index</string>
-  <string Field="DownloadingExtension">Bezig met het downloaden van de extensie update definities</string>
-  <string Field="DownloadProgress">Download voortgang [{0}/{1}] {2}%</string>
-
-  <!--  E  -->
-  <string Field="Exit">Afsluiten</string>
-  <string Field="Enable">Inschakelen</string>
-  <string Field="Error">Fout</string>
-  <string Field="ErrorLoadingSite">Er is een fout opgetreden tijdens het laden van de Categorielijst van de MediaPortal website</string>
-  <string Field="ErrorLoadingExtensionList">Er is een fout opgetreden tijdens het laden van de Extensielijst van de geselecteerde categorie</string>
-  <string Field="ErrorDownloadingExtensionIndex">Er is een fout opgetreden tijdens het laden van de Extensielijst van de server</string>
-
-  <!--  F  -->
-
-  <!--  G  -->
-  <string Field="GetCategories">Categorieën ophalen</string>
-  <string Field="GetExtensionInfo">Extensie informatie ophalen</string>
-
-  <!--  H  -->
-  <string Field="Hits">Hits</string>
-
-  <!--  I  -->
-  <string Field="Id">Id</string>
-  <string Field="Install">Installeren</string>
-  <string Field="InstalledExtensions">Geïnstalleerde Extensies</string>
-  <string Field="InvalidUrl">Ongeldige Url, extensie kan niet worden gedownload!</string>
-
-  <!--  L  -->
-
-  <!--  M  -->
-  <string Field="MPOnlineExtensions">MP Website Extensies</string>
-  
-  <!--  N -->
-  <string Field="Name">Extensies</string>
-  <string Field="NameInfo">Extensie informatie</string>
-  <string Field="NameSettings">Extensie instellingen</string>
-  <string Field="NeverCheckForUpdates">Nooit op updates controleren</string>
-  <string Field="NewExtensions">Nieuwe Extensies</string>
-  <string Field="NewUpdates">Nieuwe updates</string>
-  <string Field="NewVersion">Nieuwe versie</string>
-  <string Field="Notification">Herinnering</string>
-  <string Field="NotificationWarning">Er staan nog taken gereed.\nHerstarten en nu uitvoeren?</string>
-  <string Field="NotificationMessage">Wilt u MediaPortal herstarten\nen de gereedstaande taken uitvoeren?</string>
-  <string Field="No">Nee</string>
-  <string Field="NoScreenshots">Er zijn geen schermafbeeldingen beschikbaar.</string>
-  
-  <!--  O  -->
-  <string Field="OnlineExtensions">Online Extensies</string>
-
-  <!--  P  -->
-  <string Field="Plugin">Plug-in</string>
-
-  <!--  R  -->
-  <string Field="Rating">Waardering</string>
-  <string Field="Revoke">Ongedaan maken</string>
-  <string Field="ReleaseDate">Release datum</string>
-  <string Field="Restart">Herstart</string>
-  <string Field="Rotate">Draaien</string>
-  <string Field="RevokeLastAction">Laatste actie ongedaan maken</string>
-  <string Field="RestartNow">Deze taak vraagt om een herstart\nvan MediaPortal. Wilt u nu herstarten?\nAnders zal de taak in de wachtrij geplaatst worden.</string>
-  <string Field="RestoreDefaultValue">Standaardwaarde herstellen</string>
-  <string Field="RestoreDefaults">Instellingen herstellen</string>
-  <string Field="RestoreAllDefaults">Alle instellingen herstellen</string>
-
-  <!--  S  -->
-  <string Field="Sections">Secties</string>
-  <string Field="Settings">Instellingen</string>
-  <string Field="ShowChangelogs">Wijzigingen weergeven</string>
-  <string Field="ShowSreenshots">Schermafdrukken weergeven</string>
-  <string Field="SelectVersionToInstall">Selecteer de verie om te (her)installeren</string>
-  <string Field="SelectVersion">Selecteer versie</string>
-  <string Field="StartSlideshow">Diashow starten</string>
-  <string Field="Screenshots">Schermafbeeldingen</string>
-  <string Field="Status">Status</string>
-  <string Field="SettingPluginEnabledName">Plug-in ingeschakeld</string>
-  <string Field="SettingPluginEnabledDescription">Schakel deze instelling in of uit om de Extensie plug-in te laden tijdens het opstarten van MediaPortal.</string>
-  <string Field="SettingListedHomeName">Weergeven in hoofdmenu</string>
-  <string Field="SettingListedHomeDescription">Schakel deze instelling in om de Extensie plug-in weer te geven in het hoofdmenu.</string>
-  <string Field="SettingListedPluginsName">Weergeven in plug-in menu</string>
-  <string Field="SettingListedPluginsDescription">Schakel deze instelling in om de Extensie plug-in weer te geven in het plug-in menu.</string>
-  <string Field="SettingsValidationInt">De ingevoerde waarde moet een nummer zijn.</string>
-  <string Field="SettingsValidationIntMin">De ingevoerde waarde moet groter dan of gelijk zijn aan {0}.</string>
-  <string Field="SettingsValidationIntMax">De ingevoerde waarde moet kleiner dan of gelijk zijn aan {0}.</string>
-
-  <!--  T  -->
-  <string Field="Timeout">Time-out</string>
-
-  <!--  U  -->
-  <string Field="Update">Update</string>
-  <string Field="UpdateAvailable">Update beschikbaar</string>
-  <string Field="UpdateAll">Update alles</string>
-  <string Field="Updates">Updates</string>
-  <string Field="Uninstall">Deïnstalleren</string>
-  <string Field="UnKnownFileType">Installatie is niet mogelijk\nOnbekend bestandsformaat gevonden!</string>
-  <string Field="UseSilent">Extensie stil installeren?</string>
-  
-  <!--  V  -->
-  <string Field="Views">Weergave</string>
-  <string Field="Version">Versie</string>
-  <string Field="Votes">Stemmen</string>
-
-  <!--  W  -->
-
-  <!--  Y  -->
-  <string Field="Yes">Ja</string>
-
-</strings>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Alles</string>
+  <string name="AlwaysCheckForUpdates">Controleer altijd op updates</string>
+  <string name="Actions">Acties</string>
+  <string name="ActionAdded">Actie is toegevoegd aan de wachtrij</string>
+  <string name="ActionRemoved">Actie is verwijderd uit de wachtrij</string>
+  <string name="AskForRestart">Deze actie zal MediaPortal opnieuw opstarten.\nWilt u verder gaan?</string>
+  <string name="Author">Auteur</string>
+  <string name="AllExtensions">All Extensies</string>
+  <!--C-->
+  <string name="ChangeLog">Wijzigingen</string>
+  <string name="Compatibility">Compatibiliteit</string>
+  <string name="CategoryRecentlyAdded">Recent toegevoegde extensies</string>
+  <string name="CategoryRecentlyUpdated">Recent bijgewerkte extensies</string>
+  <string name="CategoryMostInstalled">Meest geÃ¯nstalleerde extensies</string>
+  <string name="CategoryFeatured">Aanbevolen extensies</string>
+  <string name="CategoryMostPopular">Populaire extensies</string>
+  <string name="CategoryMostRated">Meest beoordeelde extensies</string>
+  <string name="CategoryTopRated">Best beoordeelde extensies</string>
+  <string name="CategoryMostReviewed">Meest gerecenseerde extensies</string>
+  <string name="CategoryHTPC">HTPC</string>
+  <string name="CategoryCustomization">Aanpassingen</string>
+  <string name="CategoryBootScreens">Opstart schermen</string>
+  <string name="CategoryTools">Gereedschappen</string>
+  <string name="CategorySystemUtilities">Systeem/Hulpmiddelen</string>
+  <string name="CategoryUtilities">Hulpmiddelen</string>
+  <string name="CategoryDriversFirmware"><![CDATA[Drivers & Firmware]]></string>
+  <string name="CategoryCodecs">Codecs</string>
+  <string name="CategoryLogos">Logo\'s</string>
+  <string name="CategoryTVChannels">TV Zenders</string>
+  <string name="CategoryRadioStations">Radiostations</string>
+  <string name="CategoryMediaInfo">Media Info</string>
+  <string name="CategorySkins">Skins</string>
+  <string name="CategoryWidescreen">Breedbeeld</string>
+  <string name="CategoryNonWidescreen">Niet-Breedbeeld</string>
+  <string name="CategoryPlugins">Plug-ins</string>
+  <string name="CategoryWeather">Weer</string>
+  <string name="CategoryOther">Overige</string>
+  <string name="CategorySystem">Systeem</string>
+  <string name="CategoryEmail">E-mail</string>
+  <string name="CategoryPIMs">PIM\'s</string>
+  <string name="CategoryHomeAutomation">Huis automatisering</string>
+  <string name="CategoryPictures">Afbeeldingen</string>
+  <string name="CategoryRadio">Radio</string>
+  <string name="CategoryInputOutput"><![CDATA[In- & Uitvoer]]></string>
+  <string name="CategoryOtherInputDevices">Overige invoer apparaten</string>
+  <string name="CategoryExternalDisplays">Externe beeldschermen</string>
+  <string name="CategoryRemotes">Afstandsbedieningen</string>
+  <string name="CategoryNewsInfo"><![CDATA[Nieuws & Info]]></string>
+  <string name="CategoryInfo">Info</string>
+  <string name="CategoryNews">Nieuws</string>
+  <string name="CategoryGamesFun"><![CDATA[Spel & Plezier]]></string>
+  <string name="CategoryMusic">Muziek</string>
+  <string name="CategoryTelevision">Televisie</string>
+  <string name="CategoryMoviesVideos"><![CDATA[Films & Video's]]></string>
+  <!--D-->
+  <string name="Download">Download</string>
+  <string name="Downloads">Downloads</string>
+  <string name="Disable">Uitschakelen</string>
+  <string name="DateAdded">Datum toegevoegd</string>
+  <string name="Description">Beschrijving</string>
+  <string name="DownloadUpdates">Download Updates</string>
+  <string name="DownloadingUpdates">Updates aan het downloaden</string>
+  <string name="DownloadingExtensionIndex">Downloaden extensie index</string>
+  <string name="DownloadingExtension">Bezig met het downloaden van de extensie update definities</string>
+  <string name="DownloadProgress">Download voortgang [{0}/{1}] {2}%</string>
+  <!--E-->
+  <string name="Exit">Afsluiten</string>
+  <string name="Enable">Inschakelen</string>
+  <string name="Error">Fout</string>
+  <string name="ErrorLoadingSite">Er is een fout opgetreden tijdens het laden van de Categorielijst van de MediaPortal website</string>
+  <string name="ErrorLoadingExtensionList">Er is een fout opgetreden tijdens het laden van de Extensielijst van de geselecteerde categorie</string>
+  <string name="ErrorDownloadingExtensionIndex">Er is een fout opgetreden tijdens het laden van de Extensielijst van de server</string>
+  <!--F-->
+  <!--G-->
+  <string name="GetCategories">CategorieÃ«n ophalen</string>
+  <string name="GetExtensionInfo">Extensie informatie ophalen</string>
+  <!--H-->
+  <string name="Hits">Hits</string>
+  <!--I-->
+  <string name="Id">Id</string>
+  <string name="Install">Installeren</string>
+  <string name="InstalledExtensions">GeÃ¯nstalleerde Extensies</string>
+  <string name="InvalidUrl">Ongeldige Url, extensie kan niet worden gedownload!</string>
+  <!--L-->
+  <!--M-->
+  <string name="MPOnlineExtensions">MP Website Extensies</string>
+  <!--N-->
+  <string name="Name">Extensies</string>
+  <string name="NameInfo">Extensie informatie</string>
+  <string name="NameSettings">Extensie instellingen</string>
+  <string name="NeverCheckForUpdates">Nooit op updates controleren</string>
+  <string name="NewExtensions">Nieuwe Extensies</string>
+  <string name="NewUpdates">Nieuwe updates</string>
+  <string name="NewVersion">Nieuwe versie</string>
+  <string name="Notification">Herinnering</string>
+  <string name="NotificationWarning">Er staan nog taken gereed.\nHerstarten en nu uitvoeren?</string>
+  <string name="NotificationMessage">Wilt u MediaPortal herstarten\nen de gereedstaande taken uitvoeren?</string>
+  <string name="No">Nee</string>
+  <string name="NoScreenshots">Er zijn geen schermafbeeldingen beschikbaar.</string>
+  <!--O-->
+  <string name="OnlineExtensions">Online Extensies</string>
+  <!--P-->
+  <string name="Plugin">Plug-in</string>
+  <!--R-->
+  <string name="Rating">Waardering</string>
+  <string name="Revoke">Ongedaan maken</string>
+  <string name="ReleaseDate">Release datum</string>
+  <string name="Restart">Herstart</string>
+  <string name="Rotate">Draaien</string>
+  <string name="RevokeLastAction">Laatste actie ongedaan maken</string>
+  <string name="RestartNow">Deze taak vraagt om een herstart\nvan MediaPortal. Wilt u nu herstarten?\nAnders zal de taak in de wachtrij geplaatst worden.</string>
+  <string name="RestoreDefaultValue">Standaardwaarde herstellen</string>
+  <string name="RestoreDefaults">Instellingen herstellen</string>
+  <string name="RestoreAllDefaults">Alle instellingen herstellen</string>
+  <!--S-->
+  <string name="Sections">Secties</string>
+  <string name="Settings">Instellingen</string>
+  <string name="ShowChangelogs">Wijzigingen weergeven</string>
+  <string name="ShowSreenshots">Schermafdrukken weergeven</string>
+  <string name="SelectVersionToInstall">Selecteer de verie om te (her)installeren</string>
+  <string name="SelectVersion">Selecteer versie</string>
+  <string name="StartSlideshow">Diashow starten</string>
+  <string name="Screenshots">Schermafbeeldingen</string>
+  <string name="Status">Status</string>
+  <string name="SettingPluginEnabledName">Plug-in ingeschakeld</string>
+  <string name="SettingPluginEnabledDescription">Schakel deze instelling in of uit om de Extensie plug-in te laden tijdens het opstarten van MediaPortal.</string>
+  <string name="SettingListedHomeName">Weergeven in hoofdmenu</string>
+  <string name="SettingListedHomeDescription">Schakel deze instelling in om de Extensie plug-in weer te geven in het hoofdmenu.</string>
+  <string name="SettingListedPluginsName">Weergeven in plug-in menu</string>
+  <string name="SettingListedPluginsDescription">Schakel deze instelling in om de Extensie plug-in weer te geven in het plug-in menu.</string>
+  <string name="SettingsValidationInt">De ingevoerde waarde moet een nummer zijn.</string>
+  <string name="SettingsValidationIntMin">De ingevoerde waarde moet groter dan of gelijk zijn aan {0}.</string>
+  <string name="SettingsValidationIntMax">De ingevoerde waarde moet kleiner dan of gelijk zijn aan {0}.</string>
+  <!--T-->
+  <string name="Timeout">Time-out</string>
+  <!--U-->
+  <string name="Update">Update</string>
+  <string name="UpdateAvailable">Update beschikbaar</string>
+  <string name="UpdateAll">Update alles</string>
+  <string name="Updates">Updates</string>
+  <string name="Uninstall">DeÃ¯nstalleren</string>
+  <string name="UnKnownFileType">Installatie is niet mogelijk\nOnbekend bestandsformaat gevonden!</string>
+  <string name="UseSilent">Extensie stil installeren?</string>
+  <!--V-->
+  <string name="Views">Weergave</string>
+  <string name="Version">Versie</string>
+  <string name="Votes">Stemmen</string>
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Ja</string>
+</resources>

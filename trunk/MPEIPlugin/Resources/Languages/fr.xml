@@ -1,80 +1,68 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- MPEI Plugin translation file -->
-<!-- French -->
-<!-- Note: English is the fallback for any strings not found in other languages -->
-<strings>
-
-  <!--  A  -->
-  <string Field="All">Tout</string>
-  <string Field="AlwaysCheckForUpdates">Toujours vérifier les MAJ</string>
-  <string Field="Actions">Actions</string>
-  <string Field="ActionAdded">l'action a été ajouter en fin de liste</string>
-  <string Field="ActionRemoved">l'action a été supprimer de la liste</string>
-
-  <!--  C  -->
-  <string Field="ChangeLog">Change Log</string>
-
-  <!--  D  -->
-  <string Field="Download">Télécharger</string>
-
-  <!--  E  -->
-  <string Field="Exit">Quitter</string>
-
-  <!--  F  -->
-
-  <!--  G  -->
-
-  <!--  H  -->
-
-  <!--  I  -->
-  <string Field="Install">Installer</string>
-  <string Field="InstalledExtensions">Extensions installées</string>
-
-  <!--  L  -->
-
-  <!--  M  -->
-
-  <!--  N -->
-  <string Field="Name">Extensions</string>
-  <string Field="NeverCheckForUpdates">Jamais vérifier les mise à jours</string>
-  <string Field="NewExtensions">Nouvelles Extensions</string>
-  <string Field="NewUpdates">Extensions Mise à jour</string>
-  <string Field="Notification">Notification</string>
-
-  <!--  O  -->
-  <string Field="OnlineExtensions">Extensions en ligne</string>
-
-  <!--  P  -->
-
-  <!--  R  -->
-  <string Field="Restart">Redémarrer</string>
-  <string Field="Rotate">Rotation</string>
-  <string Field="RevokeLastAction">Annuler la dernier action</string>
-
-  <!--  S  -->
-  <string Field="Sections">Sections</string>
-  <string Field="Settings">Paramétres</string>
-  <string Field="ShowChangelogs">Afficher changelogs</string>
-  <string Field="ShowSreenshots">Voir screenshots</string>
-  <string Field="SelectVersionToInstall">Choisir la version à (Re)Installer</string>
-  <string Field="SelectVersion">Choisir la version</string>
-  <string Field="StartSlideshow">Démarrer le diaporama</string>
-
-  <!--  T  -->
-
-
-  <!--  U  -->
-  <string Field="Update">Mettre à jours</string>
-  <string Field="UpdateAll">Tout mettre à jour</string>
-  <string Field="Updates">Mettres à jours</string>
-  <string Field="Uninstall">Désinstaller</string>
-
-  <!--  V  -->
-  <string Field="Views">Vues</string>
-
-  <!--  W  -->
-
-  <!--  Y  -->
-
-
-</strings>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Tout</string>
+  <string name="AlwaysCheckForUpdates">Toujours vÃ©rifier les MAJ</string>
+  <string name="Actions">Actions</string>
+  <string name="ActionAdded">l\'action a Ã©tÃ© ajouter en fin de liste</string>
+  <string name="ActionRemoved">l\'action a Ã©tÃ© supprimer de la liste</string>
+  <!--C-->
+  <string name="ChangeLog">Change Log</string>
+  <string name="CategoryMediaInfo">Info mÃ©dia</string>
+  <string name="CategoryEmail">Email</string>
+  <string name="CategoryMusic">Musique</string>
+  <!--D-->
+  <string name="Download">TÃ©lÃ©charger</string>
+  <string name="DateAdded">AjoutÃ© le</string>
+  <!--E-->
+  <string name="Exit">Quitter</string>
+  <string name="Error">Erreur</string>
+  <!--F-->
+  <!--G-->
+  <!--H-->
+  <!--I-->
+  <string name="Install">Installer</string>
+  <string name="InstalledExtensions">Extensions installÃ©es</string>
+  <!--L-->
+  <!--M-->
+  <!--N-->
+  <string name="Name">Extensions</string>
+  <string name="NeverCheckForUpdates">Jamais vÃ©rifier les mise Ã  jours</string>
+  <string name="NewExtensions">Nouvelles Extensions</string>
+  <string name="NewUpdates">Extensions Mise Ã  jour</string>
+  <string name="Notification">Notification</string>
+  <string name="No">Non</string>
+  <!--O-->
+  <string name="OnlineExtensions">Extensions en ligne</string>
+  <!--P-->
+  <!--R-->
+  <string name="Rating">Note</string>
+  <string name="ReleaseDate">Date de Sortie</string>
+  <string name="Restart">RedÃ©marrer</string>
+  <string name="Rotate">Rotation</string>
+  <string name="RevokeLastAction">Annuler la dernier action</string>
+  <string name="RestoreDefaults">Restore Defaults</string>
+  <!--S-->
+  <string name="Sections">Sections</string>
+  <string name="Settings">ParamÃ©tres</string>
+  <string name="ShowChangelogs">Afficher changelogs</string>
+  <string name="ShowSreenshots">Voir screenshots</string>
+  <string name="SelectVersionToInstall">Choisir la version Ã  (Re)Installer</string>
+  <string name="SelectVersion">Choisir la version</string>
+  <string name="StartSlideshow">DÃ©marrer le diaporama</string>
+  <string name="SettingPluginEnabledName">Plugin activÃ©</string>
+  <string name="SettingListedHomeName">ListÃ© dans Home</string>
+  <string name="SettingListedPluginsName">ListÃ© dans My Plugins</string>
+  <!--T-->
+  <string name="Timeout">Temps expirÃ©</string>
+  <!--U-->
+  <string name="Update">Mettre Ã  jours</string>
+  <string name="UpdateAll">Tout mettre Ã  jour</string>
+  <string name="Updates">Mettres Ã  jours</string>
+  <string name="Uninstall">DÃ©sinstaller</string>
+  <!--V-->
+  <string name="Views">Vues</string>
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Oui</string>
+</resources>

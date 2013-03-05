@@ -1,86 +1,78 @@
-﻿<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- MPEI Plugin translation file -->
-<!-- Spanish (ES) -->
-<!-- Note: English is the fallback for any strings not found in other languages -->
-<strings>
-
-  <!--  A  -->
-  <string Field="All">Todas</string>
-  <string Field="AlwaysCheckForUpdates">Buscar siempre actualizaciones</string>
-  <string Field="Actions">Acciones</string>
-  <string Field="ActionAdded">Acción añadida a la cola</string>
-  <string Field="ActionRemoved">Acción borrada de la cola</string>
-  <string Field="AskForRestart">Esta operación reiniciará MediaPortal.\n¿Desea continuar?</string>
-
-  <!--  C  -->
-  <string Field="ChangeLog">Lista de cambios</string>
-
-  <!--  D  -->
-  <string Field="Download">Descargar</string>
-
-  <!--  E  -->
-  <string Field="Exit">Salir</string>
-
-  <!--  F  -->
-
-  <!--  G  -->
-
-  <!--  H  -->
-
-  <!--  I  -->
-  <string Field="Install">Instalar</string>
-  <string Field="InstalledExtensions">Extensiones instaladas</string>
-
-  <!--  L  -->
-
-  <!--  M  -->
-
-  <!--  N -->
-  <string Field="Name">Extensiones</string>
-  <string Field="NeverCheckForUpdates">No buscar actualizaciones</string>
-  <string Field="NewExtensions">Nuevas extensiones</string>
-  <string Field="NewUpdates">Nuevas actualizaciones</string>
-  <string Field="Notification">Aviso</string>
-  <string Field="NotificationWarning">Todavía hay tareas pendientes.\n¿Reiniciar y ejectuar ahora?</string>
-  <string Field="NotificationMessage">¿Desea reiniciar MediaPortal \ny ejecutar las tarears pendientes?</string>
-  
-  <!--  O  -->
-  <string Field="OnlineExtensions">Extensiones Online</string>
-
-  <!--  P  -->
-
-  <!--  R  -->
-  <string Field="Restart">Reiniciar</string>
-  <string Field="Rotate">Rotar</string>
-  <string Field="RevokeLastAction">Deshacer última acción</string>
-  <string Field="RestartNow">Esta operación requiere reiniciar \nMediaPortal. ¿Desea reiniciar ahora?\nSi no, la tarea se añadirá a la cola.</string>
-
-  <!--  S  -->
-  <string Field="Sections">Secciones</string>
-  <string Field="Settings">Configuración</string>
-  <string Field="ShowChangelogs">Mostrar cambios</string>
-  <string Field="ShowSreenshots">Mostrar capturas de pantalla</string>
-  <string Field="SelectVersionToInstall">Seleccionar versión a (Re)Instalar</string>
-  <string Field="SelectVersion">Seleccionar versión</string>
-  <string Field="StartSlideshow">Iniciar pase de diapositivas</string>
-
-  <!--  T  -->
-
-
-  <!--  U  -->
-  <string Field="Update">Actualizar</string>
-  <string Field="UpdateAll">Actualizar todas</string>
-  <string Field="Updates">Actualizadas</string>
-  <string Field="Uninstall">Desinstalar</string>
-  <string Field="UnKnownFileType">Error en la instalación\n¡Tipo de archivo desconocido detectado!</string>
-  <string Field="UseSilent">¿Instalar extensiones silenciosamente?</string>
-  
-  <!--  V  -->
-  <string Field="Views">vistas</string>
-
-  <!--  W  -->
-
-  <!--  Y  -->
-
-
-</strings>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Todas</string>
+  <string name="AlwaysCheckForUpdates">Buscar siempre actualizaciones</string>
+  <string name="Actions">Acciones</string>
+  <string name="ActionAdded">Acción añadida a la cola</string>
+  <string name="ActionRemoved">Acción borrada de la cola</string>
+  <string name="AskForRestart">Esta operación reiniciará MediaPortal.\n¿Desea continuar?</string>
+  <!--C-->
+  <string name="ChangeLog">Lista de cambios</string>
+  <string name="CategoryMediaInfo">Información de Medio</string>
+  <string name="CategoryPlugins">Plugins</string>
+  <string name="CategoryEmail">Email</string>
+  <string name="CategoryNews">News</string>
+  <string name="CategoryMusic">Music</string>
+  <!--D-->
+  <string name="Download">Descargar</string>
+  <string name="DateAdded">Añadido</string>
+  <!--E-->
+  <string name="Exit">Salir</string>
+  <string name="Error">Error</string>
+  <!--F-->
+  <!--G-->
+  <!--H-->
+  <!--I-->
+  <string name="Install">Instalar</string>
+  <string name="InstalledExtensions">Extensiones instaladas</string>
+  <!--L-->
+  <!--M-->
+  <!--N-->
+  <string name="Name">Extensiones</string>
+  <string name="NeverCheckForUpdates">No buscar actualizaciones</string>
+  <string name="NewExtensions">Nuevas extensiones</string>
+  <string name="NewUpdates">Nuevas actualizaciones</string>
+  <string name="Notification">Aviso</string>
+  <string name="NotificationWarning">Todavía hay tareas pendientes.\n¿Reiniciar y ejectuar ahora?</string>
+  <string name="NotificationMessage">¿Desea reiniciar MediaPortal \ny ejecutar las tarears pendientes?</string>
+  <string name="No">No</string>
+  <!--O-->
+  <string name="OnlineExtensions">Extensiones Online</string>
+  <!--P-->
+  <string name="Plugin">Plugin</string>
+  <!--R-->
+  <string name="Rating">Rating</string>
+  <string name="ReleaseDate">Fecha de estreno</string>
+  <string name="Restart">Reiniciar</string>
+  <string name="Rotate">Rotar</string>
+  <string name="RevokeLastAction">Deshacer última acción</string>
+  <string name="RestartNow">Esta operación requiere reiniciar \nMediaPortal. ¿Desea reiniciar ahora?\nSi no, la tarea se añadirá a la cola.</string>
+  <string name="RestoreDefaults">Restaurar valores Por defecto</string>
+  <!--S-->
+  <string name="Sections">Secciones</string>
+  <string name="Settings">Configuración</string>
+  <string name="ShowChangelogs">Mostrar cambios</string>
+  <string name="ShowSreenshots">Mostrar capturas de pantalla</string>
+  <string name="SelectVersionToInstall">Seleccionar versión a (Re)Instalar</string>
+  <string name="SelectVersion">Seleccionar versión</string>
+  <string name="StartSlideshow">Iniciar pase de diapositivas</string>
+  <string name="SettingPluginEnabledName">Plugin Activado</string>
+  <string name="SettingListedHomeName">Listado en Home</string>
+  <string name="SettingListedPluginsName">Listado en Mis Plugins</string>
+  <!--T-->
+  <string name="Timeout">Timeout</string>
+  <!--U-->
+  <string name="Update">Actualizar</string>
+  <string name="UpdateAll">Actualizar todas</string>
+  <string name="Updates">Actualizadas</string>
+  <string name="Uninstall">Desinstalar</string>
+  <string name="UnKnownFileType">Error en la instalación\n¡Tipo de archivo desconocido detectado!</string>
+  <string name="UseSilent">¿Instalar extensiones silenciosamente?</string>
+  <!--V-->
+  <string name="Views">vistas</string>
+  <string name="Votes">Votes</string>
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Si</string>
+</resources>
