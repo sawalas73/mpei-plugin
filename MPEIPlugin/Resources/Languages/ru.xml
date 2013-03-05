@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Все</string>
+  <string name="Actions">Действия</string>
+  <!--C-->
+  <string name="CategoryMediaInfo">Медиаинформация</string>
+  <!--D-->
+  <string name="Download">Скачать</string>
+  <string name="DateAdded">Добавлено</string>
+  <!--E-->
+  <string name="Error">Ошибка</string>
+  <!--F-->
+  <!--G-->
+  <!--H-->
+  <!--I-->
+  <!--L-->
+  <!--M-->
+  <!--N-->
+  <string name="No">Нет</string>
+  <!--O-->
+  <!--P-->
+  <!--R-->
+  <string name="Rating">Рейтинг</string>
+  <string name="ReleaseDate">Дата Релиза</string>
+  <string name="RestoreDefaults">Восстановить Умолчания</string>
+  <!--S-->
+  <!--T-->
+  <string name="Timeout">Время истекло</string>
+  <!--U-->
+  <!--V-->
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Да</string>
+</resources>

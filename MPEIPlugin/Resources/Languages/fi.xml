@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Kaikki</string>
+  <string name="Actions">Toimenpiteet</string>
+  <!--C-->
+  <string name="CategoryMediaInfo">Median tiedot</string>
+  <!--D-->
+  <string name="Download">Lataa</string>
+  <string name="DateAdded">Lisäyspäivä</string>
+  <!--E-->
+  <string name="Error">Virhe</string>
+  <!--F-->
+  <!--G-->
+  <!--H-->
+  <!--I-->
+  <!--L-->
+  <!--M-->
+  <!--N-->
+  <string name="No">Ei</string>
+  <!--O-->
+  <!--P-->
+  <!--R-->
+  <string name="Rating">Arvosana</string>
+  <string name="ReleaseDate">Julkaisupäivä</string>
+  <string name="RestoreDefaults">Palauta oletukset</string>
+  <!--S-->
+  <string name="Settings">Asetukset</string>
+  <!--T-->
+  <string name="Timeout">Aikakatkaisu</string>
+  <!--U-->
+  <string name="Update">Päivitä</string>
+  <!--V-->
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Kyllä</string>
+</resources>

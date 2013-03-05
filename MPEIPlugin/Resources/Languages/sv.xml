@@ -1,178 +1,154 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- MPEI Plugin translation file -->
-<!-- Svenska -->
-<!-- Note: English is the fallback for any strings not found in other languages -->
-<strings>
-
-  <!--  A  -->
-  <string Field="All">Alla</string>
-  <string Field="AlwaysCheckForUpdates">Leta alltid efter uppdateringar</string>
-  <string Field="Actions">Händelser</string>
-  <string Field="ActionAdded">Händelsen lades i kö</string>
-  <string Field="ActionRemoved">Händelsen togs bort från kön</string>
-  <string Field="AskForRestart">Detta kommer att starta om MediaPortal.\nVill du fortsätta?</string>
-  <string Field="Author">Upphovsman</string>
-  <string Field="AllExtensions">Alla Extension-paket</string>
-
-  <!--  C  -->
-  <string Field="ChangeLog">Lista över ändringar</string>
-  <string Field="Compatibility">Kompabilitet</string>
-  <string Field="CategoryRecentlyAdded">Nyligen tillagda Extension-paket</string>
-  <string Field="CategoryRecentlyUpdated">Nyligen uppdaterade Extension-paket</string>
-  <string Field="CategoryMostInstalled">De mest installerade Extension-paketen</string>
-  <string Field="CategoryFeatured">Extension-paket i rampljuset</string>
-  <string Field="CategoryMostPopular">De mest populära Extension-paketen</string>
-  <string Field="CategoryMostRated">Oftast betygsatta Extension-paket</string>
-  <string Field="CategoryTopRated">Högst betygsatta Extension-paket</string>
-  <string Field="CategoryMostReviewed">Oftast recenserade Extension-paket</string>
-  <string Field="CategoryHTPC">HTPC</string>
-  <string Field="CategoryCustomization">Modifiering</string>
-  <string Field="CategoryBootScreens">Boot-skärmar</string>
-  <string Field="CategoryTools">Verktyg</string>
-  <string Field="CategorySystemUtilities">System/Tillbehör</string>
-  <string Field="CategoryUtilities">Tillbehör</string>
-  <string Field="CategoryDriversFirmware"><![CDATA[Drivrutiner & Firmware]]></string>
-  <string Field="CategoryCodecs">Codecs</string>
-  <string Field="CategoryLogos">Logotyper</string>
-  <string Field="CategoryTVChannels">TV-Kanaler</string>
-  <string Field="CategoryRadioStations">Radio-kanaler</string>
-  <string Field="CategoryMediaInfo">Media-Info</string>
-  <string Field="CategorySkins">Skin</string>
-  <string Field="CategoryWidescreen">Widescreen</string>
-  <string Field="CategoryNonWidescreen">Ej Widescreen</string>
-  <string Field="CategoryPlugins">Insticksprogram</string>
-  <string Field="CategoryWeather">Väder</string>
-  <string Field="CategoryOther">Övrigt</string>
-  <string Field="CategorySystem">System</string>
-  <string Field="CategoryEmail">E-mail</string>
-  <string Field="CategoryPIMs">PIMs</string>
-  <string Field="CategoryHomeAutomation">Automatisering av hemmet</string>
-  <string Field="CategoryPictures">Bilder</string>
-  <string Field="CategoryRadio">Radio</string>
-  <string Field="CategoryInputOutput"><![CDATA[Input & Output]]></string>
-  <string Field="CategoryOtherInputDevices">Övriga input-hårdvara</string>
-  <string Field="CategoryExternalDisplays">Externa skärmar</string>
-  <string Field="CategoryRemotes">Fjärrkontroller</string>
-  <string Field="CategoryNewsInfo"><![CDATA[Nyheter & Info]]></string>
-  <string Field="CategoryInfo">Info</string>
-  <string Field="CategoryNews">Nyheter</string>
-  <string Field="CategoryGamesFun"><![CDATA[Spel & Skoj]]></string>
-  <string Field="CategoryMusic">Musik</string>
-  <string Field="CategoryTelevision">TV</string>
-  <string Field="CategoryMoviesVideos"><![CDATA[Filmer & Videor]]></string>
-
-  <!--  D  -->
-  <string Field="Download">Hämta</string>
-  <string Field="Downloads">Hämtningar</string>
-  <string Field="Disable">Stäng av</string>
-  <string Field="DateAdded">Lades till</string>
-  <string Field="Description">Beskrivning</string>
-  <string Field="DownloadUpdates">Hämta uppdateringar</string>
-  <string Field="DownloadingUpdates">Hämtar uppdateringar</string>
-  <string Field="DownloadingExtensionIndex">Hämtar Extension-paketsindex</string>
-  <string Field="DownloadingExtension">Hämtar Extension-pakets uppdateringsdefinitioner</string>
-  <string Field="DownloadProgress">Hämtningsprocess [{0}/{1}] {2}%</string>
-
-  <!--  E  -->
-  <string Field="Exit">Avsluta</string>
-  <string Field="Enable">Använd</string>
-  <string Field="Error">Fel</string>
-  <string Field="ErrorLoadingSite">Fel vid visning av kategorilistan från MediaPortals websida</string>
-  <string Field="ErrorLoadingExtensionList">Fel vid visning av Extension-paketlistan över kategorier</string>
-  <string Field="ErrorDownloadingExtensionIndex">Fel vid hämtning av Extension-paketlistan från servern</string>
-  
-  <!--  F  -->
-
-  <!--  G  -->
-  <string Field="GetCategories">Hämtar kategorier</string>
-  <string Field="GetExtensionInfo">Hämtar Extension-paketinfo</string>
- 
-  <!--  H  -->
-  <string Field="Hits">Träffar</string>
-  
-  <!--  I  -->
-  <string Field="Id">Id</string>
-  <string Field="Install">Installera</string>
-  <string Field="InstalledExtensions">Installerade Extension-paket</string>
-  <string Field="InvalidUrl">Ogiltig url, Extension-paketet kunde inte hämtas!</string>
-  
-  <!--  L  -->
-
-  <!--  M  -->
-  <string Field="MPOnlineExtensions">MP-hemsidans Extension-paket</string>
-  
-  <!--  N -->
-  <string Field="Name">Extension-paket</string>
-  <string Field="NameInfo">Extension-paketinformation</string>
-  <string Field="NameSettings">Inställningar för Extension-paket</string>
-  <string Field="NeverCheckForUpdates">Sök aldrig efter uppdateringar</string>
-  <string Field="NewExtensions">Nya Extension-paket</string>
-  <string Field="NewUpdates">Nya uppdateringar</string>
-  <string Field="NewVersion">Ny version</string>
-  <string Field="Notification">MPEI-notifiering</string>
-  <string Field="NotificationWarning">Det finns installationer som väntar.\nStarta om och verkställ nu??</string>
-  <string Field="NotificationMessage">Vill du starta om MediaPortal\noch slutföra installationer nu?</string>
-  <string Field="No">Nej</string>
-  <string Field="NoScreenshots">Inga förhandsvisningar är tillgängliga för detta Extension-paket.</string>
-  
-  <!--  O  -->
-  <string Field="OnlineExtensions">Online-Extension-paket</string>
-
-  <!--  P  -->
-  <string Field="Plugin">Insticksprogram</string>
-  
-  <!--  R  -->
-  <string Field="Rating">Betyg</string>
-  <string Field="Revoke">Ångra</string>
-  <string Field="ReleaseDate">Släpptes</string>
-  <string Field="Restart">Starta om</string>
-  <string Field="Rotate">Rotera</string>
-  <string Field="RevokeLastAction">Ångra senaste händelsen</string>
-  <string Field="RestartNow">Detta kräver en omstart av\nMediaPortal. Vill du starta om nu?\nOm inte kommer detta att läggas i kö.</string>
-  <string Field="RestoreDefaultValue">Återställ till förvald inställning</string>
-  <string Field="RestoreDefaults">Återställ till förvalt</string>
-  <string Field="RestoreAllDefaults">Återställ samtliga till förvalda värden</string>
-  
-  <!--  S  -->
-  <string Field="Sections">Sektioner</string>
-  <string Field="Settings">Inställningar</string>
-  <string Field="ShowChangelogs">Visa lista över ändnringar</string>
-  <string Field="ShowSreenshots">Förhandsvisning</string>
-  <string Field="SelectVersionToInstall">Välj version att installera (om)</string>
-  <string Field="SelectVersion">Välj version</string>
-  <string Field="StartSlideshow">Starta slideshow</string>
-  <string Field="Screenshots">Förhandsvisning</string>
-  <string Field="Status">Status</string>
-  <string Field="SettingPluginEnabledName">Insticksprogrammet är aktivt</string>
-  <string Field="SettingPluginEnabledDescription">Aktivera / avaktivera denna inställning för att välja om Extension-pakethanteraren skall laddas med MediaPortal.</string>
-  <string Field="SettingListedHomeName">Visa i Classic Home</string>
-  <string Field="SettingListedHomeDescription">För att kunna se pakethanteraren i Classic Home-menyn, aktivera denna inställning.</string>
-  <string Field="SettingListedPluginsName">Visa bland insticksprogrammen (Plugins)</string>
-  <string Field="SettingListedPluginsDescription">För att kunna se pakethanteraren i insticksprogram-menyn (Plugins), aktivera denna inställning.</string>
-  <string Field="SettingsValidationInt">Ett nummer förväntades.</string>
-  <string Field="SettingsValidationIntMin">Det inknappade numret måste vara högre eller lika med {0}.</string>
-  <string Field="SettingsValidationIntMax">Det inknappade numret måste vara lägre eller lika med {0}.</string>
-
-  <!--  T  -->
-  <string Field="Timeout">Timeout</string>
-
-  <!--  U  -->
-  <string Field="Update">Uppdatering</string>
-  <string Field="UpdateAvailable">Uppdatering tillgänglig</string>
-  <string Field="UpdateAll">Uppdatera Samtliga</string>
-  <string Field="Updates">Uppdateringar</string>
-  <string Field="Uninstall">Avinstallera</string>
-  <string Field="UnKnownFileType">Installation är inte möjlig\nOkänd filtyp upptäckt!</string>
-  <string Field="UseSilent">Installera Extension-paket i bakgrunden?</string>
-  
-  <!--  V  -->
-  <string Field="Views">Vyer</string>
-  <string Field="Version">Version</string>
-  <string Field="Votes">Röster</string>
-
-  <!--  W  -->
-
-  <!--  Y  -->
-  <string Field="Yes">Ja</string>
-
-</strings>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Alla</string>
+  <string name="AlwaysCheckForUpdates">Leta alltid efter uppdateringar</string>
+  <string name="Actions">HÃ¤ndelser</string>
+  <string name="ActionAdded">HÃ¤ndelsen lades i kÃ¶</string>
+  <string name="ActionRemoved">HÃ¤ndelsen togs bort frÃ¥n kÃ¶n</string>
+  <string name="AskForRestart">Detta kommer att starta om MediaPortal.\nVill du fortsÃ¤tta?</string>
+  <string name="Author">Upphovsman</string>
+  <string name="AllExtensions">Alla Extension-paket</string>
+  <!--C-->
+  <string name="ChangeLog">Lista Ã¶ver Ã¤ndringar</string>
+  <string name="Compatibility">Kompabilitet</string>
+  <string name="CategoryRecentlyAdded">Nyligen tillagda Extension-paket</string>
+  <string name="CategoryRecentlyUpdated">Nyligen uppdaterade Extension-paket</string>
+  <string name="CategoryMostInstalled">De mest installerade Extension-paketen</string>
+  <string name="CategoryFeatured">Extension-paket i rampljuset</string>
+  <string name="CategoryMostPopular">De mest populÃ¤ra Extension-paketen</string>
+  <string name="CategoryMostRated">Oftast betygsatta Extension-paket</string>
+  <string name="CategoryTopRated">HÃ¶gst betygsatta Extension-paket</string>
+  <string name="CategoryMostReviewed">Oftast recenserade Extension-paket</string>
+  <string name="CategoryHTPC">HTPC</string>
+  <string name="CategoryCustomization">Modifiering</string>
+  <string name="CategoryBootScreens">Boot-skÃ¤rmar</string>
+  <string name="CategoryTools">Verktyg</string>
+  <string name="CategorySystemUtilities">System/TillbehÃ¶r</string>
+  <string name="CategoryUtilities">TillbehÃ¶r</string>
+  <string name="CategoryDriversFirmware"><![CDATA[Drivrutiner & Firmware]]></string>
+  <string name="CategoryCodecs">Codecs</string>
+  <string name="CategoryLogos">Logotyper</string>
+  <string name="CategoryTVChannels">TV-Kanaler</string>
+  <string name="CategoryRadioStations">Radio-kanaler</string>
+  <string name="CategoryMediaInfo">Media-Info</string>
+  <string name="CategorySkins">Skin</string>
+  <string name="CategoryWidescreen">Widescreen</string>
+  <string name="CategoryNonWidescreen">Ej Widescreen</string>
+  <string name="CategoryPlugins">Insticksprogram</string>
+  <string name="CategoryWeather">VÃ¤der</string>
+  <string name="CategoryOther">Ã–vrigt</string>
+  <string name="CategorySystem">System</string>
+  <string name="CategoryEmail">E-mail</string>
+  <string name="CategoryPIMs">PIMs</string>
+  <string name="CategoryHomeAutomation">Automatisering av hemmet</string>
+  <string name="CategoryPictures">Bilder</string>
+  <string name="CategoryRadio">Radio</string>
+  <string name="CategoryInputOutput"><![CDATA[Input & Output]]></string>
+  <string name="CategoryOtherInputDevices">Ã–vriga input-hÃ¥rdvara</string>
+  <string name="CategoryExternalDisplays">Externa skÃ¤rmar</string>
+  <string name="CategoryRemotes">FjÃ¤rrkontroller</string>
+  <string name="CategoryNewsInfo"><![CDATA[Nyheter & Info]]></string>
+  <string name="CategoryInfo">Info</string>
+  <string name="CategoryNews">Nyheter</string>
+  <string name="CategoryGamesFun"><![CDATA[Spel & Skoj]]></string>
+  <string name="CategoryMusic">Musik</string>
+  <string name="CategoryTelevision">TV</string>
+  <string name="CategoryMoviesVideos"><![CDATA[Filmer & Videor]]></string>
+  <!--D-->
+  <string name="Download">HÃ¤mta</string>
+  <string name="Downloads">HÃ¤mtningar</string>
+  <string name="Disable">StÃ¤ng av</string>
+  <string name="DateAdded">Lades till</string>
+  <string name="Description">Beskrivning</string>
+  <string name="DownloadUpdates">HÃ¤mta uppdateringar</string>
+  <string name="DownloadingUpdates">HÃ¤mtar uppdateringar</string>
+  <string name="DownloadingExtensionIndex">HÃ¤mtar Extension-paketsindex</string>
+  <string name="DownloadingExtension">HÃ¤mtar Extension-pakets uppdateringsdefinitioner</string>
+  <string name="DownloadProgress">HÃ¤mtningsprocess [{0}/{1}] {2}%</string>
+  <!--E-->
+  <string name="Exit">Avsluta</string>
+  <string name="Enable">AnvÃ¤nd</string>
+  <string name="Error">Fel</string>
+  <string name="ErrorLoadingSite">Fel vid visning av kategorilistan frÃ¥n MediaPortals websida</string>
+  <string name="ErrorLoadingExtensionList">Fel vid visning av Extension-paketlistan Ã¶ver kategorier</string>
+  <string name="ErrorDownloadingExtensionIndex">Fel vid hÃ¤mtning av Extension-paketlistan frÃ¥n servern</string>
+  <!--F-->
+  <!--G-->
+  <string name="GetCategories">HÃ¤mtar kategorier</string>
+  <string name="GetExtensionInfo">HÃ¤mtar Extension-paketinfo</string>
+  <!--H-->
+  <string name="Hits">TrÃ¤ffar</string>
+  <!--I-->
+  <string name="Id">Id</string>
+  <string name="Install">Installera</string>
+  <string name="InstalledExtensions">Installerade Extension-paket</string>
+  <string name="InvalidUrl">Ogiltig url, Extension-paketet kunde inte hÃ¤mtas!</string>
+  <!--L-->
+  <!--M-->
+  <string name="MPOnlineExtensions">MP-hemsidans Extension-paket</string>
+  <!--N-->
+  <string name="Name">Extension-paket</string>
+  <string name="NameInfo">Extension-paketinformation</string>
+  <string name="NameSettings">InstÃ¤llningar fÃ¶r Extension-paket</string>
+  <string name="NeverCheckForUpdates">SÃ¶k aldrig efter uppdateringar</string>
+  <string name="NewExtensions">Nya Extension-paket</string>
+  <string name="NewUpdates">Nya uppdateringar</string>
+  <string name="NewVersion">Ny version</string>
+  <string name="Notification">MPEI-notifiering</string>
+  <string name="NotificationWarning">Det finns installationer som vÃ¤ntar.\nStarta om och verkstÃ¤ll nu??</string>
+  <string name="NotificationMessage">Vill du starta om MediaPortal\noch slutfÃ¶ra installationer nu?</string>
+  <string name="No">Nej</string>
+  <string name="NoScreenshots">Inga fÃ¶rhandsvisningar Ã¤r tillgÃ¤ngliga fÃ¶r detta Extension-paket.</string>
+  <!--O-->
+  <string name="OnlineExtensions">Online-Extension-paket</string>
+  <!--P-->
+  <string name="Plugin">Insticksprogram</string>
+  <!--R-->
+  <string name="Rating">Betyg</string>
+  <string name="Revoke">Ã…ngra</string>
+  <string name="ReleaseDate">SlÃ¤pptes</string>
+  <string name="Restart">Starta om</string>
+  <string name="Rotate">Rotera</string>
+  <string name="RevokeLastAction">Ã…ngra senaste hÃ¤ndelsen</string>
+  <string name="RestartNow">Detta krÃ¤ver en omstart av\nMediaPortal. Vill du starta om nu?\nOm inte kommer detta att lÃ¤ggas i kÃ¶.</string>
+  <string name="RestoreDefaultValue">Ã…terstÃ¤ll till fÃ¶rvald instÃ¤llning</string>
+  <string name="RestoreDefaults">Ã…terstÃ¤ll till fÃ¶rvalt</string>
+  <string name="RestoreAllDefaults">Ã…terstÃ¤ll samtliga till fÃ¶rvalda vÃ¤rden</string>
+  <!--S-->
+  <string name="Sections">Sektioner</string>
+  <string name="Settings">InstÃ¤llningar</string>
+  <string name="ShowChangelogs">Visa lista Ã¶ver Ã¤ndnringar</string>
+  <string name="ShowSreenshots">FÃ¶rhandsvisning</string>
+  <string name="SelectVersionToInstall">VÃ¤lj version att installera (om)</string>
+  <string name="SelectVersion">VÃ¤lj version</string>
+  <string name="StartSlideshow">Starta slideshow</string>
+  <string name="Screenshots">FÃ¶rhandsvisning</string>
+  <string name="Status">Status</string>
+  <string name="SettingPluginEnabledName">Insticksprogrammet Ã¤r aktivt</string>
+  <string name="SettingPluginEnabledDescription">Aktivera / avaktivera denna instÃ¤llning fÃ¶r att vÃ¤lja om Extension-pakethanteraren skall laddas med MediaPortal.</string>
+  <string name="SettingListedHomeName">Visa i Classic Home</string>
+  <string name="SettingListedHomeDescription">FÃ¶r att kunna se pakethanteraren i Classic Home-menyn, aktivera denna instÃ¤llning.</string>
+  <string name="SettingListedPluginsName">Visa bland insticksprogrammen (Plugins)</string>
+  <string name="SettingListedPluginsDescription">FÃ¶r att kunna se pakethanteraren i insticksprogram-menyn (Plugins), aktivera denna instÃ¤llning.</string>
+  <string name="SettingsValidationInt">Ett nummer fÃ¶rvÃ¤ntades.</string>
+  <string name="SettingsValidationIntMin">Det inknappade numret mÃ¥ste vara hÃ¶gre eller lika med {0}.</string>
+  <string name="SettingsValidationIntMax">Det inknappade numret mÃ¥ste vara lÃ¤gre eller lika med {0}.</string>
+  <!--T-->
+  <string name="Timeout">Timeout</string>
+  <!--U-->
+  <string name="Update">Uppdatering</string>
+  <string name="UpdateAvailable">Uppdatering tillgÃ¤nglig</string>
+  <string name="UpdateAll">Uppdatera Samtliga</string>
+  <string name="Updates">Uppdateringar</string>
+  <string name="Uninstall">Avinstallera</string>
+  <string name="UnKnownFileType">Installation Ã¤r inte mÃ¶jlig\nOkÃ¤nd filtyp upptÃ¤ckt!</string>
+  <string name="UseSilent">Installera Extension-paket i bakgrunden?</string>
+  <!--V-->
+  <string name="Views">Vyer</string>
+  <string name="Version">Version</string>
+  <string name="Votes">RÃ¶ster</string>
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Ja</string>
+</resources>

@@ -82,8 +82,8 @@ namespace MPEIPlugin
 
       _path = Config.GetSubFolder(Config.Dir.Language, "MPEI");
 
-      if (!System.IO.Directory.Exists(_path))
-        System.IO.Directory.CreateDirectory(_path);
+      if (!Directory.Exists(_path))
+        Directory.CreateDirectory(_path);
 
       string lang = PreviousLanguage = CurrentLanguage;
       LoadTranslations(lang);
@@ -111,7 +111,7 @@ namespace MPEIPlugin
           return 0; // otherwise we are in an endless loop!
 
         if (e.GetType() == typeof(FileNotFoundException))
-          Log.Warn("[MPEI] Cannot find translation file {0}.  Failing back to English", langPath);
+          Log.Warn("[MPEI] Cannot find translation file {0}. Failing back to English", langPath);
         else
         {
           Log.Error("[MPEI] Error in translation xml file: {0}. Failing back to English", lang);
@@ -126,7 +126,7 @@ namespace MPEIPlugin
         if (stringEntry.NodeType == XmlNodeType.Element)
           try
           {
-            TranslatedStrings.Add(stringEntry.Attributes.GetNamedItem("Field").Value, stringEntry.InnerText);
+            TranslatedStrings.Add(stringEntry.Attributes.GetNamedItem("name").Value, stringEntry.InnerText.NormalizeTranslation());
           }
           catch (Exception ex)
           {
@@ -142,7 +142,7 @@ namespace MPEIPlugin
         if (TranslatedStrings != null && TranslatedStrings.ContainsKey(fi.Name))
           TransType.InvokeMember(fi.Name, BindingFlags.SetField, null, TransType, new object[] { TranslatedStrings[fi.Name] });
         else
-          Log.Info("[MPEI] Translation not found for field: {0}.  Using hard-coded English default.", fi.Name);
+          Log.Info("[MPEI] Translation not found for: {0}. Using hard-coded English default.", fi.Name);
       }
       return TranslatedStrings.Count;
     }
@@ -185,6 +185,17 @@ namespace MPEIPlugin
       return _info.GetShortestDayName(dayOfWeek);
     }
 
+    /// <summary>
+    /// Temp workaround to remove unwatched chars from Transifex
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    public static string NormalizeTranslation(this string input)
+    {
+        input = input.Replace("\\'", "'");
+        input = input.Replace("\\\"", "\"");
+        return input;
+    }
     #endregion
 
     #region Translations / Strings
