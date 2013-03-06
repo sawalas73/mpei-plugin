@@ -1,8 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--A-->
+  <string name="All">Sve</string>
+  <string name="Actions">Radnje</string>
   <!--C-->
   <!--D-->
+  <string name="Download">Preuzmite</string>
   <string name="DateAdded">Datum dodavanja</string>
   <!--E-->
   <string name="Error">Greska</string>
@@ -13,6 +16,7 @@
   <!--L-->
   <!--M-->
   <!--N-->
+  <string name="No">Ne</string>
   <!--O-->
   <!--P-->
   <!--R-->
@@ -24,4 +28,5 @@
   <!--V-->
   <!--W-->
   <!--Y-->
+  <string name="Yes">Da</string>
 </resources>
