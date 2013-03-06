@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Sve</string>
+  <string name="Actions">Radnje</string>
+  <!--C-->
+  <!--D-->
+  <string name="Download">Preuzmite</string>
+  <string name="DateAdded">Datum dodavanja</string>
+  <!--E-->
+  <string name="Error">Greska</string>
+  <!--F-->
+  <!--G-->
+  <!--H-->
+  <!--I-->
+  <!--L-->
+  <!--M-->
+  <!--N-->
+  <string name="No">Ne</string>
+  <!--O-->
+  <!--P-->
+  <!--R-->
+  <string name="ReleaseDate">Datum izdanja</string>
+  <string name="RestoreDefaults">Vrati zadano</string>
+  <!--S-->
+  <!--T-->
+  <!--U-->
+  <!--V-->
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Da</string>
+</resources>

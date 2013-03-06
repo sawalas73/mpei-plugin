@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Vsi</string>
+  <string name="Actions">Ukrepi</string>
+  <!--C-->
+  <!--D-->
+  <string name="Download">Naloži</string>
+  <string name="DateAdded">Dodano dne</string>
+  <!--E-->
+  <string name="Error">Napaka</string>
+  <!--F-->
+  <!--G-->
+  <!--H-->
+  <!--I-->
+  <!--L-->
+  <!--M-->
+  <!--N-->
+  <string name="No">Ne</string>
+  <!--O-->
+  <!--P-->
+  <!--R-->
+  <string name="ReleaseDate">Datum izida</string>
+  <string name="RestoreDefaults">Obnovi privzeto</string>
+  <!--S-->
+  <!--T-->
+  <!--U-->
+  <!--V-->
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Ja</string>
+</resources>

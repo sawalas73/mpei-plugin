@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <string name="All">Alle</string>
+  <string name="AlwaysCheckForUpdates">Immer nach Updates suchen</string>
+  <string name="Actions">Aktionen</string>
+  <string name="ActionAdded">Aktion wurde in Warteschlange gespeichert</string>
+  <string name="ActionRemoved">Aktion wurde aus Warteschlange gelöscht</string>
+  <string name="Author">Autor</string>
+  <!--C-->
+  <string name="ChangeLog">Änderungen</string>
+  <string name="Compatibility">Kompatibel mit</string>
+  <string name="CategoryMediaInfo">Medien-Info</string>
+  <string name="CategoryPlugins">Plugins</string>
+  <string name="CategoryEmail">Email</string>
+  <string name="CategoryInfo">Info</string>
+  <string name="CategoryNews">Nachrichten</string>
+  <string name="CategoryMusic">Musik</string>
+  <!--D-->
+  <string name="Download">Download</string>
+  <string name="Downloads">Downloads</string>
+  <string name="Disable">Deaktivieren</string>
+  <string name="DateAdded">Hinzugefügt</string>
+  <!--E-->
+  <string name="Exit">Beenden</string>
+  <string name="Enable">Aktivieren</string>
+  <string name="Error">Fehler!</string>
+  <string name="ErrorLoadingSite">Fehler beim Laden der Kategorien von der MP-Webseite </string>
+  <string name="ErrorLoadingExtensionList">Fehler beim Laden der Erweiterungen für diese Kategorie</string>
+  <!--F-->
+  <!--G-->
+  <string name="GetCategories">Kategorien werden abgerufen</string>
+  <string name="GetExtensionInfo">Infos der Erweiterungen werden abgerufen</string>
+  <!--H-->
+  <string name="Hits">Aufrufe</string>
+  <!--I-->
+  <string name="Id">ID</string>
+  <string name="Install">Installieren</string>
+  <string name="InstalledExtensions">Installierte Erweiterungen</string>
+  <string name="InvalidUrl">Ungültige URL, Erweiterung kann nicht geladen werden!</string>
+  <!--L-->
+  <!--M-->
+  <string name="MPOnlineExtensions">MP-Erweiterungen auf Webseite</string>
+  <!--N-->
+  <string name="Name">Erweiterungen</string>
+  <string name="NeverCheckForUpdates">Niemals nach Updates suchen</string>
+  <string name="NewExtensions">Neue Erweiterungen</string>
+  <string name="NewUpdates">Neue Updates</string>
+  <string name="Notification">Benachrichtigung</string>
+  <string name="NotificationWarning">Es gibt ausstehende Aktionen.\nNeustarten und jetzt ausführen?</string>
+  <string name="NotificationMessage">Möchten Sie MediaPortal neu starten\nund ausstehende Aktionen jetzt ausführen?</string>
+  <string name="No">Nein</string>
+  <!--O-->
+  <string name="OnlineExtensions">Erweiterungen Online</string>
+  <!--P-->
+  <string name="Plugin">Plugin</string>
+  <!--R-->
+  <string name="Rating">Bewertung</string>
+  <string name="Revoke">Verwerfen</string>
+  <string name="ReleaseDate">Veröffentlicht</string>
+  <string name="Restart">Neustart</string>
+  <string name="Rotate">Änderungen verwerfen</string>
+  <string name="RevokeLastAction">Letzte Aktion verwerfen?</string>
+  <string name="RestartNow">Diese Aktione erfordert einen Neustart von\nMediaPortal. Jetzt neu starten?\nFalls nicht, wird die Aktion in die\nWarteschlange eingereiht.</string>
+  <string name="RestoreDefaults">Voreinstellungen laden</string>
+  <!--S-->
+  <string name="Sections">Sektionen</string>
+  <string name="Settings">Einstellungen</string>
+  <string name="ShowChangelogs">Änderungen anzeigen</string>
+  <string name="ShowSreenshots">Screenshots anzeigen</string>
+  <string name="SelectVersionToInstall">Version zur (Neu-)Installation</string>
+  <string name="SelectVersion">Version wählen</string>
+  <string name="StartSlideshow">Diaschau starten</string>
+  <string name="Status">Status</string>
+  <string name="SettingPluginEnabledName">Plugin aktiviert</string>
+  <string name="SettingListedHomeName">Im Home-Bildschirm anzeigen</string>
+  <string name="SettingListedPluginsName">In Meine Plugins gelistet</string>
+  <!--T-->
+  <string name="Timeout">Zeitüberschreitung</string>
+  <!--U-->
+  <string name="Update">Aktualisieren</string>
+  <string name="UpdateAvailable">Verfügbare aktualisieren</string>
+  <string name="UpdateAll">Alles aktualisieren</string>
+  <string name="Updates">Updates</string>
+  <string name="Uninstall">Deinstallieren</string>
+  <string name="UnKnownFileType">Installation nicht möglich\nUnbekannter Dateityp!</string>
+  <string name="UseSilent">Installation im Hintergrund?</string>
+  <!--V-->
+  <string name="Views">Ansicht</string>
+  <string name="Version">Version</string>
+  <string name="Votes">Stimmen</string>
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Ja</string>
+</resources>
