@@ -70,6 +70,7 @@
   <string name="Exit">Afsluiten</string>
   <string name="Enable">Inschakelen</string>
   <string name="Error">Fout</string>
+  <string name="ErrorExtensionInfo">Fout bij ophalen extensie informatie</string>
   <string name="ErrorLoadingSite">Er is een fout opgetreden tijdens het laden van de Categorielijst van de MediaPortal website</string>
   <string name="ErrorLoadingExtensionList">Er is een fout opgetreden tijdens het laden van de Extensielijst van de geselecteerde categorie</string>
   <string name="ErrorDownloadingExtensionIndex">Er is een fout opgetreden tijdens het laden van de Extensielijst van de server</string>

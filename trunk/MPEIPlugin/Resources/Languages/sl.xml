@@ -1,8 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--A-->
+  <string name="All">Vsi</string>
+  <string name="Actions">Ukrepi</string>
   <!--C-->
   <!--D-->
+  <string name="Download">Naloži</string>
   <string name="DateAdded">Dodano dne</string>
   <!--E-->
   <string name="Error">Napaka</string>
@@ -13,6 +16,7 @@
   <!--L-->
   <!--M-->
   <!--N-->
+  <string name="No">Ne</string>
   <!--O-->
   <!--P-->
   <!--R-->
@@ -24,4 +28,5 @@
   <!--V-->
   <!--W-->
   <!--Y-->
+  <string name="Yes">Ja</string>
 </resources>

@@ -4,9 +4,11 @@
   <string name="All">Alle</string>
   <string name="Actions">Handlinger</string>
   <!--C-->
+  <string name="CategoryMediaInfo">Mediainformasjon</string>
   <!--D-->
   <string name="Download">Last ned</string>
   <!--E-->
+  <string name="Error">Feil</string>
   <!--F-->
   <!--G-->
   <!--H-->
@@ -18,9 +20,12 @@
   <!--O-->
   <!--P-->
   <!--R-->
+  <string name="Rating">Rangering</string>
   <!--S-->
   <!--T-->
+  <string name="Timeout">Tiden gikk ut</string>
   <!--U-->
+  <string name="Update">Oppdater</string>
   <!--V-->
   <!--W-->
   <!--Y-->

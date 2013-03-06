@@ -70,6 +70,7 @@
   <string name="Exit">Avsluta</string>
   <string name="Enable">Använd</string>
   <string name="Error">Fel</string>
+  <string name="ErrorExtensionInfo">Fel vid hämtning av Extension-information</string>
   <string name="ErrorLoadingSite">Fel vid visning av kategorilistan från MediaPortals websida</string>
   <string name="ErrorLoadingExtensionList">Fel vid visning av Extension-paketlistan över kategorier</string>
   <string name="ErrorDownloadingExtensionIndex">Fel vid hämtning av Extension-paketlistan från servern</string>

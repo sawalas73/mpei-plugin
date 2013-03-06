@@ -4,8 +4,11 @@
   <string name="All">Alle</string>
   <string name="Actions">Handlinger</string>
   <!--C-->
+  <string name="CategoryMediaInfo">Mediainformasjon</string>
   <string name="CategoryPlugins">Tillegg</string>
   <string name="CategoryEmail">Epost</string>
+  <string name="CategoryNews">Nyheter</string>
+  <string name="CategoryMusic">Musikk</string>
   <!--D-->
   <string name="Download">Last Ned</string>
   <string name="DateAdded">Dato lagt til</string>
@@ -30,6 +33,7 @@
   <!--T-->
   <string name="Timeout">Tiden gikk ut</string>
   <!--U-->
+  <string name="Update">Oppdater</string>
   <!--V-->
   <string name="Votes">Stemmer</string>
   <!--W-->
