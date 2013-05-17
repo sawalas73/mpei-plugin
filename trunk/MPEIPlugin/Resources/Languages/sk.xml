@@ -2,6 +2,7 @@
 <resources>
   <!--A-->
   <!--C-->
+  <string name="CategoryInfo">Info</string>
   <!--D-->
   <string name="DateAdded">Dátum pridania</string>
   <!--E-->

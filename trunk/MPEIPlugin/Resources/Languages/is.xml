@@ -2,29 +2,57 @@
 <resources>
   <!--A-->
   <string name="All">Allir</string>
+  <string name="AlwaysCheckForUpdates">Alltaf að athuga með uppfærslur</string>
+  <string name="Actions">Aðgerðir</string>
+  <string name="ActionAdded">Aðgerð bætt við í verkröð</string>
+  <string name="ActionRemoved">Aðgerð eytt úr verkröð</string>
+  <string name="Author">Höfundur</string>
   <!--C-->
+  <string name="CategoryHTPC">HTPC</string>
+  <string name="CategoryTVChannels">Sjónvarpsstöðvar</string>
+  <string name="CategoryRadioStations">Útvarpsstöðvar</string>
   <string name="CategoryPlugins">Viðbætur</string>
+  <string name="CategoryWeather">Veður</string>
+  <string name="CategoryOther">Annað</string>
+  <string name="CategoryEmail">Tölvupóstur</string>
+  <string name="CategoryPictures">Ljósmyndir</string>
+  <string name="CategoryRadio">Útvarp</string>
+  <string name="CategoryNews">Fréttir</string>
   <string name="CategoryMusic">Tónlist</string>
+  <string name="CategoryTelevision">Sjónvarp</string>
   <!--D-->
   <string name="Download">Sækja</string>
+  <string name="Disable">Óvirkt</string>
   <string name="DateAdded">Dags bætt við</string>
+  <string name="Description">Lýsing</string>
+  <string name="DownloadUpdates">Sækja uppfærslur</string>
+  <string name="DownloadingUpdates">Sæki uppfærslur</string>
   <!--E-->
+  <string name="Exit">Hætta</string>
   <string name="Error">Villa</string>
   <!--F-->
   <!--G-->
+  <string name="GetCategories">Sæki flokkanir</string>
   <!--H-->
   <!--I-->
   <!--L-->
   <!--M-->
   <!--N-->
+  <string name="NewUpdates">Nýjar uppfærslur</string>
+  <string name="NewVersion">Ný útgáfa</string>
   <string name="No">Nei</string>
   <!--O-->
   <!--P-->
   <string name="Plugin">Viðbót</string>
   <!--R-->
+  <string name="Rating">Einkunnagjöf</string>
   <string name="ReleaseDate">Útgáfudagsetning</string>
+  <string name="Restart">Endurræsa</string>
+  <string name="Rotate">Velta</string>
   <!--S-->
   <string name="Settings">Stillingar</string>
+  <string name="StartSlideshow">Hefða slæðusýningu</string>
+  <string name="Screenshots">Skjáskot</string>
   <string name="SettingPluginEnabledName">Viðbætur virkt</string>
   <string name="SettingListedHomeName">Birt í Home</string>
   <string name="SettingListedPluginsName">Birt í Viðbætum</string>
@@ -33,6 +61,7 @@
   <string name="Update">Uppfæra</string>
   <string name="UpdateAll">Uppfæra allt</string>
   <!--V-->
+  <string name="Version">Útgáfa</string>
   <string name="Votes">Atkvæði</string>
   <!--W-->
   <!--Y-->
