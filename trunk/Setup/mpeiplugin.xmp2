@@ -223,6 +223,13 @@
               <ZipFileName>Installer{CopyFile}\{0438386b-5b6d-4a4e-a6fe-a7ae026b1a8e}-zh.xml</ZipFileName>
               <DestinationFilename>%Language%\MPEI\zh.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Languages\et.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7fe6fb0b-f984-4cf1-9f34-8c43fb5ac80b}-et.xml</ZipFileName>
+              <DestinationFilename>%Language%\MPEI\et.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -966,17 +973,12 @@ public class Script
           <Items>
             <CompatibleVersionItem>
               <MinRequiredVersion>1.1.6.27644</MinRequiredVersion>
-              <DesignedForVersion>1.2.100.0</DesignedForVersion>
+              <DesignedForVersion>1.1.6.27644</DesignedForVersion>
             </CompatibleVersionItem>
           </Items>
         </CompatibleVersion>
         <SubSystemsUsed>
-          <Items>
-            <SubSystemItem Name="MP.Config" />
-            <SubSystemItem Name="MP.Players.Music" />
-            <SubSystemItem Name="MP.Players.Video" />
-            <SubSystemItem Name="MP.SkinEngine" />
-          </Items>
+          <Items />
         </SubSystemsUsed>
       </PluginDependencyItem>
     </Items>
@@ -990,17 +992,18 @@ public class Script
     <UpdateUrl>http://mpei-plugin.googlecode.com/svn/trunk/Setup/update2.xml</UpdateUrl>
     <Version>
       <Major>1</Major>
-      <Minor>1</Minor>
+      <Minor>2</Minor>
       <Build>0</Build>
-      <Revision>189</Revision>
+      <Revision>192</Revision>
     </Version>
     <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
 
 Extensions also allows plugin developers to create their own GUI for settings which can save users from having to exit MediaPortal to change configuration.</ExtensionDescription>
-    <VersionDescription>* Support for translations from Transifex.</VersionDescription>
+    <VersionDescription>* Compatibility with MediaPortal 1.4.
+* Updated translations from Transifex.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.1.1.0.189.mpe1</OnlineLocation>
-    <ReleaseDate>2013-03-06T10:56:05</ReleaseDate>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.1.2.0.192.mpe1</OnlineLocation>
+    <ReleaseDate>2013-05-18T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin, extensions</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
@@ -1239,6 +1242,13 @@ Extensions also allows plugin developers to create their own GUI for settings wh
         <LocalFileName>..\MPEIPlugin\Resources\Languages\zh.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{0438386b-5b6d-4a4e-a6fe-a7ae026b1a8e}-zh.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\zh.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Languages\et.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7fe6fb0b-f984-4cf1-9f34-8c43fb5ac80b}-et.xml</ZipFileName>
+        <DestinationFilename>%Language%\MPEI\et.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />

@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MediaPortal")]
 [assembly: AssemblyProduct("MPEIHelper")]
-[assembly: AssemblyCopyright("Copyright © MediaPortal 2012")]
+[assembly: AssemblyCopyright("Copyright © MediaPortal 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
