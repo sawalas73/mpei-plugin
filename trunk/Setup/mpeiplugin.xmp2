@@ -230,6 +230,13 @@
               <ZipFileName>Installer{CopyFile}\{7fe6fb0b-f984-4cf1-9f34-8c43fb5ac80b}-et.xml</ZipFileName>
               <DestinationFilename>%Language%\MPEI\et.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Languages\vi.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{13a2fee9-110a-49f6-bd91-d537ca28cee9}-vi.xml</ZipFileName>
+              <DestinationFilename>%Language%\MPEI\vi.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -993,17 +1000,17 @@ public class Script
     <Version>
       <Major>1</Major>
       <Minor>2</Minor>
-      <Build>0</Build>
-      <Revision>192</Revision>
+      <Build>1</Build>
+      <Revision>195</Revision>
     </Version>
     <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
 
 Extensions also allows plugin developers to create their own GUI for settings which can save users from having to exit MediaPortal to change configuration.</ExtensionDescription>
-    <VersionDescription>* Compatibility with MediaPortal 1.4.
+    <VersionDescription>* Fixed a bug in Extension GUI Settings where the default settings for the plugin will be loaded instead of the user settings. This occurred if the Skin did not have the 'Restore Defaults' button.
 * Updated translations from Transifex.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.1.2.0.192.mpe1</OnlineLocation>
-    <ReleaseDate>2013-05-18T10:56:05</ReleaseDate>
+    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.1.2.1.195.mpe1</OnlineLocation>
+    <ReleaseDate>2013-07-02T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin, extensions</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
@@ -1249,6 +1256,13 @@ Extensions also allows plugin developers to create their own GUI for settings wh
         <LocalFileName>..\MPEIPlugin\Resources\Languages\et.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{7fe6fb0b-f984-4cf1-9f34-8c43fb5ac80b}-et.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\et.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Languages\vi.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{13a2fee9-110a-49f6-bd91-d537ca28cee9}-vi.xml</ZipFileName>
+        <DestinationFilename>%Language%\MPEI\vi.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
