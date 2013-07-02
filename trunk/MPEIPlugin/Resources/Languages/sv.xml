@@ -119,7 +119,7 @@
   <!--S-->
   <string name="Sections">Sektioner</string>
   <string name="Settings">Inställningar</string>
-  <string name="ShowChangelogs">Visa lista över ändnringar</string>
+  <string name="ShowChangelogs">Visa lista över ändringar</string>
   <string name="ShowSreenshots">Förhandsvisning</string>
   <string name="SelectVersionToInstall">Välj version att installera (om)</string>
   <string name="SelectVersion">Välj version</string>

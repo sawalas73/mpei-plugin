@@ -11,6 +11,8 @@
   <string name="CategoryMediaInfo">Media info</string>
   <string name="CategoryPlugins">Tilføjelser</string>
   <string name="CategoryEmail">Email</string>
+  <string name="CategoryNews">Nyheder</string>
+  <string name="CategoryMusic">Musik</string>
   <!--D-->
   <string name="Download">Hent</string>
   <string name="DateAdded">Dato tilføjet</string>
