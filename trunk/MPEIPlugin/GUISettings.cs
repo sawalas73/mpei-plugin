@@ -121,6 +121,7 @@ namespace MPEIPlugin
 
     protected override void OnClicked(int controlId, GUIControl control, Action.ActionType actionType)
     {
+      // mandatory control
       if (control == btnSections)
       {
         GUIDialogMenu dlg = (GUIDialogMenu)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_MENU);
@@ -138,12 +139,16 @@ namespace MPEIPlugin
         return;
       }
 
-      if (control == btnDefaults)
+      // non-mandatory control - check for null
+      // control can be null so have to be careful with check
+      // otherwise we will restore defaults
+      if (control != null && control == btnDefaults)
       {
         RestoreDefaults();
         return;
       }
 
+      // mandatory control
       if (control == facadeView)
       {
         GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0, null);
