@@ -2,6 +2,10 @@
 <resources>
   <!--A-->
   <!--C-->
+  <string name="ChangeLog">Denník zmien</string>
+  <string name="Compatibility">Kompatibilita</string>
+  <string name="CategoryHTPC">HTPC</string>
+  <string name="CategoryCustomization">Prispôsobenie</string>
   <string name="CategoryInfo">Info</string>
   <!--D-->
   <string name="DateAdded">Dátum pridania</string>
@@ -24,6 +28,7 @@
   <!--T-->
   <!--U-->
   <!--V-->
+  <string name="Views">Pohľady</string>
   <string name="Votes">Hlasov</string>
   <!--W-->
   <!--Y-->

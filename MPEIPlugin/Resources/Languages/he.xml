@@ -20,9 +20,12 @@
   <!--O-->
   <!--P-->
   <!--R-->
+  <string name="Rating">דירוג</string>
+  <string name="ReleaseDate">תאריך שחרור</string>
   <!--S-->
   <!--T-->
   <!--U-->
+  <string name="Update">עדכון</string>
   <!--V-->
   <!--W-->
   <!--Y-->
