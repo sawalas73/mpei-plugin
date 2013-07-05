@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <!--A-->
+  <!--C-->
+  <string name="ChangeLog">Denník zmien</string>
+  <string name="Compatibility">Kompatibilita</string>
+  <string name="CategoryHTPC">HTPC</string>
+  <string name="CategoryCustomization">Prispôsobenie</string>
+  <string name="CategoryInfo">Info</string>
+  <!--D-->
+  <string name="DateAdded">Dátum pridania</string>
+  <!--E-->
+  <string name="Error">Chyba</string>
+  <!--F-->
+  <!--G-->
+  <!--H-->
+  <!--I-->
+  <!--L-->
+  <!--M-->
+  <!--N-->
+  <string name="No">Nie</string>
+  <!--O-->
+  <!--P-->
+  <!--R-->
+  <string name="ReleaseDate">Dátum vydánia</string>
+  <string name="RestoreDefaults">Nastaviť východzie hodnoty</string>
+  <!--S-->
+  <!--T-->
+  <!--U-->
+  <!--V-->
+  <string name="Views">Pohľady</string>
+  <string name="Votes">Hlasov</string>
+  <!--W-->
+  <!--Y-->
+  <string name="Yes">Áno</string>
+</resources>
