@@ -1,8 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--A-->
+  <string name="All">Tất cả</string>
+  <string name="Actions">Thao tác</string>
   <!--C-->
   <!--D-->
+  <string name="Download">Tải về</string>
   <string name="DateAdded">Ngày thêm vào</string>
   <!--E-->
   <string name="Error">Lỗi</string>
@@ -13,6 +16,7 @@
   <!--L-->
   <!--M-->
   <!--N-->
+  <string name="No">Không đồng ý</string>
   <!--O-->
   <!--P-->
   <!--R-->
@@ -23,4 +27,5 @@
   <!--V-->
   <!--W-->
   <!--Y-->
+  <string name="Yes">Đồng ý</string>
 </resources>
