@@ -70,17 +70,27 @@
   <string name="Exit">Salir</string>
   <string name="Enable">Activar</string>
   <string name="Error">Error</string>
+  <string name="ErrorExtensionInfo">Error obteniendo Información de Extensión</string>
+  <string name="ErrorLoadingSite">Error cargando la Lista de Categorías de la página de MediaPortal</string>
+  <string name="ErrorLoadingExtensionList">Error Cargando la lista de Extensiones para la categoría</string>
+  <string name="ErrorDownloadingExtensionIndex">Error descargando la lista de extensiones del servidor</string>
   <!--F-->
   <!--G-->
+  <string name="GetCategories">Obteniendo Categorías</string>
+  <string name="GetExtensionInfo">Obteniendo Información de Extensión</string>
   <!--H-->
+  <string name="Hits">Accesos</string>
   <!--I-->
   <string name="Id">Id</string>
   <string name="Install">Instalar</string>
   <string name="InstalledExtensions">Extensiones instaladas</string>
+  <string name="InvalidUrl">Dirección incorrecta, ¡la extensión no se puede descargar!</string>
   <!--L-->
   <!--M-->
+  <string name="MPOnlineExtensions">Dirección de las Extensiones MP</string>
   <!--N-->
   <string name="Name">Extensiones</string>
+  <string name="NameInfo">Información de Extensión</string>
   <string name="NameSettings">Configuración de Extensiones</string>
   <string name="NeverCheckForUpdates">No buscar actualizaciones</string>
   <string name="NewExtensions">Nuevas extensiones</string>
@@ -90,6 +100,7 @@
   <string name="NotificationWarning">Todavía hay tareas pendientes.\n¿Reiniciar y ejectuar ahora?</string>
   <string name="NotificationMessage">¿Desea reiniciar MediaPortal \ny ejecutar las tarears pendientes?</string>
   <string name="No">No</string>
+  <string name="NoScreenshots">No hay capturas de pantalla disponibles para esta extensión</string>
   <!--O-->
   <string name="OnlineExtensions">Extensiones Online</string>
   <!--P-->
@@ -116,8 +127,14 @@
   <string name="Screenshots">Capturas de Pantalla</string>
   <string name="Status">Estado</string>
   <string name="SettingPluginEnabledName">Plugin Activado</string>
+  <string name="SettingPluginEnabledDescription">Activar / Desactivar esta configuración para controlar si el plugin Extensiones es cargado con MediaPortal.</string>
   <string name="SettingListedHomeName">Listado en Home</string>
+  <string name="SettingListedHomeDescription">Active esta opción para que el plugin Extensiones aparezca el menú de Inicio.</string>
   <string name="SettingListedPluginsName">Listado en Mis Plugins</string>
+  <string name="SettingListedPluginsDescription">Active esta opción para que el plugin Extensiones aparezca el menú Mis Plugins.</string>
+  <string name="SettingsValidationInt">El valor introducido debe ser un número</string>
+  <string name="SettingsValidationIntMin">El valor introducido debe ser igual o mayor de {0}</string>
+  <string name="SettingsValidationIntMax">El valor introducido debe ser igual o menor de {0}</string>
   <!--T-->
   <string name="Timeout">Timeout</string>
   <!--U-->

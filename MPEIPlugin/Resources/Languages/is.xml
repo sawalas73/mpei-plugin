@@ -86,6 +86,7 @@
   <string name="SettingsValidationIntMin">Innslegið gildi verður að vera stærra eða jafnt og {0}</string>
   <string name="SettingsValidationIntMax">Innslegið gildi verður að vera minna eða jafnt og {0}</string>
   <!--T-->
+  <string name="Timeout">Tímatakmörk</string>
   <!--U-->
   <string name="Update">Uppfæra</string>
   <string name="UpdateAvailable">Uppfærsla til</string>
