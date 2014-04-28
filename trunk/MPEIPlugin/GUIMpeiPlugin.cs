@@ -275,9 +275,9 @@ namespace MPEIPlugin
           break;
         case DownLoadItemType.Logo:
           if (info.Package != null)
-            Logo(info.Package, info.ListItem);
+            SetLogo(info.Package, info.ListItem);
           if (info.SiteItem != null)
-            Logo(info.SiteItem, info.ListItem);
+            SetLogo(info.SiteItem, info.ListItem);
           break;
         case DownLoadItemType.Other:
           break;
@@ -1381,7 +1381,7 @@ namespace MPEIPlugin
               item.IsFolder = false;
               item.Label = pk.GeneralInfo.Name;
               item.Label2 = pk.GeneralInfo.Version.ToString();
-              Logo(pk, item);
+              SetLogo(pk, item);
               item.OnItemSelected += item_OnItemSelected;
               facadeView.Add(item);
             }
@@ -1457,7 +1457,7 @@ namespace MPEIPlugin
                   item.IsFolder = false;
                   item.Label = pk.GeneralInfo.Name;
                   item.Label2 = pk.GeneralInfo.Version.ToString();
-                  Logo(pk, item);
+                  SetLogo(pk, item);
                   item.OnItemSelected += item_OnItemSelected;
                   facadeView.Add(item);
                 }
@@ -1480,7 +1480,7 @@ namespace MPEIPlugin
               item.IsFolder = false;
               item.Label = pk.GeneralInfo.Name;
               item.Label2 = pk.GeneralInfo.Version.ToString();
-              Logo(pk, item);
+              SetLogo(pk, item);
               item.OnItemSelected += item_OnItemSelected;
               facadeView.Add(item);
             }            
@@ -1510,7 +1510,7 @@ namespace MPEIPlugin
                 item.IsFolder = false;
                 item.Label = pk.GeneralInfo.Name;
                 item.Label2 = pk.GeneralInfo.Version.ToString();
-                Logo(pk, item);
+                SetLogo(pk, item);
                 item.OnItemSelected += item_OnItemSelected;
                 facadeView.Add(item);
               }
@@ -1535,7 +1535,7 @@ namespace MPEIPlugin
                 item.IsFolder = false;
                 item.Label = pk.GeneralInfo.Name+" - "+command.CommandEnum.ToString();
                 item.Label2 = pk.GeneralInfo.Version.ToString();
-                Logo(pk, item);
+                SetLogo(pk, item);
                 item.OnItemSelected += item_OnItemSelected;
                 facadeView.Add(item);
               }
@@ -1678,7 +1678,7 @@ namespace MPEIPlugin
         item.MusicTag = siteItem;
         item.IsFolder = false;
         item.Label = siteItem.Name;
-        Logo(siteItem, item);
+        SetLogo(siteItem, item);
         item.OnItemSelected += item_OnItemSelected;
         facadeView.Add(item);
       }
@@ -1706,136 +1706,178 @@ namespace MPEIPlugin
       currentFolder = strNewDirectory;
     }
 
-    void Logo(SiteItems items, GUIListItem listItem)
+    void SetLogo(SiteItems items, GUIListItem listItem)
     {
-      string tempFile = Path.Combine(Path.GetTempPath(),
-                                     Utils.EncryptLine(items.LogoUrl));
-      if (File.Exists(tempFile))
-      {
-        listItem.IconImage = tempFile;
-        listItem.IconImageBig = tempFile;
-        listItem.ThumbnailImage = tempFile;
-      }
-      else
-      {
-        _downloadManager.AddToDownloadQueue(new DownLoadInfo()
-                                    {
-                                      Destination = tempFile,
-                                      ItemType = DownLoadItemType.Logo,
-                                      ListItem = listItem,
-                                      //Package = packageClass,
-                                      SiteItem = items,
-                                      Url = items.LogoUrl
-                                    });
-      }
+        string tempFile = Path.Combine(Path.GetTempPath(), Utils.EncryptLine(items.LogoUrl));
+        if (File.Exists(tempFile))
+        {
+            listItem.IconImage = tempFile;
+            listItem.IconImageBig = tempFile;
+            listItem.ThumbnailImage = tempFile;
+        }
+        else
+        {
+            _downloadManager.AddToDownloadQueue(new DownLoadInfo()
+            {
+                Destination = tempFile,
+                ItemType = DownLoadItemType.Logo,
+                ListItem = listItem,
+                SiteItem = items,
+                Url = items.LogoUrl
+            });
+        }
     }
 
-    string Logo(PackageClass packageClass, GUIListItem listItem)
+    void SetLogo(PackageClass packageClass, GUIListItem listItem)
     {
-      string logofile = "";
-      if (Directory.Exists(packageClass.LocationFolder))
-      {
-        if (File.Exists(packageClass.LocationFolder + "icon.png"))
-          logofile = packageClass.LocationFolder + "icon.png";
-        if (File.Exists(packageClass.LocationFolder + "icon.jpg"))
-          logofile = packageClass.LocationFolder + "icon.jpg";
-      }
-
-      if (MpeInstaller.KnownExtensions.GetUpdate(packageClass) != null)
-      {
-        string signfile = "";
-        if (File.Exists(GUIGraphicsContext.Skin + @"\media\extension_update.png"))
-          signfile = GUIGraphicsContext.Skin + @"\media\extension_update.png";
-
-        if (string.IsNullOrEmpty(logofile))
+        string extensionIcon = string.Empty;
+        if (Directory.Exists(packageClass.LocationFolder))
         {
-          listItem.IconImage = signfile;
-          listItem.IconImageBig = signfile;
-          listItem.ThumbnailImage = signfile;
-          return signfile;
+            if (File.Exists(packageClass.LocationFolder + "icon.png"))
+                extensionIcon = packageClass.LocationFolder + "icon.png";
         }
 
-        string tempFile = Path.Combine(Path.GetTempPath(),
-                                       Utils.EncryptLine("Update" + packageClass.GeneralInfo.Id +
-                                                         packageClass.GeneralInfo.Version));
-        if (!File.Exists(tempFile))
+        #region Update Extension
+        // is there an update available ?
+        if (MpeInstaller.KnownExtensions.GetUpdate(packageClass) != null)
         {
-          Graphics myGraphic = null;
-          Image imgB = Image.FromFile(logofile);
-          Image imgF = Image.FromFile(signfile);
+            string updateIcon = string.Empty;
+            if (File.Exists(GUIGraphicsContext.Skin + @"\media\extension_update.png"))
+                updateIcon = GUIGraphicsContext.Skin + @"\media\extension_update.png";
 
-          myGraphic = System.Drawing.Graphics.FromImage(imgB);
-          //myGraphic.DrawImage(imgB, 0, 0, imgB.Width, imgB.Height);
-          myGraphic.DrawImage(imgF, 0, (imgB.Height / 2) - 1, imgB.Width / 2, imgB.Height / 2);
-          myGraphic.Save();
-          imgB.Save(tempFile, System.Drawing.Imaging.ImageFormat.Png);
+            // if there is no logo file available for extension then just show the update icon
+            // if the skin does not have a update icon then it will just show nothing.
+            if (string.IsNullOrEmpty(extensionIcon))
+            {
+                listItem.IconImage = updateIcon;
+                listItem.IconImageBig = updateIcon;
+                listItem.ThumbnailImage = updateIcon;
+                return;
+            }
+
+            // if we don't have an update icon just show the standard extension icon
+            if (string.IsNullOrEmpty(updateIcon))
+            {
+                Log.Warn("[MPEI] Unable to add update icon to extension '{0}', skin does not have 'extension_update.png' in media folder.", packageClass.GeneralInfo.Name);
+                listItem.IconImage = extensionIcon;
+                listItem.IconImageBig = extensionIcon;
+                listItem.ThumbnailImage = extensionIcon;
+                return;
+            }
+
+            // if we have an update icon, overlay on extension icon
+            if (!string.IsNullOrEmpty(updateIcon))
+            {
+                string tempIconFile = Path.Combine(Path.GetTempPath(), Utils.EncryptLine("Update" + packageClass.GeneralInfo.Id + packageClass.GeneralInfo.Version));
+                if (!File.Exists(tempIconFile))
+                {
+                    try
+                    {
+                        Graphics gResult = null;
+                        Image imgBackground = Image.FromFile(extensionIcon);
+                        Image imgForeground = Image.FromFile(updateIcon);
+
+                        gResult = System.Drawing.Graphics.FromImage(imgBackground);
+                        gResult.DrawImage(imgForeground, 0, (imgBackground.Height / 2) - 1, imgBackground.Width / 2, imgBackground.Height / 2);
+                        gResult.Save();
+                        imgBackground.Save(tempIconFile, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("[MPEI] Failed to create temp update icon '{0}' for extension '{1}': '{2}'.", tempIconFile, packageClass.GeneralInfo.Name, e.Message);
+                    }
+                }
+
+                listItem.IconImage = tempIconFile;
+                listItem.IconImageBig = tempIconFile;
+                listItem.ThumbnailImage = tempIconFile;
+                return;
+            }
+
+            return;
         }
+        #endregion
 
-        listItem.IconImage = tempFile;
-        listItem.IconImageBig = tempFile;
-        listItem.ThumbnailImage = tempFile;
-        return tempFile;
-      }
-
-      if (queue.Get(packageClass.GeneralInfo.Id) != null)
-      {
-        string signfile = "";
-        if (File.Exists(GUIGraphicsContext.Skin + @"\media\extension_action.png"))
-          signfile = GUIGraphicsContext.Skin + @"\media\extension_action.png";
-
-        if (string.IsNullOrEmpty(logofile))
+        #region Queue Extension
+        // is extension in the queue for a action
+        if (queue.Get(packageClass.GeneralInfo.Id) != null)
         {
-          listItem.IconImage = signfile;
-          listItem.IconImageBig = signfile;
-          listItem.ThumbnailImage = signfile;
-          return signfile;
-        }
+            string queueIcon = string.Empty;
+            if (File.Exists(GUIGraphicsContext.Skin + @"\media\extension_action.png"))
+                queueIcon = GUIGraphicsContext.Skin + @"\media\extension_action.png";
 
-        string tempFile = Path.Combine(Path.GetTempPath(),
-                           Utils.EncryptLine("Action" + packageClass.GeneralInfo.Id +
-                                             packageClass.GeneralInfo.Version));
-        if (!File.Exists(tempFile))
+            // if there is no logo file available for extension then just show the action icon
+            // if the skin does not have an update icon then it will just show nothing.
+            if (string.IsNullOrEmpty(extensionIcon))
+            {
+                listItem.IconImage = queueIcon;
+                listItem.IconImageBig = queueIcon;
+                listItem.ThumbnailImage = queueIcon;
+                return;
+            }
+
+            // if we don't have an queue icon just show the standard extension icon
+            if (string.IsNullOrEmpty(queueIcon))
+            {
+                Log.Warn("[MPEI] Unable to add queue icon to extension '{0}', skin does not have 'extension_action.png' in media folder.", packageClass.GeneralInfo.Name);
+                listItem.IconImage = extensionIcon;
+                listItem.IconImageBig = extensionIcon;
+                listItem.ThumbnailImage = extensionIcon;
+                return;
+            }
+
+            string tempIconFile = Path.Combine(Path.GetTempPath(), Utils.EncryptLine("Action" + packageClass.GeneralInfo.Id + packageClass.GeneralInfo.Version));
+            if (!File.Exists(tempIconFile))
+            {
+                try
+                {
+                    Graphics gResult = null;
+                    Image imgBackground = Image.FromFile(extensionIcon);
+                    Image imgForeground = Image.FromFile(queueIcon);
+
+                    gResult = System.Drawing.Graphics.FromImage(imgBackground);
+                    gResult.DrawImage(imgForeground, 0, (imgBackground.Height / 2) - 1, imgBackground.Width / 2, imgBackground.Height / 2);
+                    gResult.Save();
+                    imgBackground.Save(tempIconFile, System.Drawing.Imaging.ImageFormat.Png);
+                }
+                catch (Exception e)
+                {
+                    Log.Error("[MPEI] Failed to create temp queue icon '{0}' for extension '{1}': '{2}'.", tempIconFile, packageClass.GeneralInfo.Name, e.Message);
+                }
+
+                listItem.IconImage = tempIconFile;
+                listItem.IconImageBig = tempIconFile;
+                listItem.ThumbnailImage = tempIconFile;
+                return;
+            }
+            return;
+        }
+        #endregion
+
+        // no overlay needed on icon, just show the extension icon
+        if (File.Exists(extensionIcon))
         {
-          Graphics myGraphic = null;
-          Image imgB = Image.FromFile(logofile);
-          Image imgF = Image.FromFile(signfile);
-          myGraphic = System.Drawing.Graphics.FromImage(imgB);
-          //myGraphic.DrawImage(imgB, 0, 0, imgB.Width, imgB.Height);
-          myGraphic.DrawImage(imgF, 0, (imgB.Height / 2) - 1, imgB.Width / 2, imgB.Height / 2);
-          myGraphic.Save();
-          myGraphic.Save();
-          imgB.Save(tempFile, System.Drawing.Imaging.ImageFormat.Png);
+            listItem.IconImage = extensionIcon;
+            listItem.IconImageBig = extensionIcon;
+            listItem.ThumbnailImage = extensionIcon;
         }
-        listItem.IconImage = tempFile;
-        listItem.IconImageBig = tempFile;
-        listItem.ThumbnailImage = tempFile;
-
-        return tempFile;
-
-      }
-      if (File.Exists(logofile))
-      {
-        listItem.IconImage = logofile;
-        listItem.IconImageBig = logofile;
-        listItem.ThumbnailImage = logofile;
-      }
-      else
-      {
-        logofile = packageClass.LocationFolder + "icon.png";
-        string url = packageClass.GeneralInfo.Params[ParamNamesConst.ONLINE_ICON].Value;
-        if (!string.IsNullOrEmpty(url))
+        else
         {
-          _downloadManager.AddToDownloadQueue(new DownLoadInfo()
-                                      {
-                                        Destination = logofile,
-                                        ItemType = DownLoadItemType.Logo,
-                                        ListItem = listItem,
-                                        Package = packageClass,
-                                        Url = url
-                                      });
+            extensionIcon = packageClass.LocationFolder + "icon.png";
+            string url = packageClass.GeneralInfo.Params[ParamNamesConst.ONLINE_ICON].Value;
+            if (!string.IsNullOrEmpty(url))
+            {
+                _downloadManager.AddToDownloadQueue(new DownLoadInfo()
+                {
+                    Destination = extensionIcon,
+                    ItemType = DownLoadItemType.Logo,
+                    ListItem = listItem,
+                    Package = packageClass,
+                    Url = url
+                });
+            }
         }
-      }
-      return logofile;
+        return;
     }
 
     void ClearProperties()
