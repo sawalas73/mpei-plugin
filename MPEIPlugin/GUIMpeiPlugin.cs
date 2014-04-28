@@ -162,7 +162,7 @@ namespace MPEIPlugin
         //did language change?
         if (Translation.CurrentLanguage != Translation.PreviousLanguage)
         {
-          Log.Info("Language Changed to '{0}' from GUI, re-initializing translations.", Translation.CurrentLanguage);
+          Log.Info("Language changed to '{0}' from GUI, re-initializing translations.", Translation.CurrentLanguage);
           Translation.Init();
         }
       }
@@ -172,8 +172,7 @@ namespace MPEIPlugin
     {
       if (message.Message == GUIMessage.MessageType.GUI_MSG_CLICKED)
       {
-        GUIButtonControl cnt =
-          GUIWindowManager.GetWindow(message.TargetWindowId).GetControl(message.SenderControlId) as GUIButtonControl;
+        GUIButtonControl cnt = GUIWindowManager.GetWindow(message.TargetWindowId).GetControl(message.SenderControlId) as GUIButtonControl;
         if (cnt != null)
         {
           string desc = cnt.Description;
