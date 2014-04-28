@@ -237,6 +237,20 @@
               <ZipFileName>Installer{CopyFile}\{13a2fee9-110a-49f6-bd91-d537ca28cee9}-vi.xml</ZipFileName>
               <DestinationFilename>%Language%\MPEI\vi.xml</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Languages\ku.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{65553971-d41f-4edb-ad8d-dbbb2b4b36c0}-ku.xml</ZipFileName>
+              <DestinationFilename>%Language%\MPEI\ku.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\MPEIPlugin\Resources\Languages\ro.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6e2f25a5-831d-4f91-8b8f-28e3e182c742}-ro.xml</ZipFileName>
+              <DestinationFilename>%Language%\MPEI\ro.xml</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -1000,17 +1014,17 @@ public class Script
     <Version>
       <Major>1</Major>
       <Minor>2</Minor>
-      <Build>1</Build>
-      <Revision>195</Revision>
+      <Build>2</Build>
+      <Revision>199</Revision>
     </Version>
-    <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
-
+    <ExtensionDescription>The Extensions plugin for MediaPortal allows you to browse, install, update and uninstall plugin/skin extensions all from the GUI.
+
 Extensions also allows plugin developers to create their own GUI for settings which can save users from having to exit MediaPortal to change configuration.</ExtensionDescription>
-    <VersionDescription>* Fixed a bug in Extension GUI Settings where the default settings for the plugin will be loaded instead of the user settings. This occurred if the Skin did not have the 'Restore Defaults' button.
+    <VersionDescription>* Improved error handling and logging of issues when creating logos for extensions.
 * Updated translations from Transifex.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://mpei-plugin.googlecode.com/files/Extensions.1.2.1.195.mpe1</OnlineLocation>
-    <ReleaseDate>2013-07-02T10:56:05</ReleaseDate>
+    <OnlineLocation>http://www.team-mediaportal.com/index.php?option=com_mtree&amp;task=att_download&amp;link_id=9&amp;cf_id=24</OnlineLocation>
+    <ReleaseDate>2014-04-28T10:56:05</ReleaseDate>
     <Tags>installer, mpei, plugin, extensions</Tags>
     <Location>.\[Name].[Version].mpe1</Location>
     <Params>
@@ -1263,6 +1277,20 @@ Extensions also allows plugin developers to create their own GUI for settings wh
         <LocalFileName>..\MPEIPlugin\Resources\Languages\vi.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{13a2fee9-110a-49f6-bd91-d537ca28cee9}-vi.xml</ZipFileName>
         <DestinationFilename>%Language%\MPEI\vi.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Languages\ku.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{65553971-d41f-4edb-ad8d-dbbb2b4b36c0}-ku.xml</ZipFileName>
+        <DestinationFilename>%Language%\MPEI\ku.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\MPEIPlugin\Resources\Languages\ro.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{6e2f25a5-831d-4f91-8b8f-28e3e182c742}-ro.xml</ZipFileName>
+        <DestinationFilename>%Language%\MPEI\ro.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
@@ -1597,14 +1625,14 @@ Extensions also allows plugin developers to create their own GUI for settings wh
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>LeftBanner.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{1e0321d9-6046-4b2b-9948-e9be8a3941b9}-LeftBanner.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{2d2ac899-d5ff-45a8-b4ad-522aa56020c8}-LeftBanner.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b9bc33c6-4b3f-4f98-a8cf-134f75aed7c3}-logo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{630c8e4e-0486-44cf-9834-e9f615695d55}-logo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
