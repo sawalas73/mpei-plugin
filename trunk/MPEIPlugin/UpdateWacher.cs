@@ -1,5 +1,4 @@
-﻿using MediaPortal.Dialogs;
-using MediaPortal.GUI.Library;
+﻿using MediaPortal.GUI.Library;
 
 namespace MPEIPlugin
 {

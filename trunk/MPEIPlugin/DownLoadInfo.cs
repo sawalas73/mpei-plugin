@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MediaPortal.GUI.Library;
+﻿using MediaPortal.GUI.Library;
 using MpeCore;
 using MPEIPlugin.MPSite;
 

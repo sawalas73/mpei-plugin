@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
 using MediaPortal.GUI.Library;
-using System.Threading;
 
 namespace MPEIPlugin
 {

@@ -929,6 +929,60 @@ public class Script
               </Params>
               <ExecuteLocation>AfterPanelShow</ExecuteLocation>
             </ActionItem>
+            <ActionItem Name="Script" ActionType="Script" ConditionGroup="">
+              <Params>
+                <Items>
+                  <SectionParam Name="Script">
+                    <Value>//css_reference "MpeCore.dll";
+
+using MpeCore.Classes;
+using MpeCore;
+using System.Collections.Generic;
+
+public class Script
+{
+    public static void Main(PackageClass packageClass, ActionItem actionItem)
+    {
+        MpeInstaller.Init();
+        List&lt;PackageClass&gt; masup = MpeInstaller.KnownExtensions.Items;
+        List&lt;PackageClass&gt; unique = new List&lt;PackageClass&gt;();
+        foreach (PackageClass p in masup)
+        {
+            if (!unique.Exists(i =&gt; i.GeneralInfo.Id == p.GeneralInfo.Id &amp; i.GeneralInfo.Version.ToString() == p.GeneralInfo.Version.ToString()))
+            {
+                unique.Add(p);
+            }
+        }
+        MpeInstaller.KnownExtensions.Items.Clear();
+        MpeInstaller.KnownExtensions.Items = unique;
+        MpeInstaller.Save();
+        return;
+    }
+}</Value>
+                    <ValueType>Script</ValueType>
+                    <Description />
+                  </SectionParam>
+                  <SectionParam Name="Uninstall Script">
+                    <Value>//css_reference "MpeCore.dll";
+
+using MpeCore.Classes;
+using MpeCore;
+
+public class Script
+{
+    public static void Main(PackageClass packageClass, UnInstallItem item)
+    {
+        return;
+    }
+}
+</Value>
+                    <ValueType>Script</ValueType>
+                    <Description />
+                  </SectionParam>
+                </Items>
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
           </Items>
         </Actions>
         <IncludedGroups />

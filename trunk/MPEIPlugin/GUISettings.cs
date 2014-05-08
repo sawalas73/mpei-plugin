@@ -1,22 +1,12 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 //using System.Windows.Forms;
-using System.Drawing;
 using System.IO;
-using System.Text;
-using System.Net;
 using System.Text.RegularExpressions;
-using System.Timers;
-using System.Xml;
-using System.Xml.Serialization;
 using MediaPortal.GUI.Library;
-using MediaPortal.Util;
-using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
 using MpeCore;
-using MpeCore.Classes;
 using MPEIPlugin.Classes;
 using Action = MediaPortal.GUI.Library.Action;
 
@@ -74,9 +64,16 @@ namespace MPEIPlugin
 
       // get package details (we may have jumped from external plugin so properties may not be loaded)
       PackageClass pk = MpeInstaller.KnownExtensions.Get(GUID);
+        //MpeInstaller.KnownExtensions.Items
       SetProperties(pk);
-      
-      settings.Load(SettingsFile);
+      if (File.Exists(SettingsFile))
+      {
+          settings.Load(SettingsFile);
+      }
+      else
+      {
+          settings.LoadDefaultSettings(pk);
+      }
       PopulateFacade(0);
       base.OnPageLoad();
     }
@@ -307,6 +304,5 @@ namespace MPEIPlugin
 
       GUIUtils.SetProperty("#MPE.Selection.Description", setting.Description);
     }
-
   }
 }

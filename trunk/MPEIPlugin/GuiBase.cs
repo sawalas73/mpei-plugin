@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
@@ -122,7 +121,12 @@ namespace MPEIPlugin
           }
 
           streamWriter.Close();
-          System.Diagnostics.Process.Start(Config.GetFile(Config.Dir.Base, "MPEIHelper.exe"), conffile);
+          System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+          {
+              Arguments = Path.GetFileName(conffile),
+              WorkingDirectory = Path.GetDirectoryName(conffile),
+              FileName = Config.GetFile(Config.Dir.Base, "MPEIHelper.exe")
+          });
         }
         return;
       }
@@ -228,6 +232,7 @@ namespace MPEIPlugin
             GUIListItem guiListItem = new GUIListItem(item.GeneralInfo.Version.ToString());
             if (MpeInstaller.InstalledExtensions.Get(item) != null)
               guiListItem.Selected = true;
+            guiListItem.Label2 = UpgradeAdvisor.GetCompatibleMPRange(item);
             dlg.Add(guiListItem);
           }
           dlg.selectOption(selected);
@@ -372,6 +377,40 @@ namespace MPEIPlugin
             return false;
         
         return true;
+    }
+    public ExtensionCollection GetUniquePack(string file)
+    {
+        ExtensionCollection newExtension = ExtensionCollection.Load(file);
+        ExtensionCollection unigueCollection = new ExtensionCollection();
+        foreach (PackageClass package in newExtension.Items)
+        {
+            if (!MpeInstaller.KnownExtensions.Items.Exists(pk => pk.GeneralInfo.Id == package.GeneralInfo.Id && pk.GeneralInfo.Version.CompareTo(package.GeneralInfo.Version) == 0 && pk.GeneralInfo.ReleaseDate >= package.GeneralInfo.ReleaseDate))
+            {
+
+                unigueCollection.Items.Add(package);
+            }
+
+        }
+        return unigueCollection;
+    }
+    public static void ReplaceUpdateURL(string PackageId, string url)
+    {
+        List<PackageClass> packs = MpeInstaller.KnownExtensions.GetList(PackageId).Items;
+        foreach (PackageClass p in packs)
+        {
+            MpeInstaller.KnownExtensions.Items.Find(i => i.GeneralInfo.Id == p.GeneralInfo.Id
+                && i.GeneralInfo.Version.CompareTo(p.GeneralInfo.Version) == 0
+                && i.GeneralInfo.ReleaseDate == p.GeneralInfo.ReleaseDate).GeneralInfo.UpdateUrl = url;
+
+        }
+        PackageClass LocalPack = MpeInstaller.InstalledExtensions.Get(PackageId);
+        if (LocalPack != null)
+        {
+            MpeInstaller.InstalledExtensions.Items.Find(i => i.GeneralInfo.Id == LocalPack.GeneralInfo.Id
+                && i.GeneralInfo.Version.CompareTo(LocalPack.GeneralInfo.Version) == 0
+                && i.GeneralInfo.ReleaseDate == LocalPack.GeneralInfo.ReleaseDate).GeneralInfo.UpdateUrl = url;
+        }
+
     }
   }
 }

@@ -1,19 +1,14 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Net;
 using System.Timers;
-using System.Xml;
-using System.Xml.Serialization;
+using System.ComponentModel;
 using MediaPortal.GUI.Library;
 using MediaPortal.Profile;
 using MediaPortal.Util;
-using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
 using MpeCore;
 using MpeCore.Classes;
@@ -44,12 +39,13 @@ namespace MPEIPlugin
 
     enum Views
     {
-      Local = 0,
-      Online = 1,
-      Updates = 2,
-      New = 3,
-      Queue = 4,
-      MpSIte = 5
+        Local = 0,
+        Online = 1,
+        Updates = 2,
+        New = 3,
+        Queue = 4,
+        MpSite = 5,
+        Compatibility = 6
     }
 
     #endregion
@@ -62,10 +58,10 @@ namespace MPEIPlugin
     bool periodicUpdateCheck = true;
     public static List<string> ignoredFullScreenPackages = new List<string>();
     private MPSiteUtil SiteUtil = new MPSiteUtil();
-
+    private List<MPRelease> NewReleases = new List<MPRelease>();
     string currentFolder = string.Empty;
     int selectedItemIndex = -1;
-    private DownloadManager _downloadManager = new DownloadManager();
+    public static DownloadManager _downloadManager = new DownloadManager();
 
     private ApplicationSettings _setting = new ApplicationSettings();
 
@@ -74,7 +70,7 @@ namespace MPEIPlugin
     private int updatesPeriod;
 
     private const string UpdateIndexUrl = "http://install.team-mediaportal.com/MPEI/extensions.txt";
-
+    public const string MPUpdateUrl = @"http://edalex.dyndns.tv:8090/Index.txt";
     private const int newdays = 10;
     private const int daysToMs = 24 * 60 * 60 * 1000;
 
@@ -97,6 +93,10 @@ namespace MPEIPlugin
     protected GUIButtonControl btnUpdateAll = null;
     [SkinControlAttribute(9)]
     protected GUIButtonControl btnCheckForUpdates = null;
+    [SkinControlAttribute(10)]
+    protected GUICheckButton btnOnlyStable = null;
+    [SkinControlAttribute(11)]
+    protected GUICheckButton btnOnlyCompatible = null;
     #endregion
 
     public GUIMpeiPlugin()
@@ -128,12 +128,11 @@ namespace MPEIPlugin
       GenerateProperty();
 
       bool bResult = Load(GUIGraphicsContext.Skin + @"\myextensions2.xml");
-
       GUIWindowManager.OnDeActivateWindow += new GUIWindowManager.WindowActivationHandler(GUIWindowManager_OnDeActivateWindow);
       GUIGraphicsContext.Receivers += GUIGraphicsContext_Receivers;
       _timer.Enabled = true;
-
-
+       //check for new MediaPortal versions   
+      CheckForReleases();
       // schedule periodic updates, we already handle updates on startup so dont need to start now
       if (periodicUpdateCheck)
         updatesPeriod = _setting.UpdateDays == 0 ? daysToMs : _setting.UpdateDays * daysToMs;
@@ -252,7 +251,7 @@ namespace MPEIPlugin
           break;
         case DownLoadItemType.UpdateInfo:
           {
-            MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(info.Destination));
+            MpeInstaller.KnownExtensions.Add(GetUniquePack(info.Destination));
             MpeInstaller.KnownExtensions.Hide(_setting.ShowOnlyStable, _setting.ShowOnlyCompatible);
             
             Log.Debug("[MPEI] Update info loaded from {0}", info.Url);
@@ -267,7 +266,7 @@ namespace MPEIPlugin
           break;
         case DownLoadItemType.UpdateInfoComplete:
           Log.Info("[MPEI] Finished downloading updates for extensions");
-          if (GUIWindowManager.ActiveWindow == GetID && currentListing != Views.MpSIte)
+          if (GUIWindowManager.ActiveWindow == GetID && currentListing != Views.MpSite)
             LoadDirectory(currentFolder);
           break;
         case DownLoadItemType.Extension:
@@ -366,18 +365,54 @@ namespace MPEIPlugin
     {
       if (File.Exists(tempUpdateIndex))
       {
-        var indexUrls = new List<string>();
+        var indexUrls = new Dictionary<string, string>();
         string[] lines = File.ReadAllLines(tempUpdateIndex);
         foreach (string line in lines)
         {
           if (string.IsNullOrEmpty(line)) continue;
           if (line.StartsWith("#")) continue;
-
-          indexUrls.Add(line.Split(';')[0]);
+            string url = line.Split(';')[0];
+            string guid = line.Split(';')[1];
+            if (!indexUrls.ContainsKey(guid))
+            {
+                PackageClass PackByGUID = MpeInstaller.KnownExtensions.Get(guid);
+                if (PackByGUID != null)
+                {
+                    if (url != PackByGUID.GeneralInfo.UpdateUrl)
+                    {
+                        ReplaceUpdateURL(guid, url);
+                    }
+                    indexUrls.Add(guid, url);
+                }
+            }
         }
-        MpeInstaller.SetInitialUrlIndex(indexUrls);
+        MpeInstaller.SetInitialUrlIndex(indexUrls.Values.ToList());
       }
     }
+
+    void UpdateInform()
+    {
+        if (NewReleases.Count > 0)
+        {
+            if (GUIUtils.ShowYesNoDialog(Translation.Notification, string.Format(Translation.MPUpdateAvailable, NewReleases[0].DisplayedVersion), true))
+            {
+                currentListing = Views.Compatibility;
+            }
+        }
+    }
+
+    void CheckForReleases()
+    {
+        BackgroundWorker bw = new BackgroundWorker();
+        bw.DoWork +=new DoWorkEventHandler(bw_DoWork);
+        bw.RunWorkerAsync();
+
+    }
+    private void bw_DoWork(object sender, DoWorkEventArgs e)
+    {
+        NewReleases = UpgradeAdvisor.GetUpdate();   
+    }
+
 
     void UpdateAll()
     {
@@ -432,21 +467,52 @@ namespace MPEIPlugin
         tmpLine = (string)xmlreader.GetValue("myextensions2", "sort");
         if (tmpLine != null)
         {
-          if (tmpLine == "name") currentSortMethod = SortMethod.Name;
-          else if (tmpLine == "type") currentSortMethod = SortMethod.Type;
-          else if (tmpLine == "date") currentSortMethod = SortMethod.Date;
-          else if (tmpLine == "download") currentSortMethod = SortMethod.Download;
-          else if (tmpLine == "rate") currentSortMethod = SortMethod.Rating;
+          switch (tmpLine)
+          {
+              case "name":
+                  currentSortMethod = SortMethod.Name;
+                  break;
+              case "type":
+                  currentSortMethod = SortMethod.Type;
+                  break;
+              case "date":
+                  currentSortMethod = SortMethod.Date;
+                  break;
+              case "download":
+                  currentSortMethod = SortMethod.Download;
+                  break;
+              case "rate":
+                  currentSortMethod = SortMethod.Rating;
+                  break;
+          }
         }
         tmpLine = (string)xmlreader.GetValue("myextensions2", "listing");
         if (tmpLine != null)
         {
-          if (tmpLine == "local") currentListing = Views.Local;
-          else if (tmpLine == "online") currentListing = Views.Online;
-          else if (tmpLine == "updates") currentListing = Views.Updates;
-          else if (tmpLine == "new") currentListing = Views.New;
-          else if (tmpLine == "queue") currentListing = Views.Queue;
-          else if (tmpLine == "site") currentListing = Views.MpSIte;
+          switch (tmpLine)
+          {
+              case "local":
+                  currentListing = Views.Local;
+                  break;
+              case "online":
+                  currentListing = Views.Online;
+                  break;
+              case "updates":
+                  currentListing = Views.Updates;
+                  break;
+              case "new":
+                  currentListing = Views.New;
+                  break;
+              case "queue":
+                  currentListing = Views.Queue;
+                  break;
+              case "site":
+                  currentListing = Views.MpSite;
+                  break;
+              case "compatibility":
+                  currentListing = Views.Compatibility;
+                  break;
+          }
         }
         sortAscending = xmlreader.GetValueAsBool("myextensions2", "sortascending", true);
         periodicUpdateCheck = xmlreader.GetValueAsBool("myextensions2", "periodicupdatecheck", true);
@@ -517,7 +583,7 @@ namespace MPEIPlugin
           case Views.Queue:
             xmlwriter.SetValue("myextensions2", "listing", "queue");
             break;
-          case Views.MpSIte:
+          case Views.MpSite:
             xmlwriter.SetValue("myextensions2", "listing", "site");
             break;
         }
@@ -543,12 +609,30 @@ namespace MPEIPlugin
             switch (key)
             {
               case "view":
-                if (value == "local") currentListing = Views.Local;
-                else if (value == "online") currentListing = Views.Online;
-                else if (value == "updates") currentListing = Views.Updates;
-                else if (value == "new") currentListing = Views.New;
-                else if (value == "queue") currentListing = Views.Queue;
-                else if (value == "site") currentListing = Views.MpSIte;
+                switch (value)
+                {
+                    case "local":
+                        currentListing = Views.Local;
+                        break;
+                    case "online":
+                        currentListing = Views.Online;
+                        break;
+                    case "updates":
+                        currentListing = Views.Updates;
+                        break;
+                    case "new":
+                        currentListing = Views.New;
+                        break;
+                    case "queue":
+                        currentListing = Views.Queue;
+                        break;
+                    case "site":
+                        currentListing = Views.MpSite;
+                        break;
+                    case "compatibility":
+                        currentListing = Views.Compatibility;
+                        break;
+                }
                 break;
 
               default:
@@ -649,13 +733,15 @@ namespace MPEIPlugin
           break;
       }
 
+      UpdateInform();
       SelectCurrentItem();
       UpdateButtonStates();
       LoadDirectory(currentFolder);
 
       btnSortBy.SortChanged += SortChanged;
+      btnOnlyCompatible.Selected = _setting.ShowOnlyCompatible;
+      btnOnlyStable.Selected = _setting.ShowOnlyStable;
       _askForRestart = true;
-
       base.OnPageLoad();
     }
 
@@ -715,7 +801,7 @@ namespace MPEIPlugin
       dlg.Add(Translation.ShowChangelogs);
 
       GetPackageConfigFile(pk);
-      if (MpeInstaller.InstalledExtensions.Get(pk) != null && File.Exists(pk.LocationFolder + "extension_settings.xml"))
+      if (MpeInstaller.InstalledExtensions.Get(pk) != null)
       {
         dlg.Add(Translation.Settings);
       }
@@ -873,6 +959,17 @@ namespace MPEIPlugin
         return;
       }
 
+      if (control == btnOnlyStable || control == btnOnlyCompatible)
+      {
+          _setting.ShowOnlyStable = btnOnlyStable.Selected;
+          _setting.ShowOnlyCompatible = btnOnlyCompatible.Selected;
+          _setting.Save();
+          MpeInstaller.KnownExtensions.Hide(_setting.ShowOnlyStable, _setting.ShowOnlyCompatible);
+          LoadDirectory(currentFolder);
+      }
+
+
+
       if (control == facadeView)
       {
         GUIMessage msg = new GUIMessage(GUIMessage.MessageType.GUI_MSG_ITEM_SELECTED, GetID, 0, controlId, 0, 0, null);
@@ -954,13 +1051,15 @@ namespace MPEIPlugin
         if (_downloadManager.DownloadNow(onlineFile, tempFile))
         {
           Log.Info("[MPEI] Update info loaded from " + onlineFile);
-          MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(tempFile));
-          MpeInstaller.KnownExtensions.Hide(_setting.ShowOnlyStable, _setting.ShowOnlyCompatible);
+
+          MpeInstaller.KnownExtensions.Add(GetUniquePack(tempFile));
+          //MpeInstaller.KnownExtensions.Add(ExtensionCollection.Load(tempFile));
+          //MpeInstaller.KnownExtensions.Hide(_setting.ShowOnlyStable, _setting.ShowOnlyCompatible);
           GenerateProperty();
 
           try
           {
-            MpeInstaller.Save();
+            //MpeInstaller.Save();
             File.Delete(tempFile);
           }
           catch { }
@@ -974,6 +1073,8 @@ namespace MPEIPlugin
 
       }
 
+      MpeInstaller.KnownExtensions.Hide(_setting.ShowOnlyStable, _setting.ShowOnlyCompatible);
+      MpeInstaller.Save();
       // close dialog
       progressDialog.Close();
 
@@ -1230,13 +1331,14 @@ namespace MPEIPlugin
 
       dlg.Add(Translation.NewExtensions); // new
       dlg.Add(Translation.MPOnlineExtensions); // mp online
+      dlg.Add(Translation.Compatibility);
 
       dlg.SelectedLabel = (int)currentListing;
 
       // show dialog and wait for result
       dlg.DoModal(GetID);
       if (dlg.SelectedId == -1) return;
-
+        
       if (dlg.SelectedLabelText == Translation.InstalledExtensions)
         currentListing = Views.Local;
 
@@ -1253,7 +1355,10 @@ namespace MPEIPlugin
         currentListing = Views.Queue;
 
       if (dlg.SelectedLabelText == Translation.MPOnlineExtensions)
-        currentListing = Views.MpSIte;
+          currentListing = Views.MpSite;
+
+        if (dlg.SelectedLabelText == Translation.Compatibility)
+            currentListing = Views.Compatibility;
 
       ClearProperties();
       LoadDirectory(string.Empty);
@@ -1272,7 +1377,7 @@ namespace MPEIPlugin
 
     public int Compare(GUIListItem item1, GUIListItem item2)
     {
-      if (currentListing == Views.MpSIte)
+      if (currentListing == Views.MpSite)
         return -1;
       if (item1 == item2) return 0;
       if (item1 == null) return -1;
@@ -1549,7 +1654,7 @@ namespace MPEIPlugin
 
           FinializeDirectory(strNewDirectory);
           break;
-        case Views.MpSIte:
+        case Views.MpSite:
           {
             GUIPropertyManager.SetProperty("#MPE.View.Name", Translation.MPOnlineExtensions);
             GUIListItem item = new GUIListItem();
@@ -1601,6 +1706,44 @@ namespace MPEIPlugin
               LoadMPSiteDirectory(strNewDirectory, parentCategory, categories);
             }            
           }
+          break;
+        case Views.Compatibility:
+          {
+              MPRelease selectedMP = new MPRelease();
+              if (NewReleases.Count > 0)
+              {
+                  selectedMP = NewReleases[0];
+              }
+              else
+              {
+                  List<GUIListItem> Versions = new List<GUIListItem>();
+                  foreach (MPRelease mp in UpgradeAdvisor.AllReleases)
+                  {
+                      GUIListItem item = new GUIListItem();
+                      item.Label = mp.DisplayedVersion;
+                      item.Label2 = mp.Version.ToString();
+                      Versions.Add(item);
+                  }
+                  int selection = GUIUtils.ShowMenuDialog(Translation.SelectMPVersion, Versions);
+                  selectedMP = UpgradeAdvisor.AllReleases[selection];
+              }
+              GUIPropertyManager.SetProperty("#MPE.View.Name", string.Format("{0} with MediaPortal {1}", Translation.Compatibility, selectedMP.DisplayedVersion));
+              foreach (PackageClass pk in MpeInstaller.InstalledExtensions.Items)
+              {
+                  GUIListItem item = new GUIListItem();
+                  item.IconImage = "defaultExtension.png";
+                  item.IconImageBig = "defaultExtensionBig.png";
+                  item.ThumbnailImage = "defaultExtensionBig.png";
+                  item.MusicTag = pk;
+                  item.IsFolder = false;
+                  item.Label = pk.GeneralInfo.Name;
+                  item.Label2 = UpgradeAdvisor.GetCompatiblePluginVersion(pk, selectedMP.Version);
+                  SetLogo(pk, item);
+                  item.OnItemSelected += item_OnItemSelected;
+                  facadeView.Add(item);
+              }
+          }
+          FinializeDirectory(strNewDirectory);
           break;
       }
 
@@ -2112,7 +2255,7 @@ namespace MPEIPlugin
             switch (method)
             {
               case SortMethod.Name:
-                item.Label2 = pak.GeneralInfo.Version.ToString();
+                //item.Label2 = pak.GeneralInfo.Version.ToString();
                 break;
               case SortMethod.Type:
                 //item.Label2 = pak.InstallerInfo.Group;

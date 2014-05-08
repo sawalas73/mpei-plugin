@@ -84,7 +84,8 @@
           <description>View-As</description>
           <type>button</type>
           <onright>50</onright>
-          <onup>17</onup>
+          <onup>11</onup>
+          <ondown>3</ondown>
           <label>100</label>
         </control>
         <control>
@@ -92,12 +93,16 @@
           <description>Sort</description>
           <type>sortbutton</type>
           <onright>50</onright>
+          <onup>2</onup>
+          <ondown>6</ondown>
         </control>
         <control>
           <id>6</id>
           <description>Views</description>
           <type>button</type>
           <onright>50</onright>
+          <onup>3</onup>
+          <ondown>5</ondown>
           <label>457</label>
         </control>
         <control>
@@ -105,6 +110,8 @@
           <description>Restart</description>
           <type>button</type>
           <onright>50</onright>
+          <onup>6</onup>
+          <ondown>8</ondown>
           <label>#MPEI.Translation.Restart.Label</label>
         </control>
         <control>
@@ -112,6 +119,8 @@
           <description>Update all</description>
           <type>button</type>
           <onright>50</onright>
+          <onup>5</onup>
+          <ondown>9</ondown>
           <label>#MPEI.Translation.UpdateAll.Label</label>
           <visible>string.contains(#mpei.updates,.::.)</visible>
         </control>
@@ -120,7 +129,26 @@
           <description>Check for Updates</description>
           <type>button</type>
           <onright>50</onright>
+          <onup>8</onup>
           <label>#MPEI.Translation.DownloadUpdates.Label</label>
+          <ondown>10</ondown>
+        </control>
+        <control>
+          <id>10</id>
+          <description>Show Only Stable</description>
+          <type>button</type>
+          <onright>50</onright>
+          <onup>9</onup>
+          <label>#MPEI.Translation.ShowOnlyStable.Label</label>
+          <ondown>11</ondown>
+        </control>
+        <control>
+          <id>11</id>
+          <description>Show Only Compatible</description>
+          <type>button</type>
+          <onright>50</onright>
+          <onup>10</onup>
+          <label>#MPEI.Translation.ShowOnlyCompatible.Label</label>
           <ondown>2</ondown>
         </control>
       </control>

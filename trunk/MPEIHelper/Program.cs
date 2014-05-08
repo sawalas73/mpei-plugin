@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using MediaPortal.Configuration;
 
 namespace MPEIHelper
 {
@@ -28,8 +28,7 @@ namespace MPEIHelper
         string splashFile = reader.ReadLine();
         reader.Close();
 
-        KillProcess("Configuration");
-        KillProcess("MediaPortal");
+
 
         DownloadFile dlg = new DownloadFile();
 
@@ -38,6 +37,10 @@ namespace MPEIHelper
           splashScreen.SetImg(splashFile);
           splashScreen.Show();
         }
+
+        KillProcess("Configuration");
+        KillProcess("MediaPortal");
+
         dlg.Client.DownloadProgressChanged += Client_DownloadProgressChanged;
         dlg.Client.DownloadFileCompleted += Client_DownloadFileCompleted;
         dlg.Text = pluginName;
@@ -93,7 +96,7 @@ namespace MPEIHelper
         }
 
         // Start MediaPortal, installation complete
-        Process.Start("MediaPortal.exe");
+        Process.Start(Config.GetFile(Config.Dir.Base,"MediaPortal.exe"));
         Thread.Sleep(3000);
         if (splashScreen.Visible)
         {
