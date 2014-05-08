@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Security.Policy;
-using System.Text;
 using System.Web;
 using System.Text.RegularExpressions;
 using MediaPortal.GUI.Library;
@@ -37,7 +35,7 @@ namespace MPEIPlugin.MPSite
       resultString = regexObj.Match(site).Groups[1].Value;
       try
       {
-        Regex regexObj1 = new Regex(@".add.(?<id>.+?),(?<pid>.+?),'(?<name>.+?)<small>.(?<nr>.+?).</small>','(?<url>.+?)','', '',fpath\);");
+        Regex regexObj1 = new Regex(@".add.(?<id>.+?),(?<pid>.+?),'(?<name>.+?)','(?<url>.+?)','', '',fpath\);");
         Match matchResults = regexObj1.Match(resultString);
         while (matchResults.Success)
         {
@@ -48,7 +46,7 @@ namespace MPEIPlugin.MPSite
           {
             Id = matchResults.Groups["id"].Value,
             Name = GetCategoryTranslation(matchResults.Groups["name"].Value.Replace("&amp;","&").Trim()),
-            Number = matchResults.Groups["nr"].Value,
+            Number = "",//matchResults.Groups["nr"].Value,
             Url = matchResults.Groups["url"].Value,
             PId = matchResults.Groups["pid"].Value
           });

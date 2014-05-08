@@ -32,8 +32,6 @@ using MediaPortal.GUI.Library;
 using MediaPortal.Util;
 using Microsoft.DirectX.Direct3D;
 
-using MPEIPlugin;
-
 #region SlidePicture class
 
 internal class SlidePicture : IDisposable

@@ -1,18 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Text;
-using System.Net;
-using System.Timers;
-using System.Xml;
-using System.Xml.Serialization;
-using MediaPortal.GUI.Library;
-using MediaPortal.Util;
-using MediaPortal.Configuration;
-using MediaPortal.Dialogs;
+﻿using MediaPortal.GUI.Library;
 using MpeCore;
 using MpeCore.Classes;
 using MPEIPlugin.Classes;
@@ -75,21 +61,23 @@ namespace MPEIPlugin
       {
         settings.Load(SettingsFile);
         PackageClass pak = MpeInstaller.InstalledExtensions.Get(Package);
-        SetDisableState();
-        SetFocus();
+
 
         if (pak != null)
         {
-          if (settings.Settings.Count > 0)
+          if (settings.Settings.Count == 0)
           {
-            GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "true");
+              settings.LoadDefaultSettings(pak);
           }
+          GUIPropertyManager.SetProperty("#MPE.Selected.HaveSettings", "true");
 
           if (!string.IsNullOrEmpty(pak.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Trim()) && pak.GeneralInfo.Params[ParamNamesConst.ONLINE_SCREENSHOT].Value.Split(ParamNamesConst.SEPARATORS).Length > 0)
           {
               GUIPropertyManager.SetProperty("#MPE.Selected.HaveScreenShots", "true");
           }
         }
+        SetDisableState();
+        SetFocus();
       }
 
       if (SiteItem != null)

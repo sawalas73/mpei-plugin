@@ -304,6 +304,7 @@ namespace MPEIPlugin
     
     // M
     public static string MPOnlineExtensions = "MP Website Extensions";
+    public static string MPUpdateAvailable = "New Mediaportal version {0} is online!\nCheck your plugins compatibility?";
 
     // N
     public static string Name = "Extensions";
@@ -343,7 +344,10 @@ namespace MPEIPlugin
     public static string Settings = "Settings";
     public static string ShowSreenshots = "Show Screenshots";
     public static string ShowChangelogs = "Show Change Logs";
-    public static string SelectVersion = "Select version";
+    public static string ShowOnlyStable = "Show Obly Stable";
+    public static string ShowOnlyCompatible = "Show Only Compatible";
+    public static string SelectMPVersion = "Select version";
+    public static string SelectVersion = "Select MediaPortal version";
     public static string SelectVersionToInstall = "Select version to (Re)Install";
     public static string StartSlideshow = "Start slideshow";
     public static string Screenshots = "Screenshots";
